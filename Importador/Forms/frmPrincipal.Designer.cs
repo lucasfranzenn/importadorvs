@@ -73,9 +73,6 @@ namespace Importador
             defaultLookAndFeel1 = new DevExpress.LookAndFeel.DefaultLookAndFeel(components);
             acImportacaoSeparador = new DevExpress.XtraBars.Navigation.AccordionControlSeparator();
             barManager1 = new DevExpress.XtraBars.BarManager(components);
-            bar1 = new DevExpress.XtraBars.Bar();
-            bar2 = new DevExpress.XtraBars.Bar();
-            bar3 = new DevExpress.XtraBars.Bar();
             barDockControlTop = new DevExpress.XtraBars.BarDockControl();
             barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
@@ -369,36 +366,6 @@ namespace Importador
             barManager1.DockControls.Add(barDockControlLeft);
             barManager1.DockControls.Add(barDockControlRight);
             barManager1.Form = this;
-            // 
-            // bar1
-            // 
-            bar1.BarName = "Tools";
-            bar1.DockCol = 0;
-            bar1.DockRow = 1;
-            bar1.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
-            bar1.Text = "Tools";
-            // 
-            // bar2
-            // 
-            bar2.BarName = "Main menu";
-            bar2.DockCol = 0;
-            bar2.DockRow = 0;
-            bar2.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
-            bar2.OptionsBar.MultiLine = true;
-            bar2.OptionsBar.UseWholeRow = true;
-            bar2.Text = "Main menu";
-            // 
-            // bar3
-            // 
-            bar3.BarName = "Status bar";
-            bar3.CanDockStyle = DevExpress.XtraBars.BarCanDockStyle.Bottom;
-            bar3.DockCol = 0;
-            bar3.DockRow = 0;
-            bar3.DockStyle = DevExpress.XtraBars.BarDockStyle.Bottom;
-            bar3.OptionsBar.AllowQuickCustomization = false;
-            bar3.OptionsBar.DrawDragBorder = false;
-            bar3.OptionsBar.UseWholeRow = true;
-            bar3.Text = "Status bar";
             // 
             // barDockControlTop
             // 
