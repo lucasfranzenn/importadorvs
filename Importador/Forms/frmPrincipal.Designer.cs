@@ -33,12 +33,14 @@ namespace Importador
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPrincipal));
             fcPrincipal = new DevExpress.XtraBars.FluentDesignSystem.FluentDesignFormContainer();
             btnSair = new SimpleButton();
             acPrincipal = new DevExpress.XtraBars.Navigation.AccordionControl();
             acGeral = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             acGeralImplantacao = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             acGeralRelatorio = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            acExportarDados = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             acConexao = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             acConexaoMyCommerce = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             acConexaoImportacao = new DevExpress.XtraBars.Navigation.AccordionControlElement();
@@ -71,13 +73,13 @@ namespace Importador
             defaultLookAndFeel1 = new DevExpress.LookAndFeel.DefaultLookAndFeel(components);
             acImportacaoSeparador = new DevExpress.XtraBars.Navigation.AccordionControlSeparator();
             barManager1 = new DevExpress.XtraBars.BarManager(components);
+            bar1 = new DevExpress.XtraBars.Bar();
+            bar2 = new DevExpress.XtraBars.Bar();
+            bar3 = new DevExpress.XtraBars.Bar();
             barDockControlTop = new DevExpress.XtraBars.BarDockControl();
             barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             barDockControlRight = new DevExpress.XtraBars.BarDockControl();
-            bar1 = new DevExpress.XtraBars.Bar();
-            bar2 = new DevExpress.XtraBars.Bar();
-            bar3 = new DevExpress.XtraBars.Bar();
             ((System.ComponentModel.ISupportInitialize)acPrincipal).BeginInit();
             ((System.ComponentModel.ISupportInitialize)fluentDesignFormControl1).BeginInit();
             fluentDesignFormControl1.SuspendLayout();
@@ -114,7 +116,7 @@ namespace Importador
             // 
             // acGeral
             // 
-            acGeral.Elements.AddRange(new DevExpress.XtraBars.Navigation.AccordionControlElement[] { acGeralImplantacao, acGeralRelatorio });
+            acGeral.Elements.AddRange(new DevExpress.XtraBars.Navigation.AccordionControlElement[] { acGeralImplantacao, acGeralRelatorio, acExportarDados });
             acGeral.Expanded = true;
             acGeral.Name = "acGeral";
             acGeral.Text = "Geral ";
@@ -133,6 +135,15 @@ namespace Importador
             acGeralRelatorio.Name = "acGeralRelatorio";
             acGeralRelatorio.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
             acGeralRelatorio.Text = "Relatório";
+            // 
+            // acExportarDados
+            // 
+            acExportarDados.HeaderTemplate.AddRange(new DevExpress.XtraBars.Navigation.HeaderElementInfo[] { new DevExpress.XtraBars.Navigation.HeaderElementInfo(DevExpress.XtraBars.Navigation.HeaderElementType.Image), new DevExpress.XtraBars.Navigation.HeaderElementInfo(DevExpress.XtraBars.Navigation.HeaderElementType.Text), new DevExpress.XtraBars.Navigation.HeaderElementInfo(DevExpress.XtraBars.Navigation.HeaderElementType.ContextButtons), new DevExpress.XtraBars.Navigation.HeaderElementInfo(DevExpress.XtraBars.Navigation.HeaderElementType.HeaderControl) });
+            acExportarDados.ImageOptions.Image = (System.Drawing.Image)resources.GetObject("acExportarDados.ImageOptions.Image");
+            acExportarDados.Name = "acExportarDados";
+            acExportarDados.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            acExportarDados.Text = "Exportar Dados";
+            acExportarDados.Click += acExportarDados_Click;
             // 
             // acConexao
             // 
@@ -362,6 +373,36 @@ namespace Importador
             barManager1.MainMenu = bar2;
             barManager1.StatusBar = bar3;
             // 
+            // bar1
+            // 
+            bar1.BarName = "Tools";
+            bar1.DockCol = 0;
+            bar1.DockRow = 1;
+            bar1.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
+            bar1.Text = "Tools";
+            // 
+            // bar2
+            // 
+            bar2.BarName = "Main menu";
+            bar2.DockCol = 0;
+            bar2.DockRow = 0;
+            bar2.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
+            bar2.OptionsBar.MultiLine = true;
+            bar2.OptionsBar.UseWholeRow = true;
+            bar2.Text = "Main menu";
+            // 
+            // bar3
+            // 
+            bar3.BarName = "Status bar";
+            bar3.CanDockStyle = DevExpress.XtraBars.BarCanDockStyle.Bottom;
+            bar3.DockCol = 0;
+            bar3.DockRow = 0;
+            bar3.DockStyle = DevExpress.XtraBars.BarDockStyle.Bottom;
+            bar3.OptionsBar.AllowQuickCustomization = false;
+            bar3.OptionsBar.DrawDragBorder = false;
+            bar3.OptionsBar.UseWholeRow = true;
+            bar3.Text = "Status bar";
+            // 
             // barDockControlTop
             // 
             barDockControlTop.CausesValidation = false;
@@ -393,33 +434,6 @@ namespace Importador
             barDockControlRight.Location = new System.Drawing.Point(756, 72);
             barDockControlRight.Manager = barManager1;
             barDockControlRight.Size = new System.Drawing.Size(0, 480);
-            // 
-            // bar1
-            // 
-            bar1.BarName = "Tools";
-            bar1.DockCol = 0;
-            bar1.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
-            bar1.Text = "Tools";
-            // 
-            // bar2
-            // 
-            bar2.BarName = "Main menu";
-            bar2.DockCol = 0;
-            bar2.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
-            bar2.OptionsBar.MultiLine = true;
-            bar2.OptionsBar.UseWholeRow = true;
-            bar2.Text = "Main menu";
-            // 
-            // bar3
-            // 
-            bar3.BarName = "Status bar";
-            bar3.CanDockStyle = DevExpress.XtraBars.BarCanDockStyle.Bottom;
-            bar3.DockCol = 0;
-            bar3.DockStyle = DevExpress.XtraBars.BarDockStyle.Bottom;
-            bar3.OptionsBar.AllowQuickCustomization = false;
-            bar3.OptionsBar.DrawDragBorder = false;
-            bar3.OptionsBar.UseWholeRow = true;
-            bar3.Text = "Status bar";
             // 
             // frmPrincipal
             // 
@@ -499,6 +513,7 @@ namespace Importador
         private DevExpress.XtraBars.BarDockControl barDockControlTop;
         private DevExpress.XtraBars.BarDockControl barDockControlBottom;
         private DevExpress.XtraBars.BarDockControl barDockControlRight;
+        private DevExpress.XtraBars.Navigation.AccordionControlElement acExportarDados;
     }
 }
 
