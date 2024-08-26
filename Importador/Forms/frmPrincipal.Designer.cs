@@ -33,12 +33,14 @@ namespace Importador
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPrincipal));
             fcPrincipal = new DevExpress.XtraBars.FluentDesignSystem.FluentDesignFormContainer();
             btnSair = new SimpleButton();
             acPrincipal = new DevExpress.XtraBars.Navigation.AccordionControl();
             acGeral = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             acGeralImplantacao = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             acGeralRelatorio = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            acExportarDados = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             acConexao = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             acConexaoMyCommerce = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             acConexaoImportacao = new DevExpress.XtraBars.Navigation.AccordionControlElement();
@@ -111,7 +113,7 @@ namespace Importador
             // 
             // acGeral
             // 
-            acGeral.Elements.AddRange(new DevExpress.XtraBars.Navigation.AccordionControlElement[] { acGeralImplantacao, acGeralRelatorio });
+            acGeral.Elements.AddRange(new DevExpress.XtraBars.Navigation.AccordionControlElement[] { acGeralImplantacao, acGeralRelatorio, acExportarDados });
             acGeral.Expanded = true;
             acGeral.Name = "acGeral";
             acGeral.Text = "Geral ";
@@ -130,6 +132,15 @@ namespace Importador
             acGeralRelatorio.Name = "acGeralRelatorio";
             acGeralRelatorio.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
             acGeralRelatorio.Text = "Relatório";
+            // 
+            // acExportarDados
+            // 
+            acExportarDados.HeaderTemplate.AddRange(new DevExpress.XtraBars.Navigation.HeaderElementInfo[] { new DevExpress.XtraBars.Navigation.HeaderElementInfo(DevExpress.XtraBars.Navigation.HeaderElementType.Image), new DevExpress.XtraBars.Navigation.HeaderElementInfo(DevExpress.XtraBars.Navigation.HeaderElementType.Text), new DevExpress.XtraBars.Navigation.HeaderElementInfo(DevExpress.XtraBars.Navigation.HeaderElementType.ContextButtons), new DevExpress.XtraBars.Navigation.HeaderElementInfo(DevExpress.XtraBars.Navigation.HeaderElementType.HeaderControl) });
+            acExportarDados.ImageOptions.SvgImage = (DevExpress.Utils.Svg.SvgImage)resources.GetObject("acExportarDados.ImageOptions.SvgImage");
+            acExportarDados.Name = "acExportarDados";
+            acExportarDados.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            acExportarDados.Text = "Exportar Dados CSV";
+            acExportarDados.Click += acExportarDados_Click;
             // 
             // acConexao
             // 
@@ -463,6 +474,7 @@ namespace Importador
         private DevExpress.XtraBars.BarDockControl barDockControlTop;
         private DevExpress.XtraBars.BarDockControl barDockControlBottom;
         private DevExpress.XtraBars.BarDockControl barDockControlRight;
+        private DevExpress.XtraBars.Navigation.AccordionControlElement acExportarDados;
     }
 }
 

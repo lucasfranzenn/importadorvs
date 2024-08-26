@@ -15,6 +15,12 @@ namespace Importador
         {
             AlteraAba(ref fcPrincipal, new UCImplantacao());
         }
+
+        private void acExportarDados_Click(object sender, EventArgs e)
+        {
+            AlteraAba(ref fcPrincipal, new UCExportarDados());
+        }
+
         public void btnSair_Click(object sender, EventArgs e)
         {
             Dispose();
