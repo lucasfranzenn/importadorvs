@@ -1,0 +1,12 @@
+{
+  "consultas": [
+    {
+      "tabela": "clientes",
+      "sqlSelect": "SELECT \r\n  AS codigo, \r\n  AS nome \r\nFROM clientes"
+    },
+    {
+      "tabela": "produtos",
+      "sqlSelect": "SELECT \r\n  AS codigo, \r\n  AS descricao \r\nFROM produtos"
+    }
+  ]
+}
