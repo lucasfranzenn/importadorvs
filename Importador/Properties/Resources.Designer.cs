@@ -193,6 +193,16 @@ namespace Importador.Properties {
         /// <summary>
         ///   Looks up a localized resource of type DevExpress.Utils.Svg.SvgImage.
         /// </summary>
+        internal static DevExpress.Utils.Svg.SvgImage exporttocsv {
+            get {
+                object obj = ResourceManager.GetObject("exporttocsv", resourceCulture);
+                return ((DevExpress.Utils.Svg.SvgImage)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type DevExpress.Utils.Svg.SvgImage.
+        /// </summary>
         internal static DevExpress.Utils.Svg.SvgImage financial {
             get {
                 object obj = ResourceManager.GetObject("financial", resourceCulture);
