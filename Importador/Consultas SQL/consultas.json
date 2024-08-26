@@ -2,11 +2,27 @@
   "consultas": [
     {
       "tabela": "clientes",
-      "sqlSelect": "SELECT \r\n  AS codigo, \r\n  AS nome \r\nFROM clientes"
+      "sqlSelect": "SELECT \r\nas Codigo,\r\nas tipo,\r\nas RazaoSocial,\r\nas NomeFantasia,\r\nas Endereco,\r\nas Bairro,\r\nas Cidade,\r\nas UF,\r\nas CEP,\r\nas codigocidadeibge,\r\nas numero,\r\nas complemento,\r\nas telefone1,\r\nas telefone2,\r\nas fax,\r\nas DataNascimento,\r\nas CNPJ,\r\nas IE,\r\nas CPF,\r\nas RG,\r\nas ValorCredito,\r\nas email,\r\nas FisicaJuridica,\r\nas contato,\r\n'IMPORTACAO' as usuario,\r\n'IMPORTACAO' AS terminal,\r\n0 as EmpresaCadastro \r\nFROM CLIENTES;"
     },
     {
       "tabela": "produtos",
-      "sqlSelect": "SELECT \r\n  AS codigo, \r\n  AS descricao \r\nFROM produtos"
+      "sqlSelect": "SELECT \r\nas Codigo, \r\n as Descricao, \r\n as detalhamento, \r\n as referencia, \r\n as codigobarras, \r\n as UNVenda, \r\n as ValorCusto, \r\ncustofinal - valorcusto as outroscustos, \r\n as custofinal, \r\n as VendaT1, \r\n as cst_simples, \r\n as codigocf, \r\n as ncm, \r\n as cest, \r\n as CodigoFabricante, \r\n as fabricante, \r\n as CodigoSecao, \r\n as Secao, \r\n as CodigoGrupo, \r\n as grupo, \r\n as CodigoSubGrupo, \r\n as SubGrupo, \r\n'Revenda' as TipoProduto , \r\n'Normal' as ModalidadeControle, \r\n'IMPORTACAO' as Usuario, \r\n'IMPORTACAO' as Terminal, \r\n AS cst_pis, \r\n AS Cst_Cofins, \r\n AS aliq_COFINS, \r\n AS aliq_pis, \r\n AS BaseCalculoICMS, \r\n AS AliquotaICMS \r\nFROM PRODUTOS"
+    },
+    {
+      "tabela": "produtos_st",
+      "sqlSelect": "SELECT \r\nascodigoproduto, \r\nasuf, \r\nasMVA, \r\nasMVA_AJUST , \r\nasMVA_SIMPLES , \r\nasICMS , \r\nasICMS_Intra , \r\nasICMS_Inter_PF , \r\nasCST , \r\nasCST_Simples , \r\nasValorPauta, \r\nasEmpresa , \r\nasBaseST \r\nFROM produtos_st; "
+    },
+    {
+      "tabela": "contasapagar",
+      "sqlSelect": "SELECT \r\n AS codigo, \r\n AS razaosocial, \r\n AS ndocumento, \r\n AS datalancamento, \r\n AS vencimento, \r\n AS vencimentooriginal, \r\n AS valor, \r\n AS valorpago, \r\n AS valorpendente, \r\n AS quitado, \r\n AS dataquitacao, \r\n AS juro, \r\n AS desconto, \r\n AS quantidadepagamentos, \r\n AS npagamento, \r\n AS descricao, \r\n0 AS empresa, \r\n AS valororiginal, \r\n'IMPORTACAO' AS usuario, \r\n'IMPORTACAO' AS terminal, \r\n1 AS CodModalidade, \r\n'CARTEIRA' AS Modalidade \r\n FROM CONTASAPAGAR"
+    },
+    {
+      "tabela": "contasareceber",
+      "sqlSelect": "SELECT \r\n AS codigo, \r\n AS razaosocial, \r\n AS ndocumento, \r\n AS datalancamento, \r\n AS vencimento, \r\n AS vencimentooriginal, \r\n AS valor, \r\n AS valorpago, \r\n AS valorpendente, \r\n AS quitado, \r\n AS dataquitacao, \r\n AS juro, \r\n AS desconto, \r\n AS quantidadepagamentos, \r\n AS npagamento, \r\n AS descricao, \r\n0 AS empresa, \r\n AS valororiginal, \r\n'IMPORTACAO' AS usuario, \r\n'IMPORTACAO' AS terminal, \r\n1 AS CodModalidade, \r\n'CARTEIRA' AS Modalidade \r\n FROM contasareceber"
+    },
+    {
+      "tabela": "servicos",
+      "sqlSelect": "SELECT \r\n as Codigo, \r\n as Descricao, \r\n as ValorCusto, \r\n as valorvenda, \r\n as servicoterceiro, \r\n'g' as status, \r\n1 as ativo, \r\n as DescontoMaximo \r\n FROM servicos"
     }
   ]
 }
