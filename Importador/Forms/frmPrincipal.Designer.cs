@@ -75,9 +75,6 @@ namespace Importador
             barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             barDockControlRight = new DevExpress.XtraBars.BarDockControl();
-            bar1 = new DevExpress.XtraBars.Bar();
-            bar2 = new DevExpress.XtraBars.Bar();
-            bar3 = new DevExpress.XtraBars.Bar();
             ((System.ComponentModel.ISupportInitialize)acPrincipal).BeginInit();
             ((System.ComponentModel.ISupportInitialize)fluentDesignFormControl1).BeginInit();
             fluentDesignFormControl1.SuspendLayout();
@@ -88,9 +85,9 @@ namespace Importador
             // fcPrincipal
             // 
             fcPrincipal.Dock = System.Windows.Forms.DockStyle.Fill;
-            fcPrincipal.Location = new System.Drawing.Point(214, 72);
+            fcPrincipal.Location = new System.Drawing.Point(214, 31);
             fcPrincipal.Name = "fcPrincipal";
-            fcPrincipal.Size = new System.Drawing.Size(542, 480);
+            fcPrincipal.Size = new System.Drawing.Size(542, 541);
             fcPrincipal.TabIndex = 0;
             // 
             // btnSair
@@ -105,11 +102,11 @@ namespace Importador
             // 
             acPrincipal.Dock = System.Windows.Forms.DockStyle.Left;
             acPrincipal.Elements.AddRange(new DevExpress.XtraBars.Navigation.AccordionControlElement[] { acGeral, acConexao, acImportacao, acUtilitarios, acDrivers, acFiscal });
-            acPrincipal.Location = new System.Drawing.Point(0, 72);
+            acPrincipal.Location = new System.Drawing.Point(0, 31);
             acPrincipal.Name = "acPrincipal";
             acPrincipal.ScrollBarMode = DevExpress.XtraBars.Navigation.ScrollBarMode.Fluent;
             acPrincipal.ShowFilterControl = DevExpress.XtraBars.Navigation.ShowFilterControl.Always;
-            acPrincipal.Size = new System.Drawing.Size(214, 480);
+            acPrincipal.Size = new System.Drawing.Size(214, 541);
             acPrincipal.TabIndex = 1;
             // 
             // acGeral
@@ -353,14 +350,11 @@ namespace Importador
             // 
             // barManager1
             // 
-            barManager1.Bars.AddRange(new DevExpress.XtraBars.Bar[] { bar1, bar2, bar3 });
             barManager1.DockControls.Add(barDockControlTop);
             barManager1.DockControls.Add(barDockControlBottom);
             barManager1.DockControls.Add(barDockControlLeft);
             barManager1.DockControls.Add(barDockControlRight);
             barManager1.Form = this;
-            barManager1.MainMenu = bar2;
-            barManager1.StatusBar = bar3;
             // 
             // barDockControlTop
             // 
@@ -368,58 +362,31 @@ namespace Importador
             barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
             barDockControlTop.Location = new System.Drawing.Point(0, 31);
             barDockControlTop.Manager = barManager1;
-            barDockControlTop.Size = new System.Drawing.Size(756, 41);
+            barDockControlTop.Size = new System.Drawing.Size(756, 0);
             // 
             // barDockControlBottom
             // 
             barDockControlBottom.CausesValidation = false;
             barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            barDockControlBottom.Location = new System.Drawing.Point(0, 552);
+            barDockControlBottom.Location = new System.Drawing.Point(0, 572);
             barDockControlBottom.Manager = barManager1;
-            barDockControlBottom.Size = new System.Drawing.Size(756, 20);
+            barDockControlBottom.Size = new System.Drawing.Size(756, 0);
             // 
             // barDockControlLeft
             // 
             barDockControlLeft.CausesValidation = false;
             barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
-            barDockControlLeft.Location = new System.Drawing.Point(0, 72);
+            barDockControlLeft.Location = new System.Drawing.Point(0, 31);
             barDockControlLeft.Manager = barManager1;
-            barDockControlLeft.Size = new System.Drawing.Size(0, 480);
+            barDockControlLeft.Size = new System.Drawing.Size(0, 541);
             // 
             // barDockControlRight
             // 
             barDockControlRight.CausesValidation = false;
             barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            barDockControlRight.Location = new System.Drawing.Point(756, 72);
+            barDockControlRight.Location = new System.Drawing.Point(756, 31);
             barDockControlRight.Manager = barManager1;
-            barDockControlRight.Size = new System.Drawing.Size(0, 480);
-            // 
-            // bar1
-            // 
-            bar1.BarName = "Tools";
-            bar1.DockCol = 0;
-            bar1.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
-            bar1.Text = "Tools";
-            // 
-            // bar2
-            // 
-            bar2.BarName = "Main menu";
-            bar2.DockCol = 0;
-            bar2.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
-            bar2.OptionsBar.MultiLine = true;
-            bar2.OptionsBar.UseWholeRow = true;
-            bar2.Text = "Main menu";
-            // 
-            // bar3
-            // 
-            bar3.BarName = "Status bar";
-            bar3.CanDockStyle = DevExpress.XtraBars.BarCanDockStyle.Bottom;
-            bar3.DockCol = 0;
-            bar3.DockStyle = DevExpress.XtraBars.BarDockStyle.Bottom;
-            bar3.OptionsBar.AllowQuickCustomization = false;
-            bar3.OptionsBar.DrawDragBorder = false;
-            bar3.OptionsBar.UseWholeRow = true;
-            bar3.Text = "Status bar";
+            barDockControlRight.Size = new System.Drawing.Size(0, 541);
             // 
             // frmPrincipal
             // 
@@ -493,9 +460,6 @@ namespace Importador
         private DevExpress.XtraBars.Navigation.AccordionControlElement acImportacaoBackup;
         private DevExpress.XtraBars.BarDockControl barDockControlLeft;
         private DevExpress.XtraBars.BarManager barManager1;
-        private DevExpress.XtraBars.Bar bar1;
-        private DevExpress.XtraBars.Bar bar2;
-        private DevExpress.XtraBars.Bar bar3;
         private DevExpress.XtraBars.BarDockControl barDockControlTop;
         private DevExpress.XtraBars.BarDockControl barDockControlBottom;
         private DevExpress.XtraBars.BarDockControl barDockControlRight;
