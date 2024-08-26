@@ -33,7 +33,6 @@ namespace Importador
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPrincipal));
             fcPrincipal = new DevExpress.XtraBars.FluentDesignSystem.FluentDesignFormContainer();
             btnSair = new SimpleButton();
             acPrincipal = new DevExpress.XtraBars.Navigation.AccordionControl();
@@ -136,7 +135,7 @@ namespace Importador
             // acExportarDados
             // 
             acExportarDados.HeaderTemplate.AddRange(new DevExpress.XtraBars.Navigation.HeaderElementInfo[] { new DevExpress.XtraBars.Navigation.HeaderElementInfo(DevExpress.XtraBars.Navigation.HeaderElementType.Image), new DevExpress.XtraBars.Navigation.HeaderElementInfo(DevExpress.XtraBars.Navigation.HeaderElementType.Text), new DevExpress.XtraBars.Navigation.HeaderElementInfo(DevExpress.XtraBars.Navigation.HeaderElementType.ContextButtons), new DevExpress.XtraBars.Navigation.HeaderElementInfo(DevExpress.XtraBars.Navigation.HeaderElementType.HeaderControl) });
-            acExportarDados.ImageOptions.Image = (System.Drawing.Image)resources.GetObject("acExportarDados.ImageOptions.Image");
+            acExportarDados.ImageOptions.SvgImage = Properties.Resources.exporttocsv;
             acExportarDados.Name = "acExportarDados";
             acExportarDados.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
             acExportarDados.Text = "Exportar Dados CSV";
@@ -397,6 +396,8 @@ namespace Importador
             barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
             barDockControlRight.Location = new System.Drawing.Point(756, 31);
             barDockControlRight.Manager = barManager1;
+            barDockControlRight.Size = new System.Drawing.Size(0, 541);
+            // 
             // frmPrincipal
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
