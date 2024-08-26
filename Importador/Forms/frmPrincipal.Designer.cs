@@ -142,7 +142,7 @@ namespace Importador
             acExportarDados.ImageOptions.Image = (System.Drawing.Image)resources.GetObject("acExportarDados.ImageOptions.Image");
             acExportarDados.Name = "acExportarDados";
             acExportarDados.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
-            acExportarDados.Text = "Exportar Dados";
+            acExportarDados.Text = "Exportar Dados CSV";
             acExportarDados.Click += acExportarDados_Click;
             // 
             // acConexao

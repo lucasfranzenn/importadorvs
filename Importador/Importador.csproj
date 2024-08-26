@@ -11,10 +11,14 @@
 
   <ItemGroup>
     <None Remove="Consultas SQL\consultas.json" />
+    <None Remove="Consultas SQL\exportarSqlCsv.py" />
   </ItemGroup>
 
   <ItemGroup>
     <Content Include="Consultas SQL\consultas.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Consultas SQL\exportarSqlCsv.py">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\refresh.ico" />

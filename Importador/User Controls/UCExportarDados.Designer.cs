@@ -31,7 +31,7 @@
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UCExportarDados));
             lbSql = new DevExpress.XtraEditors.LabelControl();
-            memoEdit1 = new DevExpress.XtraEditors.MemoEdit();
+            meSql = new DevExpress.XtraEditors.MemoEdit();
             panelControl1 = new DevExpress.XtraEditors.PanelControl();
             rbBancoImpl = new System.Windows.Forms.RadioButton();
             rbBancoMyc = new System.Windows.Forms.RadioButton();
@@ -40,7 +40,7 @@
             xtraFolderBrowserDialog1 = new DevExpress.XtraEditors.XtraFolderBrowserDialog(components);
             simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
             txtCaminhoFinal = new DevExpress.XtraEditors.TextEdit();
-            ((System.ComponentModel.ISupportInitialize)memoEdit1.Properties).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)meSql.Properties).BeginInit();
             ((System.ComponentModel.ISupportInitialize)panelControl1).BeginInit();
             panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)txtCaminhoFinal.Properties).BeginInit();
@@ -56,12 +56,12 @@
             lbSql.TabIndex = 0;
             lbSql.Text = "Sql Exportação";
             // 
-            // memoEdit1
+            // meSql
             // 
-            memoEdit1.Location = new System.Drawing.Point(16, 62);
-            memoEdit1.Name = "memoEdit1";
-            memoEdit1.Size = new System.Drawing.Size(505, 109);
-            memoEdit1.TabIndex = 1;
+            meSql.Location = new System.Drawing.Point(16, 62);
+            meSql.Name = "meSql";
+            meSql.Size = new System.Drawing.Size(505, 109);
+            meSql.TabIndex = 1;
             // 
             // panelControl1
             // 
@@ -145,11 +145,11 @@
             Controls.Add(simpleButton1);
             Controls.Add(btExportar);
             Controls.Add(panelControl1);
-            Controls.Add(memoEdit1);
+            Controls.Add(meSql);
             Controls.Add(lbSql);
             Name = "UCExportarDados";
             Size = new System.Drawing.Size(540, 540);
-            ((System.ComponentModel.ISupportInitialize)memoEdit1.Properties).EndInit();
+            ((System.ComponentModel.ISupportInitialize)meSql.Properties).EndInit();
             ((System.ComponentModel.ISupportInitialize)panelControl1).EndInit();
             panelControl1.ResumeLayout(false);
             panelControl1.PerformLayout();
@@ -161,7 +161,7 @@
         #endregion
 
         private DevExpress.XtraEditors.LabelControl lbSql;
-        private DevExpress.XtraEditors.MemoEdit memoEdit1;
+        private DevExpress.XtraEditors.MemoEdit meSql;
         private DevExpress.XtraEditors.RadioGroup radioGroup1;
         private System.Windows.Forms.RadioButton radioButton1;
         private System.Windows.Forms.RadioButton rbBancoImp;
