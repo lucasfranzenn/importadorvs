@@ -3,6 +3,7 @@ using MySqlConnector;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,33 +26,45 @@ namespace Importador.Conexao
 
             try
             {
-                _conexaoMariaDB.Open();
-                _conexaoImportacao.Open();
+               _conexaoMariaDB.Open();
+               _conexaoImportacao.Open();
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                throw;
+                Debug.Print(e.Message);
             }
         }
-        public IDbConnection GetConexaoMyCommerce()
-        {
-            if(_conexaoMariaDB != null)
-            {
-                _conexaoMariaDB.Close();
-            }
-            _conexaoMariaDB.Open();
 
-            return _conexaoMariaDB;
+        public static bool ConexoesAbertas()
+        {
+            instancia.CloseConnections();
+            instancia = new();
+            if (instancia._conexaoImportacao.State == ConnectionState.Open && instancia._conexaoMariaDB.State == ConnectionState.Open)
+            {
+                return true;
+            }
+            return false;
         }
 
-        public IDbConnection GetConexaoImportacao()
+        public static IDbConnection GetConexaoMyCommerce()
         {
-            if(_conexaoImportacao != null)
+            if(instancia._conexaoMariaDB != null)
             {
-                _conexaoImportacao.Close();
+                instancia._conexaoMariaDB.Close();
             }
-            _conexaoImportacao.Open();
-            return _conexaoImportacao;
+            instancia = new();
+
+            return instancia._conexaoMariaDB;
+        }
+
+        public static IDbConnection GetConexaoImportacao()
+        {
+            if(instancia._conexaoImportacao != null)
+            {
+                instancia._conexaoImportacao.Close();
+            }
+            instancia = new();
+            return instancia._conexaoImportacao;
         }
 
         public void CloseConnections()

@@ -1,6 +1,9 @@
-﻿using Importador.Classes;
+﻿using DevExpress.XtraMap;
+using Importador.Classes;
+using Importador.Classes.JSON;
 using Importador.Conexao;
 using System;
+using System.Data;
 
 namespace Importador.User_Controls
 {
@@ -13,16 +16,15 @@ namespace Importador.User_Controls
 
         private void UCClientes_Load(object sender, EventArgs e)
         {
-            try
+            if (ConexaoManager.ConexoesAbertas())
             {
-
+                txtSqlImportacao.Text = ConsultasJSON.GetSql("clientes");
             }
-            catch (Exception)
+            else
             {
-
-                throw;
+                System.Windows.Forms.MessageBox.Show("Conexões não foram estabelecidas!\nConfigure-as corretamente", "..::Importador::..");
+                Enabled = false;
             }
-            txtSqlImportacao.Text = ConsultasJSON.GetSql("clientes");
         }
     }
 }
