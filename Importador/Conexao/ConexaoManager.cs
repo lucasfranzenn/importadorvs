@@ -39,32 +39,7 @@ namespace Importador.Conexao
         {
             instancia.CloseConnections();
             instancia = new();
-            if (instancia._conexaoImportacao.State == ConnectionState.Open && instancia._conexaoMariaDB.State == ConnectionState.Open)
-            {
-                return true;
-            }
-            return false;
-        }
-
-        public static IDbConnection GetConexaoMyCommerce()
-        {
-            if(instancia._conexaoMariaDB != null)
-            {
-                instancia._conexaoMariaDB.Close();
-            }
-            instancia = new();
-
-            return instancia._conexaoMariaDB;
-        }
-
-        public static IDbConnection GetConexaoImportacao()
-        {
-            if(instancia._conexaoImportacao != null)
-            {
-                instancia._conexaoImportacao.Close();
-            }
-            instancia = new();
-            return instancia._conexaoImportacao;
+            return ((instancia._conexaoImportacao.State == ConnectionState.Open && instancia._conexaoMariaDB.State == ConnectionState.Open));
         }
 
         public void CloseConnections()
