@@ -54,9 +54,9 @@ namespace Importador.Classes.JSON
         /// </summary>
         /// <param name="sistema">"mycommerce" ou "importacao"</param>
         /// <returns>retornara por padrão a string da importacao</returns>
-        public static string GetConnectionString(string sistema) => sistema switch
+        public static string GetConnectionString(Sistema sistema) => sistema switch
         {
-            "mycommerce" => FromJson(File.ReadAllText(PathConexoesJson)).Mycommerce.ToString(),
+            Sistema.MyCommerce => FromJson(File.ReadAllText(PathConexoesJson)).Mycommerce.ToString(),
             _ => FromJson(File.ReadAllText(PathConexoesJson)).Importacao.ToString()
         };
 
