@@ -6,6 +6,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static Importador.Classes.VariaveisGlobais;
 
 namespace Importador.Conexao
 {
@@ -17,10 +18,10 @@ namespace Importador.Conexao
 
         public ConexaoManager()
         {
-            _conexaoMariaDB = new MariaDbConnection().CriarConexao(ConexoesJson.GetConnectionString("mycommerce"));
+            _conexaoMariaDB = new MariaDbConnection().CriarConexao(ConexoesJson.GetConnectionString(Sistema.MyCommerce));
 
             var genericDbFactory = ConexaoFactory.CriarConexaoBanco(ConexoesJson.GetTipoBancoImportacao());
-            _conexaoImportacao = genericDbFactory.CriarConexao(ConexoesJson.GetConnectionString("importacao"));
+            _conexaoImportacao = genericDbFactory.CriarConexao(ConexoesJson.GetConnectionString(Sistema.Importacao));
 
             try
             {
