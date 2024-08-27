@@ -35,11 +35,22 @@ namespace Importador.Conexao
         }
         public IDbConnection GetConexaoMyCommerce()
         {
+            if(_conexaoMariaDB != null)
+            {
+                _conexaoMariaDB.Close();
+            }
+            _conexaoMariaDB.Open();
+
             return _conexaoMariaDB;
         }
 
         public IDbConnection GetConexaoImportacao()
         {
+            if(_conexaoImportacao != null)
+            {
+                _conexaoImportacao.Close();
+            }
+            _conexaoImportacao.Open();
             return _conexaoImportacao;
         }
 
