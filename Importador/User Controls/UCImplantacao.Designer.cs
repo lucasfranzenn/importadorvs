@@ -51,6 +51,7 @@
             txtFormularioOriginal = new DevExpress.XtraEditors.HyperlinkLabelControl();
             txtBackupOriginal = new DevExpress.XtraEditors.HyperlinkLabelControl();
             txtCliente = new DevExpress.XtraEditors.LabelControl();
+            rgRegime = new DevExpress.XtraEditors.RadioGroup();
             ((System.ComponentModel.ISupportInitialize)tpOpcoesImportar).BeginInit();
             tpOpcoesImportar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)chkImportarEstoque.Properties).BeginInit();
@@ -59,6 +60,7 @@
             ((System.ComponentModel.ISupportInitialize)cbImportarFornecedores.Properties).BeginInit();
             ((System.ComponentModel.ISupportInitialize)cbImportarClientes.Properties).BeginInit();
             ((System.ComponentModel.ISupportInitialize)cbImportarProdutosOpcoes.Properties).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)rgRegime.Properties).BeginInit();
             SuspendLayout();
             // 
             // lblCliente
@@ -93,6 +95,8 @@
             // 
             // tpOpcoesImportar
             // 
+            tpOpcoesImportar.Appearance.BackColor = System.Drawing.Color.White;
+            tpOpcoesImportar.Appearance.Options.UseBackColor = true;
             tpOpcoesImportar.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
             tpOpcoesImportar.Columns.AddRange(new DevExpress.Utils.Layout.TablePanelColumn[] { new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 26.84F), new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 33.16F) });
             tpOpcoesImportar.Controls.Add(lblImportarClientes);
@@ -107,11 +111,10 @@
             tpOpcoesImportar.Controls.Add(labelControl4);
             tpOpcoesImportar.Controls.Add(labelControl3);
             tpOpcoesImportar.Controls.Add(labelControl1);
-            tpOpcoesImportar.Location = new System.Drawing.Point(16, 345);
+            tpOpcoesImportar.Location = new System.Drawing.Point(16, 310);
             tpOpcoesImportar.Name = "tpOpcoesImportar";
             tpOpcoesImportar.Rows.AddRange(new DevExpress.Utils.Layout.TablePanelRow[] { new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.AutoSize, 26F), new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.AutoSize, 26F), new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.AutoSize, 26F), new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.AutoSize, 26F), new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.AutoSize, 26F), new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.AutoSize, 26F) });
-            tpOpcoesImportar.ShowGrid = DevExpress.Utils.DefaultBoolean.False;
-            tpOpcoesImportar.Size = new System.Drawing.Size(506, 165);
+            tpOpcoesImportar.Size = new System.Drawing.Size(506, 169);
             tpOpcoesImportar.TabIndex = 8;
             tpOpcoesImportar.UseSkinIndents = true;
             // 
@@ -119,17 +122,14 @@
             // 
             lblImportarClientes.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
             lblImportarClientes.Appearance.Options.UseFont = true;
-            tpOpcoesImportar.SetColumn(lblImportarClientes, 0);
             lblImportarClientes.Location = new System.Drawing.Point(13, 15);
             lblImportarClientes.Name = "lblImportarClientes";
-            tpOpcoesImportar.SetRow(lblImportarClientes, 0);
             lblImportarClientes.Size = new System.Drawing.Size(100, 13);
             lblImportarClientes.TabIndex = 12;
             lblImportarClientes.Text = "Importar Clientes";
             // 
             // chkImportarEstoque
             // 
-            tpOpcoesImportar.SetColumn(chkImportarEstoque, 1);
             chkImportarEstoque.Dock = System.Windows.Forms.DockStyle.Fill;
             chkImportarEstoque.Location = new System.Drawing.Point(230, 132);
             chkImportarEstoque.Name = "chkImportarEstoque";
@@ -138,7 +138,6 @@
             chkImportarEstoque.Properties.AutoHeight = false;
             chkImportarEstoque.Properties.Caption = "";
             chkImportarEstoque.Properties.ContentAlignment = DevExpress.Utils.HorzAlignment.Center;
-            tpOpcoesImportar.SetRow(chkImportarEstoque, 5);
             chkImportarEstoque.Size = new System.Drawing.Size(263, 20);
             chkImportarEstoque.TabIndex = 11;
             // 
@@ -203,7 +202,7 @@
             labelControl6.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
             labelControl6.Appearance.Options.UseFont = true;
             tpOpcoesImportar.SetColumn(labelControl6, 0);
-            labelControl6.Location = new System.Drawing.Point(13, 135);
+            labelControl6.Location = new System.Drawing.Point(13, 137);
             labelControl6.Name = "labelControl6";
             tpOpcoesImportar.SetRow(labelControl6, 5);
             labelControl6.Size = new System.Drawing.Size(100, 13);
@@ -304,7 +303,7 @@
             txtFormularioOriginal.Appearance.Options.UseFont = true;
             txtFormularioOriginal.Location = new System.Drawing.Point(192, 102);
             txtFormularioOriginal.Name = "txtFormularioOriginal";
-            txtFormularioOriginal.Size = new System.Drawing.Size(203, 14);
+            txtFormularioOriginal.Size = new System.Drawing.Size(204, 14);
             txtFormularioOriginal.TabIndex = 17;
             txtFormularioOriginal.Text = "file:///C:/tempSia/Formulario.pdf";
             // 
@@ -328,10 +327,22 @@
             txtCliente.TabIndex = 19;
             txtCliente.Text = "Visual Software LTDA";
             // 
+            // rgRegime
+            // 
+            rgRegime.Location = new System.Drawing.Point(16, 485);
+            rgRegime.Name = "rgRegime";
+            rgRegime.Properties.Appearance.Options.UseTextOptions = true;
+            rgRegime.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            rgRegime.Properties.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            rgRegime.Properties.Items.AddRange(new DevExpress.XtraEditors.Controls.RadioGroupItem[] { new DevExpress.XtraEditors.Controls.RadioGroupItem(null, "Simples Nacional"), new DevExpress.XtraEditors.Controls.RadioGroupItem(null, "Lucro Real"), new DevExpress.XtraEditors.Controls.RadioGroupItem(null, "Lucro Presumido") });
+            rgRegime.Size = new System.Drawing.Size(506, 34);
+            rgRegime.TabIndex = 20;
+            // 
             // UCImplantacao
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            Controls.Add(rgRegime);
             Controls.Add(txtCliente);
             Controls.Add(txtBackupOriginal);
             Controls.Add(txtFormularioOriginal);
@@ -354,6 +365,7 @@
             ((System.ComponentModel.ISupportInitialize)cbImportarFornecedores.Properties).EndInit();
             ((System.ComponentModel.ISupportInitialize)cbImportarClientes.Properties).EndInit();
             ((System.ComponentModel.ISupportInitialize)cbImportarProdutosOpcoes.Properties).EndInit();
+            ((System.ComponentModel.ISupportInitialize)rgRegime.Properties).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -383,5 +395,6 @@
         private DevExpress.XtraEditors.HyperlinkLabelControl txtFormularioOriginal;
         private DevExpress.XtraEditors.HyperlinkLabelControl txtBackupOriginal;
         private DevExpress.XtraEditors.LabelControl txtCliente;
+        private DevExpress.XtraEditors.RadioGroup rgRegime;
     }
 }

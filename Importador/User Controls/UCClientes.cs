@@ -4,7 +4,7 @@ using System;
 
 namespace Importador.User_Controls
 {
-    public partial class UCClientes : DevExpress.XtraEditors.XtraUserControl
+    public partial class UCClientes : UCImportacaoBase
     {
         public UCClientes()
         {

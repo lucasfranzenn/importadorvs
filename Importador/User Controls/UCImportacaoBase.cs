@@ -1,5 +1,4 @@
 ﻿using DevExpress.XtraEditors;
-using Importador.Classes;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -12,16 +11,11 @@ using System.Windows.Forms;
 
 namespace Importador.User_Controls
 {
-    public partial class UCProdutos : UCImportacaoBase
+    public partial class UCImportacaoBase : DevExpress.XtraEditors.XtraUserControl
     {
-        public UCProdutos()
+        public UCImportacaoBase()
         {
             InitializeComponent();
-        }
-
-        private void UCProdutos_Load(object sender, EventArgs e)
-        {
-            txtSqlImportacao.Text = ConsultasJSON.GetSql("produtos");
         }
     }
 }
