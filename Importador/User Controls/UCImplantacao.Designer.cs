@@ -304,7 +304,7 @@
             txtFormularioOriginal.Appearance.Options.UseFont = true;
             txtFormularioOriginal.Location = new System.Drawing.Point(192, 102);
             txtFormularioOriginal.Name = "txtFormularioOriginal";
-            txtFormularioOriginal.Size = new System.Drawing.Size(204, 14);
+            txtFormularioOriginal.Size = new System.Drawing.Size(203, 14);
             txtFormularioOriginal.TabIndex = 17;
             txtFormularioOriginal.Text = "file:///C:/tempSia/Formulario.pdf";
             // 

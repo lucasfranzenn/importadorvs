@@ -1,6 +1,9 @@
-﻿using DevExpress.XtraEditors;
+﻿using DevExpress.LookAndFeel;
+using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.CodedUISupport;
+using System.IO;
 using System.Windows.Controls;
+using static Importador.Classes.VariaveisGlobais;
 
 namespace Importador
 {
@@ -69,7 +72,7 @@ namespace Importador
             skinDropDownButtonItem1 = new DevExpress.XtraBars.SkinDropDownButtonItem();
             skinPaletteDropDownButtonItem1 = new DevExpress.XtraBars.SkinPaletteDropDownButtonItem();
             fluentFormDefaultManager1 = new DevExpress.XtraBars.FluentDesignSystem.FluentFormDefaultManager(components);
-            defaultLookAndFeel1 = new DevExpress.LookAndFeel.DefaultLookAndFeel(components);
+            defaultLookAndFeel1 = new DefaultLookAndFeel(components);
             acImportacaoSeparador = new DevExpress.XtraBars.Navigation.AccordionControlSeparator();
             barManager1 = new DevExpress.XtraBars.BarManager(components);
             barDockControlTop = new DevExpress.XtraBars.BarDockControl();
@@ -88,7 +91,7 @@ namespace Importador
             fcPrincipal.Dock = System.Windows.Forms.DockStyle.Fill;
             fcPrincipal.Location = new System.Drawing.Point(214, 31);
             fcPrincipal.Name = "fcPrincipal";
-            fcPrincipal.Size = new System.Drawing.Size(542, 541);
+            fcPrincipal.Size = new System.Drawing.Size(556, 548);
             fcPrincipal.TabIndex = 0;
             // 
             // btnSair
@@ -107,7 +110,7 @@ namespace Importador
             acPrincipal.Name = "acPrincipal";
             acPrincipal.ScrollBarMode = DevExpress.XtraBars.Navigation.ScrollBarMode.Fluent;
             acPrincipal.ShowFilterControl = DevExpress.XtraBars.Navigation.ShowFilterControl.Always;
-            acPrincipal.Size = new System.Drawing.Size(214, 541);
+            acPrincipal.Size = new System.Drawing.Size(214, 548);
             acPrincipal.TabIndex = 1;
             // 
             // acGeral
@@ -154,6 +157,7 @@ namespace Importador
             acConexaoMyCommerce.Name = "acConexaoMyCommerce";
             acConexaoMyCommerce.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
             acConexaoMyCommerce.Text = "MyCommerce";
+            acConexaoMyCommerce.Click += acConexaoMyCommerce_Click;
             // 
             // acConexaoImportacao
             // 
@@ -161,6 +165,7 @@ namespace Importador
             acConexaoImportacao.Name = "acConexaoImportacao";
             acConexaoImportacao.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
             acConexaoImportacao.Text = "Importação";
+            acConexaoImportacao.Click += acConexaoImportacao_Click;
             // 
             // acImportacao
             // 
@@ -183,6 +188,7 @@ namespace Importador
             acImportacaoProdutos.Name = "acImportacaoProdutos";
             acImportacaoProdutos.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
             acImportacaoProdutos.Text = "Produtos";
+            acImportacaoProdutos.Click += acImportacaoProdutos_Click;
             // 
             // acImportacaoProdutosST
             // 
@@ -318,7 +324,7 @@ namespace Importador
             fluentDesignFormControl1.Location = new System.Drawing.Point(0, 0);
             fluentDesignFormControl1.Manager = fluentFormDefaultManager1;
             fluentDesignFormControl1.Name = "fluentDesignFormControl1";
-            fluentDesignFormControl1.Size = new System.Drawing.Size(756, 31);
+            fluentDesignFormControl1.Size = new System.Drawing.Size(770, 31);
             fluentDesignFormControl1.TabIndex = 2;
             fluentDesignFormControl1.TabStop = false;
             fluentDesignFormControl1.TitleItemLinks.Add(blciTemas);
@@ -328,7 +334,7 @@ namespace Importador
             blciTemas.Alignment = DevExpress.XtraBars.BarItemLinkAlignment.Right;
             blciTemas.Caption = "Temas";
             blciTemas.Id = 0;
-            blciTemas.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] { new DevExpress.XtraBars.LinkPersistInfo(skinDropDownButtonItem1), new DevExpress.XtraBars.LinkPersistInfo(skinPaletteDropDownButtonItem1) });
+            blciTemas.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] { new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, skinDropDownButtonItem1, DevExpress.XtraBars.BarItemPaintStyle.Standard), new DevExpress.XtraBars.LinkPersistInfo(skinPaletteDropDownButtonItem1) });
             blciTemas.Name = "blciTemas";
             // 
             // skinDropDownButtonItem1
@@ -353,6 +359,12 @@ namespace Importador
             fluentFormDefaultManager1.Items.AddRange(new DevExpress.XtraBars.BarItem[] { blciTemas, skinDropDownButtonItem1, skinPaletteDropDownButtonItem1 });
             fluentFormDefaultManager1.MaxItemId = 3;
             // 
+            // defaultLookAndFeel1
+            // 
+            defaultLookAndFeel1.EnableBonusSkins = true;
+            defaultLookAndFeel1.LookAndFeel.SetSkinStyle(File.ReadAllText(PathSkinTxt).Split(',')[0], File.ReadAllText(PathSkinTxt).Split(',')[1]);
+            defaultLookAndFeel1.LookAndFeel.UseDefaultLookAndFeel = true;
+            // 
             // acImportacaoSeparador
             // 
             acImportacaoSeparador.Height = 1;
@@ -372,15 +384,15 @@ namespace Importador
             barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
             barDockControlTop.Location = new System.Drawing.Point(0, 31);
             barDockControlTop.Manager = barManager1;
-            barDockControlTop.Size = new System.Drawing.Size(756, 0);
+            barDockControlTop.Size = new System.Drawing.Size(770, 0);
             // 
             // barDockControlBottom
             // 
             barDockControlBottom.CausesValidation = false;
             barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            barDockControlBottom.Location = new System.Drawing.Point(0, 572);
+            barDockControlBottom.Location = new System.Drawing.Point(0, 579);
             barDockControlBottom.Manager = barManager1;
-            barDockControlBottom.Size = new System.Drawing.Size(756, 0);
+            barDockControlBottom.Size = new System.Drawing.Size(770, 0);
             // 
             // barDockControlLeft
             // 
@@ -388,22 +400,22 @@ namespace Importador
             barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
             barDockControlLeft.Location = new System.Drawing.Point(0, 31);
             barDockControlLeft.Manager = barManager1;
-            barDockControlLeft.Size = new System.Drawing.Size(0, 541);
+            barDockControlLeft.Size = new System.Drawing.Size(0, 548);
             // 
             // barDockControlRight
             // 
             barDockControlRight.CausesValidation = false;
             barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            barDockControlRight.Location = new System.Drawing.Point(756, 31);
+            barDockControlRight.Location = new System.Drawing.Point(770, 31);
             barDockControlRight.Manager = barManager1;
-            barDockControlRight.Size = new System.Drawing.Size(0, 541);
+            barDockControlRight.Size = new System.Drawing.Size(0, 548);
             // 
             // frmPrincipal
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             CancelButton = btnSair;
-            ClientSize = new System.Drawing.Size(756, 572);
+            ClientSize = new System.Drawing.Size(770, 579);
             ControlContainer = fcPrincipal;
             Controls.Add(fcPrincipal);
             Controls.Add(acPrincipal);
@@ -421,6 +433,7 @@ namespace Importador
             NavigationControl = acPrincipal;
             StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             Text = "Importador de Dados - MyCommerce";
+            FormClosing += frmPrincipal_FormClosing;
             ((System.ComponentModel.ISupportInitialize)acPrincipal).EndInit();
             ((System.ComponentModel.ISupportInitialize)fluentDesignFormControl1).EndInit();
             fluentDesignFormControl1.ResumeLayout(false);

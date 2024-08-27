@@ -7,6 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static Importador.Classes.VariaveisGlobais;
 
 namespace Importador.Classes
 {
@@ -27,7 +28,7 @@ namespace Importador.Classes
 
     public partial class ConsultasJSON
     {
-        public static string GetSql(string tabela) => FromJson(File.ReadAllText(@"Consultas SQL\consultas.json")).Consultas.Find(c => c.Tabela.Equals(tabela, StringComparison.OrdinalIgnoreCase))?.SqlSelect;
+        public static string GetSql(string tabela) => FromJson(File.ReadAllText(PathConsultasJson)).Consultas.Find(c => c.Tabela.Equals(tabela, StringComparison.OrdinalIgnoreCase))?.SqlSelect;
     }
 
     public partial class ConsultasJSON
@@ -35,7 +36,7 @@ namespace Importador.Classes
         public static ConsultasJSON FromJson(string json) => JsonConvert.DeserializeObject<ConsultasJSON>(json, Converter.Settings);
     }
 
-    public static class Serialize
+    public static class ConsultasSerialize
     {
         public static string ToJson(this ConsultasJSON self) => JsonConvert.SerializeObject(self, Converter.Settings);
     }

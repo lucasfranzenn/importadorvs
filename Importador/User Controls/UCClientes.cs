@@ -1,4 +1,5 @@
 ﻿using Importador.Classes;
+using Importador.Conexao;
 using System;
 
 namespace Importador.User_Controls
@@ -12,6 +13,15 @@ namespace Importador.User_Controls
 
         private void UCClientes_Load(object sender, EventArgs e)
         {
+            try
+            {
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
             txtSqlImportacao.Text = ConsultasJSON.GetSql("clientes");
         }
     }

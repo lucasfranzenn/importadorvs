@@ -1,0 +1,18 @@
+{
+  "mycommerce": {
+    "tipobanco": "mysql",
+    "host": "localhost",
+    "porta": 3306,
+    "usuario": "root",
+    "senha": "vssql",
+    "banco": "importadorteste"
+  },
+  "importacao": {
+    "tipobanco": "mysql",
+    "host": "localhost",
+    "porta": 3306,
+    "usuario": "root",
+    "senha": "vssql",
+    "banco": "importadorteste"
+  }
+}

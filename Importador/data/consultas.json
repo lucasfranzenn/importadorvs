@@ -6,7 +6,7 @@
     },
     {
       "tabela": "produtos",
-      "sqlSelect": "SELECT \r\nas Codigo, \r\n as Descricao, \r\n as detalhamento, \r\n as referencia, \r\n as codigobarras, \r\n as UNVenda, \r\n as ValorCusto, \r\ncustofinal - valorcusto as outroscustos, \r\n as custofinal, \r\n as VendaT1, \r\n as cst_simples, \r\n as codigocf, \r\n as ncm, \r\n as cest, \r\n as CodigoFabricante, \r\n as fabricante, \r\n as CodigoSecao, \r\n as Secao, \r\n as CodigoGrupo, \r\n as grupo, \r\n as CodigoSubGrupo, \r\n as SubGrupo, \r\n'Revenda' as TipoProduto , \r\n'Normal' as ModalidadeControle, \r\n'IMPORTACAO' as Usuario, \r\n'IMPORTACAO' as Terminal, \r\n AS cst_pis, \r\n AS Cst_Cofins, \r\n AS aliq_COFINS, \r\n AS aliq_pis, \r\n AS BaseCalculoICMS, \r\n AS AliquotaICMS \r\nFROM PRODUTOS"
+      "sqlSelect": "SELECT \r\nas Codigo, \r\n as Descricao, \r\n as detalhamento, \r\n as referencia, \r\n as codigobarras, \r\n as UNVenda, \r\n as ValorCusto, \r\n(custofinal - valorcusto) as outroscustos, \r\n as custofinal, \r\n as VendaT1, \r\n as cst_simples, \r\n as codigocf, \r\n as ncm, \r\n as cest, \r\n as CodigoFabricante, \r\n as fabricante, \r\n as CodigoSecao, \r\n as Secao, \r\n as CodigoGrupo, \r\n as grupo, \r\n as CodigoSubGrupo, \r\n as SubGrupo, \r\n'Revenda' as TipoProduto , \r\n'Normal' as ModalidadeControle, \r\n'IMPORTACAO' as Usuario, \r\n'IMPORTACAO' as Terminal, \r\n AS cst_pis, \r\n AS Cst_Cofins, \r\n AS aliq_COFINS, \r\n AS aliq_pis, \r\n AS BaseCalculoICMS, \r\n AS AliquotaICMS \r\nFROM PRODUTOS"
     },
     {
       "tabela": "produtos_st",
