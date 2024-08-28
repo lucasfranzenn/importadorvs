@@ -25,6 +25,8 @@ namespace Importador.User_Controls
                 System.Windows.Forms.MessageBox.Show("Conexões não foram estabelecidas!\nConfigure-as corretamente", "..::Importador::..");
                 Enabled = false;
             }
+
+
         }
     }
 }
