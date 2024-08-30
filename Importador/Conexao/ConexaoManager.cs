@@ -1,4 +1,5 @@
-﻿using Importador.Classes.JSON;
+﻿using DevExpress.Office.Crypto;
+using Importador.Classes.JSON;
 using MySqlConnector;
 using System;
 using System.Collections.Generic;
@@ -8,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using static Importador.Classes.VariaveisGlobais;
+using static Importador.Classes.Utils;
 
 namespace Importador.Conexao
 {
@@ -19,10 +21,10 @@ namespace Importador.Conexao
 
         public ConexaoManager()
         {
-            _conexaoMariaDB = new MariaDbConnection().CriarConexao(ConexoesJson.GetConnectionString(Sistema.MyCommerce));
+            _conexaoMariaDB = new MariaDbConnection().CriarConexao(GetImportacao(Sistema.MyCommerce));
 
             var genericDbFactory = ConexaoFactory.CriarConexaoBanco(ConexoesJson.GetTipoBancoImportacao());
-            _conexaoImportacao = genericDbFactory.CriarConexao(ConexoesJson.GetConnectionString(Sistema.Importacao));
+            _conexaoImportacao = genericDbFactory.CriarConexao(GetImportacao(Sistema.Importacao));
 
             try
             {
