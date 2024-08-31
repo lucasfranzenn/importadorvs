@@ -9,7 +9,6 @@ using MySqlConnector;
 using Npgsql;
 using FirebirdSql.Data.FirebirdClient;
 using Importador.Classes.JSON;
-using System.Security.Cryptography.X509Certificates;
 
 namespace Importador.Conexao
 {
@@ -22,7 +21,7 @@ namespace Importador.Conexao
     {
         public override IDbConnection CriarConexao(Importacao conexao)
         {
-            return new MySqlConnection($"Server={conexao.Host};Port={conexao.Porta};Database={conexao.Banco};Uid={conexao.Usuario};Pwd={conexao.Porta};");
+            return new MySqlConnection($"Server={conexao.Host};Port={conexao.Porta};Database={conexao.Banco};Uid={conexao.Usuario};Pwd={conexao.Senha};");
         }
     }
 
@@ -30,7 +29,7 @@ namespace Importador.Conexao
     {
         public override IDbConnection CriarConexao(Importacao conexao)
         {
-            return new NpgsqlConnection($"Host={conexao.Host};Port={conexao.Porta};Database={conexao.Banco};User ID={conexao.Usuario};Password={conexao.Porta};");
+            return new NpgsqlConnection($"Host={conexao.Host};Port={conexao.Porta};Database={conexao.Banco};User ID={conexao.Usuario};Password={conexao.Senha};");
         }
     }
 
@@ -38,7 +37,23 @@ namespace Importador.Conexao
     {
         public override IDbConnection CriarConexao(Importacao conexao)
         {
-            return new FbConnection($"DataSource={conexao.Host};Port={conexao.Porta};Database={conexao.Banco};User={conexao.Usuario};Password={conexao.Porta};Charset=NONE");
+            return new FbConnection($"DataSource={conexao.Host};Port={conexao.Porta};Database={conexao.Banco};User={conexao.Usuario};Password={conexao.Senha};Charset=NONE");
+        }
+    }
+
+    public class MSSqlConnection : ConexaoBase
+    {
+        public override IDbConnection CriarConexao(Importacao conexao)
+        {
+            return new SqlConnection($"Server={conexao.Host},{conexao.Porta};Database={conexao.Banco};User Id={conexao.Usuario};Password={conexao.Senha}");
+        }
+    }
+
+    public class ConnectionStringConnection : ConexaoBase
+    {
+        public override IDbConnection CriarConexao(Importacao conexao)
+        {
+            throw new NotImplementedException();
         }
     }
 }

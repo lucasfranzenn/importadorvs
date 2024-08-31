@@ -18,5 +18,27 @@ namespace Importador.Classes
             Importacao,
             MyCommerce
         }
+
+        public static Dictionary<string, string> TipoBancoCombo = new()
+        {
+            {"MySQL", "mysql"},
+            {"Firebird", "firebird"},
+            {"PostgreSQL", "postgre"},
+            {"MS-SQL \\ SQLServer", "mssql"},
+            {"Acess", "acess"},
+            {"ConnectionString", "connectionstring"}
+        };
+
+        public static Dictionary<string, string> TipoBancoComboReverso = new()
+        {
+            {"mysql", "MySQL"},
+            {"firebird", "Firebird"},
+            {"postgre" , "PostgreSQL"},
+            {"MS-SQL \\ SQLServer", "mssql"},
+            {"acess" , "Acess"},
+            {"connectionstring" , "ConnectionString"}
+        };
+
     }
+
 }
