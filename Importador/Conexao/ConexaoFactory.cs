@@ -15,12 +15,10 @@ namespace Importador.Conexao
             {
                 case "mysql":
                     return new MariaDbConnection();
-                case "postgresql":
+                case "postgre":
                     return new PostgreSqlConnection();
                 case "firebird":
                     return new FirebirdConnection();
-                case "mariadb":
-                    return new MariaDbConnection();
                 default:
                     throw new NotSupportedException($"O banco de dados '{tipoBanco}' não é suportado.");
             }

@@ -30,7 +30,7 @@ namespace Importador.User_Controls
             txtUsuario.Text = temp.Usuario;
             txtSenha.Text = temp.Senha;
             txtBancoDeDados.Text = temp.Banco;
-            cbTipoBanco.SelectedText = temp.Tipobanco;
+            cbTipoBanco.SelectedText = TipoBancoComboReverso[temp.Tipobanco];
         }
 
         private void UCConexaoImportacao_Leave(object sender, EventArgs e)
@@ -39,7 +39,7 @@ namespace Importador.User_Controls
 
             conexoesJson.Importacao = new Importacao()
             {
-                Tipobanco = cbTipoBanco.SelectedText,
+                Tipobanco = TipoBancoCombo[cbTipoBanco.SelectedText],
                 Host = txtHost.Text,
                 Porta = Convert.ToInt16(txtPorta.Text),
                 Usuario = txtUsuario.Text,
