@@ -149,7 +149,7 @@
             cbTipoBanco.Location = new System.Drawing.Point(9, 102);
             cbTipoBanco.Name = "cbTipoBanco";
             cbTipoBanco.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo) });
-            cbTipoBanco.Properties.Items.AddRange(new object[] { "MySQL", "Firebird", "Postgree", "MS-SQL \\ SQLServer", "Acess", "ConnectionString" });
+            cbTipoBanco.Properties.Items.AddRange(new object[] { "MySQL", "Firebird", "PostgreSQL", "MS-SQL \\ SQLServer", "Acess", "ConnectionString" });
             cbTipoBanco.Size = new System.Drawing.Size(517, 20);
             cbTipoBanco.TabIndex = 23;
             // 

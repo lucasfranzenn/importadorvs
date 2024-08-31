@@ -156,12 +156,12 @@
 
         protected DevExpress.XtraEditors.LabelControl lblSqlImportacao;
         protected DevExpress.XtraEditors.MemoEdit txtSqlImportacao;
-        private DevExpress.XtraEditors.SimpleButton btnImportar;
         public DevExpress.XtraEditors.GroupControl gcParametros;
         private DevExpress.XtraEditors.LabelControl lblHorarioFimImportacao;
         private DevExpress.XtraEditors.LabelControl lblHorarioInicioImportacao;
         private DevExpress.XtraEditors.LabelControl lblFimImportacao;
         private DevExpress.XtraEditors.LabelControl lblInicioImportacao;
-        private DevExpress.XtraEditors.ProgressBarControl pbImportacao;
+        public DevExpress.XtraEditors.SimpleButton btnImportar;
+        public DevExpress.XtraEditors.ProgressBarControl pbImportacao;
     }
 }

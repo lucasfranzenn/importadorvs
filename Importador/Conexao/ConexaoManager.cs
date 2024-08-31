@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using static Importador.Classes.VariaveisGlobais;
 using static Importador.Classes.Utils;
+using DevExpress.CodeParser;
 
 namespace Importador.Conexao
 {
@@ -35,6 +36,16 @@ namespace Importador.Conexao
             {
                 Debug.Print(e.Message);
             }
+        }
+
+        public IDbConnection GetConexaoMyCommerce()
+        {
+            return _conexaoMariaDB;
+        }
+
+        public IDbConnection GetConexaoImportacao()
+        {
+            return _conexaoImportacao;
         }
 
         public static bool ConexoesAbertas()

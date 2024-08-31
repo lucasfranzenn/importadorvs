@@ -40,6 +40,10 @@
             // txtSqlImportacao
             // 
             // 
+            // btnImportar
+            // 
+            btnImportar.Click += btnImportar_Click;
+            // 
             // UCClientes
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);

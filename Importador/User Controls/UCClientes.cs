@@ -1,9 +1,14 @@
-﻿using DevExpress.XtraMap;
+﻿using DevExpress.DataAccess.Sql;
+using DevExpress.XtraMap;
+using FirebirdSql.Data.FirebirdClient;
 using Importador.Classes;
 using Importador.Classes.JSON;
 using Importador.Conexao;
 using System;
 using System.Data;
+using System.Data.Common;
+using System.Data.SqlClient;
+using System.Text;
 
 namespace Importador.User_Controls
 {
@@ -26,6 +31,24 @@ namespace Importador.User_Controls
                 Enabled = false;
             }
 
+
+        }
+
+        private void btnImportar_Click(object sender, EventArgs e)
+        {
+            // ExecutaParametros(gpParametros.Controls.OfType<Checkbox>)
+
+            IDbCommand sqlQuery = ConexaoManager.instancia.GetConexaoImportacao().CreateCommand();
+            sqlQuery.CommandText= txtSqlImportacao.Text;
+            IDataReader reader = sqlQuery.ExecuteReader();
+
+            while (reader.Read())
+            {
+                for (int i = 0; i < reader.FieldCount; i++)
+                {
+                    //
+                }
+            }
 
         }
     }
