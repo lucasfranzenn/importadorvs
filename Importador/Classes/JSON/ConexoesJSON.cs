@@ -40,26 +40,10 @@ namespace Importador.Classes.JSON
 
         [JsonProperty("banco")]
         public string Banco { get; set; }
-
-        public override string ToString()
-        {
-            return $"Server={Host};Port={Porta};User={Usuario};Password={Senha};Database={Banco};";
-        }
     }
 
     public partial class ConexoesJson
     {
-        /// <summary>
-        /// Retorna a string de conexao do sistema solicitado
-        /// </summary>
-        /// <param name="sistema">"mycommerce" ou "importacao"</param>
-        /// <returns>retornara por padrão a string da importacao</returns>
-        public static string GetConnectionString(Sistema sistema) => sistema switch
-        {
-            Sistema.MyCommerce => FromJson(File.ReadAllText(PathConexoesJson)).Mycommerce.ToString(),
-            _ => FromJson(File.ReadAllText(PathConexoesJson)).Importacao.ToString()
-        };
-
         public static string GetTipoBancoImportacao() => FromJson(File.ReadAllText(PathConexoesJson)).Importacao.Tipobanco;
     }
 

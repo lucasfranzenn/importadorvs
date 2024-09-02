@@ -127,6 +127,11 @@
             pbImportacao.Location = new System.Drawing.Point(21, 468);
             pbImportacao.Name = "pbImportacao";
             pbImportacao.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
+            pbImportacao.Properties.DisplayFormat.FormatString = "Nenhum registro importado";
+            pbImportacao.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+            pbImportacao.Properties.PercentView = false;
+            pbImportacao.Properties.ShowTitle = true;
+            pbImportacao.Properties.Step = 1;
             pbImportacao.Size = new System.Drawing.Size(506, 26);
             pbImportacao.TabIndex = 15;
             // 
@@ -157,11 +162,11 @@
         protected DevExpress.XtraEditors.LabelControl lblSqlImportacao;
         protected DevExpress.XtraEditors.MemoEdit txtSqlImportacao;
         public DevExpress.XtraEditors.GroupControl gcParametros;
-        private DevExpress.XtraEditors.LabelControl lblHorarioFimImportacao;
-        private DevExpress.XtraEditors.LabelControl lblHorarioInicioImportacao;
         private DevExpress.XtraEditors.LabelControl lblFimImportacao;
         private DevExpress.XtraEditors.LabelControl lblInicioImportacao;
         public DevExpress.XtraEditors.SimpleButton btnImportar;
         public DevExpress.XtraEditors.ProgressBarControl pbImportacao;
+        public DevExpress.XtraEditors.LabelControl lblHorarioFimImportacao;
+        public DevExpress.XtraEditors.LabelControl lblHorarioInicioImportacao;
     }
 }

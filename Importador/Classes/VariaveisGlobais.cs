@@ -19,13 +19,20 @@ namespace Importador.Classes
             MyCommerce
         }
 
+        public enum Tabelas
+        {
+            clientes,
+            produtos,
+            estoque
+        }
+
         public static Dictionary<string, string> TipoBancoCombo = new()
         {
             {"MySQL", "mysql"},
             {"Firebird", "firebird"},
             {"PostgreSQL", "postgre"},
             {"MS-SQL \\ SQLServer", "mssql"},
-            {"Acess", "acess"},
+            {"Access", "access"},
             {"ConnectionString", "connectionstring"}
         };
 
@@ -35,8 +42,14 @@ namespace Importador.Classes
             {"firebird", "Firebird"},
             {"postgre" , "PostgreSQL"},
             {"MS-SQL \\ SQLServer", "mssql"},
-            {"acess" , "Acess"},
+            {"access" , "Access"},
             {"connectionstring" , "ConnectionString"}
+        };
+
+        public static Dictionary<string, List<string>> TabelasTruncate = new()
+        {
+            {"clientes", new List<string> { "clientes" } },
+            {"estoque", new List<string> { "produtosestoque", "acertoestoque", "auditoriaestoque"} }
         };
 
     }

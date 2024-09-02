@@ -1,12 +1,16 @@
-﻿using DevExpress.XtraBars.FluentDesignSystem;
+﻿using DevExpress.Mvvm.Native;
+using DevExpress.XtraBars.FluentDesignSystem;
 using DevExpress.XtraEditors;
 using Importador.Classes.JSON;
+using Importador.Conexao;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Toolkit.Uwp.Notifications;
 using static Importador.Classes.VariaveisGlobais;
 
 namespace Importador.Classes
@@ -29,6 +33,14 @@ namespace Importador.Classes
         public static ConexoesJson GetConexoesJson() => ConexoesJson.FromJson(File.ReadAllText(PathConexoesJson));
         public static void SetConexoesJson(ConexoesJson conexoesJson) => File.WriteAllText(PathConexoesJson, ConexoesSerialize.ToJson(conexoesJson));
         public static void SalvarSkin(string skinName, string skinPalette) => File.WriteAllText(PathSkinTxt, skinName + "," + skinPalette);
+
+        public static void MostrarNotificacao(string msg, string titulo)
+        {
+            new ToastContentBuilder()
+                .AddText(titulo)
+                .AddText(msg)
+                .Show();
+        }
     }
 
 }

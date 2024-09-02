@@ -19,6 +19,8 @@ namespace Importador.Conexao
                     return new PostgreSqlConnection();
                 case "firebird":
                     return new FirebirdConnection();
+                case "mssql":
+                    return new MSSqlConnection();
                 default:
                     throw new NotSupportedException($"O banco de dados '{tipoBanco}' não é suportado.");
             }

@@ -1,5 +1,7 @@
 ﻿using DevExpress.DataAccess.Sql;
+using DevExpress.XtraEditors;
 using DevExpress.XtraMap;
+using DevExpress.XtraSpreadsheet.Import.OpenXml;
 using FirebirdSql.Data.FirebirdClient;
 using Importador.Classes;
 using Importador.Classes.JSON;
@@ -8,7 +10,10 @@ using System;
 using System.Data;
 using System.Data.Common;
 using System.Data.SqlClient;
+using System.Linq;
 using System.Text;
+using System.Threading;
+using static Importador.Classes.VariaveisGlobais;
 
 namespace Importador.User_Controls
 {
@@ -36,19 +41,13 @@ namespace Importador.User_Controls
 
         private void btnImportar_Click(object sender, EventArgs e)
         {
-            // ExecutaParametros(gpParametros.Controls.OfType<Checkbox>)
+            lblHorarioInicioImportacao.Text = DateTime.Now.ToString();
 
-            IDbCommand sqlQuery = ConexaoManager.instancia.GetConexaoImportacao().CreateCommand();
-            sqlQuery.CommandText= txtSqlImportacao.Text;
-            IDataReader reader = sqlQuery.ExecuteReader();
+            GerenciadorImportacao.Importar(txtSqlImportacao.Text, ref pbImportacao, Tabelas.clientes, gcParametros.Controls.OfType<CheckEdit>().ToList());
 
-            while (reader.Read())
-            {
-                for (int i = 0; i < reader.FieldCount; i++)
-                {
-                    //
-                }
-            }
+            lblHorarioFimImportacao.Text = DateTime.Now.ToString();
+
+            Utils.MostrarNotificacao("Importação dos clientes finalizada", "Importação");
 
         }
     }
