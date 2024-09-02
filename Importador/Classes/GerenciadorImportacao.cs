@@ -4,6 +4,7 @@ using Importador.Conexao;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -46,40 +47,39 @@ namespace Importador.Classes
                     nomeColunas[i] = reader.GetName(i);
                 }
 
+                sqlInsert.Clear();
+                sqlInsert.Append($"INSERT INTO {tabela.ToString()} (");
+                sqlInsert.Append(string.Join(", ", nomeColunas));
+                sqlInsert.Append(") VALUES (");
+                sqlInsert.Append(string.Join(", ", nomeColunas.Select(col => $"@{col}")));
+                sqlInsert.Append(");");
+
                 while (reader.Read())
                 {
-                    sqlInsert.Clear();
-                    sqlInsert.Append($"INSERT INTO {tabela.ToString()} (");
-                    sqlInsert.Append(string.Join(", ", nomeColunas));
-                    sqlInsert.Append(") VALUES (");
-
-                    for (int i = 0; i < qtdColunas; i++)
+                    using (IDbCommand cmd = ConexaoManager.instancia.GetConexaoMyCommerce().CreateCommand())
                     {
-                        object value = reader.GetValue(i);
+                        cmd.CommandText = sqlInsert.ToString();
+                        cmd.Parameters.Clear();
+                        for (int i = 0; i < qtdColunas; i++)
+                        {
+                            object value = reader.GetValue(i);
 
-                        if (value is string || value is DateTime)
-                        {
-                            sqlInsert.Append($"'{value}'");
-                        }
-                        else if (value is DBNull)
-                        {
-                            sqlInsert.Append("NULL");
-                        }
-                        else
-                        {
-                            sqlInsert.Append(value);
+                            IDbDataParameter parameter = cmd.CreateParameter();
+                            parameter.ParameterName = $"@{nomeColunas[i]}";
+
+                            if (value is DBNull)
+                            {
+                                parameter.Value = DBNull.Value;
+                            }
+                            else
+                            {
+                                parameter.Value = value;
+                            }
+                            cmd.Parameters.Add(parameter);
                         }
 
-                        if (i < qtdColunas - 1)
-                        {
-                            sqlInsert.Append(", ");
-                        }
+                        cmd.ExecuteNonQuery();
                     }
-
-                    sqlInsert.Append(");");
-
-                    // Insere Registro no banco do MyCommerce
-                    InsereRegistroMyCommerce(sqlInsert.ToString());
 
                     //Incrementa a progressbar e atualiza o seu texto
                     int registroAtual = Convert.ToInt32(pbImportacao.EditValue) + 1;
@@ -92,13 +92,6 @@ namespace Importador.Classes
                     };
                 }
             }
-        }
-
-        private static void InsereRegistroMyCommerce(string sqlInsert)
-        {
-            IDbCommand cmd = ConexaoManager.instancia.GetConexaoMyCommerce().CreateCommand();
-            cmd.CommandText = sqlInsert;
-            cmd.ExecuteNonQuery();
         }
 
         private static void LimpaTabelas(List<string> tabelas)

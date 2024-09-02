@@ -13,6 +13,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading;
+using System.Threading.Tasks;
 using static Importador.Classes.VariaveisGlobais;
 
 namespace Importador.User_Controls
@@ -39,16 +40,19 @@ namespace Importador.User_Controls
 
         }
 
-        private void btnImportar_Click(object sender, EventArgs e)
+        private async void btnImportar_Click(object sender, EventArgs e)
         {
-            lblHorarioInicioImportacao.Text = DateTime.Now.ToString();
+            new Task(()=>lblHorarioInicioImportacao.Text = DateTime.Now.ToString()).Start();
 
-            GerenciadorImportacao.Importar(txtSqlImportacao.Text, ref pbImportacao, Tabelas.clientes, gcParametros.Controls.OfType<CheckEdit>().ToList());
+            Enabled = false;
+
+            await Task.Run(() => GerenciadorImportacao.Importar(txtSqlImportacao.Text, ref pbImportacao, Tabelas.clientes, gcParametros.Controls.OfType<CheckEdit>().ToList()));
 
             lblHorarioFimImportacao.Text = DateTime.Now.ToString();
 
             Utils.MostrarNotificacao("Importação dos clientes finalizada", "Importação");
 
+            Enabled = true;
         }
     }
 }
