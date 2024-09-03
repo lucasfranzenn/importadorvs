@@ -27,17 +27,15 @@ namespace Importador.User_Controls
 
         private void UCClientes_Load(object sender, EventArgs e)
         {
-            if (ConexaoManager.ConexoesAbertas())
-            {
-                txtSqlImportacao.Text = ConsultasJSON.GetSql("clientes");
-            }
-            else
+            if (!ConexaoManager.ConexoesAbertas())
             {
                 System.Windows.Forms.MessageBox.Show("Conexões não foram estabelecidas!\nConfigure-as corretamente", "..::Importador::..");
                 Enabled = false;
             }
-
-
+            else
+            {
+                txtSqlImportacao.Text = ConsultasJSON.GetSql("clientes");
+            }
         }
 
         private async void btnImportar_Click(object sender, EventArgs e)

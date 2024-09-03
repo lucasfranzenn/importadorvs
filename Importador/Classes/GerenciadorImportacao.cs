@@ -37,60 +37,60 @@ namespace Importador.Classes
             //Limpa tabelas
             if (parametros.Any((p) => string.Equals(p.Name, "cbExcluirRegistros") && p.Checked)) LimpaTabelas(TabelasTruncate[tabela.ToString()]);
 
-            using (IDataReader reader = sqlQuery.ExecuteReader())
+            using IDataReader reader = sqlQuery.ExecuteReader();
+            int qtdColunas = reader.FieldCount;
+            string[] nomeColunas = new string[qtdColunas];
+
+            for (int i = 0; i < qtdColunas; i++)
             {
-                int qtdColunas = reader.FieldCount;
-                string[] nomeColunas = new string[qtdColunas];
+                nomeColunas[i] = reader.GetName(i).ToLower();
+            }
 
-                for (int i = 0; i < qtdColunas; i++)
+            sqlInsert.Clear();
+            sqlInsert.Append($"INSERT INTO {tabela.ToString()} (");
+            sqlInsert.Append(string.Join(", ", nomeColunas));
+            sqlInsert.Append(") VALUES (");
+            sqlInsert.Append(string.Join(", ", nomeColunas.Select(col => $"@{col}")));
+            sqlInsert.Append(");");
+
+            while (reader.Read())
+            {
+                using (IDbCommand cmd = ConexaoManager.instancia.GetConexaoMyCommerce().CreateCommand())
                 {
-                    nomeColunas[i] = reader.GetName(i);
-                }
-
-                sqlInsert.Clear();
-                sqlInsert.Append($"INSERT INTO {tabela.ToString()} (");
-                sqlInsert.Append(string.Join(", ", nomeColunas));
-                sqlInsert.Append(") VALUES (");
-                sqlInsert.Append(string.Join(", ", nomeColunas.Select(col => $"@{col}")));
-                sqlInsert.Append(");");
-
-                while (reader.Read())
-                {
-                    using (IDbCommand cmd = ConexaoManager.instancia.GetConexaoMyCommerce().CreateCommand())
+                    cmd.CommandText = sqlInsert.ToString();
+                    cmd.Parameters.Clear();
+                    for (int i = 0; i < qtdColunas; i++)
                     {
-                        cmd.CommandText = sqlInsert.ToString();
-                        cmd.Parameters.Clear();
-                        for (int i = 0; i < qtdColunas; i++)
+                        object value = reader.GetValue(i);
+
+                        if (FuncoesColuna.ContainsKey(nomeColunas[i])) FuncoesColuna[nomeColunas[i]].ForEach(func => value = func(value));
+
+                        IDbDataParameter parameter = cmd.CreateParameter();
+                        parameter.ParameterName = $"@{nomeColunas[i]}";
+
+                        if (value is DBNull)
                         {
-                            object value = reader.GetValue(i);
-
-                            IDbDataParameter parameter = cmd.CreateParameter();
-                            parameter.ParameterName = $"@{nomeColunas[i]}";
-
-                            if (value is DBNull)
-                            {
-                                parameter.Value = DBNull.Value;
-                            }
-                            else
-                            {
-                                parameter.Value = value;
-                            }
-                            cmd.Parameters.Add(parameter);
+                            parameter.Value = DBNull.Value;
                         }
-
-                        cmd.ExecuteNonQuery();
+                        else
+                        {
+                            parameter.Value = value;
+                        }
+                        cmd.Parameters.Add(parameter);
                     }
 
-                    //Incrementa a progressbar e atualiza o seu texto
-                    int registroAtual = Convert.ToInt32(pbImportacao.EditValue) + 1;
-                    progressoRegistros = $"{registroAtual} de {qtdRegistros} registros";
-                    pbImportacao.PerformStep();
-                    pbImportacao.Update();
-                    pbImportacao.CustomDisplayText += (sender, args) => 
-                    {
-                        args.DisplayText = progressoRegistros;
-                    };
+                    cmd.ExecuteNonQuery();
                 }
+
+                //Incrementa a progressbar e atualiza o seu texto
+                int registroAtual = Convert.ToInt32(pbImportacao.EditValue) + 1;
+                progressoRegistros = $"{registroAtual} de {qtdRegistros} registros";
+                pbImportacao.PerformStep();
+                pbImportacao.Update();
+                pbImportacao.CustomDisplayText += (sender, args) =>
+                {
+                    args.DisplayText = progressoRegistros;
+                };
             }
         }
 
