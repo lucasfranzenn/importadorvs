@@ -32,7 +32,7 @@ namespace Importador.Classes
         };
 
         public static ConexoesJson GetConexoesJson() => ConexoesJson.FromJson(File.ReadAllText(PathConexoesJson));
-        public static void SetConexoesJson(ConexoesJson conexoesJson) => File.WriteAllText(PathConexoesJson, ConexoesSerialize.ToJson(conexoesJson));
+        public static void SetConexoesJson(ConexoesJson conexoesJson) => File.WriteAllText(PathConexoesJson, conexoesJson.ToJson());
         public static void SalvarSkin(string skinName, string skinPalette) => File.WriteAllText(PathSkinTxt, skinName + "," + skinPalette);
 
         public static void MostrarNotificacao(string msg, string titulo)

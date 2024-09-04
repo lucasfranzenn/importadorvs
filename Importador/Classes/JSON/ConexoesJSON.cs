@@ -52,7 +52,7 @@ namespace Importador.Classes.JSON
         public static ConexoesJson FromJson(string json) => JsonConvert.DeserializeObject<ConexoesJson>(json, Converter.Settings);
     }
 
-    public static class ConexoesSerialize
+    public static class ConexoesJSON
     {
         public static string ToJson(this ConexoesJson self) => JsonConvert.SerializeObject(self, Converter.Settings);
     }
