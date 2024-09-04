@@ -14,7 +14,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using static Importador.Classes.VariaveisGlobais;
+using static Importador.Classes.Constantes;
 
 namespace Importador.User_Controls
 {
@@ -44,7 +44,7 @@ namespace Importador.User_Controls
 
             Enabled = false;
 
-            await Task.Run(() => GerenciadorImportacao.Importar(txtSqlImportacao.Text, ref pbImportacao, Tabelas.clientes, gcParametros.Controls.OfType<CheckEdit>().ToList()));
+            await Task.Run(() => GerenciadorImportacao.Importar(txtSqlImportacao.Text, ref pbImportacao, Enums.Tabela.clientes, gcParametros.Controls.OfType<CheckEdit>().ToList()));
 
             lblHorarioFimImportacao.Text = DateTime.Now.ToString();
 

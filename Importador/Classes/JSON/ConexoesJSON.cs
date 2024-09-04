@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using DevExpress.Map.Kml.Model;
-using static Importador.Classes.VariaveisGlobais;
+using static Importador.Classes.Constantes;
 
 namespace Importador.Classes.JSON
 {
@@ -44,7 +44,7 @@ namespace Importador.Classes.JSON
 
     public partial class ConexoesJson
     {
-        public static string GetTipoBancoImportacao() => FromJson(File.ReadAllText(PathConexoesJson)).Importacao.Tipobanco;
+        public static string GetTipoBancoImportacao() => FromJson(File.ReadAllText(Caminhos.ConexoesJson)).Importacao.Tipobanco;
     }
 
     public partial class ConexoesJson

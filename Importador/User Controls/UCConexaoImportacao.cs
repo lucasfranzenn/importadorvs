@@ -10,7 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static Importador.Classes.Utils;
-using static Importador.Classes.VariaveisGlobais;
+using static Importador.Classes.Constantes;
 
 namespace Importador.User_Controls
 {
@@ -23,14 +23,14 @@ namespace Importador.User_Controls
 
         private void UCConexaoImportacao_Load(object sender, EventArgs e)
         {
-            var temp = GetImportacao(Sistema.Importacao);
+            var temp = GetImportacao(Enums.Sistema.Importacao);
 
             txtHost.Text = temp.Host;
             txtPorta.Text = temp.Porta.ToString();
             txtUsuario.Text = temp.Usuario;
             txtSenha.Text = temp.Senha;
             txtBancoDeDados.Text = temp.Banco;
-            cbTipoBanco.SelectedText = TipoBancoComboReverso[temp.Tipobanco];
+            cbTipoBanco.SelectedText = Mapeamento.NomePorTipoBanco[temp.Tipobanco];
         }
 
         private void UCConexaoImportacao_Leave(object sender, EventArgs e)
@@ -39,7 +39,7 @@ namespace Importador.User_Controls
 
             conexoesJson.Importacao = new Importacao()
             {
-                Tipobanco = TipoBancoCombo[cbTipoBanco.SelectedText],
+                Tipobanco = Mapeamento.TipoBancoPorNome[cbTipoBanco.SelectedText],
                 Host = txtHost.Text,
                 Porta = Convert.ToInt16(txtPorta.Text),
                 Usuario = txtUsuario.Text,

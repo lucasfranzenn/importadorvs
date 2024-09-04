@@ -16,7 +16,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static Importador.Classes.Utils;
-using static Importador.Classes.VariaveisGlobais;
+using static Importador.Classes.Constantes;
 
 namespace Importador.User_Controls
 {
@@ -46,7 +46,7 @@ namespace Importador.User_Controls
 
         private void UCConexaoMyCommerce_Load(object sender, EventArgs e)
         {
-            var temp = GetImportacao(Sistema.MyCommerce);
+            var temp = GetImportacao(Enums.Sistema.MyCommerce);
 
             txtHost.Text = temp.Host;
             txtPorta.Text = temp.Porta.ToString();

@@ -3,7 +3,7 @@ using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.CodedUISupport;
 using System.IO;
 using System.Windows.Controls;
-using static Importador.Classes.VariaveisGlobais;
+using static Importador.Classes.Constantes;
 
 namespace Importador
 {

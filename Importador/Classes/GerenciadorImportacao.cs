@@ -9,7 +9,7 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static Importador.Classes.VariaveisGlobais;
+using static Importador.Classes.Constantes;
 
 namespace Importador.Classes
 {
@@ -23,7 +23,7 @@ namespace Importador.Classes
             return Convert.ToInt32(count.ExecuteScalar());
         }
 
-        public static void Importar(string sql, ref ProgressBarControl pbImportacao, Tabelas tabela, List<CheckEdit> parametros)
+        public static void Importar(string sql, ref ProgressBarControl pbImportacao, Enums.Tabela tabela, List<CheckEdit> parametros)
         {
             StringBuilder sqlInsert = new();
             IDbCommand sqlQuery = ConexaoManager.instancia.GetConexaoImportacao().CreateCommand();
@@ -36,7 +36,7 @@ namespace Importador.Classes
             pbImportacao.Properties.Maximum = qtdRegistros;
 
             //Limpa tabelas
-            if (parametros.Any((p) => string.Equals(p.Name, "cbExcluirRegistros") && p.Checked)) LimpaTabelas(TabelasTruncate[tabela.ToString()]);
+            if (parametros.Any((p) => string.Equals(p.Name, "cbExcluirRegistros") && p.Checked)) LimpaTabelas(Mapeamento.TabelasTruncatePorTabela[tabela.ToString()]);
 
             using IDataReader reader = sqlQuery.ExecuteReader();
             int qtdColunas = reader.FieldCount;
@@ -64,7 +64,7 @@ namespace Importador.Classes
                     {
                         object value = reader.GetValue(i);
 
-                        if (FuncoesColuna.ContainsKey(nomeColunas[i])) FuncoesColuna[nomeColunas[i]].ForEach(func => value = func(value));
+                        if (Mapeamento.FuncoesFormatadorasPorColuna.ContainsKey(nomeColunas[i])) Mapeamento.FuncoesFormatadorasPorColuna[nomeColunas[i]].ForEach(func => value = func(value));
 
                         IDbDataParameter parameter = cmd.CreateParameter();
                         parameter.ParameterName = $"@{nomeColunas[i]}";
