@@ -41,7 +41,7 @@ namespace Importador.Classes
             {"mysql", "MySQL"},
             {"firebird", "Firebird"},
             {"postgre" , "PostgreSQL"},
-            {"MS-SQL \\ SQLServer", "mssql"},
+            {"mssql", "MS-SQL \\ SQLServer"},
             {"access" , "Access"},
             {"connectionstring" , "ConnectionString"}
         };

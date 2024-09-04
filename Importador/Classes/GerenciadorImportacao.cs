@@ -98,7 +98,7 @@ namespace Importador.Classes
         public static DataTable PreencheGrid(string coluna)
         {
             IDbCommand cmd = ConexaoManager.instancia.GetConexaoImportacao().CreateCommand();
-            cmd.CommandText = ConexaoManager.instancia.GetProcurarColunaDataAdapter(coluna);
+            cmd.CommandText = ConexaoManager.instancia.GetProcurarColunaQuery(coluna);
 
             using IDataReader reader = cmd.ExecuteReader();
                 DataTable dt = new();

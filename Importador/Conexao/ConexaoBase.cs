@@ -45,7 +45,9 @@ namespace Importador.Conexao
     {
         public override IDbConnection CriarConexao(Importacao conexao)
         {
-            return new SqlConnection($"Server={conexao.Host},{conexao.Porta};Database={conexao.Banco};User Id={conexao.Usuario};Password={conexao.Senha}");
+            return new SqlConnection($"Server={conexao.Host};Database={conexao.Banco};Trusted_Connection=yes");
+            /* String de conexão caso precise se conectar em um servidor dedicado.
+            return new SqlConnection($"Server={conexao.Host},{conexao.Porta};Database={conexao.Banco};User Id={conexao.Usuario};Password={conexao.Senha}"); */
         }
     }
 
