@@ -11,6 +11,9 @@ using System.Threading.Tasks;
 using static Importador.Classes.VariaveisGlobais;
 using static Importador.Classes.Utils;
 using DevExpress.CodeParser;
+using Npgsql;
+using FirebirdSql.Data.FirebirdClient;
+using System.Data.SqlClient;
 
 namespace Importador.Conexao
 {
@@ -60,6 +63,15 @@ namespace Importador.Conexao
             _conexaoMariaDB.Close();
             _conexaoImportacao.Close();
         }
+
+        public string GetProcurarColunaDataAdapter(string coluna) => _conexaoImportacao switch
+        {
+            (MySqlConnection) => $"SELECT TABLE_NAME AS TABELA, COLUMN_NAME AS COLUNA FROM information_schema.columns WHERE TABLE_SCHEMA = '{GetImportacao(Sistema.Importacao).Banco}' AND COLUMN_NAME LIKE '%{coluna}%' ORDER BY TABLE_NAME, ordinal_position",
+            _ => null
+        };
+
+
+
     }
 
 }

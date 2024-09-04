@@ -52,5 +52,15 @@ namespace Importador
         {
             SalvarSkin(defaultLookAndFeel1.LookAndFeel.SkinName, defaultLookAndFeel1.LookAndFeel.ActiveSvgPaletteName);
         }
+
+        private void acUtilitariosBuscarColuna_Click(object sender, EventArgs e)
+        {
+            AlteraAba(ref fcPrincipal, new UCBuscaColuna());
+        }
+
+        private void frmPrincipal_Load(object sender, EventArgs e)
+        {
+            CarregaSkin(ref defaultLookAndFeel1);
+        }
     }
 }

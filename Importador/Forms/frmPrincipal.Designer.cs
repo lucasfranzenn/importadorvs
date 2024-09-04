@@ -252,6 +252,7 @@ namespace Importador
             acUtilitariosBuscarColuna.Name = "acUtilitariosBuscarColuna";
             acUtilitariosBuscarColuna.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
             acUtilitariosBuscarColuna.Text = "Buscar Colunas";
+            acUtilitariosBuscarColuna.Click += acUtilitariosBuscarColuna_Click;
             // 
             // acUtilitariosVerificarUltimoRegistro
             // 
@@ -362,8 +363,6 @@ namespace Importador
             // defaultLookAndFeel1
             // 
             defaultLookAndFeel1.EnableBonusSkins = true;
-            defaultLookAndFeel1.LookAndFeel.SetSkinStyle(File.ReadAllText(PathSkinTxt).Split(',')[0], File.ReadAllText(PathSkinTxt).Split(',')[1]);
-            defaultLookAndFeel1.LookAndFeel.UseDefaultLookAndFeel = true;
             // 
             // acImportacaoSeparador
             // 
@@ -434,6 +433,7 @@ namespace Importador
             StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             Text = "Importador de Dados - MyCommerce";
             FormClosing += frmPrincipal_FormClosing;
+            Load += frmPrincipal_Load;
             ((System.ComponentModel.ISupportInitialize)acPrincipal).EndInit();
             ((System.ComponentModel.ISupportInitialize)fluentDesignFormControl1).EndInit();
             fluentDesignFormControl1.ResumeLayout(false);

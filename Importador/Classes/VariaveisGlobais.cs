@@ -54,9 +54,7 @@ namespace Importador.Classes
 
         public static Dictionary<string, List<Func<object, object>>> FuncoesColuna = new()
         {
-            {"ncm",  new List<Func<object, object>> { Formatador.FormataNCM } },
-            {"razaosocial", new List<Func<object, object>> { Formatador.Franzen, Formatador.Lucas} }
-
+            {"ncm",  new List<Func<object, object>> { Formatador.FormataNCM } }
         };
 
     }

@@ -12,6 +12,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Toolkit.Uwp.Notifications;
 using static Importador.Classes.VariaveisGlobais;
+using DevExpress.LookAndFeel;
 
 namespace Importador.Classes
 {
@@ -40,6 +41,12 @@ namespace Importador.Classes
                 .AddText(titulo)
                 .AddText(msg)
                 .Show();
+        }
+
+        public static void CarregaSkin(ref DefaultLookAndFeel skin)
+        {
+            skin.LookAndFeel.SetSkinStyle(File.ReadAllText(PathSkinTxt).Split(',')[0], File.ReadAllText(PathSkinTxt).Split(',')[1]);
+            skin.LookAndFeel.UseDefaultLookAndFeel = true;
         }
     }
 

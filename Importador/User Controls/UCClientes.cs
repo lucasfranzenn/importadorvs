@@ -29,7 +29,7 @@ namespace Importador.User_Controls
         {
             if (!ConexaoManager.ConexoesAbertas())
             {
-                System.Windows.Forms.MessageBox.Show("Conexões não foram estabelecidas!\nConfigure-as corretamente", "..::Importador::..");
+                XtraMessageBox.Show("Conexões não foram estabelecidas!\nConfigure-as corretamente", "..::Importador::..");
                 Enabled = false;
             }
             else

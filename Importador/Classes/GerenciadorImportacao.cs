@@ -1,5 +1,6 @@
 ﻿using DevExpress.XtraEditors;
 using DevExpress.XtraRichEdit.Import.OpenDocument;
+using Importador.Classes.JSON;
 using Importador.Conexao;
 using System;
 using System.Collections.Generic;
@@ -92,6 +93,17 @@ namespace Importador.Classes
                     args.DisplayText = progressoRegistros;
                 };
             }
+        }
+
+        public static DataTable PreencheGrid(string coluna)
+        {
+            IDbCommand cmd = ConexaoManager.instancia.GetConexaoImportacao().CreateCommand();
+            cmd.CommandText = ConexaoManager.instancia.GetProcurarColunaDataAdapter(coluna);
+
+            using IDataReader reader = cmd.ExecuteReader();
+                DataTable dt = new();
+                dt.Load(reader);
+            return dt;
         }
 
         private static void LimpaTabelas(List<string> tabelas)
