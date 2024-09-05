@@ -28,13 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            cbExcluirRegistros = new DevExpress.XtraEditors.CheckEdit();
             cbCriarConsumidor = new DevExpress.XtraEditors.CheckEdit();
             ((System.ComponentModel.ISupportInitialize)txtSqlImportacao.Properties).BeginInit();
             ((System.ComponentModel.ISupportInitialize)gcParametros).BeginInit();
             gcParametros.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pbImportacao.Properties).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)cbExcluirRegistros.Properties).BeginInit();
             ((System.ComponentModel.ISupportInitialize)cbCriarConsumidor.Properties).BeginInit();
             SuspendLayout();
             // 
@@ -49,7 +47,7 @@
             // gcParametros
             // 
             gcParametros.Controls.Add(cbCriarConsumidor);
-            gcParametros.Controls.Add(cbExcluirRegistros);
+            gcParametros.Controls.SetChildIndex(cbCriarConsumidor, 0);
             // 
             // btnImportar
             // 
@@ -60,17 +58,9 @@
             pbImportacao.Properties.DisplayFormat.FormatString = "Nenhum registro importado";
             pbImportacao.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             // 
-            // cbExcluirRegistros
-            // 
-            cbExcluirRegistros.Location = new System.Drawing.Point(15, 35);
-            cbExcluirRegistros.Name = "cbExcluirRegistros";
-            cbExcluirRegistros.Properties.Caption = "Excluir registros existentes?";
-            cbExcluirRegistros.Size = new System.Drawing.Size(170, 20);
-            cbExcluirRegistros.TabIndex = 0;
-            // 
             // cbCriarConsumidor
             // 
-            cbCriarConsumidor.Location = new System.Drawing.Point(191, 35);
+            cbCriarConsumidor.Location = new System.Drawing.Point(181, 26);
             cbCriarConsumidor.Name = "cbCriarConsumidor";
             cbCriarConsumidor.Properties.Caption = "Criar consumidor final?";
             cbCriarConsumidor.Size = new System.Drawing.Size(155, 20);
@@ -86,7 +76,6 @@
             ((System.ComponentModel.ISupportInitialize)gcParametros).EndInit();
             gcParametros.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pbImportacao.Properties).EndInit();
-            ((System.ComponentModel.ISupportInitialize)cbExcluirRegistros.Properties).EndInit();
             ((System.ComponentModel.ISupportInitialize)cbCriarConsumidor.Properties).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -95,6 +84,5 @@
         #endregion
 
         private DevExpress.XtraEditors.CheckEdit cbCriarConsumidor;
-        private DevExpress.XtraEditors.CheckEdit cbExcluirRegistros;
     }
 }

@@ -31,6 +31,7 @@
             lblSqlImportacao = new DevExpress.XtraEditors.LabelControl();
             txtSqlImportacao = new DevExpress.XtraEditors.MemoEdit();
             gcParametros = new DevExpress.XtraEditors.GroupControl();
+            cbExcluirRegistros = new DevExpress.XtraEditors.CheckEdit();
             btnImportar = new DevExpress.XtraEditors.SimpleButton();
             lblHorarioFimImportacao = new DevExpress.XtraEditors.LabelControl();
             lblHorarioInicioImportacao = new DevExpress.XtraEditors.LabelControl();
@@ -39,6 +40,8 @@
             pbImportacao = new DevExpress.XtraEditors.ProgressBarControl();
             ((System.ComponentModel.ISupportInitialize)txtSqlImportacao.Properties).BeginInit();
             ((System.ComponentModel.ISupportInitialize)gcParametros).BeginInit();
+            gcParametros.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)cbExcluirRegistros.Properties).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pbImportacao.Properties).BeginInit();
             SuspendLayout();
             // 
@@ -65,11 +68,20 @@
             // gcParametros
             // 
             gcParametros.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            gcParametros.Controls.Add(cbExcluirRegistros);
             gcParametros.Location = new System.Drawing.Point(21, 376);
             gcParametros.Name = "gcParametros";
             gcParametros.Size = new System.Drawing.Size(514, 86);
             gcParametros.TabIndex = 5;
             gcParametros.Text = "Parâmetros";
+            // 
+            // cbExcluirRegistros
+            // 
+            cbExcluirRegistros.Location = new System.Drawing.Point(5, 26);
+            cbExcluirRegistros.Name = "cbExcluirRegistros";
+            cbExcluirRegistros.Properties.Caption = "Excluir registros existentes?";
+            cbExcluirRegistros.Size = new System.Drawing.Size(170, 20);
+            cbExcluirRegistros.TabIndex = 16;
             // 
             // btnImportar
             // 
@@ -151,6 +163,8 @@
             Name = "UCBaseImportacao";
             ((System.ComponentModel.ISupportInitialize)txtSqlImportacao.Properties).EndInit();
             ((System.ComponentModel.ISupportInitialize)gcParametros).EndInit();
+            gcParametros.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)cbExcluirRegistros.Properties).EndInit();
             ((System.ComponentModel.ISupportInitialize)pbImportacao.Properties).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -167,5 +181,6 @@
         public DevExpress.XtraEditors.ProgressBarControl pbImportacao;
         public DevExpress.XtraEditors.LabelControl lblHorarioFimImportacao;
         public DevExpress.XtraEditors.LabelControl lblHorarioInicioImportacao;
+        private DevExpress.XtraEditors.CheckEdit cbExcluirRegistros;
     }
 }

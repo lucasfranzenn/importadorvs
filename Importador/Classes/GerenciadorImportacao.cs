@@ -28,7 +28,6 @@ namespace Importador.Classes
             StringBuilder sqlInsert = new();
             IDbCommand sqlQuery = ConexaoManager.instancia.GetConexaoImportacao().CreateCommand();
             int qtdRegistros = GetQtdRegistros(sql);
-            string progressoRegistros;
 
             sqlQuery.CommandText = sql;
 
@@ -85,12 +84,11 @@ namespace Importador.Classes
 
                 //Incrementa a progressbar e atualiza o seu texto
                 int registroAtual = Convert.ToInt32(pbImportacao.EditValue) + 1;
-                progressoRegistros = $"{registroAtual} de {qtdRegistros} registros";
                 pbImportacao.PerformStep();
                 pbImportacao.Update();
                 pbImportacao.CustomDisplayText += (sender, args) =>
                 {
-                    args.DisplayText = progressoRegistros;
+                    args.DisplayText = $"{registroAtual} de {qtdRegistros} registros";
                 };
             }
         }
