@@ -62,5 +62,30 @@ namespace Importador
         {
             CarregaSkin(ref defaultLookAndFeel1);
         }
+
+        private void acImportacaoProdutosST_Click(object sender, EventArgs e)
+        {
+            AlteraAba(ref fcPrincipal, new UC.Importacao.UCProdutosST());
+        }
+
+        private void acImportacaoContasAPagar_Click(object sender, EventArgs e)
+        {
+            AlteraAba(ref fcPrincipal, new UC.Importacao.UCContasAPagar());
+        }
+
+        private void acImportacaoContasAReceber_Click(object sender, EventArgs e)
+        {
+            AlteraAba(ref fcPrincipal, new UC.Importacao.UCContasAReceber());
+        }
+
+        private void acImportacaoPreVendas_Click(object sender, EventArgs e)
+        {
+            AlteraAba(ref fcPrincipal, new UC.Importacao.UCPreVendas());
+        }
+
+        private void acImportacaoServicos_Click(object sender, EventArgs e)
+        {
+            AlteraAba(ref fcPrincipal, new UC.Importacao.UCServicos());
+        }
     }
 }

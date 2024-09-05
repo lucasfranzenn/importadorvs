@@ -2,7 +2,7 @@
   "consultas": [
     {
       "tabela": "clientes",
-      "sqlSelect": "SELECT \r\nas Codigo,\r\nas tipo,\r\nas RazaoSocial,\r\nas NomeFantasia,\r\nas Endereco,\r\nas Bairro,\r\nas Cidade,\r\nas UF,\r\nas CEP,\r\nas codigocidadeibge,\r\nas numero,\r\nas complemento,\r\nas telefone1,\r\nas telefone2,\r\nas fax,\r\nas DataNascimento,\r\nas CNPJ,\r\nas IE,\r\nas CPF,\r\nas RG,\r\nas ValorCredito,\r\nas email,\r\nas FisicaJuridica,\r\nas contato,\r\n'IMPORTACAO' as usuario,\r\n'IMPORTACAO' AS terminal,\r\n0 as EmpresaCadastro \r\nFROM CLIENTES;"
+      "sqlSelect": "SELECT \r\nas Codigo, \r\nas tipo, \r\nas RazaoSocial, \r\nas NomeFantasia, \r\nas Endereco, \r\nas Bairro, \r\nas Cidade, \r\nas UF, \r\nas CEP, \r\nas codigocidadeibge, \r\nas numero, \r\nas complemento, \r\nas telefone1, \r\nas telefone2, \r\nas fax, \r\nas DataNascimento, \r\nas CNPJ, \r\nas IE, \r\nas CPF, \r\nas RG, \r\nas ValorCredito, \r\nas email, \r\nas FisicaJuridica, \r\nas contato, \r\n'IMPORTACAO' as usuario, \r\n'IMPORTACAO' AS terminal, \r\n0 as EmpresaCadastro \r\nFROM CLIENTES;"
     },
     {
       "tabela": "produtos",

@@ -61,6 +61,7 @@
             // 
             // btnProcurar
             // 
+            btnProcurar.Cursor = System.Windows.Forms.Cursors.Hand;
             btnProcurar.Location = new System.Drawing.Point(396, 48);
             btnProcurar.Name = "btnProcurar";
             btnProcurar.Size = new System.Drawing.Size(147, 42);

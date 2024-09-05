@@ -59,7 +59,7 @@
             txtSqlImportacao.Location = new System.Drawing.Point(21, 33);
             txtSqlImportacao.Name = "txtSqlImportacao";
             txtSqlImportacao.Properties.AllowHtmlDraw = DevExpress.Utils.DefaultBoolean.False;
-            txtSqlImportacao.Size = new System.Drawing.Size(506, 337);
+            txtSqlImportacao.Size = new System.Drawing.Size(514, 337);
             txtSqlImportacao.TabIndex = 3;
             // 
             // gcParametros
@@ -67,7 +67,7 @@
             gcParametros.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
             gcParametros.Location = new System.Drawing.Point(21, 376);
             gcParametros.Name = "gcParametros";
-            gcParametros.Size = new System.Drawing.Size(506, 86);
+            gcParametros.Size = new System.Drawing.Size(514, 86);
             gcParametros.TabIndex = 5;
             gcParametros.Text = "Parâmetros";
             // 
@@ -77,7 +77,7 @@
             btnImportar.Cursor = System.Windows.Forms.Cursors.Hand;
             btnImportar.Location = new System.Drawing.Point(396, 500);
             btnImportar.Name = "btnImportar";
-            btnImportar.Size = new System.Drawing.Size(131, 32);
+            btnImportar.Size = new System.Drawing.Size(139, 32);
             btnImportar.TabIndex = 6;
             btnImportar.Text = "&Importar";
             // 
@@ -88,7 +88,7 @@
             lblHorarioFimImportacao.Name = "lblHorarioFimImportacao";
             lblHorarioFimImportacao.Size = new System.Drawing.Size(103, 13);
             lblHorarioFimImportacao.TabIndex = 14;
-            lblHorarioFimImportacao.Text = "01/09/2024 15:00:00";
+            lblHorarioFimImportacao.Text = "31/12/9999 23:59:59";
             // 
             // lblHorarioInicioImportacao
             // 
@@ -97,7 +97,7 @@
             lblHorarioInicioImportacao.Name = "lblHorarioInicioImportacao";
             lblHorarioInicioImportacao.Size = new System.Drawing.Size(103, 13);
             lblHorarioInicioImportacao.TabIndex = 13;
-            lblHorarioInicioImportacao.Text = "28/08/2024 10:00:00";
+            lblHorarioInicioImportacao.Text = "01/01/1999 00:00:00";
             // 
             // lblFimImportacao
             // 
@@ -132,10 +132,10 @@
             pbImportacao.Properties.PercentView = false;
             pbImportacao.Properties.ShowTitle = true;
             pbImportacao.Properties.Step = 1;
-            pbImportacao.Size = new System.Drawing.Size(506, 26);
+            pbImportacao.Size = new System.Drawing.Size(514, 26);
             pbImportacao.TabIndex = 15;
             // 
-            // UCImportacaoBase
+            // UCBaseImportacao
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -148,8 +148,7 @@
             Controls.Add(gcParametros);
             Controls.Add(lblSqlImportacao);
             Controls.Add(txtSqlImportacao);
-            Name = "UCImportacaoBase";
-            Size = new System.Drawing.Size(556, 548);
+            Name = "UCBaseImportacao";
             ((System.ComponentModel.ISupportInitialize)txtSqlImportacao.Properties).EndInit();
             ((System.ComponentModel.ISupportInitialize)gcParametros).EndInit();
             ((System.ComponentModel.ISupportInitialize)pbImportacao.Properties).EndInit();

@@ -81,7 +81,6 @@
             AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             Name = "UCClientes";
-            Size = new System.Drawing.Size(542, 541);
             Load += UCClientes_Load;
             ((System.ComponentModel.ISupportInitialize)txtSqlImportacao.Properties).EndInit();
             ((System.ComponentModel.ISupportInitialize)gcParametros).EndInit();

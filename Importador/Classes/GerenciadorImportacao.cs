@@ -36,7 +36,7 @@ namespace Importador.Classes
             pbImportacao.Properties.Maximum = qtdRegistros;
 
             //Limpa tabelas
-            if (parametros.Any((p) => string.Equals(p.Name, "cbExcluirRegistros") && p.Checked)) LimpaTabelas(Mapeamento.TabelasTruncatePorTabela[tabela.ToString()]);
+            if (parametros.Exists((p) => string.Equals(p.Name, "cbExcluirRegistros") && p.Checked)) LimpaTabelas(Mapeamento.TabelasTruncatePorTabela[tabela.ToString()]);
 
             using IDataReader reader = sqlQuery.ExecuteReader();
             int qtdColunas = reader.FieldCount;

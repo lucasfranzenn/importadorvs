@@ -196,6 +196,7 @@ namespace Importador
             acImportacaoProdutosST.Name = "acImportacaoProdutosST";
             acImportacaoProdutosST.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
             acImportacaoProdutosST.Text = "Produtos ST";
+            acImportacaoProdutosST.Click += acImportacaoProdutosST_Click;
             // 
             // acImportacaoContasAPagar
             // 
@@ -203,6 +204,7 @@ namespace Importador
             acImportacaoContasAPagar.Name = "acImportacaoContasAPagar";
             acImportacaoContasAPagar.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
             acImportacaoContasAPagar.Text = "Contas a Pagar";
+            acImportacaoContasAPagar.Click += acImportacaoContasAPagar_Click;
             // 
             // acImportacaoContasAReceber
             // 
@@ -210,6 +212,7 @@ namespace Importador
             acImportacaoContasAReceber.Name = "acImportacaoContasAReceber";
             acImportacaoContasAReceber.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
             acImportacaoContasAReceber.Text = "Contas a Receber";
+            acImportacaoContasAReceber.Click += acImportacaoContasAReceber_Click;
             // 
             // acImportacaoPreVendas
             // 
@@ -217,6 +220,7 @@ namespace Importador
             acImportacaoPreVendas.Name = "acImportacaoPreVendas";
             acImportacaoPreVendas.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
             acImportacaoPreVendas.Text = "Pré-Vendas";
+            acImportacaoPreVendas.Click += acImportacaoPreVendas_Click;
             // 
             // acImportacaoServicos
             // 
@@ -224,6 +228,7 @@ namespace Importador
             acImportacaoServicos.Name = "acImportacaoServicos";
             acImportacaoServicos.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
             acImportacaoServicos.Text = "Serviços";
+            acImportacaoServicos.Click += acImportacaoServicos_Click;
             // 
             // acImportacaoGenerico
             // 

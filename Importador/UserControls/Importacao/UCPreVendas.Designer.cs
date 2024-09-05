@@ -1,6 +1,6 @@
 ﻿namespace Importador.UserControls.Importacao
 {
-    partial class UCProdutos
+    partial class UCPreVendas
     {
         /// <summary> 
         /// Required designer variable.
@@ -46,12 +46,12 @@
             pbImportacao.Properties.DisplayFormat.FormatString = "Nenhum registro importado";
             pbImportacao.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             // 
-            // UCProdutos
+            // UCPreVendas
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            Name = "UCProdutos";
-            Load += UCProdutos_Load;
+            Name = "UCPreVendas";
+            Load += UCPreVendas_Load;
             ((System.ComponentModel.ISupportInitialize)txtSqlImportacao.Properties).EndInit();
             ((System.ComponentModel.ISupportInitialize)gcParametros).EndInit();
             ((System.ComponentModel.ISupportInitialize)pbImportacao.Properties).EndInit();
