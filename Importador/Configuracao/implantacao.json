@@ -1,0 +1,28 @@
+{
+  "RazaoCliente": "Visual Software LTDA",
+  "SistemaAntigo": "Eco Centauro",
+  "LinkFormulario": "https://google.com",
+  "LinkBackup": "https://googledrive.com",
+  "CodigoImportacao": 5443,
+  "RegimeEmpresa": 1,
+  "Responsavel": {
+    "Nome": "Lucas Franzen",
+    "Email": "franzen@visualsoftware.inf.br",
+    "Telefone": "(46) 999414199"
+  },
+  "OpcoesImportar": {
+    "Clientes": 1,
+    "Fornecedores": 1,
+    "ContasAPagar": 1,
+    "ContasAReceber": 1,
+    "Estoque": true,
+    "Produtos": {
+      "Importar": true,
+      "Secoes": true,
+      "Grupos": true,
+      "Subgrupos": true,
+      "Grades": true,
+      "Lotes": true
+    }
+  }
+}   

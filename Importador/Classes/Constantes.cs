@@ -11,6 +11,7 @@ namespace Importador.Classes
     {
         public static class Caminhos
         {
+            public const string ImplantacaoJson = @"Configuracao\implantacao.json";
             public const string ConexoesJson = @"Configuracao\conexoes.json";
             public const string ConsultasJson = @"Configuracao\consultas.json";
             public const string SkinTxt = @"Configuracao\skin.txt";

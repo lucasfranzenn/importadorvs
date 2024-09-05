@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using static Importador.Classes.Constantes;
 
-namespace Importador.Classes
+namespace Importador.Classes.JSON
 {
     public partial class ConsultasJSON
     {

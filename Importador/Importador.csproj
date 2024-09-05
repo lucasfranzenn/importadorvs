@@ -13,7 +13,14 @@
     <None Remove="Configuracao\conexoes.json" />
     <None Remove="Configuracao\consultas.json" />
     <None Remove="Configuracao\exportarSqlCsv.py" />
+    <None Remove="Configuracao\implantacao.json" />
     <None Remove="Configuracao\skin.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Configuracao\implantacao.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>
