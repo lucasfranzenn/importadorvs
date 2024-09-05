@@ -17,10 +17,11 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using static Importador.Classes.Utils;
 using static Importador.Classes.Constantes;
+using Importador.UserControls.BaseControls;
 
-namespace Importador.User_Controls
+namespace Importador.UserControls.Conexao
 {
-    public partial class UCConexaoMyCommerce : DevExpress.XtraEditors.XtraUserControl
+    public partial class UCConexaoMyCommerce : UCBaseConexao
     {
         public UCConexaoMyCommerce()
         {
@@ -31,7 +32,7 @@ namespace Importador.User_Controls
         {
             var conexoesJson = GetConexoesJson();
 
-            conexoesJson.Mycommerce = new Importacao()
+            conexoesJson.Mycommerce = new Classes.JSON.Importacao()
             {
                 Tipobanco = "mysql",
                 Host = txtHost.Text,

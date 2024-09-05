@@ -1,6 +1,6 @@
-﻿namespace Importador.User_Controls
+﻿namespace Importador.UserControls.BaseControls
 {
-    partial class UCConexaoImportacao
+    partial class UCBaseConexao
     {
         /// <summary> 
         /// Required designer variable.
@@ -38,19 +38,16 @@
             lblPorta = new System.Windows.Forms.Label();
             txtHost = new DevExpress.XtraEditors.TextEdit();
             lblHost = new System.Windows.Forms.Label();
-            lblTipoBanco = new System.Windows.Forms.Label();
-            cbTipoBanco = new DevExpress.XtraEditors.ComboBoxEdit();
             ((System.ComponentModel.ISupportInitialize)txtBancoDeDados.Properties).BeginInit();
             ((System.ComponentModel.ISupportInitialize)txtSenha.Properties).BeginInit();
             ((System.ComponentModel.ISupportInitialize)txtUsuario.Properties).BeginInit();
             ((System.ComponentModel.ISupportInitialize)txtPorta.Properties).BeginInit();
             ((System.ComponentModel.ISupportInitialize)txtHost.Properties).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)cbTipoBanco.Properties).BeginInit();
             SuspendLayout();
             // 
             // txtBancoDeDados
             // 
-            txtBancoDeDados.Location = new System.Drawing.Point(398, 52);
+            txtBancoDeDados.Location = new System.Drawing.Point(405, 52);
             txtBancoDeDados.Name = "txtBancoDeDados";
             txtBancoDeDados.Size = new System.Drawing.Size(128, 20);
             txtBancoDeDados.TabIndex = 19;
@@ -59,7 +56,7 @@
             // 
             lblBancoDeDados.AutoSize = true;
             lblBancoDeDados.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Bold);
-            lblBancoDeDados.Location = new System.Drawing.Point(393, 32);
+            lblBancoDeDados.Location = new System.Drawing.Point(400, 32);
             lblBancoDeDados.Name = "lblBancoDeDados";
             lblBancoDeDados.Size = new System.Drawing.Size(133, 17);
             lblBancoDeDados.TabIndex = 18;
@@ -67,7 +64,7 @@
             // 
             // txtSenha
             // 
-            txtSenha.Location = new System.Drawing.Point(309, 52);
+            txtSenha.Location = new System.Drawing.Point(316, 52);
             txtSenha.Name = "txtSenha";
             txtSenha.Properties.UseSystemPasswordChar = true;
             txtSenha.Size = new System.Drawing.Size(83, 20);
@@ -77,7 +74,7 @@
             // 
             lblSenha.AutoSize = true;
             lblSenha.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Bold);
-            lblSenha.Location = new System.Drawing.Point(309, 32);
+            lblSenha.Location = new System.Drawing.Point(316, 32);
             lblSenha.Name = "lblSenha";
             lblSenha.Size = new System.Drawing.Size(56, 17);
             lblSenha.TabIndex = 16;
@@ -85,7 +82,7 @@
             // 
             // txtUsuario
             // 
-            txtUsuario.Location = new System.Drawing.Point(220, 52);
+            txtUsuario.Location = new System.Drawing.Point(227, 52);
             txtUsuario.Name = "txtUsuario";
             txtUsuario.Size = new System.Drawing.Size(83, 20);
             txtUsuario.TabIndex = 15;
@@ -94,7 +91,7 @@
             // 
             lblUsuario.AutoSize = true;
             lblUsuario.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Bold);
-            lblUsuario.Location = new System.Drawing.Point(220, 32);
+            lblUsuario.Location = new System.Drawing.Point(227, 32);
             lblUsuario.Name = "lblUsuario";
             lblUsuario.Size = new System.Drawing.Size(67, 17);
             lblUsuario.TabIndex = 14;
@@ -102,7 +99,7 @@
             // 
             // txtPorta
             // 
-            txtPorta.Location = new System.Drawing.Point(120, 52);
+            txtPorta.Location = new System.Drawing.Point(127, 52);
             txtPorta.Name = "txtPorta";
             txtPorta.Size = new System.Drawing.Size(94, 20);
             txtPorta.TabIndex = 13;
@@ -111,7 +108,7 @@
             // 
             lblPorta.AutoSize = true;
             lblPorta.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Bold);
-            lblPorta.Location = new System.Drawing.Point(120, 32);
+            lblPorta.Location = new System.Drawing.Point(127, 32);
             lblPorta.Name = "lblPorta";
             lblPorta.Size = new System.Drawing.Size(50, 17);
             lblPorta.TabIndex = 12;
@@ -119,7 +116,7 @@
             // 
             // txtHost
             // 
-            txtHost.Location = new System.Drawing.Point(9, 52);
+            txtHost.Location = new System.Drawing.Point(16, 52);
             txtHost.Name = "txtHost";
             txtHost.Size = new System.Drawing.Size(101, 20);
             txtHost.TabIndex = 11;
@@ -128,37 +125,16 @@
             // 
             lblHost.AutoSize = true;
             lblHost.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Bold);
-            lblHost.Location = new System.Drawing.Point(9, 32);
+            lblHost.Location = new System.Drawing.Point(16, 32);
             lblHost.Name = "lblHost";
             lblHost.Size = new System.Drawing.Size(43, 17);
             lblHost.TabIndex = 10;
             lblHost.Text = "Host";
             // 
-            // lblTipoBanco
-            // 
-            lblTipoBanco.AutoSize = true;
-            lblTipoBanco.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Bold);
-            lblTipoBanco.Location = new System.Drawing.Point(9, 82);
-            lblTipoBanco.Name = "lblTipoBanco";
-            lblTipoBanco.Size = new System.Drawing.Size(196, 17);
-            lblTipoBanco.TabIndex = 20;
-            lblTipoBanco.Text = "Tipo de Banco de Dados";
-            // 
-            // cbTipoBanco
-            // 
-            cbTipoBanco.Location = new System.Drawing.Point(9, 102);
-            cbTipoBanco.Name = "cbTipoBanco";
-            cbTipoBanco.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo) });
-            cbTipoBanco.Properties.Items.AddRange(new object[] { "MySQL", "Firebird", "PostgreSQL", "MS-SQL \\ SQLServer", "Acess", "ConnectionString" });
-            cbTipoBanco.Size = new System.Drawing.Size(517, 20);
-            cbTipoBanco.TabIndex = 23;
-            // 
-            // UCConexaoImportacao
+            // UCBaseConexao
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            Controls.Add(cbTipoBanco);
-            Controls.Add(lblTipoBanco);
             Controls.Add(txtBancoDeDados);
             Controls.Add(lblBancoDeDados);
             Controls.Add(txtSenha);
@@ -169,33 +145,27 @@
             Controls.Add(lblPorta);
             Controls.Add(txtHost);
             Controls.Add(lblHost);
-            Name = "UCConexaoImportacao";
-            Size = new System.Drawing.Size(542, 541);
-            Load += UCConexaoImportacao_Load;
-            Leave += UCConexaoImportacao_Leave;
+            Name = "UCBaseConexao";
             ((System.ComponentModel.ISupportInitialize)txtBancoDeDados.Properties).EndInit();
             ((System.ComponentModel.ISupportInitialize)txtSenha.Properties).EndInit();
             ((System.ComponentModel.ISupportInitialize)txtUsuario.Properties).EndInit();
             ((System.ComponentModel.ISupportInitialize)txtPorta.Properties).EndInit();
             ((System.ComponentModel.ISupportInitialize)txtHost.Properties).EndInit();
-            ((System.ComponentModel.ISupportInitialize)cbTipoBanco.Properties).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
 
-        private DevExpress.XtraEditors.TextEdit txtBancoDeDados;
-        private System.Windows.Forms.Label lblBancoDeDados;
-        private DevExpress.XtraEditors.TextEdit txtSenha;
-        private System.Windows.Forms.Label lblSenha;
-        private DevExpress.XtraEditors.TextEdit txtUsuario;
-        private System.Windows.Forms.Label lblUsuario;
-        private DevExpress.XtraEditors.TextEdit txtPorta;
-        private System.Windows.Forms.Label lblPorta;
-        private DevExpress.XtraEditors.TextEdit txtHost;
-        private System.Windows.Forms.Label lblHost;
-        private System.Windows.Forms.Label lblTipoBanco;
-        private DevExpress.XtraEditors.ComboBoxEdit cbTipoBanco;
+        public DevExpress.XtraEditors.TextEdit txtBancoDeDados;
+        public System.Windows.Forms.Label lblBancoDeDados;
+        public DevExpress.XtraEditors.TextEdit txtSenha;
+        public System.Windows.Forms.Label lblSenha;
+        public DevExpress.XtraEditors.TextEdit txtUsuario;
+        public System.Windows.Forms.Label lblUsuario;
+        public DevExpress.XtraEditors.TextEdit txtPorta;
+        public System.Windows.Forms.Label lblPorta;
+        public DevExpress.XtraEditors.TextEdit txtHost;
+        public System.Windows.Forms.Label lblHost;
     }
 }

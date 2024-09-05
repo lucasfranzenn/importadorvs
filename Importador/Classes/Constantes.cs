@@ -11,9 +11,9 @@ namespace Importador.Classes
     {
         public static class Caminhos
         {
-            public const string ConexoesJson = @"data\conexoes.json";
-            public const string ConsultasJson = @"data\consultas.json";
-            public const string SkinTxt = @"data\skin.txt";
+            public const string ConexoesJson = @"Configuracao\conexoes.json";
+            public const string ConsultasJson = @"Configuracao\consultas.json";
+            public const string SkinTxt = @"Configuracao\skin.txt";
         }
         
         public static class Enums
@@ -62,7 +62,7 @@ namespace Importador.Classes
 
             public static readonly Dictionary<string, List<Func<object, object>>> FuncoesFormatadorasPorColuna = new()
             {
-                {"ncm",  new List<Func<object, object>> { Formatador.FormataNCM } }
+                {"ncm",  new List<Func<object, object>> { Formatadores.FormataNCM } }
             };
         }
 

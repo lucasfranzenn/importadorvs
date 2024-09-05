@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Importador.Classes
 {
-    public static class Formatador
+    public static class Formatadores
     {
         public static object FormataNCM(object ncm) => ncm.ToString().Replace('.', ' ');
     }

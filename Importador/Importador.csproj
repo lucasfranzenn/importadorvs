@@ -10,26 +10,26 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="data\conexoes.json" />
-    <None Remove="data\consultas.json" />
-    <None Remove="data\exportarSqlCsv.py" />
-    <None Remove="data\skin.txt" />
+    <None Remove="Configuracao\conexoes.json" />
+    <None Remove="Configuracao\consultas.json" />
+    <None Remove="Configuracao\exportarSqlCsv.py" />
+    <None Remove="Configuracao\skin.txt" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="data\conexoes.json">
+    <Content Include="Configuracao\conexoes.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="data\consultas.json">
+    <Content Include="Configuracao\consultas.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="data\exportarSqlCsv.py">
+    <Content Include="Configuracao\exportarSqlCsv.py">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="data\skin.txt">
+    <Content Include="Configuracao\skin.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\refresh.ico" />

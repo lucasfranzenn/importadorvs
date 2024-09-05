@@ -1,6 +1,6 @@
-﻿namespace Importador.User_Controls
+﻿namespace Importador.UserControls.BaseControls
 {
-    partial class UCImportacaoBase
+    partial class UCBaseImportacao
     {
         /// <summary> 
         /// Required designer variable.

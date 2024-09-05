@@ -11,10 +11,11 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using static Importador.Classes.Utils;
 using static Importador.Classes.Constantes;
+using Importador.UserControls.BaseControls;
 
-namespace Importador.User_Controls
+namespace Importador.UserControls.Conexao
 {
-    public partial class UCConexaoImportacao : DevExpress.XtraEditors.XtraUserControl
+    public partial class UCConexaoImportacao : UCBaseConexao
     {
         public UCConexaoImportacao()
         {
@@ -37,7 +38,7 @@ namespace Importador.User_Controls
         {
             var conexoesJson = GetConexoesJson();
 
-            conexoesJson.Importacao = new Importacao()
+            conexoesJson.Importacao = new Classes.JSON.Importacao()
             {
                 Tipobanco = Mapeamento.TipoBancoPorNome[cbTipoBanco.SelectedText],
                 Host = txtHost.Text,

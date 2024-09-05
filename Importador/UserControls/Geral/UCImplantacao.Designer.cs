@@ -1,4 +1,4 @@
-﻿namespace Importador.User_Controls
+﻿namespace Importador.UserControls.Geral
 {
     partial class UCImplantacao
     {

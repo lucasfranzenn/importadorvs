@@ -1,4 +1,6 @@
 ﻿using DevExpress.XtraEditors;
+using Importador.Classes;
+using Importador.UserControls.BaseControls;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -9,11 +11,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Importador.User_Controls
+namespace Importador.UserControls.Geral
 {
-    public partial class UCImportacaoBase : DevExpress.XtraEditors.XtraUserControl
+    public partial class UCImplantacao : UCBase
     {
-        public UCImportacaoBase()
+        public UCImplantacao()
         {
             InitializeComponent();
         }

@@ -1,6 +1,6 @@
 ﻿using DevExpress.LookAndFeel;
 using DevExpress.XtraBars.Helpers;
-using Importador.User_Controls;
+using UC = Importador.UserControls;
 using System;
 using static Importador.Classes.Utils;
 
@@ -15,12 +15,12 @@ namespace Importador
 
         private void acGeralImplantacao_Click(object sender, EventArgs e)
         {
-            AlteraAba(ref fcPrincipal, new UCImplantacao());
+            AlteraAba(ref fcPrincipal, new UC.Geral.UCImplantacao());
         }
 
         private void acExportarDados_Click(object sender, EventArgs e)
         {
-            AlteraAba(ref fcPrincipal, new UCExportarDados());
+            AlteraAba(ref fcPrincipal, new UC.Geral.UCExportarDados());
         }
 
         public void btnSair_Click(object sender, EventArgs e)
@@ -30,22 +30,22 @@ namespace Importador
 
         private void acImportacaoClientesForn_Click(object sender, EventArgs e)
         {
-            AlteraAba(ref fcPrincipal, new UCClientes());
+            AlteraAba(ref fcPrincipal, new UC.Importacao.UCClientes());
         }
 
         private void acConexaoMyCommerce_Click(object sender, EventArgs e)
         {
-            AlteraAba(ref fcPrincipal, new UCConexaoMyCommerce());
+            AlteraAba(ref fcPrincipal, new UC.Conexao.UCConexaoMyCommerce());
         }
 
         private void acConexaoImportacao_Click(object sender, EventArgs e)
         {
-            AlteraAba(ref fcPrincipal, new UCConexaoImportacao());
+            AlteraAba(ref fcPrincipal, new UC.Conexao.UCConexaoImportacao());
         }
 
         private void acImportacaoProdutos_Click(object sender, EventArgs e)
         {
-            AlteraAba(ref fcPrincipal, new UCProdutos());
+            AlteraAba(ref fcPrincipal, new UC.Importacao.UCProdutos());
         }
 
         private void frmPrincipal_FormClosing(object sender, System.Windows.Forms.FormClosingEventArgs e)
@@ -55,7 +55,7 @@ namespace Importador
 
         private void acUtilitariosBuscarColuna_Click(object sender, EventArgs e)
         {
-            AlteraAba(ref fcPrincipal, new UCBuscaColuna());
+            AlteraAba(ref fcPrincipal, new UC.Utilitarios.UCBuscaColuna());
         }
 
         private void frmPrincipal_Load(object sender, EventArgs e)

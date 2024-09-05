@@ -10,9 +10,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Importador.User_Controls
+namespace Importador.UserControls.Importacao
 {
-    public partial class UCProdutos : UCImportacaoBase
+    public partial class UCProdutos : UserControls.BaseControls.UCBaseImportacao
     {
         public UCProdutos()
         {

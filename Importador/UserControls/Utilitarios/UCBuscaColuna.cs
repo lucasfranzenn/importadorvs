@@ -11,7 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Importador.User_Controls
+namespace Importador.UserControls.Utilitarios
 {
     public partial class UCBuscaColuna : DevExpress.XtraEditors.XtraUserControl
     {

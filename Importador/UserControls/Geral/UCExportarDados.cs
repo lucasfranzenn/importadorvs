@@ -4,7 +4,7 @@ using System.IO;
 using System.Windows.Forms;
 using static DevExpress.Xpo.Helpers.AssociatedCollectionCriteriaHelper;
 
-namespace Importador.User_Controls
+namespace Importador.UserControls.Geral
 {
     public partial class UCExportarDados : DevExpress.XtraEditors.XtraUserControl
     {

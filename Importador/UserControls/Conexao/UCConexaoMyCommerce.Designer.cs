@@ -1,6 +1,6 @@
-﻿namespace Importador.User_Controls
+﻿namespace Importador.UserControls.Conexao
 {
-    partial class UCProdutos
+    partial class UCConexaoMyCommerce
     {
         /// <summary> 
         /// Required designer variable.
@@ -30,13 +30,14 @@
         {
             SuspendLayout();
             // 
-            // UCProdutos
+            // UCConexaoMyCommerce
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            Name = "UCProdutos";
+            Name = "UCConexaoMyCommerce";
             Size = new System.Drawing.Size(542, 541);
-            Load += UCProdutos_Load;
+            Load += UCConexaoMyCommerce_Load;
+            Leave += UCConexaoMyCommerce_Leave;
             ResumeLayout(false);
         }
 

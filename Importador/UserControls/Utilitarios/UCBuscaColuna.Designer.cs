@@ -1,4 +1,4 @@
-﻿namespace Importador.User_Controls
+﻿namespace Importador.UserControls.Utilitarios
 {
     partial class UCBuscaColuna
     {

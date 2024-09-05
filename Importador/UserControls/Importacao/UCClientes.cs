@@ -16,9 +16,9 @@ using System.Threading;
 using System.Threading.Tasks;
 using static Importador.Classes.Constantes;
 
-namespace Importador.User_Controls
+namespace Importador.UserControls.Importacao
 {
-    public partial class UCClientes : UCImportacaoBase
+    public partial class UCClientes : UserControls.BaseControls.UCBaseImportacao
     {
         public UCClientes()
         {
