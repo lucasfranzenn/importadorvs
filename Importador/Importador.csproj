@@ -13,11 +13,15 @@
     <None Remove="Configuracao\conexoes.json" />
     <None Remove="Configuracao\consultas.json" />
     <None Remove="Configuracao\exportarSqlCsv.py" />
+    <None Remove="Configuracao\imp.db" />
     <None Remove="Configuracao\implantacao.json" />
     <None Remove="Configuracao\skin.txt" />
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="Configuracao\imp.db">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Configuracao\implantacao.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -45,6 +49,7 @@
   <ItemGroup>
     <PackageReference Include="DevExpress.Win.Design" Version="24.1.3" />
     <PackageReference Include="FirebirdSql.Data.FirebirdClient" Version="10.3.1" />
+    <PackageReference Include="Microsoft.Data.Sqlite" Version="8.0.8" />
     <PackageReference Include="Microsoft.Toolkit.Uwp.Notifications" Version="7.1.3" />
     <PackageReference Include="MySqlConnector" Version="2.3.7" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />

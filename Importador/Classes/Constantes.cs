@@ -15,6 +15,7 @@ namespace Importador.Classes
             public const string ConexoesJson = @"Configuracao\conexoes.json";
             public const string ConsultasJson = @"Configuracao\consultas.json";
             public const string SkinTxt = @"Configuracao\skin.txt";
+            public const string ImportadorDb = @"Configuracao\imp.db";
         }
         
         public static class Enums
