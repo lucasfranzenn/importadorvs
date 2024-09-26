@@ -340,6 +340,7 @@
             tpImplantacao.SetRow(txtCodigoImplantacao, 0);
             txtCodigoImplantacao.Size = new System.Drawing.Size(318, 20);
             txtCodigoImplantacao.TabIndex = 25;
+            txtCodigoImplantacao.Leave += txtCodigoImplantacao_Leave;
             // 
             // lblCodigoImplantacao
             // 

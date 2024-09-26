@@ -46,6 +46,7 @@ namespace Importador
             acConexao = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             acConexaoMyCommerce = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             acConexaoImportacao = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            acConexaoLocal = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             acImportacao = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             acImportacaoClientesForn = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             acImportacaoProdutos = new DevExpress.XtraBars.Navigation.AccordionControlElement();
@@ -146,7 +147,7 @@ namespace Importador
             // 
             // acConexao
             // 
-            acConexao.Elements.AddRange(new DevExpress.XtraBars.Navigation.AccordionControlElement[] { acConexaoMyCommerce, acConexaoImportacao });
+            acConexao.Elements.AddRange(new DevExpress.XtraBars.Navigation.AccordionControlElement[] { acConexaoMyCommerce, acConexaoImportacao, acConexaoLocal });
             acConexao.Expanded = true;
             acConexao.Name = "acConexao";
             acConexao.Text = "Conexão";
@@ -166,6 +167,14 @@ namespace Importador
             acConexaoImportacao.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
             acConexaoImportacao.Text = "Importação";
             acConexaoImportacao.Click += acConexaoImportacao_Click;
+            // 
+            // acConexaoLocal
+            // 
+            acConexaoLocal.ImageOptions.SvgImage = Properties.Resources.bo_address;
+            acConexaoLocal.Name = "acConexaoLocal";
+            acConexaoLocal.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            acConexaoLocal.Text = "Local";
+            acConexaoLocal.Click += acConexaoLocal_Click;
             // 
             // acImportacao
             // 
@@ -492,6 +501,7 @@ namespace Importador
         private DevExpress.XtraBars.BarDockControl barDockControlBottom;
         private DevExpress.XtraBars.BarDockControl barDockControlRight;
         private DevExpress.XtraBars.Navigation.AccordionControlElement acExportarDados;
+        private DevExpress.XtraBars.Navigation.AccordionControlElement acConexaoLocal;
     }
 }
 

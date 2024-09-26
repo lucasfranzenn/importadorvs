@@ -1,4 +1,5 @@
 ﻿using DevExpress.CodeParser;
+using Importador.Classes.Entidades;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,11 +12,9 @@ namespace Importador.Classes
     {
         public static class Caminhos
         {
-            public const string ImplantacaoJson = @"Configuracao\implantacao.json";
             public const string ConexoesJson = @"Configuracao\conexoes.json";
             public const string ConsultasJson = @"Configuracao\consultas.json";
             public const string SkinTxt = @"Configuracao\skin.txt";
-            public const string ImportadorDb = @"Configuracao\imp.db";
         }
         
         public static class Enums
@@ -26,11 +25,16 @@ namespace Importador.Classes
                 MyCommerce
             }
 
-            public enum Tabela
+            public enum TabelaMyCommerce
             {
                 clientes,
                 produtos,
                 estoque
+            }
+
+            public enum TabelaBancoLocal
+            {
+                implantacoes
             }
         }
 
@@ -67,7 +71,6 @@ namespace Importador.Classes
                 {"ncm",  new List<Func<object, object>> { Formatadores.FormataNCM } }
             };
         }
-
     }
 
 }

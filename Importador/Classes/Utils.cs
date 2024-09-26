@@ -32,8 +32,6 @@ namespace Importador.Classes
             _ => ConexoesJson.FromJson(File.ReadAllText(Caminhos.ConexoesJson)).Importacao
         };
 
-        public static ImplantacaoJson GetImplantacaoJson() => ImplantacaoJson.FromJson(File.ReadAllText(Caminhos.ImplantacaoJson));
-        public static void SetImplantacaoJson(ImplantacaoJson implantacao) => File.WriteAllText(Caminhos.ImplantacaoJson, implantacao.ToJson());
         public static ConexoesJson GetConexoesJson() => ConexoesJson.FromJson(File.ReadAllText(Caminhos.ConexoesJson));
         public static void SetConexoesJson(ConexoesJson conexoesJson) => File.WriteAllText(Caminhos.ConexoesJson, conexoesJson.ToJson());
         public static void SalvarSkin(string skinName, string skinPalette) => File.WriteAllText(Caminhos.SkinTxt, skinName + "," + skinPalette);

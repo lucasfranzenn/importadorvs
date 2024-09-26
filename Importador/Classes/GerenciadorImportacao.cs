@@ -23,7 +23,7 @@ namespace Importador.Classes
             return Convert.ToInt32(count.ExecuteScalar());
         }
 
-        public static void Importar(string sql, ref ProgressBarControl pbImportacao, Enums.Tabela tabela, List<CheckEdit> parametros)
+        public static void Importar(string sql, ref ProgressBarControl pbImportacao, Enums.TabelaMyCommerce tabela, List<CheckEdit> parametros)
         {
             StringBuilder sqlInsert = new();
             IDbCommand sqlQuery = ConexaoManager.instancia.GetConexaoImportacao().CreateCommand();

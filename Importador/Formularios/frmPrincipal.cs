@@ -86,6 +86,11 @@ namespace Importador
         private void acImportacaoServicos_Click(object sender, EventArgs e)
         {
             AlteraAba(ref fcPrincipal, new UC.Importacao.UCServicos());
+        }   
+
+        private void acConexaoLocal_Click(object sender, EventArgs e)
+        {
+            AlteraAba(ref fcPrincipal, new UC.Conexao.UCConexaoLocal());
         }
     }
 }
