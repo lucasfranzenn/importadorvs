@@ -58,6 +58,13 @@
             pbImportacao.Properties.DisplayFormat.FormatString = "Nenhum registro importado";
             pbImportacao.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             // 
+            // btnResetarSql
+            // 
+            btnResetarSql.Click += btnResetarSql_Click;
+            // 
+            // tabelaMyCommerce
+            // 
+            // 
             // cbCriarConsumidor
             // 
             cbCriarConsumidor.Location = new System.Drawing.Point(181, 26);

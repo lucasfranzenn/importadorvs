@@ -64,8 +64,9 @@ namespace Importador.UserControls.Geral
             implantacao.ImportarSecoes = Convert.ToBoolean((int)cbImportarProdutosOpcoes.Properties.Items[2].CheckState);
             implantacao.ImportarGrupos = Convert.ToBoolean((int)cbImportarProdutosOpcoes.Properties.Items[3].CheckState);
             implantacao.ImportarSubGrupos = Convert.ToBoolean((int)cbImportarProdutosOpcoes.Properties.Items[4].CheckState);
-            implantacao.ImportarGrades = Convert.ToBoolean((int)cbImportarProdutosOpcoes.Properties.Items[5].CheckState);
-            implantacao.ImportarLotes = Convert.ToBoolean((int)cbImportarProdutosOpcoes.Properties.Items[6].CheckState);
+            implantacao.ImportarFabricantes = Convert.ToBoolean((int)cbImportarProdutosOpcoes.Properties.Items[5].CheckState);
+            implantacao.ImportarGrades = Convert.ToBoolean((int)cbImportarProdutosOpcoes.Properties.Items[6].CheckState);
+            implantacao.ImportarLotes = Convert.ToBoolean((int)cbImportarProdutosOpcoes.Properties.Items[7].CheckState);
 
             ConexaoBancoImportador.Update(implantacao, Enums.TabelaBancoLocal.implantacoes);
         }
@@ -124,8 +125,9 @@ namespace Importador.UserControls.Geral
             cbImportarProdutosOpcoes.Properties.Items[2].CheckState = (CheckState)Convert.ToInt16(implantacao.ImportarSecoes);
             cbImportarProdutosOpcoes.Properties.Items[3].CheckState = (CheckState)Convert.ToInt16(implantacao.ImportarGrupos);
             cbImportarProdutosOpcoes.Properties.Items[4].CheckState = (CheckState)Convert.ToInt16(implantacao.ImportarSubGrupos);
-            cbImportarProdutosOpcoes.Properties.Items[5].CheckState = (CheckState)Convert.ToInt16(implantacao.ImportarGrades);
-            cbImportarProdutosOpcoes.Properties.Items[5].CheckState = (CheckState)Convert.ToInt16(implantacao.ImportarLotes);
+            cbImportarProdutosOpcoes.Properties.Items[5].CheckState = (CheckState)Convert.ToInt16(implantacao.ImportarFabricantes);
+            cbImportarProdutosOpcoes.Properties.Items[6].CheckState = (CheckState)Convert.ToInt16(implantacao.ImportarGrades);
+            cbImportarProdutosOpcoes.Properties.Items[7].CheckState = (CheckState)Convert.ToInt16(implantacao.ImportarLotes);
             #endregion
         }
     }

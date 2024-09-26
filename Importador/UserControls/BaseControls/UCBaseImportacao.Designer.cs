@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             lblSqlImportacao = new DevExpress.XtraEditors.LabelControl();
             txtSqlImportacao = new DevExpress.XtraEditors.MemoEdit();
             gcParametros = new DevExpress.XtraEditors.GroupControl();
@@ -38,6 +39,8 @@
             lblFimImportacao = new DevExpress.XtraEditors.LabelControl();
             lblInicioImportacao = new DevExpress.XtraEditors.LabelControl();
             pbImportacao = new DevExpress.XtraEditors.ProgressBarControl();
+            btnResetarSql = new DevExpress.XtraEditors.SimpleButton();
+            tabelaMyCommerce = new Componentes.TabelaMyCommerce(components);
             ((System.ComponentModel.ISupportInitialize)txtSqlImportacao.Properties).BeginInit();
             ((System.ComponentModel.ISupportInitialize)gcParametros).BeginInit();
             gcParametros.SuspendLayout();
@@ -147,10 +150,24 @@
             pbImportacao.Size = new System.Drawing.Size(514, 26);
             pbImportacao.TabIndex = 15;
             // 
+            // btnResetarSql
+            // 
+            btnResetarSql.ImageOptions.Image = Properties.Resources.reset2_16x16;
+            btnResetarSql.Location = new System.Drawing.Point(512, 9);
+            btnResetarSql.Name = "btnResetarSql";
+            btnResetarSql.Size = new System.Drawing.Size(23, 23);
+            btnResetarSql.TabIndex = 16;
+            btnResetarSql.ToolTip = "Este botão reseta para a sql padrão";
+            // 
+            // tabelaMyCommerce
+            // 
+            tabelaMyCommerce.Tabela = Classes.Constantes.Enums.TabelaMyCommerce.clientes;
+            // 
             // UCBaseImportacao
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            Controls.Add(btnResetarSql);
             Controls.Add(pbImportacao);
             Controls.Add(lblHorarioFimImportacao);
             Controls.Add(lblHorarioInicioImportacao);
@@ -182,5 +199,7 @@
         public DevExpress.XtraEditors.LabelControl lblHorarioFimImportacao;
         public DevExpress.XtraEditors.LabelControl lblHorarioInicioImportacao;
         private DevExpress.XtraEditors.CheckEdit cbExcluirRegistros;
+        public DevExpress.XtraEditors.SimpleButton btnResetarSql;
+        public Componentes.TabelaMyCommerce tabelaMyCommerce;
     }
 }

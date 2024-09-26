@@ -6,6 +6,7 @@ using FirebirdSql.Data.FirebirdClient;
 using Importador.Classes;
 using Importador.Classes.JSON;
 using Importador.Conexao;
+using Importador.Properties;
 using System;
 using System.Data;
 using System.Data.Common;
@@ -14,11 +15,12 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows;
 using static Importador.Classes.Constantes;
 
 namespace Importador.UserControls.Importacao
 {
-    public partial class UCClientes : UserControls.BaseControls.UCBaseImportacao
+    public partial class UCClientes : BaseControls.UCBaseImportacao
     {
         public UCClientes()
         {
@@ -36,11 +38,12 @@ namespace Importador.UserControls.Importacao
             {
                 txtSqlImportacao.Text = ConsultasJSON.GetSql("clientes");
             }
+
         }
 
         private async void btnImportar_Click(object sender, EventArgs e)
         {
-            new Task(()=>lblHorarioInicioImportacao.Text = DateTime.Now.ToString()).Start();
+            new Task(() => lblHorarioInicioImportacao.Text = DateTime.Now.ToString()).Start();
 
             Enabled = false;
 
@@ -51,6 +54,11 @@ namespace Importador.UserControls.Importacao
             Utils.MostrarNotificacao("Importação dos clientes finalizada", "Importação");
 
             Enabled = true;
+        }
+
+        private void btnResetarSql_Click(object sender, EventArgs e)
+        {
+            txtSqlImportacao.Text = Configuracoes.Default.sqlClientes.Replace("@", Environment.NewLine);
         }
     }
 }
