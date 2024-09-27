@@ -26,14 +26,12 @@ namespace Importador.Classes
             container.Controls.Add(userControl);
         }
 
-        public static Importacao GetImportacao(Enums.Sistema sistema) => sistema switch
+        public static Entidades.Conexao GetImportacao(Enums.Sistema sistema) => sistema switch
         {
-            Enums.Sistema.MyCommerce => ConexoesJson.FromJson(File.ReadAllText(Caminhos.ConexoesJson)).Mycommerce,
-            _ => ConexoesJson.FromJson(File.ReadAllText(Caminhos.ConexoesJson)).Importacao
+            Enums.Sistema.MyCommerce => ConexaoBancoImportador.GetEntidade<Entidades.Conexao>(Enums.TabelaBancoLocal.conexoes, "TipoConexao = 0"),
+            _ => ConexaoBancoImportador.GetEntidade<Entidades.Conexao>(Enums.TabelaBancoLocal.conexoes, "TipoConexao = 1")
         };
 
-        public static ConexoesJson GetConexoesJson() => ConexoesJson.FromJson(File.ReadAllText(Caminhos.ConexoesJson));
-        public static void SetConexoesJson(ConexoesJson conexoesJson) => File.WriteAllText(Caminhos.ConexoesJson, conexoesJson.ToJson());
         public static void SalvarSkin(string skinName, string skinPalette) => File.WriteAllText(Caminhos.SkinTxt, skinName + "," + skinPalette);
 
         public static void MostrarNotificacao(string msg, string titulo)

@@ -30,7 +30,7 @@ namespace Importador.UserControls.Geral
         {
             try
             {
-                CarregaInformacoes(ConexaoBancoImportador.GetImplantacao());
+                CarregaInformacoes(ConexaoBancoImportador.GetEntidade<Implantacao>(Enums.TabelaBancoLocal.implantacoes));
             }
             catch (Exception ex)
             {
@@ -45,7 +45,7 @@ namespace Importador.UserControls.Geral
 
         private void SalvaInformacoes()
         {
-            Implantacao implantacao = ConexaoBancoImportador.GetImplantacao();
+            Implantacao implantacao = ConexaoBancoImportador.GetEntidade<Implantacao>(Enums.TabelaBancoLocal.implantacoes);
 
             implantacao.RazaoSocialCliente = txtCliente.Text;
             implantacao.NomeResponsavel = txtResponsavel.Text;
@@ -79,7 +79,8 @@ namespace Importador.UserControls.Geral
                 Default.Save();
                 try
                 {
-                    CarregaInformacoes(ConexaoBancoImportador.GetImplantacao());
+                    // CarregaInformacoes(ConexaoBancoImportador.GetImplantacao());
+                    CarregaInformacoes(ConexaoBancoImportador.GetEntidade<Implantacao>(Enums.TabelaBancoLocal.implantacoes));
                 }
                 catch (Exception ex)
                 {

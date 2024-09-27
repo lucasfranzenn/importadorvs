@@ -12,7 +12,6 @@ namespace Importador.Classes
     {
         public static class Caminhos
         {
-            public const string ConexoesJson = @"Configuracao\conexoes.json";
             public const string ConsultasJson = @"Configuracao\consultas.json";
             public const string SkinTxt = @"Configuracao\skin.txt";
         }
@@ -21,8 +20,8 @@ namespace Importador.Classes
         {
             public enum Sistema
             {
-                Importacao,
-                MyCommerce
+                MyCommerce,
+                Importacao
             }
 
             public enum TabelaMyCommerce
@@ -34,32 +33,30 @@ namespace Importador.Classes
 
             public enum TabelaBancoLocal
             {
-                implantacoes
+                implantacoes,
+                conexoes
+            }
+
+            public enum Dml
+            {
+                Insert = 0,
+                Update,
+                Select
+            }
+
+            public enum TipoBanco
+            {
+                MySQL = 0,
+                Firebird,
+                PostgreSQL,
+                SQLServer,
+                Access,
+                ConnectionString
             }
         }
 
         public static class Mapeamento
         {
-            public static readonly Dictionary<string, string> TipoBancoPorNome = new()
-            {
-                {"MySQL", "mysql"},
-                {"Firebird", "firebird"},
-                {"PostgreSQL", "postgre"},
-                {"MS-SQL \\ SQLServer", "mssql"},
-                {"Access", "access"},
-                {"ConnectionString", "connectionstring"}
-            };
-
-            public static readonly Dictionary<string, string> NomePorTipoBanco = new()
-            {
-                {"mysql", "MySQL"},
-                {"firebird", "Firebird"},
-                {"postgre" , "PostgreSQL"},
-                {"mssql", "MS-SQL \\ SQLServer"},
-                {"access" , "Access"},
-                {"connectionstring" , "ConnectionString"}
-            };
-
             public static readonly Dictionary<string, List<string>> TabelasTruncatePorTabela = new()
             {
                 {"clientes", new List<string> { "clientes" } },

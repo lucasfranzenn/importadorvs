@@ -27,7 +27,7 @@ namespace Importador.Conexao
         {
             _conexaoMariaDB = new MariaDbConnection().CriarConexao(GetImportacao(Enums.Sistema.MyCommerce));
 
-            var genericDbFactory = ConexaoFactory.CriarConexaoBanco(ConexoesJson.GetTipoBancoImportacao());
+            var genericDbFactory = ConexaoFactory.CriarConexaoBanco((Enums.TipoBanco)GetImportacao(Enums.Sistema.Importacao).TipoBanco);
             _conexaoImportacao = genericDbFactory.CriarConexao(GetImportacao(Enums.Sistema.Importacao));
 
             try

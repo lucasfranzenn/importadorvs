@@ -18,6 +18,7 @@ using System.Windows.Forms;
 using static Importador.Classes.Utils;
 using static Importador.Classes.Constantes;
 using Importador.UserControls.BaseControls;
+using DevExpress.Pdf.Native.BouncyCastle.Asn1.X509.Qualified;
 
 namespace Importador.UserControls.Conexao
 {
@@ -30,30 +31,37 @@ namespace Importador.UserControls.Conexao
 
         private void UCConexaoMyCommerce_Leave(object sender, EventArgs e)
         {
-            var conexoesJson = GetConexoesJson();
+            var conexao = ConexaoBancoImportador.GetEntidade<Classes.Entidades.Conexao>(Enums.TabelaBancoLocal.conexoes, "TipoConexao = 0");
 
-            conexoesJson.Mycommerce = new Classes.JSON.Importacao()
-            {
-                Tipobanco = "mysql",
-                Host = txtHost.Text,
-                Porta = Convert.ToInt16(txtPorta.Text),
-                Usuario = txtUsuario.Text,
-                Senha = txtSenha.Text,
-                Banco = txtBancoDeDados.Text,
-            };
+            conexao.Host = txtHost.Text;
+            conexao.Porta = Convert.ToInt32(txtPorta.Text);
+            conexao.Usuario = txtUsuario.Text;
+            conexao.Senha = txtSenha.Text;
+            conexao.Banco = txtBancoDeDados.Text;
 
-            SetConexoesJson(conexoesJson);
+            ConexaoBancoImportador.Update(conexao, Enums.TabelaBancoLocal.conexoes);
         }
 
         private void UCConexaoMyCommerce_Load(object sender, EventArgs e)
         {
-            var temp = GetImportacao(Enums.Sistema.MyCommerce);
-
-            txtHost.Text = temp.Host;
-            txtPorta.Text = temp.Porta.ToString();
-            txtUsuario.Text = temp.Usuario;
-            txtSenha.Text = temp.Senha;
-            txtBancoDeDados.Text = temp.Banco;
+            Classes.Entidades.Conexao entidade;
+            try
+            {
+                entidade = ConexaoBancoImportador.GetEntidade<Classes.Entidades.Conexao>(Enums.TabelaBancoLocal.conexoes, "TipoConexao = 0");
+            }
+            catch (Exception)
+            {
+                ConexaoBancoImportador.InserirRegistro(new Classes.Entidades.Conexao(Enums.Sistema.MyCommerce), Enums.TabelaBancoLocal.conexoes);
+            }
+            finally
+            {
+                entidade = ConexaoBancoImportador.GetEntidade<Classes.Entidades.Conexao>(Enums.TabelaBancoLocal.conexoes, "TipoConexao = 0");
+                txtHost.Text = entidade.Host;
+                txtPorta.Text = entidade.Porta.ToString();
+                txtUsuario.Text = entidade.Usuario;
+                txtSenha.Text = entidade.Senha;
+                txtBancoDeDados.Text = entidade.Banco;
+            }
         }
     }
 }
