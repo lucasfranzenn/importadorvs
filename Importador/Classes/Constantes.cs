@@ -28,13 +28,18 @@ namespace Importador.Classes
             {
                 clientes,
                 produtos,
-                estoque
+                estoque,
+                contasapagar,
+                contasareceber,
+                produto_st,
+                servicos
             }
 
             public enum TabelaBancoLocal
             {
                 implantacoes,
-                conexoes
+                conexoes,
+                consultas
             }
 
             public enum Dml

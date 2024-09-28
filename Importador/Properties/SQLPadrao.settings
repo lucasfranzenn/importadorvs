@@ -1,0 +1,24 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Importador.Properties" GeneratedClassName="SQLPadrao">
+  <Profiles />
+  <Settings>
+    <Setting Name="clientes" Type="System.String" Scope="User">
+      <Value Profile="(Default)">SELECT @as Codigo, @as tipo, @as RazaoSocial, @as NomeFantasia, @as Endereco, @as Bairro, @as Cidade, @as UF, @as CEP, @as codigocidadeibge, @as numero, @as complemento, @as telefone1, @as telefone2, @as fax, @as DataNascimento, @as CNPJ, @as IE, @as CPF, @as RG, @as ValorCredito, @as email, @as FisicaJuridica, @as contato, @'IMPORTACAO' as usuario, @'IMPORTACAO' AS terminal, @0 as EmpresaCadastro @FROM CLIENTES;</Value>
+    </Setting>
+    <Setting Name="produtos" Type="System.String" Scope="User">
+      <Value Profile="(Default)">SELECT @as Codigo, @ as Descricao, @ as detalhamento, @ as referencia, @ as codigobarras, @ as UNVenda, @ as ValorCusto, @(custofinal - valorcusto) as outroscustos, @ as custofinal, @ as VendaT1, @ as cst_simples, @ as codigocf, @ as ncm, @ as cest, @ as CodigoFabricante, @ as fabricante, @ as CodigoSecao, @ as Secao, @ as CodigoGrupo, @ as grupo, @ as CodigoSubGrupo, @ as SubGrupo, @'Revenda' as TipoProduto , @'Normal' as ModalidadeControle, @'IMPORTACAO' as Usuario, @'IMPORTACAO' as Terminal, @ AS cst_pis, @ AS Cst_Cofins, @ AS aliq_COFINS, @ AS aliq_pis, @ AS BaseCalculoICMS, @ AS AliquotaICMS @FROM PRODUTOS</Value>
+    </Setting>
+    <Setting Name="produto_st" Type="System.String" Scope="User">
+      <Value Profile="(Default)">SELECT @as codigoproduto, @as uf, @as MVA, @as MVA_AJUST , @as MVA_SIMPLES , @as ICMS , @as ICMS_Intra , @as ICMS_Inter_PF , @as CST , @as CST_Simples , @as ValorPauta, @as Empresa , @as BaseST @FROM produtos_st;</Value>
+    </Setting>
+    <Setting Name="contasapagar" Type="System.String" Scope="User">
+      <Value Profile="(Default)">SELECT @ AS codigo, @ AS razaosocial, @ AS ndocumento, @ AS datalancamento, @ AS vencimento, @ AS vencimentooriginal, @ AS valor, @ AS valorpago, @ AS valorpendente, @ AS quitado, @ AS dataquitacao, @ AS juro, @ AS desconto, @ AS quantidadepagamentos, @ AS npagamento, @ AS descricao, @0 AS empresa, @ AS valororiginal, @'IMPORTACAO' AS usuario, @'IMPORTACAO' AS terminal, @1 AS CodModalidade, @'CARTEIRA' AS Modalidade @ FROM CONTASAPAGAR</Value>
+    </Setting>
+    <Setting Name="contasareceber" Type="System.String" Scope="User">
+      <Value Profile="(Default)">SELECT @ AS codigo, @ AS razaosocial, @ AS ndocumento, @ AS datalancamento, @ AS vencimento, @ AS vencimentooriginal, @ AS valor, @ AS valorpago, @ AS valorpendente, @ AS quitado, @ AS dataquitacao, @ AS juro, @ AS desconto, @ AS quantidadepagamentos, @ AS npagamento, @ AS descricao, @0 AS empresa, @ AS valororiginal, @'IMPORTACAO' AS usuario, @'IMPORTACAO' AS terminal, @1 AS CodModalidade, @'CARTEIRA' AS Modalidade @ FROM contasareceber</Value>
+    </Setting>
+    <Setting Name="servicos" Type="System.String" Scope="User">
+      <Value Profile="(Default)">SELECT @ as Codigo, @ as Descricao, @ as ValorCusto, @ as valorvenda, @ as servicoterceiro, @'g' as status, @1 as ativo, @ as DescontoMaximo @ FROM servicos</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

@@ -40,7 +40,7 @@
             lblInicioImportacao = new DevExpress.XtraEditors.LabelControl();
             pbImportacao = new DevExpress.XtraEditors.ProgressBarControl();
             btnResetarSql = new DevExpress.XtraEditors.SimpleButton();
-            tabelaMyCommerce = new Componentes.TabelaMyCommerce(components);
+            MyC = new Componentes.TabelaMyCommerce(components);
             ((System.ComponentModel.ISupportInitialize)txtSqlImportacao.Properties).BeginInit();
             ((System.ComponentModel.ISupportInitialize)gcParametros).BeginInit();
             gcParametros.SuspendLayout();
@@ -159,9 +159,9 @@
             btnResetarSql.TabIndex = 16;
             btnResetarSql.ToolTip = "Este botão reseta para a sql padrão";
             // 
-            // tabelaMyCommerce
+            // MyC
             // 
-            tabelaMyCommerce.Tabela = Classes.Constantes.Enums.TabelaMyCommerce.clientes;
+            MyC.Tabela = Classes.Constantes.Enums.TabelaMyCommerce.clientes;
             // 
             // UCBaseImportacao
             // 
@@ -200,6 +200,6 @@
         public DevExpress.XtraEditors.LabelControl lblHorarioInicioImportacao;
         private DevExpress.XtraEditors.CheckEdit cbExcluirRegistros;
         public DevExpress.XtraEditors.SimpleButton btnResetarSql;
-        public Componentes.TabelaMyCommerce tabelaMyCommerce;
+        public Componentes.TabelaMyCommerce MyC;
     }
 }

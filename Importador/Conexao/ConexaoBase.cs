@@ -8,7 +8,6 @@ using System.Threading.Tasks;
 using MySqlConnector;
 using Npgsql;
 using FirebirdSql.Data.FirebirdClient;
-using Importador.Classes.JSON;
 using Ent = Importador.Classes.Entidades;
 
 namespace Importador.Conexao

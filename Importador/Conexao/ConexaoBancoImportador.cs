@@ -3,15 +3,16 @@ using Microsoft.Data.Sqlite;
 using System.Linq;
 using Dapper;
 using Importador.Classes.Entidades;
-using static Importador.Properties.Configuracoes;
 using System;
 using DevExpress.Mvvm.Native;
+using Importador.Properties;
+using DevExpress.Office.Crypto;
 
 namespace Importador.Conexao
 {
     public class ConexaoBancoImportador
     {
-        public SqliteConnection conexao = new SqliteConnection("Data Source="+ Default.BancoLocal);
+        public SqliteConnection conexao = new SqliteConnection("Data Source="+ Configuracoes.Default.BancoLocal);
         public static ConexaoBancoImportador instancia = new();
 
         public ConexaoBancoImportador()
@@ -44,7 +45,7 @@ namespace Importador.Conexao
 
         public static T GetEntidade<T>(Enums.TabelaBancoLocal tabela) where T : class
         {
-            var ListaEntidades = instancia.conexao.Query<T>($"select * from {tabela.ToString()} where CodigoImplantacao = {Default.CodigoImplantacao}");
+            var ListaEntidades = instancia.conexao.Query<T>($"select * from {tabela.ToString()} where CodigoImplantacao = {Configuracoes.Default.CodigoImplantacao}");
 
             if (ListaEntidades.FirstOrDefault() is T entidade)
             {
@@ -56,7 +57,7 @@ namespace Importador.Conexao
 
         public static T GetEntidade<T>(Enums.TabelaBancoLocal tabela, string where) where T : class
         {
-            var ListaEntidades = instancia.conexao.Query<T>($"select * from {tabela.ToString()} where CodigoImplantacao = {Default.CodigoImplantacao} and {where}");
+            var ListaEntidades = instancia.conexao.Query<T>($"select * from {tabela.ToString()} where CodigoImplantacao = {Configuracoes.Default.CodigoImplantacao} and {where}");
 
             if (ListaEntidades.FirstOrDefault() is T entidade)
             {
@@ -80,6 +81,18 @@ namespace Importador.Conexao
         private static string GetChavePrimaria(Type entidade)
         {
             return string.Join("", entidade.GetProperties().Take(1).Select(p => $"{p.Name}"));
+        }
+
+        internal static string GetSql(Enums.TabelaMyCommerce tabela)
+        {
+            var resultado = instancia.conexao.Query<Consultas>($"select consulta from consultas where tabelaconsulta = '{tabela.ToString()}' and codigoimplantacao = {Configuracoes.Default.CodigoImplantacao}");
+
+            if (resultado.FirstOrDefault() is Consultas c)
+            {
+                return c.Consulta;
+            }
+
+            return Classes.Utils.GetSqlPadrao(tabela.ToString());
         }
     }
 }

@@ -1,7 +1,6 @@
 ﻿using DevExpress.Xpo.Logger.Transport;
 using DevExpress.XtraEditors;
 using Importador.Classes;
-using Importador.Classes.JSON;
 using Importador.Conexao;
 using MySqlConnector;
 using System;

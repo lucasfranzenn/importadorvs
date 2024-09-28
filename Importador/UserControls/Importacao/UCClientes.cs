@@ -4,7 +4,6 @@ using DevExpress.XtraMap;
 using DevExpress.XtraSpreadsheet.Import.OpenXml;
 using FirebirdSql.Data.FirebirdClient;
 using Importador.Classes;
-using Importador.Classes.JSON;
 using Importador.Conexao;
 using Importador.Properties;
 using System;
@@ -17,6 +16,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using static Importador.Classes.Constantes;
+using Importador.Classes.Entidades;
 
 namespace Importador.UserControls.Importacao
 {
@@ -36,20 +36,21 @@ namespace Importador.UserControls.Importacao
             }
             else
             {
-                txtSqlImportacao.Text = ConsultasJSON.GetSql("clientes");
+                txtSqlImportacao.Text = ConexaoBancoImportador.GetSql(MyC.Tabela);
             }
-
         }
 
         private async void btnImportar_Click(object sender, EventArgs e)
         {
             new Task(() => lblHorarioInicioImportacao.Text = DateTime.Now.ToString()).Start();
-
+            
             Enabled = false;
 
-            await Task.Run(() => GerenciadorImportacao.Importar(txtSqlImportacao.Text, ref pbImportacao, Enums.TabelaMyCommerce.clientes, gcParametros.Controls.OfType<CheckEdit>().ToList()));
+            await Task.Run(() => GerenciadorImportacao.Importar(txtSqlImportacao.Text, ref pbImportacao, MyC.Tabela, gcParametros.Controls.OfType<CheckEdit>().ToList()));
 
             lblHorarioFimImportacao.Text = DateTime.Now.ToString();
+ 
+            Utils.AtualizaSQLImportacao(txtSqlImportacao.Text, MyC.Tabela);
 
             Utils.MostrarNotificacao("Importação dos clientes finalizada", "Importação");
 
@@ -58,7 +59,7 @@ namespace Importador.UserControls.Importacao
 
         private void btnResetarSql_Click(object sender, EventArgs e)
         {
-            txtSqlImportacao.Text = Configuracoes.Default.sqlClientes.Replace("@", Environment.NewLine);
+            txtSqlImportacao.Text = Utils.GetSqlPadrao(MyC.Tabela.ToString());
         }
     }
 }

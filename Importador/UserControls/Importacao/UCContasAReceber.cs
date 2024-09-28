@@ -11,7 +11,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Importador.Classes.JSON;
 
 namespace Importador.UserControls.Importacao
 {
@@ -31,7 +30,7 @@ namespace Importador.UserControls.Importacao
             }
             else
             {
-                txtSqlImportacao.Text = ConsultasJSON.GetSql("contasareceber");
+                txtSqlImportacao.Text = ConexaoBancoImportador.GetSql(MyC.Tabela);
             }
         }
     }

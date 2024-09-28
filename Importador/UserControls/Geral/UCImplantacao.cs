@@ -1,6 +1,5 @@
 ﻿using DevExpress.XtraEditors;
 using Importador.Classes;
-using Importador.Classes.JSON;
 using Importador.Classes.Entidades;
 using Importador.Conexao;
 using Importador.UserControls.BaseControls;
@@ -30,7 +29,7 @@ namespace Importador.UserControls.Geral
         {
             try
             {
-                CarregaInformacoes(ConexaoBancoImportador.GetEntidade<Implantacao>(Enums.TabelaBancoLocal.implantacoes));
+                CarregaInformacoes(ConexaoBancoImportador.GetEntidade<Implantacao>(Enums.TabelaBancoLocal.consultas));
             }
             catch (Exception ex)
             {
@@ -45,7 +44,7 @@ namespace Importador.UserControls.Geral
 
         private void SalvaInformacoes()
         {
-            Implantacao implantacao = ConexaoBancoImportador.GetEntidade<Implantacao>(Enums.TabelaBancoLocal.implantacoes);
+            Implantacao implantacao = ConexaoBancoImportador.GetEntidade<Implantacao>(Enums.TabelaBancoLocal.consultas);
 
             implantacao.RazaoSocialCliente = txtCliente.Text;
             implantacao.NomeResponsavel = txtResponsavel.Text;
@@ -68,7 +67,7 @@ namespace Importador.UserControls.Geral
             implantacao.ImportarGrades = Convert.ToBoolean((int)cbImportarProdutosOpcoes.Properties.Items[6].CheckState);
             implantacao.ImportarLotes = Convert.ToBoolean((int)cbImportarProdutosOpcoes.Properties.Items[7].CheckState);
 
-            ConexaoBancoImportador.Update(implantacao, Enums.TabelaBancoLocal.implantacoes);
+            ConexaoBancoImportador.Update(implantacao, Enums.TabelaBancoLocal.consultas);
         }
 
         private void txtCodigoImplantacao_Leave(object sender, EventArgs e)
@@ -80,7 +79,7 @@ namespace Importador.UserControls.Geral
                 try
                 {
                     // CarregaInformacoes(ConexaoBancoImportador.GetImplantacao());
-                    CarregaInformacoes(ConexaoBancoImportador.GetEntidade<Implantacao>(Enums.TabelaBancoLocal.implantacoes));
+                    CarregaInformacoes(ConexaoBancoImportador.GetEntidade<Implantacao>(Enums.TabelaBancoLocal.consultas));
                 }
                 catch (Exception ex)
                 {

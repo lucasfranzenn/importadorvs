@@ -9,11 +9,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Importador.Classes.JSON;
+using Importador.Conexao;
 
 namespace Importador.UserControls.Importacao
 {
-    public partial class UCProdutos : UserControls.BaseControls.UCBaseImportacao
+    public partial class UCProdutos : BaseControls.UCBaseImportacao
     {
         public UCProdutos()
         {
@@ -22,7 +22,7 @@ namespace Importador.UserControls.Importacao
 
         private void UCProdutos_Load(object sender, EventArgs e)
         {
-            txtSqlImportacao.Text = ConsultasJSON.GetSql("produtos");
+            txtSqlImportacao.Text = ConexaoBancoImportador.GetSql(MyC.Tabela);
         }
     }
 }

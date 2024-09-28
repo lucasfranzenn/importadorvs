@@ -10,6 +10,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Properties\DataSources\**" />
+    <EmbeddedResource Remove="Properties\DataSources\**" />
+    <None Remove="Properties\DataSources\**" />
+    <Page Remove="Properties\DataSources\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="Configuracao\conexoes.json" />
     <None Remove="Configuracao\consultas.json" />
     <None Remove="Configuracao\exportarSqlCsv.py" />
@@ -68,6 +75,11 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Update="Properties\SQLPadrao.Designer.cs">
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>SQLPadrao.settings</DependentUpon>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
@@ -82,14 +94,14 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Configuracoes.Designer.cs</LastGenOutput>
     </None>
+    <None Update="Properties\SQLPadrao.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>SQLPadrao.Designer.cs</LastGenOutput>
+    </None>
     <None Update="Resources\refresh_32x32.png">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Properties\DataSources\" />
   </ItemGroup>
 
 </Project>

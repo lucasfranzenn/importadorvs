@@ -1,7 +1,6 @@
 ﻿using DevExpress.Mvvm.Native;
 using DevExpress.XtraBars.FluentDesignSystem;
 using DevExpress.XtraEditors;
-using Importador.Classes.JSON;
 using Importador.Conexao;
 using System;
 using System.Collections.Generic;
@@ -14,6 +13,8 @@ using Microsoft.Toolkit.Uwp.Notifications;
 using static Importador.Classes.Constantes;
 using DevExpress.LookAndFeel;
 using DevExpress.Charts.Native;
+using Importador.Properties;
+using Importador.Classes.Entidades;
 
 namespace Importador.Classes
 {
@@ -46,6 +47,25 @@ namespace Importador.Classes
         {
             skin.LookAndFeel.SetSkinStyle(File.ReadAllText(Caminhos.SkinTxt).Split(',')[0], File.ReadAllText(Caminhos.SkinTxt).Split(',')[1]);
             skin.LookAndFeel.UseDefaultLookAndFeel = true;
+        }
+
+        internal static string GetSqlPadrao(string tabela)
+        {
+            return SQLPadrao.Default[tabela].ToString().Replace("@", Environment.NewLine);
+        }
+
+        internal static void AtualizaSQLImportacao(string sql, Enums.TabelaMyCommerce tabela)
+        {
+            try
+            {
+                var Consulta = ConexaoBancoImportador.GetEntidade<Consultas>(Enums.TabelaBancoLocal.consultas);
+                Consulta.Consulta = sql;
+                ConexaoBancoImportador.Update(Consulta, Enums.TabelaBancoLocal.consultas);
+            }
+            catch (Exception)
+            {
+                ConexaoBancoImportador.InserirRegistro(new Consultas(tabela.ToString(), sql), Enums.TabelaBancoLocal.consultas);
+            }
         }
     }
 
