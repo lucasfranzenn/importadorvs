@@ -29,7 +29,7 @@ namespace Importador.UserControls.Geral
         {
             try
             {
-                CarregaInformacoes(ConexaoBancoImportador.GetEntidade<Implantacao>(Enums.TabelaBancoLocal.consultas));
+                CarregaInformacoes(ConexaoBancoImportador.GetEntidade<Implantacao>(Enums.TabelaBancoLocal.implantacoes));
             }
             catch (Exception ex)
             {
@@ -44,7 +44,7 @@ namespace Importador.UserControls.Geral
 
         private void SalvaInformacoes()
         {
-            Implantacao implantacao = ConexaoBancoImportador.GetEntidade<Implantacao>(Enums.TabelaBancoLocal.consultas);
+            Implantacao implantacao = ConexaoBancoImportador.GetEntidade<Implantacao>(Enums.TabelaBancoLocal.implantacoes);
 
             implantacao.RazaoSocialCliente = txtCliente.Text;
             implantacao.NomeResponsavel = txtResponsavel.Text;
@@ -52,7 +52,7 @@ namespace Importador.UserControls.Geral
             implantacao.LinkFormulario = txtFormularioOriginal.Text;
             implantacao.LinkBackup = txtBackupOriginal.Text;
 
-            implantacao.RegimeEmpresa = rgRegime.SelectedIndex.ToString();
+            implantacao.RegimeEmpresa = rgRegime.SelectedIndex;
             implantacao.ImportarClientes = ((byte)cbImportarClientes.SelectedIndex);
             implantacao.ImportarFornecedores = ((byte)cbImportarFornecedores.SelectedIndex);
             implantacao.ImportarContasAPagar = ((byte)cbImportarContasAPagar.SelectedIndex);
@@ -67,7 +67,7 @@ namespace Importador.UserControls.Geral
             implantacao.ImportarGrades = Convert.ToBoolean((int)cbImportarProdutosOpcoes.Properties.Items[6].CheckState);
             implantacao.ImportarLotes = Convert.ToBoolean((int)cbImportarProdutosOpcoes.Properties.Items[7].CheckState);
 
-            ConexaoBancoImportador.Update(implantacao, Enums.TabelaBancoLocal.consultas);
+            ConexaoBancoImportador.Update(implantacao, Enums.TabelaBancoLocal.implantacoes);
         }
 
         private void txtCodigoImplantacao_Leave(object sender, EventArgs e)
@@ -78,14 +78,14 @@ namespace Importador.UserControls.Geral
                 Default.Save();
                 try
                 {
-                    // CarregaInformacoes(ConexaoBancoImportador.GetImplantacao());
-                    CarregaInformacoes(ConexaoBancoImportador.GetEntidade<Implantacao>(Enums.TabelaBancoLocal.consultas));
+                    CarregaInformacoes(ConexaoBancoImportador.GetEntidade<Implantacao>(Enums.TabelaBancoLocal.implantacoes));
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
-                    if(XtraMessageBox.Show(ex.Message, "..::Importador::..", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    if(XtraMessageBox.Show("Este código não está cadastrado\nDeseja cadastrar?", "..::Importador::..", MessageBoxButtons.YesNo) == DialogResult.Yes)
                     {
-                        throw new NotImplementedException();
+                        ConexaoBancoImportador.InserirRegistro(new Implantacao(txtCodigoImplantacao.Text), Enums.TabelaBancoLocal.implantacoes);
+
                     }
                 }
             }

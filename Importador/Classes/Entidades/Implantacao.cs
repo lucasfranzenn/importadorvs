@@ -8,16 +8,22 @@ namespace Importador.Classes.Entidades
 {
     public class Implantacao
     {
+        public Implantacao(string codigoImp)
+        {
+            CodigoImplantacao = Convert.ToInt32(codigoImp);
+        }
+
+        public Implantacao() { }
         public int CodigoImplantacao { get; set; }
-        public string RazaoSocialCliente { get; set; }
-        public string RamoAtividadeCliente { get; set; }
-        public string SistemaAntigo { get; set; }
-        public string LinkFormulario { get; set; }
-        public string LinkBackup { get; set; }
-        public string RegimeEmpresa { get; set; }
-        public string NomeResponsavel { get; set; }
-        public string EmailResponsavel { get; set; }
-        public string TelefoneResponsavel { get; set; }
+        public string RazaoSocialCliente { get; set; } = string.Empty;  
+        public string RamoAtividadeCliente { get; set; } = string.Empty;
+        public string SistemaAntigo { get; set; } = string.Empty ;
+        public string LinkFormulario { get; set; } = string.Empty;
+        public string LinkBackup { get; set; } = string.Empty;
+        public int RegimeEmpresa { get; set; } = 0;
+        public string NomeResponsavel { get; set; } = string.Empty;
+        public string EmailResponsavel { get; set; } = string.Empty;
+        public string TelefoneResponsavel { get; set; } = string.Empty;
         public byte ImportarClientes { get; set; }
         public byte ImportarFornecedores { get; set; }
         public byte ImportarContasAPagar { get; set; }
@@ -30,6 +36,6 @@ namespace Importador.Classes.Entidades
         public bool ImportarFabricantes { get; set;}
         public bool ImportarGrades { get; set; }
         public bool ImportarLotes { get; set; }
-        public string Workflow { get; set; }
+        public string Workflow { get; set; } = string.Empty;
     }
 }

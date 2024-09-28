@@ -37,7 +37,7 @@ namespace Importador.Conexao
 
         private static string GetCamposTabela(Type entidade, Enums.Dml tipoDML) => tipoDML switch
         {
-            Enums.Dml.Insert => $"({string.Join(",", entidade.GetProperties().Select(p => $"{p.Name}"))}) values (null, {string.Join(",", entidade.GetProperties().Skip(1).Select(p => $"@{p.Name}"))})",
+            Enums.Dml.Insert => $"({string.Join(",", entidade.GetProperties().Select(p => $"{p.Name}"))}) values ({string.Join(",", entidade.GetProperties().Select(p => $"@{p.Name}"))})",
             Enums.Dml.Update => string.Join(",", entidade.GetProperties().Skip(1).Select(p => $"{p.Name} = @{p.Name}")),
             Enums.Dml.Select => string.Empty,
             _ => string.Empty

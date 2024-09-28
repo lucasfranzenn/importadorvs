@@ -71,7 +71,7 @@
             // 
             // gcGrid
             // 
-            gcGrid.Dock = System.Windows.Forms.DockStyle.Bottom;
+            gcGrid.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
             gcGrid.Location = new System.Drawing.Point(10, 96);
             gcGrid.MainView = gridView1;
             gcGrid.Name = "gcGrid";

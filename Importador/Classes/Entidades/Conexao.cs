@@ -33,7 +33,7 @@ namespace Importador.Classes.Entidades
 
         }
 
-        public int CodigoConexao { get; set; }
+        public int? CodigoConexao { get; set; } = null;
         public string CodigoImplantacao { get; set; }
         public bool TipoConexao { get; set; }
         public int TipoBanco { get; set; }

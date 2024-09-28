@@ -100,6 +100,7 @@
             // 
             // tpOpcoesImportar
             // 
+            tpOpcoesImportar.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
             tpOpcoesImportar.Appearance.BackColor = System.Drawing.Color.White;
             tpOpcoesImportar.Appearance.Options.UseBackColor = true;
             tpOpcoesImportar.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
@@ -135,7 +136,7 @@
             // 
             // chkImportarEstoque
             // 
-            chkImportarEstoque.Dock = System.Windows.Forms.DockStyle.Fill;
+            chkImportarEstoque.Anchor = System.Windows.Forms.AnchorStyles.Right;
             chkImportarEstoque.Location = new System.Drawing.Point(230, 132);
             chkImportarEstoque.Name = "chkImportarEstoque";
             chkImportarEstoque.Properties.Appearance.Options.UseTextOptions = true;
@@ -300,6 +301,7 @@
             // 
             // rgRegime
             // 
+            rgRegime.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
             rgRegime.Location = new System.Drawing.Point(16, 485);
             rgRegime.Name = "rgRegime";
             rgRegime.Properties.Appearance.Options.UseTextOptions = true;
@@ -311,6 +313,7 @@
             // 
             // tpImplantacao
             // 
+            tpImplantacao.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
             tpImplantacao.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
             tpImplantacao.Columns.AddRange(new DevExpress.Utils.Layout.TablePanelColumn[] { new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 20.12F), new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 39.88F) });
             tpImplantacao.Controls.Add(txtCodigoImplantacao);

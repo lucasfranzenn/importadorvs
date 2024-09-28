@@ -61,7 +61,7 @@
             // txtSqlImportacao
             // 
             txtSqlImportacao.AllowHtmlTextInToolTip = DevExpress.Utils.DefaultBoolean.False;
-            txtSqlImportacao.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            txtSqlImportacao.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
             txtSqlImportacao.Location = new System.Drawing.Point(21, 33);
             txtSqlImportacao.Name = "txtSqlImportacao";
             txtSqlImportacao.Properties.AllowHtmlDraw = DevExpress.Utils.DefaultBoolean.False;
@@ -152,6 +152,7 @@
             // 
             // btnResetarSql
             // 
+            btnResetarSql.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
             btnResetarSql.ImageOptions.Image = Properties.Resources.reset2_16x16;
             btnResetarSql.Location = new System.Drawing.Point(512, 9);
             btnResetarSql.Name = "btnResetarSql";
