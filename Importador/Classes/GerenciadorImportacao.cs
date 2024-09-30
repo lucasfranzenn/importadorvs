@@ -8,7 +8,9 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using static Importador.Classes.Constantes;
+using static Importador.Classes.Utils;
 
 namespace Importador.Classes
 {
@@ -39,10 +41,12 @@ namespace Importador.Classes
             using IDataReader reader = sqlQuery.ExecuteReader();
             int qtdColunas = reader.FieldCount;
             string[] nomeColunas = new string[qtdColunas];
+            int[] tamColunas = new int[qtdColunas];
 
             for (int i = 0; i < qtdColunas; i++)
             {
                 nomeColunas[i] = reader.GetName(i).ToLower();
+                tamColunas[i] = GetTamanhoColuna(nomeColunas[i], tabela.ToString());
             }
 
             sqlInsert.Clear();
@@ -71,6 +75,10 @@ namespace Importador.Classes
                         {
                             parameter.Value = DBNull.Value;
                         }
+                        else if(value is string)
+                        {
+                            parameter.Value =  value.ToString().Length <= tamColunas[i] ? value.ToString() : value.ToString().Substring(0, tamColunas[i]);
+                        }
                         else
                         {
                             parameter.Value = value;
@@ -90,6 +98,15 @@ namespace Importador.Classes
                     args.DisplayText = $"{registroAtual} de {qtdRegistros} registros";
                 };
             }
+        }
+
+        private static int GetTamanhoColuna(string coluna, string tabela)
+        {
+            IDbCommand cmd = ConexaoManager.instancia.GetConexaoMyCommerce().CreateCommand();
+            cmd.CommandText = $"SELECT CHARACTER_MAXIMUM_LENGTH FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = '{tabela}' AND COLUMN_NAME = '{coluna}' AND TABLE_SCHEMA = '{GetImportacao(Enums.Sistema.MyCommerce).Banco}'";
+            int retorno = int.TryParse(cmd.ExecuteScalar().ToString(), out retorno) ? retorno : 1;
+
+            return retorno;
         }
 
         public static DataTable PreencheGrid(string coluna)

@@ -37,7 +37,7 @@ namespace Importador.Conexao
     {
         public override IDbConnection CriarConexao(Ent.Conexao conexao)
         {
-            return new FbConnection($"DataSource={conexao.Host}  ;Port=  {conexao.Porta}  ;Database=  {conexao.Banco}  ;User=  {conexao.Usuario}  ;Password=  {conexao.Senha};Charset=NONE");
+            return new FbConnection($"DataSource={conexao.Host}  ;Port=  {conexao.Porta}  ;Database=  {conexao.Banco}  ;User=  {conexao.Usuario}  ;Password=  {conexao.Senha};");
         }
     }
 

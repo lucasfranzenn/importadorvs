@@ -3,6 +3,7 @@ using DevExpress.XtraBars.Helpers;
 using UC = Importador.UserControls;
 using System;
 using static Importador.Classes.Utils;
+using Importador.Classes;
 
 namespace Importador
 {
@@ -86,11 +87,15 @@ namespace Importador
         private void acImportacaoServicos_Click(object sender, EventArgs e)
         {
             AlteraAba(ref fcPrincipal, new UC.Importacao.UCServicos());
-        }   
+        }
 
         private void acConexaoLocal_Click(object sender, EventArgs e)
         {
             AlteraAba(ref fcPrincipal, new UC.Conexao.UCConexaoLocal());
+        }
+
+        private void simpleButton1_Click(object sender, EventArgs e)
+        {
         }
     }
 }

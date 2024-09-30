@@ -80,6 +80,8 @@ namespace Importador
             barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             barDockControlRight = new DevExpress.XtraBars.BarDockControl();
+            simpleButton1 = new SimpleButton();
+            fcPrincipal.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)acPrincipal).BeginInit();
             ((System.ComponentModel.ISupportInitialize)fluentDesignFormControl1).BeginInit();
             fluentDesignFormControl1.SuspendLayout();
@@ -89,6 +91,7 @@ namespace Importador
             // 
             // fcPrincipal
             // 
+            fcPrincipal.Controls.Add(simpleButton1);
             fcPrincipal.Dock = System.Windows.Forms.DockStyle.Fill;
             fcPrincipal.Location = new System.Drawing.Point(214, 31);
             fcPrincipal.Name = "fcPrincipal";
@@ -423,6 +426,15 @@ namespace Importador
             barDockControlRight.Manager = barManager1;
             barDockControlRight.Size = new System.Drawing.Size(0, 548);
             // 
+            // simpleButton1
+            // 
+            simpleButton1.Location = new System.Drawing.Point(155, 91);
+            simpleButton1.Name = "simpleButton1";
+            simpleButton1.Size = new System.Drawing.Size(247, 83);
+            simpleButton1.TabIndex = 0;
+            simpleButton1.Text = "simpleButton1";
+            simpleButton1.Click += simpleButton1_Click;
+            // 
             // frmPrincipal
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -448,6 +460,7 @@ namespace Importador
             Text = "Importador de Dados - MyCommerce";
             FormClosing += frmPrincipal_FormClosing;
             Load += frmPrincipal_Load;
+            fcPrincipal.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)acPrincipal).EndInit();
             ((System.ComponentModel.ISupportInitialize)fluentDesignFormControl1).EndInit();
             fluentDesignFormControl1.ResumeLayout(false);
@@ -502,6 +515,7 @@ namespace Importador
         private DevExpress.XtraBars.BarDockControl barDockControlRight;
         private DevExpress.XtraBars.Navigation.AccordionControlElement acExportarDados;
         private DevExpress.XtraBars.Navigation.AccordionControlElement acConexaoLocal;
+        private SimpleButton simpleButton1;
     }
 }
 

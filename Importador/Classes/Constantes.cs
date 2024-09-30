@@ -70,7 +70,13 @@ namespace Importador.Classes
 
             public static readonly Dictionary<string, List<Func<object, object>>> FuncoesFormatadorasPorColuna = new()
             {
-                {"ncm",  new List<Func<object, object>> { Formatadores.FormataNCM } }
+                {"ncm",  new List<Func<object, object>> { Formatadores.FormataNCM } },
+                {"cpf", new List<Func<object, object>> { Formatadores.FormataCPF  } },
+                {"cnpj", new List<Func<object, object>> { Formatadores.FormataCNPJ  } },
+                {"cep", new List<Func<object, object>> { Formatadores.FormataCEP  } },
+                {"telefone1", new List<Func<object, object>> { Formatadores.FormataTelefone  } },
+                {"telefone2", new List<Func<object, object>> { Formatadores.FormataTelefone  } },
+                {"fax", new List<Func<object, object>> { Formatadores.FormataTelefone  } }
             };
         }
     }
