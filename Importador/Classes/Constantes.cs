@@ -65,6 +65,7 @@ namespace Importador.Classes
             public static readonly Dictionary<string, List<string>> TabelasTruncatePorTabela = new()
             {
                 {"clientes", new List<string> { "clientes" } },
+                {"produtos", new List<string> { "produtos"} },
                 {"estoque", new List<string> { "produtosestoque", "acertoestoque", "auditoriaestoque"} }
             };
 
@@ -91,7 +92,7 @@ namespace Importador.Classes
 
             public static readonly Dictionary<string, Func<object, object>> FuncoesPosImportacaoPorParametro = new()
             {
-           //     {"cbCriarConsumidorFinal",  }
+             //     {"cbCriarConsumidorFinal",  }
             };
         }
     }

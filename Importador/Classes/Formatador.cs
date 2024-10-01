@@ -11,6 +11,8 @@ namespace Importador.Classes
     {
         public static object FormataNCM(object ncm) 
         {
+            if(string.IsNullOrWhiteSpace(ncm.ToString())) return DBNull.Value;
+
             string ncmString = new string(ncm.ToString().Where(char.IsDigit).ToArray());
 
             return $"{ncmString.Substring(0, 4)}.{ncmString.Substring(4, 2)}.{ncmString.Substring(6, 2)}";

@@ -42,6 +42,10 @@
             // txtSqlImportacao
             // 
             // 
+            // btnImportar
+            // 
+            btnImportar.Click += btnImportar_Click;
+            // 
             // pbImportacao
             // 
             pbImportacao.Properties.DisplayFormat.FormatString = "Nenhum registro importado";
@@ -51,7 +55,7 @@
             // 
             btnResetarSql.ImageOptions.Image = (System.Drawing.Image)resources.GetObject("btnResetarSql.ImageOptions.Image");
             // 
-            // tabelaMyCommerce
+            // MyC
             // 
             MyC.Tabela = Classes.Constantes.Enums.TabelaMyCommerce.produtos;
             // 
