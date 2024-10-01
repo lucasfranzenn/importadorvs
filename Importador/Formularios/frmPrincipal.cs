@@ -51,7 +51,9 @@ namespace Importador
 
         private void frmPrincipal_FormClosing(object sender, System.Windows.Forms.FormClosingEventArgs e)
         {
-            SalvarSkin(defaultLookAndFeel1.LookAndFeel.SkinName, defaultLookAndFeel1.LookAndFeel.ActiveSvgPaletteName);
+            Properties.Configuracoes.Default.NomeSkin = skin.LookAndFeel.SkinName;
+            Properties.Configuracoes.Default.PaletaSkin = skin.LookAndFeel.ActiveSvgPaletteName;
+            Properties.Configuracoes.Default.Save();
         }
 
         private void acUtilitariosBuscarColuna_Click(object sender, EventArgs e)
@@ -61,7 +63,8 @@ namespace Importador
 
         private void frmPrincipal_Load(object sender, EventArgs e)
         {
-            CarregaSkin(ref defaultLookAndFeel1);
+            skin.LookAndFeel.SetSkinStyle(Properties.Configuracoes.Default.NomeSkin, Properties.Configuracoes.Default.PaletaSkin);
+            skin.LookAndFeel.UseDefaultLookAndFeel = true;
         }
 
         private void acImportacaoProdutosST_Click(object sender, EventArgs e)

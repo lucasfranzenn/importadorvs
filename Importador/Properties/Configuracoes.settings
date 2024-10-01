@@ -8,5 +8,11 @@
     <Setting Name="CodigoImplantacao" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
+    <Setting Name="NomeSkin" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Basic</Value>
+    </Setting>
+    <Setting Name="PaletaSkin" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Violet Dark</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

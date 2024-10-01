@@ -14,8 +14,6 @@ namespace Importador.Classes
     {
         public static class Caminhos
         {
-            public const string ConsultasJson = @"Configuracao\consultas.json";
-            public const string SkinTxt = @"Configuracao\skin.txt";
         }
         
         public static class Enums

@@ -33,20 +33,12 @@ namespace Importador.Classes
             _ => ConexaoBancoImportador.GetEntidade<Entidades.Conexao>(Enums.TabelaBancoLocal.conexoes, "TipoConexao = 1 and Padrao = 1")
         };
 
-        public static void SalvarSkin(string skinName, string skinPalette) => File.WriteAllText(Caminhos.SkinTxt, skinName + "," + skinPalette);
-
         public static void MostrarNotificacao(string msg, string titulo)
         {
             new ToastContentBuilder()
                 .AddText(titulo)
                 .AddText(msg)
                 .Show();
-        }
-
-        public static void CarregaSkin(ref DefaultLookAndFeel skin)
-        {
-            skin.LookAndFeel.SetSkinStyle(File.ReadAllText(Caminhos.SkinTxt).Split(',')[0], File.ReadAllText(Caminhos.SkinTxt).Split(',')[1]);
-            skin.LookAndFeel.UseDefaultLookAndFeel = true;
         }
 
         internal static string GetSqlPadrao(string tabela)

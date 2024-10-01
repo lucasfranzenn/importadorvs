@@ -73,7 +73,7 @@ namespace Importador
             skinDropDownButtonItem1 = new DevExpress.XtraBars.SkinDropDownButtonItem();
             skinPaletteDropDownButtonItem1 = new DevExpress.XtraBars.SkinPaletteDropDownButtonItem();
             fluentFormDefaultManager1 = new DevExpress.XtraBars.FluentDesignSystem.FluentFormDefaultManager(components);
-            defaultLookAndFeel1 = new DefaultLookAndFeel(components);
+            skin = new DefaultLookAndFeel(components);
             acImportacaoSeparador = new DevExpress.XtraBars.Navigation.AccordionControlSeparator();
             barManager1 = new DevExpress.XtraBars.BarManager(components);
             barDockControlTop = new DevExpress.XtraBars.BarDockControl();
@@ -374,9 +374,9 @@ namespace Importador
             fluentFormDefaultManager1.Items.AddRange(new DevExpress.XtraBars.BarItem[] { blciTemas, skinDropDownButtonItem1, skinPaletteDropDownButtonItem1 });
             fluentFormDefaultManager1.MaxItemId = 3;
             // 
-            // defaultLookAndFeel1
+            // skin
             // 
-            defaultLookAndFeel1.EnableBonusSkins = true;
+            skin.EnableBonusSkins = true;
             // 
             // acImportacaoSeparador
             // 
@@ -492,7 +492,7 @@ namespace Importador
         private DevExpress.XtraBars.Navigation.AccordionControlElement acGeralImplantacao;
         private DevExpress.XtraBars.Navigation.AccordionControlElement acGeralRelatorio;
         private SimpleButton btnSair;
-        private DevExpress.LookAndFeel.DefaultLookAndFeel defaultLookAndFeel1;
+        private DevExpress.LookAndFeel.DefaultLookAndFeel skin;
         private DevExpress.XtraBars.Navigation.AccordionControlSeparator acImportacaoSeparador;
         private DevExpress.XtraBars.Navigation.AccordionControlElement acImportacaoBackup;
         private DevExpress.XtraBars.BarDockControl barDockControlLeft;
