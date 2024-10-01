@@ -1,7 +1,9 @@
 ﻿using DevExpress.CodeParser;
+using DevExpress.XtraEditors;
 using Importador.Classes.Entidades;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -77,6 +79,21 @@ namespace Importador.Classes
                 {"telefone1", new List<Func<object, object>> { Formatadores.FormataTelefone  } },
                 {"telefone2", new List<Func<object, object>> { Formatadores.FormataTelefone  } },
                 {"fax", new List<Func<object, object>> { Formatadores.FormataTelefone  } }
+            };
+
+            public static readonly Dictionary<string, Func<object, object>> FuncoesPreImportacaoPorParametro = new()
+            {
+                {"cbCriarConsumidorFinal",  GerenciadorImportacao.CriarConsumidorFinal}
+            };
+
+            public static readonly Dictionary<string, Func<IDataReader, bool>> FuncoesDuranteImportacaoPorParametro = new()
+            {
+                {"cbValidarDocumento",  GerenciadorImportacao.ValidarExistenciaDocumento}
+            };
+
+            public static readonly Dictionary<string, Func<object, object>> FuncoesPosImportacaoPorParametro = new()
+            {
+           //     {"cbCriarConsumidorFinal",  }
             };
         }
     }

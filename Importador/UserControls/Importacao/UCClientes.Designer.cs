@@ -28,12 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
-            cbCriarConsumidor = new DevExpress.XtraEditors.CheckEdit();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UCClientes));
+            cbCriarConsumidorFinal = new DevExpress.XtraEditors.CheckEdit();
+            cbValidarDocumento = new DevExpress.XtraEditors.CheckEdit();
             ((System.ComponentModel.ISupportInitialize)txtSqlImportacao.Properties).BeginInit();
             ((System.ComponentModel.ISupportInitialize)gcParametros).BeginInit();
             gcParametros.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pbImportacao.Properties).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)cbCriarConsumidor.Properties).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)cbCriarConsumidorFinal.Properties).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)cbValidarDocumento.Properties).BeginInit();
             SuspendLayout();
             // 
             // lblSqlImportacao
@@ -46,8 +49,10 @@
             // 
             // gcParametros
             // 
-            gcParametros.Controls.Add(cbCriarConsumidor);
-            gcParametros.Controls.SetChildIndex(cbCriarConsumidor, 0);
+            gcParametros.Controls.Add(cbValidarDocumento);
+            gcParametros.Controls.Add(cbCriarConsumidorFinal);
+            gcParametros.Controls.SetChildIndex(cbCriarConsumidorFinal, 0);
+            gcParametros.Controls.SetChildIndex(cbValidarDocumento, 0);
             // 
             // btnImportar
             // 
@@ -60,18 +65,24 @@
             // 
             // btnResetarSql
             // 
+            btnResetarSql.ImageOptions.Image = (System.Drawing.Image)resources.GetObject("btnResetarSql.ImageOptions.Image");
             btnResetarSql.Click += btnResetarSql_Click;
             // 
-            // tabelaMyCommerce
+            // cbCriarConsumidorFinal
             // 
+            cbCriarConsumidorFinal.Location = new System.Drawing.Point(181, 26);
+            cbCriarConsumidorFinal.Name = "cbCriarConsumidorFinal";
+            cbCriarConsumidorFinal.Properties.Caption = "Criar consumidor final?";
+            cbCriarConsumidorFinal.Size = new System.Drawing.Size(155, 20);
+            cbCriarConsumidorFinal.TabIndex = 1;
             // 
-            // cbCriarConsumidor
+            // cbValidarDocumento
             // 
-            cbCriarConsumidor.Location = new System.Drawing.Point(181, 26);
-            cbCriarConsumidor.Name = "cbCriarConsumidor";
-            cbCriarConsumidor.Properties.Caption = "Criar consumidor final?";
-            cbCriarConsumidor.Size = new System.Drawing.Size(155, 20);
-            cbCriarConsumidor.TabIndex = 1;
+            cbValidarDocumento.Location = new System.Drawing.Point(320, 26);
+            cbValidarDocumento.Name = "cbValidarDocumento";
+            cbValidarDocumento.Properties.Caption = "Verificar existência de CPF/CNPJ?";
+            cbValidarDocumento.Size = new System.Drawing.Size(189, 20);
+            cbValidarDocumento.TabIndex = 17;
             // 
             // UCClientes
             // 
@@ -83,13 +94,15 @@
             ((System.ComponentModel.ISupportInitialize)gcParametros).EndInit();
             gcParametros.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pbImportacao.Properties).EndInit();
-            ((System.ComponentModel.ISupportInitialize)cbCriarConsumidor.Properties).EndInit();
+            ((System.ComponentModel.ISupportInitialize)cbCriarConsumidorFinal.Properties).EndInit();
+            ((System.ComponentModel.ISupportInitialize)cbValidarDocumento.Properties).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
 
-        private DevExpress.XtraEditors.CheckEdit cbCriarConsumidor;
+        private DevExpress.XtraEditors.CheckEdit cbCriarConsumidorFinal;
+        private DevExpress.XtraEditors.CheckEdit cbValidarDocumento;
     }
 }

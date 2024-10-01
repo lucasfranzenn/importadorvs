@@ -94,5 +94,12 @@ namespace Importador.Conexao
 
             return Classes.Utils.GetSqlPadrao(tabela.ToString());
         }
+
+        internal static void AtualizarConexaoPadrao(Classes.Entidades.Conexao conexao)
+        {
+            string query = "UPDATE CONEXOES SET PADRAO = 0 WHERE CODIGOCONEXAO != @CodigoConexao AND CODIGOIMPLANTACAO = @CodigoImplantacao and TIPOCONEXAO = 1";
+
+            instancia.conexao.Execute(query, conexao);
+        }
     }
 }

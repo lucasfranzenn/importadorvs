@@ -48,7 +48,7 @@ namespace Importador.UserControls.Importacao
 
             Enabled = false;
 
-            await Task.Run(() => GerenciadorImportacao.Importar(txtSqlImportacao.Text, ref pbImportacao, MyC.Tabela, gcParametros.Controls.OfType<CheckEdit>().ToList()));
+            await Task.Run(() => GerenciadorImportacao.Importar(txtSqlImportacao.Text, ref pbImportacao, MyC.Tabela, gcParametros.Controls.OfType<CheckEdit>().Where(p => p.Checked).ToList()));
 
             lblHorarioFimImportacao.Text = DateTime.Now.ToString();
 

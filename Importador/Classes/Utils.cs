@@ -30,7 +30,7 @@ namespace Importador.Classes
         public static Entidades.Conexao GetImportacao(Enums.Sistema sistema) => sistema switch
         {
             Enums.Sistema.MyCommerce => ConexaoBancoImportador.GetEntidade<Entidades.Conexao>(Enums.TabelaBancoLocal.conexoes, "TipoConexao = 0"),
-            _ => ConexaoBancoImportador.GetEntidade<Entidades.Conexao>(Enums.TabelaBancoLocal.conexoes, "TipoConexao = 1")
+            _ => ConexaoBancoImportador.GetEntidade<Entidades.Conexao>(Enums.TabelaBancoLocal.conexoes, "TipoConexao = 1 and Padrao = 1")
         };
 
         public static void SalvarSkin(string skinName, string skinPalette) => File.WriteAllText(Caminhos.SkinTxt, skinName + "," + skinPalette);

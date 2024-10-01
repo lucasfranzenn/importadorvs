@@ -71,6 +71,7 @@
             cbTipoBanco.Properties.Items.AddRange(new object[] { "MySQL", "Firebird", "PostgreSQL", "MS-SQL \\ SQLServer", "Acess", "ConnectionString" });
             cbTipoBanco.Size = new System.Drawing.Size(517, 20);
             cbTipoBanco.TabIndex = 23;
+            cbTipoBanco.SelectedValueChanged += cbTipoBanco_SelectedValueChanged;
             // 
             // UCConexaoImportacao
             // 

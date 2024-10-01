@@ -25,6 +25,8 @@ namespace Importador.Classes
 
         internal static object FormataCNPJ(object cnpj)
         {
+            if (string.IsNullOrWhiteSpace(cnpj.ToString())) return DBNull.Value;
+
             string cnpjString = new string(cnpj.ToString().Where(char.IsDigit).ToArray()).PadLeft(14, '0');
 
             return $"{cnpjString.Substring(0, 2)}.{cnpjString.Substring(2, 3)}.{cnpjString.Substring(5, 3)}/{cnpjString.Substring(8, 4)}-{cnpjString.Substring(12, 2)}";
@@ -32,7 +34,7 @@ namespace Importador.Classes
 
         internal static object FormataCPF(object cpf)
         {
-            if (string.IsNullOrEmpty(cpf.ToString())) return "";
+            if (string.IsNullOrEmpty(cpf.ToString())) return DBNull.Value;
 
             string cpfString = new string(cpf.ToString().Where(char.IsDigit).ToArray());
 
