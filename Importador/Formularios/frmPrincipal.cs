@@ -67,7 +67,7 @@ namespace Importador
             skin.LookAndFeel.UseDefaultLookAndFeel = true;
         }
 
-        private void acImportacaoProdutosST_Click(object sender, EventArgs e)
+        private void acImportacaoProdutosST_Click(object sender, EventArgs e)   
         {
             AlteraAba(ref fcPrincipal, new UC.Importacao.UCProdutosST());
         }
@@ -95,10 +95,6 @@ namespace Importador
         private void acConexaoLocal_Click(object sender, EventArgs e)
         {
             AlteraAba(ref fcPrincipal, new UC.Conexao.UCConexaoLocal());
-        }
-
-        private void simpleButton1_Click(object sender, EventArgs e)
-        {
         }
     }
 }

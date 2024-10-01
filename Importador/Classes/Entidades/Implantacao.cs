@@ -16,14 +16,11 @@ namespace Importador.Classes.Entidades
         public Implantacao() { }
         public int CodigoImplantacao { get; set; }
         public string RazaoSocialCliente { get; set; } = string.Empty;  
-        public string RamoAtividadeCliente { get; set; } = string.Empty;
         public string SistemaAntigo { get; set; } = string.Empty ;
         public string LinkFormulario { get; set; } = string.Empty;
         public string LinkBackup { get; set; } = string.Empty;
         public int RegimeEmpresa { get; set; } = 0;
         public string NomeResponsavel { get; set; } = string.Empty;
-        public string EmailResponsavel { get; set; } = string.Empty;
-        public string TelefoneResponsavel { get; set; } = string.Empty;
         public byte ImportarClientes { get; set; }
         public byte ImportarFornecedores { get; set; }
         public byte ImportarContasAPagar { get; set; }
