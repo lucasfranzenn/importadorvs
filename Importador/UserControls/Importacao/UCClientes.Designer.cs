@@ -66,7 +66,6 @@
             // btnResetarSql
             // 
             btnResetarSql.ImageOptions.Image = (System.Drawing.Image)resources.GetObject("btnResetarSql.ImageOptions.Image");
-            btnResetarSql.Click += btnResetarSql_Click;
             // 
             // cbCriarConsumidorFinal
             // 

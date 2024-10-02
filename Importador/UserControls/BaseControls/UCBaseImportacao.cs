@@ -1,4 +1,6 @@
-﻿using Importador.Classes;
+﻿using DevExpress.XtraEditors;
+using Importador.Classes;
+using Importador.Conexao;
 
 namespace Importador.UserControls.BaseControls
 {
@@ -7,6 +9,11 @@ namespace Importador.UserControls.BaseControls
         public UCBaseImportacao()
         {
             InitializeComponent();
+        }
+
+        private void btnResetarSql_Click(object sender, System.EventArgs e)
+        {
+            txtSqlImportacao.Text = Utils.GetSqlPadrao(MyC.Tabela.ToString());
         }
     }
 }

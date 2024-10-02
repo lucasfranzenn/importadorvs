@@ -159,6 +159,7 @@
             btnResetarSql.Size = new System.Drawing.Size(23, 23);
             btnResetarSql.TabIndex = 16;
             btnResetarSql.ToolTip = "Este botão reseta para a sql padrão";
+            btnResetarSql.Click += btnResetarSql_Click;
             // 
             // MyC
             // 

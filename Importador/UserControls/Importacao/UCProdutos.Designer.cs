@@ -29,9 +29,12 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UCProdutos));
+            cbCriarUnidades = new DevExpress.XtraEditors.CheckEdit();
             ((System.ComponentModel.ISupportInitialize)txtSqlImportacao.Properties).BeginInit();
             ((System.ComponentModel.ISupportInitialize)gcParametros).BeginInit();
+            gcParametros.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pbImportacao.Properties).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)cbCriarUnidades.Properties).BeginInit();
             SuspendLayout();
             // 
             // lblSqlImportacao
@@ -41,6 +44,11 @@
             // 
             // txtSqlImportacao
             // 
+            // 
+            // gcParametros
+            // 
+            gcParametros.Controls.Add(cbCriarUnidades);
+            gcParametros.Controls.SetChildIndex(cbCriarUnidades, 0);
             // 
             // btnImportar
             // 
@@ -59,6 +67,15 @@
             // 
             MyC.Tabela = Classes.Constantes.Enums.TabelaMyCommerce.produtos;
             // 
+            // cbCriarUnidades
+            // 
+            cbCriarUnidades.EditValue = true;
+            cbCriarUnidades.Location = new System.Drawing.Point(168, 26);
+            cbCriarUnidades.Name = "cbCriarUnidades";
+            cbCriarUnidades.Properties.Caption = "Criar unidades via produtos?";
+            cbCriarUnidades.Size = new System.Drawing.Size(161, 20);
+            cbCriarUnidades.TabIndex = 17;
+            // 
             // UCProdutos
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -67,11 +84,15 @@
             Load += UCProdutos_Load;
             ((System.ComponentModel.ISupportInitialize)txtSqlImportacao.Properties).EndInit();
             ((System.ComponentModel.ISupportInitialize)gcParametros).EndInit();
+            gcParametros.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pbImportacao.Properties).EndInit();
+            ((System.ComponentModel.ISupportInitialize)cbCriarUnidades.Properties).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
+
+        private DevExpress.XtraEditors.CheckEdit cbCriarUnidades;
     }
 }

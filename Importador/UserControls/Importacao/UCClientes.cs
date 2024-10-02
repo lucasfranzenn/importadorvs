@@ -27,19 +27,6 @@ namespace Importador.UserControls.Importacao
             InitializeComponent();
         }
 
-        private void UCClientes_Load(object sender, EventArgs e)
-        {
-            if (!ConexaoManager.ConexoesAbertas())
-            {
-                XtraMessageBox.Show("Conexões não foram estabelecidas!\nConfigure-as corretamente", "..::Importador::..");
-                Enabled = false;
-            }
-            else
-            {
-                txtSqlImportacao.Text = ConexaoBancoImportador.GetSql(MyC.Tabela);
-            }
-        }
-
         private async void btnImportar_Click(object sender, EventArgs e)
         {
             new Task(() => lblHorarioInicioImportacao.Text = DateTime.Now.ToString()).Start();
@@ -57,9 +44,17 @@ namespace Importador.UserControls.Importacao
             Enabled = true;
         }
 
-        private void btnResetarSql_Click(object sender, EventArgs e)
+        private void UCClientes_Load(object sender, EventArgs e)
         {
-            txtSqlImportacao.Text = Utils.GetSqlPadrao(MyC.Tabela.ToString());
+            if (!ConexaoManager.ConexoesAbertas())
+            {
+                XtraMessageBox.Show("Conexões não foram estabelecidas!\nConfigure-as corretamente", "..::Importador::..");
+                Enabled = false;
+            }
+            else
+            {
+                txtSqlImportacao.Text = ConexaoBancoImportador.GetSql(MyC.Tabela);
+            }
         }
     }
 }

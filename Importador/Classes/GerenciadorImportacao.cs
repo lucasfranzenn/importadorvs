@@ -125,33 +125,21 @@ namespace Importador.Classes
                 args.DisplayText = $"Todos os {qtdRegistros} registros foram importados. Rodando updates para ajustes.";
             };
             UpdatesPorTabela(tabela);
+
+            //Rodar parametros pós-importação
+            var funcoesPosImportacao = Mapeamento.FuncoesPosImportacaoPorParametro.Keys.Where(k => parametros.Select(p => p.Name).Contains(k)).ToList();
+            funcoesPosImportacao.ForEach(p => Mapeamento.FuncoesPosImportacaoPorParametro[p](p));
         }
 
         private static void UpdatesPorTabela(Enums.TabelaMyCommerce tabela)
         {
-            switch (tabela)
+            List<string> updates;
+            if (Mapeamento.UpdatesPorTabela.TryGetValue(tabela, out updates))
             {
-                case Enums.TabelaMyCommerce.clientes:
-                    ConexaoManager.instancia.GetConexaoMyCommerce().Execute("UPDATE CLIENTES SET STATUS = 'ATIVA' WHERE STATUS = '' OR STATUS IS NULL");
-                    ConexaoManager.instancia.GetConexaoMyCommerce().Execute("UPDATE CLIENTES SET STAT = 'f' WHERE STAT = '' OR STAT IS NULL");
-                    ConexaoManager.instancia.GetConexaoMyCommerce().Execute("UPDATE CLIENTES SET TIPO = 'C' WHERE TIPO = '' OR TIPO IS NULL");
-                    ConexaoManager.instancia.GetConexaoMyCommerce().Execute("UPDATE CLIENTES SET ATIVO = -1 WHERE ATIVO = 0 OR ATIVO IS NULL");
-                    ConexaoManager.instancia.GetConexaoMyCommerce().Execute("UPDATE CLIENTES SET RAZAOSOCIAL = NOMEFANTASIA WHERE RAZAOSOCIAL = ''");
-                    ConexaoManager.instancia.GetConexaoMyCommerce().Execute("UPDATE clientes set FisicaJuridica ='F', ConsFinal =1 WHERE cpf  is not null and FisicaJuridica is null");
-                    ConexaoManager.instancia.GetConexaoMyCommerce().Execute("UPDATE clientes set FisicaJuridica ='J' WHERE cnpj  is not null and FisicaJuridica is null");
-                    ConexaoManager.instancia.GetConexaoMyCommerce().Execute("UPDATE clientes SET datacadastro =  CURDATE() ; ");
-                    ConexaoManager.instancia.GetConexaoMyCommerce().Execute("ALTER TABLE `clientes` CHANGE COLUMN `Usuario` `Usuario` VARCHAR(45) NULL COLLATE 'latin1_swedish_ci', CHANGE COLUMN `Terminal` `Terminal` VARCHAR(45) NULL COLLATE 'latin1_swedish_ci';");
-                    ConexaoManager.instancia.GetConexaoMyCommerce().Execute("UPDATE CLIENTES SET USUARIO = 'MASTER', Terminal='SERVER';");
-                    ConexaoManager.instancia.GetConexaoMyCommerce().Execute("UPDATE clientes cl LEFT JOIN cidades ci ON cl.Cidade = ci.Cidade AND cl.UF = ci.UF SET cl.CodigoCidadeIbge = ci.Codigo WHERE cl.CodigoCidadeIbge IS NULL;");
-                    ConexaoManager.instancia.GetConexaoMyCommerce().Execute("update clientes set consfinal = 1, Contribuinte_Icms = 0 where fisicajuridica = 'F';");
-                    ConexaoManager.instancia.GetConexaoMyCommerce().Execute("update clientes set consfinal = 0, Contribuinte_Icms = 1 where fisicajuridica = 'J' and ie != 'ISENTO';");
-                    ConexaoManager.instancia.GetConexaoMyCommerce().Execute("update clientes set consfinal = 1, Contribuinte_Icms = 0 where fisicajuridica = 'J' and ie = 'ISENTO';");
-                    ConexaoManager.instancia.GetConexaoMyCommerce().Execute("update clientes set consfinal = 1, Contribuinte_Icms = 0 where consfinal IS NULL;");
-                    break;
-                case Enums.TabelaMyCommerce.produtos:
-                    break;
-                default:
-                    break;
+                foreach (string query in updates)
+                {
+                    ConexaoManager.instancia.GetConexaoMyCommerce().Execute(query);
+                }
             }
         }
 
@@ -207,6 +195,29 @@ namespace Importador.Classes
             //}
 
             return existe;
+        }
+
+        internal static object CriarUnidades(object _)
+        {
+            string sql = "SELECT UNVENDA, IF(UNVENDA = 'UN', 1, 0) AS padrao FROM PRODUTOS WHERE UNVENDA IS NOT NULL GROUP BY unvenda";
+
+            IDbCommand cmd = ConexaoManager.instancia.GetConexaoMyCommerce().CreateCommand();
+            cmd.CommandText = sql;
+            IDataReader reader = cmd.ExecuteReader();
+            List<(string unvenda, int padrao)> result = new List<(string unvenda, int padrao)>();
+
+            while (reader.Read())
+            {
+                result.Add((reader["unvenda"].ToString(), Convert.ToInt32(reader["padrao"])));
+            }
+            reader.Close();
+
+            foreach (var r in result)
+            {
+                ConexaoManager.instancia.GetConexaoMyCommerce().Execute($"INSERT INTO unidades (und, descricao, padrao) VALUES ('{r.unvenda}', '{r.unvenda}', {r.padrao})");
+            }
+
+            return true;
         }
     }
 }
