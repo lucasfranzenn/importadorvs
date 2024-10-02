@@ -65,8 +65,9 @@ namespace Importador.Classes
             public static readonly Dictionary<string, List<string>> TabelasTruncatePorTabela = new()
             {
                 {"clientes", new List<string> { "clientes" } },
-                {"produtos", new List<string> { "produtos"} },
-                {"estoque", new List<string> { "produtosestoque", "acertoestoque", "auditoriaestoque"} }
+                {"produtos", new List<string> { "produtos", "acertoestoque", "auditoriaestoque", "fabricantes", "unidades", "secoes", "grupos", "subgrupos", "tabelas_preco_produto", "tabelas", "produtos_st", "produtosestoque", "produtosfornecedor"} },
+                {"contasapagar", new List<string> { "contasapagar" } },
+                {"contasareceber", new List<string> { "contasareceber" } }
             };
 
             public static readonly Dictionary<string, List<Func<object, object>>> FuncoesFormatadorasPorColuna = new()
@@ -87,12 +88,14 @@ namespace Importador.Classes
 
             public static readonly Dictionary<string, Func<IDataReader, bool>> FuncoesDuranteImportacaoPorParametro = new()
             {
-                {"cbValidarDocumento",  GerenciadorImportacao.ValidarExistenciaDocumento}
+                {"cbValidarDocumento",  GerenciadorImportacao.ValidarExistenciaDocumento},
+                {"cbValidarCodBarras",  GerenciadorImportacao.ValidarExistenciaCodBarras}
             };
 
             public static readonly Dictionary<string, Func<object, object>> FuncoesPosImportacaoPorParametro = new()
             {
-                  {"cbCriarUnidades",  GerenciadorImportacao.CriarUnidades}
+                  {"cbCriarUnidades",  GerenciadorImportacao.CriarUnidades},
+                  {"cbCriarTabelaPreco",  GerenciadorImportacao.CriarTabelaPreco}
             };
 
             public static readonly Dictionary<Enums.TabelaMyCommerce, List<string>> UpdatesPorTabela = new()

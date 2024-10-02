@@ -50,7 +50,7 @@ namespace Importador.Classes
         {
             try
             {
-                var Consulta = ConexaoBancoImportador.GetEntidade<Consultas>(Enums.TabelaBancoLocal.consultas, $"TabelaConsulta = {tabela.ToString()}");
+                var Consulta = ConexaoBancoImportador.GetEntidade<Consultas>(Enums.TabelaBancoLocal.consultas, $"TabelaConsulta = '{tabela.ToString()}'");
                 Consulta.Consulta = sql;
                 ConexaoBancoImportador.Update(Consulta, Enums.TabelaBancoLocal.consultas);
             }

@@ -30,11 +30,15 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UCProdutos));
             cbCriarUnidades = new DevExpress.XtraEditors.CheckEdit();
+            cbValidarCodBarras = new DevExpress.XtraEditors.CheckEdit();
+            cbCriarTabelaPreco = new DevExpress.XtraEditors.CheckEdit();
             ((System.ComponentModel.ISupportInitialize)txtSqlImportacao.Properties).BeginInit();
             ((System.ComponentModel.ISupportInitialize)gcParametros).BeginInit();
             gcParametros.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pbImportacao.Properties).BeginInit();
             ((System.ComponentModel.ISupportInitialize)cbCriarUnidades.Properties).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)cbValidarCodBarras.Properties).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)cbCriarTabelaPreco.Properties).BeginInit();
             SuspendLayout();
             // 
             // lblSqlImportacao
@@ -47,12 +51,15 @@
             // 
             // gcParametros
             // 
+            gcParametros.Controls.Add(cbCriarTabelaPreco);
+            gcParametros.Controls.Add(cbValidarCodBarras);
             gcParametros.Controls.Add(cbCriarUnidades);
             gcParametros.Controls.SetChildIndex(cbCriarUnidades, 0);
+            gcParametros.Controls.SetChildIndex(cbValidarCodBarras, 0);
+            gcParametros.Controls.SetChildIndex(cbCriarTabelaPreco, 0);
             // 
             // btnImportar
             // 
-            btnImportar.Click += btnImportar_Click;
             // 
             // pbImportacao
             // 
@@ -76,6 +83,24 @@
             cbCriarUnidades.Size = new System.Drawing.Size(161, 20);
             cbCriarUnidades.TabIndex = 17;
             // 
+            // cbValidarCodBarras
+            // 
+            cbValidarCodBarras.EditValue = true;
+            cbValidarCodBarras.Location = new System.Drawing.Point(335, 26);
+            cbValidarCodBarras.Name = "cbValidarCodBarras";
+            cbValidarCodBarras.Properties.Caption = "Verificar existência de CodBar?";
+            cbValidarCodBarras.Size = new System.Drawing.Size(174, 20);
+            cbValidarCodBarras.TabIndex = 18;
+            // 
+            // cbCriarTabelaPreco
+            // 
+            cbCriarTabelaPreco.EditValue = true;
+            cbCriarTabelaPreco.Location = new System.Drawing.Point(5, 52);
+            cbCriarTabelaPreco.Name = "cbCriarTabelaPreco";
+            cbCriarTabelaPreco.Properties.Caption = "Criar tabela de preço?";
+            cbCriarTabelaPreco.Size = new System.Drawing.Size(136, 20);
+            cbCriarTabelaPreco.TabIndex = 19;
+            // 
             // UCProdutos
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -87,6 +112,8 @@
             gcParametros.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pbImportacao.Properties).EndInit();
             ((System.ComponentModel.ISupportInitialize)cbCriarUnidades.Properties).EndInit();
+            ((System.ComponentModel.ISupportInitialize)cbValidarCodBarras.Properties).EndInit();
+            ((System.ComponentModel.ISupportInitialize)cbCriarTabelaPreco.Properties).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -94,5 +121,7 @@
         #endregion
 
         private DevExpress.XtraEditors.CheckEdit cbCriarUnidades;
+        private DevExpress.XtraEditors.CheckEdit cbValidarCodBarras;
+        private DevExpress.XtraEditors.CheckEdit cbCriarTabelaPreco;
     }
 }

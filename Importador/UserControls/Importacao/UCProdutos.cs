@@ -20,22 +20,22 @@ namespace Importador.UserControls.Importacao
             InitializeComponent();
         }
 
-        private async void btnImportar_Click(object sender, EventArgs e)
-        {
-            new Task(() => lblHorarioInicioImportacao.Text = DateTime.Now.ToString()).Start();
+        //private async void btnImportar_Click(object sender, EventArgs e)
+        //{
+        //    new Task(() => lblHorarioInicioImportacao.Text = DateTime.Now.ToString()).Start();
 
-            Utils.AtualizaSQLImportacao(txtSqlImportacao.Text, MyC.Tabela);
+        //    Utils.AtualizaSQLImportacao(txtSqlImportacao.Text, MyC.Tabela);
 
-            Enabled = false;
+        //    Enabled = false;
 
-            await Task.Run(() => GerenciadorImportacao.Importar(txtSqlImportacao.Text, ref pbImportacao, MyC.Tabela, gcParametros.Controls.OfType<CheckEdit>().Where(p => p.Checked).ToList()));
+        //    await Task.Run(() => GerenciadorImportacao.Importar(txtSqlImportacao.Text, ref pbImportacao, MyC.Tabela, gcParametros.Controls.OfType<CheckEdit>().Where(p => p.Checked).ToList()));
 
-            lblHorarioFimImportacao.Text = DateTime.Now.ToString();
+        //    lblHorarioFimImportacao.Text = DateTime.Now.ToString();
 
-            Utils.MostrarNotificacao($"Importação dos {MyC.Tabela.ToString()} finalizada", "Importação");
+        //    Utils.MostrarNotificacao($"Importação dos {MyC.Tabela.ToString()} finalizada", "Importação");
 
-            Enabled = true;
-        }
+        //    Enabled = true;
+        //}
 
         private void UCProdutos_Load(object sender, EventArgs e)
         {

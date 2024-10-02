@@ -56,7 +56,6 @@
             // 
             // btnImportar
             // 
-            btnImportar.Click += btnImportar_Click;
             // 
             // pbImportacao
             // 

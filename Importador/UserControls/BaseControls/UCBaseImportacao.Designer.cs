@@ -95,6 +95,7 @@
             btnImportar.Size = new System.Drawing.Size(139, 32);
             btnImportar.TabIndex = 6;
             btnImportar.Text = "&Importar";
+            btnImportar.Click += btnImportar_Click;
             // 
             // lblHorarioFimImportacao
             // 

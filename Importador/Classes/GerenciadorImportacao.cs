@@ -28,9 +28,10 @@ namespace Importador.Classes
 
         public static void Importar(string sql, ref ProgressBarControl pbImportacao, Enums.TabelaMyCommerce tabela, List<CheckEdit> parametros)
         {
-            StringBuilder sqlInsert = new();
+            StringBuilder sbSql = new();
             IDbCommand sqlQuery = ConexaoManager.instancia.GetConexaoImportacao().CreateCommand();
             int qtdRegistros = GetQtdRegistros(sql);
+            var ListaFuncoesValidadoras = Mapeamento.FuncoesDuranteImportacaoPorParametro.Keys.Where(k => parametros.Select(p => p.Name).Contains(k)).ToList();
 
             sqlQuery.CommandText = sql;
 
@@ -55,30 +56,33 @@ namespace Importador.Classes
                 tamColunas[i] = GetTamanhoColuna(nomeColunas[i], tabela.ToString());
             }
 
-            sqlInsert.Clear();
-            sqlInsert.Append($"INSERT INTO {tabela.ToString()} (");
-            sqlInsert.Append(string.Join(", ", nomeColunas));
-            sqlInsert.Append(") VALUES (");
-            sqlInsert.Append(string.Join(", ", nomeColunas.Select(col => $"@{col}")));
-            sqlInsert.Append(");");
+            sbSql.Clear();
+            sbSql.Append($"INSERT INTO {tabela.ToString()} (");
+            sbSql.Append(string.Join(", ", nomeColunas));
+            sbSql.Append(") VALUES (");
+            sbSql.Append(string.Join(", ", nomeColunas.Select(col => $"@{col}")));
+            sbSql.Append(");");
+
+            string sqlInsert = sbSql.ToString();
 
             while (reader.Read())
             {
                 using (IDbCommand cmd = ConexaoManager.instancia.GetConexaoMyCommerce().CreateCommand())
                 {
-                    cmd.CommandText = sqlInsert.ToString();
+                    cmd.CommandText = sqlInsert;
                     cmd.Parameters.Clear();
 
                     #region Funcoes Validadoras durante a importação (Validar CPF/CGC, CódBarras, etc)
-                    List<bool> listaRetornos = new();
-
-                    var funcoes = Mapeamento.FuncoesDuranteImportacaoPorParametro.Keys.Where(k => parametros.Select(p => p.Name).Contains(k)).ToList();
-                    funcoes.ForEach(func =>
+                    if(ListaFuncoesValidadoras.Count != 0)
                     {
-                        listaRetornos.Add(Mapeamento.FuncoesDuranteImportacaoPorParametro[func](reader));
-                    });
+                        List<bool> listaRetornos = new();
+                        ListaFuncoesValidadoras.ForEach(func =>
+                        {
+                            listaRetornos.Add(Mapeamento.FuncoesDuranteImportacaoPorParametro[func](reader));
+                        });
 
-                    if (listaRetornos.Any(ret => ret == true)) goto ProximoItem;
+                        if (listaRetornos.Any(ret => ret == true)) goto ProximoItem;
+                    }
                     #endregion
 
                     for (int i = 0; i < qtdColunas; i++)
@@ -94,10 +98,10 @@ namespace Importador.Classes
                         {
                             parameter.Value = DBNull.Value;
                         }
-                        else if(value is string)
+                        else if(value is string v)
                         {
-                            parameter.Value =  value.ToString().Length <= tamColunas[i] ? value.ToString() : value.ToString().Substring(0, tamColunas[i]);
-                            parameter.Value = string.IsNullOrEmpty(value.ToString()) ? DBNull.Value : parameter.Value;
+                            System.Windows.Forms.MessageBox.Show("Test");
+                            parameter.Value = string.IsNullOrEmpty(v) ? DBNull.Value : (v.Length <= tamColunas[i] ? v : v.Substring(0, tamColunas[i]));
                         }
                         else
                         {
@@ -216,6 +220,41 @@ namespace Importador.Classes
             {
                 ConexaoManager.instancia.GetConexaoMyCommerce().Execute($"INSERT INTO unidades (und, descricao, padrao) VALUES ('{r.unvenda}', '{r.unvenda}', {r.padrao})");
             }
+
+            return true;
+        }
+
+        internal static bool ValidarExistenciaCodBarras(IDataReader reader)
+        {
+            string codbar = reader["codigobarras"].ToString() ?? string.Empty;
+
+            if (string.IsNullOrEmpty(codbar)) return false;
+
+            string sql = $"SELECT codigoproduto, barcode from (select codigo as codigoproduto, codigobarras as barcode from produtos where codigobarras is not null union all select codigoproduto, barcode from produtosbarcode) as tab where barcode = '{codbar}'";
+
+            return (ConexaoManager.instancia.GetConexaoMyCommerce().ExecuteScalar(sql) is not null);
+        }
+
+        internal static object CriarTabelaPreco(object _)
+        {
+            var cmdSelect = ConexaoManager.instancia.GetConexaoMyCommerce().CreateCommand();
+            var cmdInsert = ConexaoManager.instancia.GetConexaoMyCommerce().CreateCommand();
+            cmdSelect.CommandText = "select concat(sum(padrao), ';', sum(if (TP_preco = 'G', 1,0))) from tabelas";
+
+            object x = cmdSelect.ExecuteScalar();
+
+            if (string.IsNullOrEmpty(x.ToString())) x = 0;
+
+            if (Convert.ToInt32(x.ToString().Split(';')[0]) >= 1)
+            {
+                cmdInsert.CommandText = "INSERT INTO tabelas (Descricao,Percentual,TIPO,Considera_Promocao,TP_Preco,Padrao,UF,Optante,Empresas,DescMaximo,TipoAtu_Individual,TaxaAtu_Individual,Atualiza_Individual,OrdemFutura,Atu_Individual_Empresa,PComissao,Recalcula_Promocao,SomaIPI,ExibeTab,DescontaSt,Cancelada,Calc_Simples_campoDIF,DescontoNF,PercentualServico,UltimaAlteracaoCad,DescontoPadrao,TpComissao,TaxaDesc_Individual,RegraBS_CalculoST,NaoUsaDescontoImposto,IgnoraMultiplo,ExigeCadastroCliente,PadraoMeuERP,UsuarioExclusao,MotivoExclusao,DataExclusao) VALUES ('VALOR PRODUTO',0.0,'V',0,'G',1,'','N',NULL,NULL,'',0.0,0,0,'',NULL,0,'N',0,0,NULL,0,NULL,NULL,'2024-01-12 09:57:29',0.0,'G',0.0,0,0,0,0,0,NULL,NULL,NULL);";
+            }
+            else
+            {
+                cmdInsert.CommandText = "INSERT INTO tabelas (Descricao,Percentual,TIPO,Considera_Promocao,TP_Preco,Padrao,UF,Optante,Empresas,DescMaximo,TipoAtu_Individual,TaxaAtu_Individual,Atualiza_Individual,OrdemFutura,Atu_Individual_Empresa,PComissao,Recalcula_Promocao,SomaIPI,ExibeTab,DescontaSt,Cancelada,Calc_Simples_campoDIF,DescontoNF,PercentualServico,UltimaAlteracaoCad,DescontoPadrao,TpComissao,TaxaDesc_Individual,RegraBS_CalculoST,NaoUsaDescontoImposto,IgnoraMultiplo,ExigeCadastroCliente,PadraoMeuERP,UsuarioExclusao,MotivoExclusao,DataExclusao) VALUES ('VALOR PRODUTO',0.0,'V',0,'G',1,'','N',NULL,NULL,'',0.0,0,0,'',NULL,0,'N',0,0,NULL,0,NULL,NULL,'2024-01-12 09:57:29',0.0,'G',0.0,0,0,0,0,0,NULL,NULL,NULL);";
+            }
+
+            cmdInsert.ExecuteNonQuery();
 
             return true;
         }
