@@ -21,7 +21,7 @@ namespace Importador.Classes
         public static int GetQtdRegistros(string sql)
         {
             IDbCommand count = ConexaoManager.instancia.GetConexaoImportacao().CreateCommand();
-            count.CommandText = $"select count(*) from ({sql.TrimEnd(';')}) as qtd";
+            count.CommandText = $"select count(*) from ({sql.Trim().TrimEnd(';')}) as qtd";
 
             return Convert.ToInt32(count.ExecuteScalar());
         }
@@ -100,7 +100,6 @@ namespace Importador.Classes
                         }
                         else if(value is string v)
                         {
-                            System.Windows.Forms.MessageBox.Show("Test");
                             parameter.Value = string.IsNullOrEmpty(v) ? DBNull.Value : (v.Length <= tamColunas[i] ? v : v.Substring(0, tamColunas[i]));
                         }
                         else

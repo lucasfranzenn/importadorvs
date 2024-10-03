@@ -58,9 +58,6 @@
             gcParametros.Controls.SetChildIndex(cbValidarCodBarras, 0);
             gcParametros.Controls.SetChildIndex(cbCriarTabelaPreco, 0);
             // 
-            // btnImportar
-            // 
-            // 
             // pbImportacao
             // 
             pbImportacao.Properties.DisplayFormat.FormatString = "Nenhum registro importado";
@@ -73,6 +70,7 @@
             // MyC
             // 
             MyC.Tabela = Classes.Constantes.Enums.TabelaMyCommerce.produtos;
+            MyC.Tela = Classes.Constantes.Enums.Tela.Produtos;
             // 
             // cbCriarUnidades
             // 

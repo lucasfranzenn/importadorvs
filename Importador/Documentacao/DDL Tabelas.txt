@@ -83,3 +83,12 @@ CREATE TABLE SistemasImportados(
     NomeSistema text,
     CodigoImplantacao int
 );
+
+-- Parametros definition
+
+CREATE TABLE Parametros(
+    CodigoParametro integer not null primary key,
+    Tela text not null,
+    Parametro text not null,
+    Marcado boolean not null default 0 || Valor text not null
+);

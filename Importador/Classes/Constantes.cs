@@ -24,6 +24,19 @@ namespace Importador.Classes
                 Importacao
             }
 
+            public enum Tela
+            {
+                Clientes,
+                Produtos,
+                Produtos_ST,
+                ContasAPagar,
+                ContasAReceber,
+                PreVendas,
+                Servicos,
+                Generico,
+                Backup
+            }
+
             public enum TabelaMyCommerce
             {
                 clientes,

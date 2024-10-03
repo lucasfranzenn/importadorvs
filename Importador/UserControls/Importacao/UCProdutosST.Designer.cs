@@ -54,6 +54,7 @@
             // MyC
             // 
             MyC.Tabela = Classes.Constantes.Enums.TabelaMyCommerce.produto_st;
+            MyC.Tela = Classes.Constantes.Enums.Tela.Produtos_ST;
             // 
             // UCProdutosST
             // 

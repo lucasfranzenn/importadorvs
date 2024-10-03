@@ -54,6 +54,7 @@
             // MyC
             // 
             MyC.Tabela = Classes.Constantes.Enums.TabelaMyCommerce.contasareceber;
+            MyC.Tela = Classes.Constantes.Enums.Tela.ContasAReceber;
             // 
             // UCContasAReceber
             // 
