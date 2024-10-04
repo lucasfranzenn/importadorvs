@@ -67,7 +67,7 @@ namespace Importador.Conexao
         {
             (MySqlConnection) => $"SELECT TABLE_NAME AS TABELA, COLUMN_NAME AS COLUNA FROM information_schema.columns WHERE TABLE_SCHEMA = '{GetImportacao(Enums.Sistema.Importacao).Banco}' AND COLUMN_NAME LIKE '%{coluna}%' ORDER BY TABLE_NAME, ordinal_position",
             (SqlConnection) => $"SELECT T.name AS Tabela, C.name AS Coluna FROM sys.sysobjects AS T (NOLOCK) INNER JOIN sys.all_columns AS C (NOLOCK) ON T.id = C.object_id AND T.XTYPE = 'U' where upper(C.NAME) LIKE upper('%{coluna}%') ORDER BY T.name ASC",
-            (FbConnection) => $"select rdb$relation_name as tabela, rdb$field_name AS coluna from rdb$relation_fields where upper(rdb$field_name) like upper('%{coluna}%')  ORDER BY rdb$relation_name",
+            (FbConnection) => $"select rdb$relation_name as tabela, rdb$field_name AS coluna from rdb$relation_fields where upper(rdb$field_name) like upper('%{coluna}%') AND UPPER(rdb$relation_name) NOT LIKE upper('RDB%')  ORDER BY rdb$relation_name",
             (NpgsqlConnection) => $"SELECT table_name as tabela, column_name as coluna FROM information_schema.columns WHERE upper(column_name) like upper('%{coluna}%') order by table_name",
             _ => null
         };

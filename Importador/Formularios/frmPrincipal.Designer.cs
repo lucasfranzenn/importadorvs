@@ -80,6 +80,7 @@ namespace Importador
             barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             barDockControlRight = new DevExpress.XtraBars.BarDockControl();
+            bsiTelaAtual = new DevExpress.XtraBars.BarStaticItem();
             ((System.ComponentModel.ISupportInitialize)acPrincipal).BeginInit();
             ((System.ComponentModel.ISupportInitialize)fluentDesignFormControl1).BeginInit();
             fluentDesignFormControl1.SuspendLayout();
@@ -335,7 +336,7 @@ namespace Importador
             // 
             fluentDesignFormControl1.Controls.Add(btnSair);
             fluentDesignFormControl1.FluentDesignForm = this;
-            fluentDesignFormControl1.Items.AddRange(new DevExpress.XtraBars.BarItem[] { blciTemas, skinDropDownButtonItem1, skinPaletteDropDownButtonItem1 });
+            fluentDesignFormControl1.Items.AddRange(new DevExpress.XtraBars.BarItem[] { blciTemas, skinDropDownButtonItem1, skinPaletteDropDownButtonItem1, bsiTelaAtual });
             fluentDesignFormControl1.Location = new System.Drawing.Point(0, 0);
             fluentDesignFormControl1.Manager = fluentFormDefaultManager1;
             fluentDesignFormControl1.Name = "fluentDesignFormControl1";
@@ -343,6 +344,7 @@ namespace Importador
             fluentDesignFormControl1.TabIndex = 2;
             fluentDesignFormControl1.TabStop = false;
             fluentDesignFormControl1.TitleItemLinks.Add(blciTemas);
+            fluentDesignFormControl1.TitleItemLinks.Add(bsiTelaAtual);
             // 
             // blciTemas
             // 
@@ -371,8 +373,8 @@ namespace Importador
             // 
             fluentFormDefaultManager1.AutoSaveInRegistry = true;
             fluentFormDefaultManager1.Form = this;
-            fluentFormDefaultManager1.Items.AddRange(new DevExpress.XtraBars.BarItem[] { blciTemas, skinDropDownButtonItem1, skinPaletteDropDownButtonItem1 });
-            fluentFormDefaultManager1.MaxItemId = 3;
+            fluentFormDefaultManager1.Items.AddRange(new DevExpress.XtraBars.BarItem[] { blciTemas, skinDropDownButtonItem1, skinPaletteDropDownButtonItem1, bsiTelaAtual });
+            fluentFormDefaultManager1.MaxItemId = 4;
             // 
             // skin
             // 
@@ -422,6 +424,11 @@ namespace Importador
             barDockControlRight.Location = new System.Drawing.Point(770, 31);
             barDockControlRight.Manager = barManager1;
             barDockControlRight.Size = new System.Drawing.Size(0, 548);
+            // 
+            // bsiTelaAtual
+            // 
+            bsiTelaAtual.Id = 3;
+            bsiTelaAtual.Name = "bsiTelaAtual";
             // 
             // frmPrincipal
             // 
@@ -502,6 +509,7 @@ namespace Importador
         private DevExpress.XtraBars.BarDockControl barDockControlRight;
         private DevExpress.XtraBars.Navigation.AccordionControlElement acExportarDados;
         private DevExpress.XtraBars.Navigation.AccordionControlElement acConexaoLocal;
+        private DevExpress.XtraBars.BarStaticItem bsiTelaAtual;
     }
 }
 

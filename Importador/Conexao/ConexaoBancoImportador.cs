@@ -7,6 +7,9 @@ using System;
 using DevExpress.Mvvm.Native;
 using Importador.Properties;
 using DevExpress.Office.Crypto;
+using Importador.UserControls.Componentes;
+using System.Collections.Generic;
+using DevExpress.XtraEditors;
 
 namespace Importador.Conexao
 {
@@ -100,6 +103,23 @@ namespace Importador.Conexao
             string query = "UPDATE CONEXOES SET PADRAO = 0 WHERE CODIGOCONEXAO != @CodigoConexao AND CODIGOIMPLANTACAO = @CodigoImplantacao and TIPOCONEXAO = 1";
 
             instancia.conexao.Execute(query, conexao);
+        }
+
+        internal static void AtualizaParametros(TabelaMyCommerce myC, List<CheckEdit> listaParametros)
+        {
+            foreach (var parametro in listaParametros)
+            {
+                try
+                {
+                    var Param = GetEntidade<Parametro>(Enums.TabelaBancoLocal.parametros, $"Tela = '{myC.Tela}' and NomeParametro = '{parametro.Name}'");
+                    Param.Valor = parametro.Checked;
+                    Update(Param, Enums.TabelaBancoLocal.parametros);
+                }
+                catch (Exception)
+                {
+                    InserirRegistro(new Parametro(myC, parametro), Enums.TabelaBancoLocal.parametros);
+                }
+            }
         }
     }
 }

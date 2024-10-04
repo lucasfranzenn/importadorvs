@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Importador.UserControls.BaseControls;
+using System;
 using System.Diagnostics;
 using System.IO;
 using System.Windows.Forms;
@@ -6,7 +7,7 @@ using static DevExpress.Xpo.Helpers.AssociatedCollectionCriteriaHelper;
 
 namespace Importador.UserControls.Geral
 {
-    public partial class UCExportarDados : DevExpress.XtraEditors.XtraUserControl
+    public partial class UCExportarDados : UCBase
     {
         public UCExportarDados()
         {

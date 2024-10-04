@@ -20,7 +20,7 @@ namespace Importador.Classes
 
         internal static object FormataCEP(object cep)
         {
-            string cepString = new string(cep.ToString().Where(char.IsDigit).ToArray());
+            string cepString = new string(cep.ToString().Where(char.IsDigit).ToArray()).PadRight(8, '0');
 
             return string.IsNullOrEmpty(cepString) ? "" : $"{cepString.Substring(0,2)}.{cepString.Substring(2, 3)}-{cepString.Substring(5, 3)}";
         }
@@ -47,11 +47,9 @@ namespace Importador.Classes
 
         internal static object FormataTelefone(object fone)
         {
-            var caracteresIndesejados = new string[] { "(", ")", " ", "-" };
-
             string foneString = new string(fone.ToString().Where(char.IsDigit).ToArray()).PadLeft(11, '0');
 
-            return $"({foneString.Substring(0, 2)}){foneString.Substring(2, 5)}-{foneString.Substring(7, 4)}";
+            return Convert.ToInt64(foneString) == 0 ? DBNull.Value : $"({foneString.Substring(0, 2)}){foneString.Substring(2, 5)}-{foneString.Substring(7, 4)}";
         }
     }
 }

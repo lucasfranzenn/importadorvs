@@ -37,6 +37,23 @@ namespace Importador.UserControls.Importacao
             else
             {
                 txtSqlImportacao.Text = ConexaoBancoImportador.GetSql(MyC.Tabela);
+                foreach (var parametro in gcParametros.Controls.OfType<CheckEdit>().ToList())
+                {
+                    try
+                    {
+                        var Param = ConexaoBancoImportador.GetEntidade<Parametro>(Enums.TabelaBancoLocal.parametros, $"Tela = '{MyC.Tela}' and NomeParametro = '{parametro.Name}'");
+                    }
+                    catch (Exception)
+                    {
+                        ConexaoBancoImportador.InserirRegistro(new Parametro(MyC, parametro), Enums.TabelaBancoLocal.parametros);
+                    }
+                    finally
+                    {
+                        var Param = ConexaoBancoImportador.GetEntidade<Parametro>(Enums.TabelaBancoLocal.parametros, $"Tela = '{MyC.Tela}' and NomeParametro = '{parametro.Name}'");
+
+                        parametro.Checked = Param.Valor;
+                    }
+                }
             }
         }
     }

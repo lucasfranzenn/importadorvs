@@ -89,6 +89,6 @@ CREATE TABLE SistemasImportados(
 CREATE TABLE Parametros(
     CodigoParametro integer not null primary key,
     Tela text not null,
-    Parametro text not null,
-    Marcado boolean not null default 0 || Valor text not null
+    NomeParametro text not null,
+     Valor text not null -- || Marcado boolean not null default 0 
 );

@@ -162,7 +162,7 @@ namespace Importador.Classes
 
             using IDataReader reader = cmd.ExecuteReader();
                 DataTable dt = new();
-                dt.Load(reader);
+                dt.Load(reader, LoadOption.OverwriteChanges);
             return dt;
         }
 
@@ -255,6 +255,12 @@ namespace Importador.Classes
 
             cmdInsert.ExecuteNonQuery();
 
+            return true;
+        }
+
+        internal static object AlterarTabelaClientes(object arg)
+        {
+            ConexaoManager.instancia.GetConexaoMyCommerce().ExecuteScalar("ALTER TABLE `clientes` CHANGE COLUMN `Usuario` `Usuario` VARCHAR(45) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci', CHANGE COLUMN `Terminal` `Terminal` VARCHAR(45) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci'");
             return true;
         }
     }

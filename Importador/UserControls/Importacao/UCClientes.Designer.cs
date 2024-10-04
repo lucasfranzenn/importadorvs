@@ -31,12 +31,14 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UCClientes));
             cbCriarConsumidorFinal = new DevExpress.XtraEditors.CheckEdit();
             cbValidarDocumento = new DevExpress.XtraEditors.CheckEdit();
+            cbAlterarTabela = new DevExpress.XtraEditors.CheckEdit();
             ((System.ComponentModel.ISupportInitialize)txtSqlImportacao.Properties).BeginInit();
             ((System.ComponentModel.ISupportInitialize)gcParametros).BeginInit();
             gcParametros.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pbImportacao.Properties).BeginInit();
             ((System.ComponentModel.ISupportInitialize)cbCriarConsumidorFinal.Properties).BeginInit();
             ((System.ComponentModel.ISupportInitialize)cbValidarDocumento.Properties).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)cbAlterarTabela.Properties).BeginInit();
             SuspendLayout();
             // 
             // lblSqlImportacao
@@ -49,13 +51,12 @@
             // 
             // gcParametros
             // 
+            gcParametros.Controls.Add(cbAlterarTabela);
             gcParametros.Controls.Add(cbValidarDocumento);
             gcParametros.Controls.Add(cbCriarConsumidorFinal);
             gcParametros.Controls.SetChildIndex(cbCriarConsumidorFinal, 0);
             gcParametros.Controls.SetChildIndex(cbValidarDocumento, 0);
-            // 
-            // btnImportar
-            // 
+            gcParametros.Controls.SetChildIndex(cbAlterarTabela, 0);
             // 
             // pbImportacao
             // 
@@ -82,6 +83,17 @@
             cbValidarDocumento.Size = new System.Drawing.Size(189, 20);
             cbValidarDocumento.TabIndex = 17;
             // 
+            // cbAlterarTabela
+            // 
+            cbAlterarTabela.EditValue = true;
+            cbAlterarTabela.Location = new System.Drawing.Point(5, 52);
+            cbAlterarTabela.Name = "cbAlterarTabela";
+            cbAlterarTabela.Properties.Caption = "Alterar Tabela Clientes";
+            cbAlterarTabela.Properties.ReadOnly = true;
+            cbAlterarTabela.Size = new System.Drawing.Size(134, 20);
+            cbAlterarTabela.TabIndex = 18;
+            cbAlterarTabela.Visible = false;
+            // 
             // UCClientes
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -94,6 +106,7 @@
             ((System.ComponentModel.ISupportInitialize)pbImportacao.Properties).EndInit();
             ((System.ComponentModel.ISupportInitialize)cbCriarConsumidorFinal.Properties).EndInit();
             ((System.ComponentModel.ISupportInitialize)cbValidarDocumento.Properties).EndInit();
+            ((System.ComponentModel.ISupportInitialize)cbAlterarTabela.Properties).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -102,5 +115,6 @@
 
         private DevExpress.XtraEditors.CheckEdit cbCriarConsumidorFinal;
         private DevExpress.XtraEditors.CheckEdit cbValidarDocumento;
+        private DevExpress.XtraEditors.CheckEdit cbAlterarTabela;
     }
 }

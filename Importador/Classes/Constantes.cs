@@ -52,7 +52,8 @@ namespace Importador.Classes
             {
                 implantacoes,
                 conexoes,
-                consultas
+                consultas,
+                parametros
             }
 
             public enum Dml
@@ -96,6 +97,7 @@ namespace Importador.Classes
 
             public static readonly Dictionary<string, Func<object, object>> FuncoesPreImportacaoPorParametro = new()
             {
+                {"cbAlterarTabela", GerenciadorImportacao.AlterarTabelaClientes },
                 {"cbCriarConsumidorFinal",  GerenciadorImportacao.CriarConsumidorFinal}
             };
 

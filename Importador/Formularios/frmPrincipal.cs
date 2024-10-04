@@ -4,11 +4,17 @@ using UC = Importador.UserControls;
 using System;
 using static Importador.Classes.Utils;
 using Importador.Classes;
+using Importador.UserControls.BaseControls;
+using Importador.UserControls.Geral;
+using Importador.UserControls.Importacao;
+using Importador.UserControls.Conexao;
+using Importador.UserControls.Utilitarios;
 
 namespace Importador
 {
     public partial class frmPrincipal : DevExpress.XtraBars.FluentDesignSystem.FluentDesignForm
     {
+        public static UCBase ucAtual;
         public frmPrincipal()
         {
             InitializeComponent();
@@ -16,12 +22,20 @@ namespace Importador
 
         private void acGeralImplantacao_Click(object sender, EventArgs e)
         {
-            AlteraAba(ref fcPrincipal, new UC.Geral.UCImplantacao());
+            if (ucAtual is UCImplantacao) return;
+            ucAtual = new UCImplantacao();
+
+            AlteraAba(ref fcPrincipal, ucAtual);
+            bsiTelaAtual.Caption = "Implantação";
         }
 
         private void acExportarDados_Click(object sender, EventArgs e)
         {
-            AlteraAba(ref fcPrincipal, new UC.Geral.UCExportarDados());
+            if (ucAtual is UCExportarDados) return;
+            ucAtual = new UCExportarDados();
+
+            AlteraAba(ref fcPrincipal, ucAtual);
+            bsiTelaAtual.Caption = "Exportar Dados CSV";
         }
 
         public void btnSair_Click(object sender, EventArgs e)
@@ -31,22 +45,38 @@ namespace Importador
 
         private void acImportacaoClientesForn_Click(object sender, EventArgs e)
         {
-            AlteraAba(ref fcPrincipal, new UC.Importacao.UCClientes());
+            if (ucAtual is UCClientes) return;
+            ucAtual = new UCClientes();
+
+            AlteraAba(ref fcPrincipal, ucAtual);
+            bsiTelaAtual.Caption = "Importação de Clientes e Fornecedores";
         }
 
         private void acConexaoMyCommerce_Click(object sender, EventArgs e)
         {
-            AlteraAba(ref fcPrincipal, new UC.Conexao.UCConexaoMyCommerce());
+            if (ucAtual is UCConexaoMyCommerce) return;
+            ucAtual = new UCConexaoMyCommerce();
+
+            AlteraAba(ref fcPrincipal, ucAtual);
+            bsiTelaAtual.Caption = "Configuração de Conexão com MyCommerce";
         }
 
         private void acConexaoImportacao_Click(object sender, EventArgs e)
         {
-            AlteraAba(ref fcPrincipal, new UC.Conexao.UCConexaoImportacao());
+            if (ucAtual is UCConexaoImportacao) return;
+            ucAtual = new UCConexaoImportacao();
+
+            AlteraAba(ref fcPrincipal, ucAtual);
+            bsiTelaAtual.Caption = "Configuração de Conexão com Banco Importação";
         }
 
         private void acImportacaoProdutos_Click(object sender, EventArgs e)
         {
-            AlteraAba(ref fcPrincipal, new UC.Importacao.UCProdutos());
+            if (ucAtual is UCProdutos) return;
+            ucAtual = new UCProdutos();
+
+            AlteraAba(ref fcPrincipal, ucAtual);
+            bsiTelaAtual.Caption = "Importação de Produtos";
         }
 
         private void frmPrincipal_FormClosing(object sender, System.Windows.Forms.FormClosingEventArgs e)
@@ -58,7 +88,11 @@ namespace Importador
 
         private void acUtilitariosBuscarColuna_Click(object sender, EventArgs e)
         {
-            AlteraAba(ref fcPrincipal, new UC.Utilitarios.UCBuscaColuna());
+            if (ucAtual is UCBuscaColuna) return;
+            ucAtual = new UCBuscaColuna();
+
+            AlteraAba(ref fcPrincipal, ucAtual);
+            bsiTelaAtual.Caption = "Buscar coluna no Banco Importação";
         }
 
         private void frmPrincipal_Load(object sender, EventArgs e)
@@ -67,34 +101,58 @@ namespace Importador
             skin.LookAndFeel.UseDefaultLookAndFeel = true;
         }
 
-        private void acImportacaoProdutosST_Click(object sender, EventArgs e)   
+        private void acImportacaoProdutosST_Click(object sender, EventArgs e)
         {
-            AlteraAba(ref fcPrincipal, new UC.Importacao.UCProdutosST());
+            if (ucAtual is UCProdutosST) return;
+            ucAtual = new UCProdutosST();
+
+            AlteraAba(ref fcPrincipal, ucAtual);
+            bsiTelaAtual.Caption = "Importação de ST dos Produtos";
         }
 
         private void acImportacaoContasAPagar_Click(object sender, EventArgs e)
         {
-            AlteraAba(ref fcPrincipal, new UC.Importacao.UCContasAPagar());
+            if (ucAtual is UCContasAPagar) return;
+            ucAtual = new UCContasAPagar();
+
+            AlteraAba(ref fcPrincipal, ucAtual);
+            bsiTelaAtual.Caption = "Importação das Contas a Pagar";
         }
 
         private void acImportacaoContasAReceber_Click(object sender, EventArgs e)
         {
-            AlteraAba(ref fcPrincipal, new UC.Importacao.UCContasAReceber());
+            if (ucAtual is UCContasAReceber) return;
+            ucAtual = new UCContasAReceber();
+
+            AlteraAba(ref fcPrincipal, ucAtual);
+            bsiTelaAtual.Caption = "Importação das Contas a Receber";
         }
 
         private void acImportacaoPreVendas_Click(object sender, EventArgs e)
         {
+            if (ucAtual is UCClientes) return;
+            ucAtual = new UCClientes();
+
             AlteraAba(ref fcPrincipal, new UC.Importacao.UCPreVendas());
+            bsiTelaAtual.Caption = "Importação das Pré-Vendas";
         }
 
         private void acImportacaoServicos_Click(object sender, EventArgs e)
         {
-            AlteraAba(ref fcPrincipal, new UC.Importacao.UCServicos());
+            if (ucAtual is UCServicos) return;
+            ucAtual = new UCServicos();
+
+            AlteraAba(ref fcPrincipal, ucAtual);
+            bsiTelaAtual.Caption = "Importação dos Serviços";
         }
 
         private void acConexaoLocal_Click(object sender, EventArgs e)
         {
-            AlteraAba(ref fcPrincipal, new UC.Conexao.UCConexaoLocal());
+            if (ucAtual is UCConexaoLocal) return;
+            ucAtual = new UCConexaoLocal();
+
+            AlteraAba(ref fcPrincipal, ucAtual);
+            bsiTelaAtual.Caption = "Configuração da Conexão com o Banco Local do Importador";
         }
     }
 }

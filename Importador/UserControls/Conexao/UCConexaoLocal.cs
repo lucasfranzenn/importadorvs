@@ -1,5 +1,6 @@
 ﻿using DevExpress.XtraEditors;
 using Importador.Classes;
+using Importador.UserControls.BaseControls;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,7 +14,7 @@ using static Importador.Properties.Configuracoes;
 
 namespace Importador.UserControls.Conexao
 {
-    public partial class UCConexaoLocal : DevExpress.XtraEditors.XtraUserControl
+    public partial class UCConexaoLocal : UCBase
     {
         public UCConexaoLocal()
         {
