@@ -31,6 +31,9 @@ namespace Importador.Classes
             StringBuilder sbSql = new();
             IDbCommand sqlQuery = ConexaoManager.instancia.GetConexaoImportacao().CreateCommand();
             int qtdRegistros = GetQtdRegistros(sql);
+            int registroAtual = 1;
+            object value = null;
+            IDbDataParameter parameter = null;
             var ListaFuncoesValidadoras = Mapeamento.FuncoesDuranteImportacaoPorParametro.Keys.Where(k => parametros.Select(p => p.Name).Contains(k)).ToList();
 
             sqlQuery.CommandText = sql;
@@ -63,11 +66,16 @@ namespace Importador.Classes
             sbSql.Append(string.Join(", ", nomeColunas.Select(col => $"@{col}")));
             sbSql.Append(");");
 
+            pbImportacao.CustomDisplayText += (sender, args) =>
+            {
+                args.DisplayText = $"{registroAtual} de {qtdRegistros} registros";
+            };
+
             string sqlInsert = sbSql.ToString();
 
-            while (reader.Read())
+            using (IDbCommand cmd = ConexaoManager.instancia.GetConexaoMyCommerce().CreateCommand())
             {
-                using (IDbCommand cmd = ConexaoManager.instancia.GetConexaoMyCommerce().CreateCommand())
+                while (reader.Read())
                 {
                     cmd.CommandText = sqlInsert;
                     cmd.Parameters.Clear();
@@ -87,41 +95,38 @@ namespace Importador.Classes
 
                     for (int i = 0; i < qtdColunas; i++)
                     {
-                        object value = reader.GetValue(i);                        
+                        value = reader.GetValue(i);                        
 
                         if (Mapeamento.FuncoesFormatadorasPorColuna.ContainsKey(nomeColunas[i])) Mapeamento.FuncoesFormatadorasPorColuna[nomeColunas[i]].ForEach(func => value = func(value));
-
-                        IDbDataParameter parameter = cmd.CreateParameter();
+                        parameter = cmd.CreateParameter();
                         parameter.ParameterName = $"@{nomeColunas[i]}";
 
-                        if (value is DBNull)
+                        if ((value is DBNull) || (value is string v && string.IsNullOrEmpty(v)))
                         {
                             parameter.Value = DBNull.Value;
                         }
-                        else if(value is string v)
+                        else if (value is string valor && valor.Length > tamColunas[i])
                         {
-                            parameter.Value = string.IsNullOrEmpty(v) ? DBNull.Value : (v.Length <= tamColunas[i] ? v : v.Substring(0, tamColunas[i]));
+                            parameter.Value = valor.Substring(0, tamColunas[i]);
                         }
                         else
                         {
                             parameter.Value = value;
                         }
                         cmd.Parameters.Add(parameter);
+
+                        value = null;
                     }
-
                     cmd.ExecuteNonQuery();
-
-                }
+                    cmd.CommandText = null;
 
                 ProximoItem:;
-                //Incrementa a progressbar e atualiza o seu texto
-                int registroAtual = Convert.ToInt32(pbImportacao.EditValue) + 1;
-                pbImportacao.PerformStep();
-                pbImportacao.Update();
-                pbImportacao.CustomDisplayText += (sender, args) =>
-                {
-                    args.DisplayText = $"{registroAtual} de {qtdRegistros} registros";
-                };
+                    //Incrementa a progressbar e atualiza o seu texto
+                    pbImportacao.PerformStep();
+                    pbImportacao.Update();
+                    registroAtual = Convert.ToInt32(pbImportacao.EditValue);
+                }
+
             }
             pbImportacao.CustomDisplayText += (sender, args) =>
             {
@@ -131,7 +136,7 @@ namespace Importador.Classes
 
             //Rodar parametros pós-importação
             var funcoesPosImportacao = Mapeamento.FuncoesPosImportacaoPorParametro.Keys.Where(k => parametros.Select(p => p.Name).Contains(k)).ToList();
-            funcoesPosImportacao.ForEach(p => Mapeamento.FuncoesPosImportacaoPorParametro[p](p));
+            funcoesPosImportacao.ForEach(p => Mapeamento.FuncoesPosImportacaoPorParametro[p](tabela.ToString()));
         }
 
         private static void UpdatesPorTabela(Enums.TabelaMyCommerce tabela)
@@ -261,6 +266,13 @@ namespace Importador.Classes
         internal static object AlterarTabelaClientes(object arg)
         {
             ConexaoManager.instancia.GetConexaoMyCommerce().ExecuteScalar("ALTER TABLE `clientes` CHANGE COLUMN `Usuario` `Usuario` VARCHAR(45) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci', CHANGE COLUMN `Terminal` `Terminal` VARCHAR(45) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci'");
+            return true;
+        }
+
+        internal static object VincularPorContato(object arg)
+        {
+            ConexaoManager.instancia.GetConexaoMyCommerce().Execute($"UPDATE {arg} join CLIENTES on {arg}.codigo = clientes.contato SET {arg}.Codigo = clientes.codigo, {arg}.razaosocial = clientes.razaosocial");
+
             return true;
         }
     }

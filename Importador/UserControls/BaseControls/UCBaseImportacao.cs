@@ -6,6 +6,7 @@ using System;
 using System.Linq;
 using System.Windows.Controls;
 using System.Collections.Generic;
+using System.Windows.Forms;
 
 namespace Importador.UserControls.BaseControls
 {
@@ -16,7 +17,7 @@ namespace Importador.UserControls.BaseControls
             InitializeComponent();
         }
 
-        private void btnResetarSql_Click(object sender, System.EventArgs e)
+        private void btnResetarSql_Click(object sender, EventArgs e)
         {
             txtSqlImportacao.Text = Utils.GetSqlPadrao(MyC.Tabela.ToString());
         }
@@ -24,6 +25,7 @@ namespace Importador.UserControls.BaseControls
         private async void btnImportar_Click(object sender, EventArgs e)
         {
             new Task(() => lblHorarioInicioImportacao.Text = DateTime.Now.ToString()).Start();
+
             List<CheckEdit> listaParametros = gcParametros.Controls.OfType<CheckEdit>().ToList();
 
             Utils.AtualizaSQLImportacao(txtSqlImportacao.Text, MyC.Tabela);
@@ -33,7 +35,7 @@ namespace Importador.UserControls.BaseControls
             Enabled = false;
 
             await Task.Run(() => GerenciadorImportacao.Importar(txtSqlImportacao.Text, ref pbImportacao, MyC.Tabela, listaParametros.Where(p => p.Checked).ToList()));
-
+            
             lblHorarioFimImportacao.Text = DateTime.Now.ToString();
 
             Utils.MostrarNotificacao($"Importação dos {MyC.Tabela.ToString()} finalizada", "Importação");

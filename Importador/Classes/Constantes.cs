@@ -92,7 +92,10 @@ namespace Importador.Classes
                 {"cep", new List<Func<object, object>> { Formatadores.FormataCEP  } },
                 {"telefone1", new List<Func<object, object>> { Formatadores.FormataTelefone  } },
                 {"telefone2", new List<Func<object, object>> { Formatadores.FormataTelefone  } },
-                {"fax", new List<Func<object, object>> { Formatadores.FormataTelefone  } }
+                {"fax", new List<Func<object, object>> { Formatadores.FormataTelefone  } },
+                {"vencimento", new List<Func<object, object>> {Formatadores.FormataData} },
+                {"vencimentooriginal", new List<Func<object, object>> {Formatadores.FormataData} },
+                {"datalancamento", new List<Func<object, object>> {Formatadores.FormataData} }
             };
 
             public static readonly Dictionary<string, Func<object, object>> FuncoesPreImportacaoPorParametro = new()
@@ -110,7 +113,8 @@ namespace Importador.Classes
             public static readonly Dictionary<string, Func<object, object>> FuncoesPosImportacaoPorParametro = new()
             {
                   {"cbCriarUnidades",  GerenciadorImportacao.CriarUnidades},
-                  {"cbCriarTabelaPreco",  GerenciadorImportacao.CriarTabelaPreco}
+                  {"cbCriarTabelaPreco",  GerenciadorImportacao.CriarTabelaPreco},
+                  {"cbVincularPorContato", GerenciadorImportacao.VincularPorContato }
             };
 
             public static readonly Dictionary<Enums.TabelaMyCommerce, List<string>> UpdatesPorTabela = new()

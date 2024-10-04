@@ -45,6 +45,11 @@ namespace Importador.Classes
             return $"{cpfString.Substring(0, 9)}-{cpfString.Substring(9, 2)}";
         }
 
+        internal static object FormataData(object data)
+        {
+            return (data is DBNull) ? Convert.ToDateTime("1999-01-01") : data;
+        }
+
         internal static object FormataTelefone(object fone)
         {
             string foneString = new string(fone.ToString().Where(char.IsDigit).ToArray()).PadLeft(11, '0');

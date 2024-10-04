@@ -29,9 +29,12 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UCContasAReceber));
+            cbVincularPorContato = new DevExpress.XtraEditors.CheckEdit();
             ((System.ComponentModel.ISupportInitialize)txtSqlImportacao.Properties).BeginInit();
             ((System.ComponentModel.ISupportInitialize)gcParametros).BeginInit();
+            gcParametros.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pbImportacao.Properties).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)cbVincularPorContato.Properties).BeginInit();
             SuspendLayout();
             // 
             // lblSqlImportacao
@@ -41,6 +44,11 @@
             // 
             // txtSqlImportacao
             // 
+            // 
+            // gcParametros
+            // 
+            gcParametros.Controls.Add(cbVincularPorContato);
+            gcParametros.Controls.SetChildIndex(cbVincularPorContato, 0);
             // 
             // pbImportacao
             // 
@@ -56,6 +64,15 @@
             MyC.Tabela = Classes.Constantes.Enums.TabelaMyCommerce.contasareceber;
             MyC.Tela = Classes.Constantes.Enums.Tela.ContasAReceber;
             // 
+            // cbVincularPorContato
+            // 
+            cbVincularPorContato.Location = new System.Drawing.Point(169, 26);
+            cbVincularPorContato.Name = "cbVincularPorContato";
+            cbVincularPorContato.Properties.Caption = "Vincular conta pelo campo contato?";
+            cbVincularPorContato.Size = new System.Drawing.Size(199, 20);
+            cbVincularPorContato.TabIndex = 17;
+            cbVincularPorContato.ToolTip = "Se ativo, vincular no campo código o mesmo valor que esta salvo em clientes.contato";
+            // 
             // UCContasAReceber
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -64,11 +81,15 @@
             Load += UCContasAReceber_Load;
             ((System.ComponentModel.ISupportInitialize)txtSqlImportacao.Properties).EndInit();
             ((System.ComponentModel.ISupportInitialize)gcParametros).EndInit();
+            gcParametros.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pbImportacao.Properties).EndInit();
+            ((System.ComponentModel.ISupportInitialize)cbVincularPorContato.Properties).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
+
+        private DevExpress.XtraEditors.CheckEdit cbVincularPorContato;
     }
 }
