@@ -20,7 +20,7 @@ namespace Importador.Conexao
     {
         private readonly IDbConnection _conexaoMariaDB;
         private readonly IDbConnection _conexaoImportacao;
-        public static ConexaoManager instancia = new();
+        public static ConexaoManager instancia;
 
         public ConexaoManager()
         {
@@ -33,6 +33,7 @@ namespace Importador.Conexao
             {
                _conexaoMariaDB.Open();
                _conexaoImportacao.Open();
+                System.Windows.Forms.MessageBox.Show("conexao aberta");
             }
             catch (Exception e)
             {
@@ -52,8 +53,11 @@ namespace Importador.Conexao
 
         public static bool ConexoesAbertas()
         {
-            instancia.CloseConnections();
+            if (instancia is not null)
+                instancia.CloseConnections();
+
             instancia = new();
+
             return ((instancia._conexaoImportacao.State == ConnectionState.Open && instancia._conexaoMariaDB.State == ConnectionState.Open));
         }
 
