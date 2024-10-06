@@ -26,7 +26,7 @@ namespace Importador.UserControls.BaseControls
 
         private async void btnImportar_Click(object sender, EventArgs e)
         {
-            new Task(() => lblHorarioInicioImportacao.Text = DateTime.Now.ToString()).Start();
+            lblHorarioInicioImportacao.Text = DateTime.Now.ToString();
 
             List<CheckEdit> listaParametros = gcParametros.Controls.OfType<CheckEdit>().ToList();
 

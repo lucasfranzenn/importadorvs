@@ -20,18 +20,5 @@ namespace Importador.UserControls.Importacao
         {
             InitializeComponent();
         }
-
-        private void UCProdutosST_Load(object sender, EventArgs e)
-        {
-            if (!ConexaoManager.ConexoesAbertas())
-            {
-                XtraMessageBox.Show("Conexões não foram estabelecidas!\nConfigure-as corretamente", "..::Importador::..");
-                Enabled = false;
-            }
-            else
-            {
-                txtSqlImportacao.Text = ConexaoBancoImportador.GetSql(MyC.Tabela);
-            }
-        }
     }
 }
