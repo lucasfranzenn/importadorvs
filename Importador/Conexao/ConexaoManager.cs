@@ -33,7 +33,6 @@ namespace Importador.Conexao
             {
                _conexaoMariaDB.Open();
                _conexaoImportacao.Open();
-                System.Windows.Forms.MessageBox.Show("conexao aberta");
             }
             catch (Exception e)
             {

@@ -165,6 +165,7 @@
             // MyC
             // 
             MyC.Tabela = Classes.Constantes.Enums.TabelaMyCommerce.clientes;
+            MyC.Tela = Classes.Constantes.Enums.Tela.Clientes;
             // 
             // UCBaseImportacao
             // 
@@ -181,6 +182,7 @@
             Controls.Add(lblSqlImportacao);
             Controls.Add(txtSqlImportacao);
             Name = "UCBaseImportacao";
+            Load += UCBaseImportacao_Load;
             ((System.ComponentModel.ISupportInitialize)txtSqlImportacao.Properties).EndInit();
             ((System.ComponentModel.ISupportInitialize)gcParametros).EndInit();
             gcParametros.ResumeLayout(false);

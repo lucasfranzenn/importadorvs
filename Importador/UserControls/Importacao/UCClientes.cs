@@ -26,35 +26,5 @@ namespace Importador.UserControls.Importacao
         {
             InitializeComponent();
         }
-
-        private void UCClientes_Load(object sender, EventArgs e)
-        {
-            if (!ConexaoManager.ConexoesAbertas())
-            {
-                XtraMessageBox.Show("Conexões não foram estabelecidas!\nConfigure-as corretamente", "..::Importador::..");
-                Enabled = false;
-            }
-            else
-            {
-                txtSqlImportacao.Text = ConexaoBancoImportador.GetSql(MyC.Tabela);
-                foreach (var parametro in gcParametros.Controls.OfType<CheckEdit>().ToList())
-                {
-                    try
-                    {
-                        var Param = ConexaoBancoImportador.GetEntidade<Parametro>(Enums.TabelaBancoLocal.parametros, $"Tela = '{MyC.Tela}' and NomeParametro = '{parametro.Name}'");
-                    }
-                    catch (Exception)
-                    {
-                        ConexaoBancoImportador.InserirRegistro(new Parametro(MyC, parametro), Enums.TabelaBancoLocal.parametros);
-                    }
-                    finally
-                    {
-                        var Param = ConexaoBancoImportador.GetEntidade<Parametro>(Enums.TabelaBancoLocal.parametros, $"Tela = '{MyC.Tela}' and NomeParametro = '{parametro.Name}'");
-
-                        parametro.Checked = Param.Valor;
-                    }
-                }
-            }
-        }
     }
 }

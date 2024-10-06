@@ -7,6 +7,8 @@ using System.Linq;
 using System.Windows.Controls;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using Importador.Classes.Entidades;
+using static Importador.Classes.Constantes;
 
 namespace Importador.UserControls.BaseControls
 {
@@ -35,12 +37,47 @@ namespace Importador.UserControls.BaseControls
             Enabled = false;
 
             await Task.Run(() => GerenciadorImportacao.Importar(txtSqlImportacao.Text, ref pbImportacao, MyC.Tabela, listaParametros.Where(p => p.Checked).ToList()));
-            
+
             lblHorarioFimImportacao.Text = DateTime.Now.ToString();
 
             Utils.MostrarNotificacao($"Importação dos {MyC.Tabela.ToString()} finalizada", "Importação");
 
             Enabled = true;
+        }
+
+        private void UCBaseImportacao_Load(object sender, EventArgs e)
+        {
+            //Validação necessária para não bugar o designer do Visual Studio
+            if (DesignMode) return;
+
+            if (!ConexaoManager.ConexoesAbertas())
+            {
+                XtraMessageBox.Show("Conexões não foram estabelecidas!\nConfigure-as corretamente", "..::Importador::..");
+                Enabled = false;
+                return;
+            }
+
+            Parametro param;
+
+            txtSqlImportacao.Text = ConexaoBancoImportador.GetSql(MyC.Tabela);
+
+            foreach (var parametro in gcParametros.Controls.OfType<CheckEdit>().ToList())
+            {
+                try
+                {
+                    param = ConexaoBancoImportador.GetEntidade<Parametro>(Enums.TabelaBancoLocal.parametros, $"Tela = '{MyC.Tela}' and NomeParametro = '{parametro.Name}'");
+                }
+                catch (Exception)
+                {
+                    ConexaoBancoImportador.InserirRegistro(new Parametro(MyC, parametro), Enums.TabelaBancoLocal.parametros);
+                }
+                finally
+                {
+                    param = ConexaoBancoImportador.GetEntidade<Parametro>(Enums.TabelaBancoLocal.parametros, $"Tela = '{MyC.Tela}' and NomeParametro = '{parametro.Name}'");
+
+                    parametro.Checked = param.Valor;
+                }
+            }
         }
     }
 }
