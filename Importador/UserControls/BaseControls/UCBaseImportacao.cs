@@ -30,7 +30,7 @@ namespace Importador.UserControls.BaseControls
 
             List<CheckEdit> listaParametros = gcParametros.Controls.OfType<CheckEdit>().ToList();
 
-            Utils.AtualizaSQLImportacao(txtSqlImportacao.Text, MyC.Tabela);
+            Utils.AtualizaSQLImportacao(txtSqlImportacao.Text, MyC.Tabela.ToString());
 
             ConexaoBancoImportador.AtualizaParametros(MyC, listaParametros);
 
@@ -59,7 +59,7 @@ namespace Importador.UserControls.BaseControls
 
             Parametro param;
 
-            txtSqlImportacao.Text = ConexaoBancoImportador.GetSql(MyC.Tabela);
+            txtSqlImportacao.Text = ConexaoBancoImportador.GetSql(MyC.Tabela.ToString());
 
             foreach (var parametro in gcParametros.Controls.OfType<CheckEdit>().ToList())
             {

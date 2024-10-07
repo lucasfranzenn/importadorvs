@@ -154,5 +154,14 @@ namespace Importador
             AlteraAba(ref fcPrincipal, ucAtual);
             bsiTelaAtual.Caption = "Configuração da Conexão com o Banco Local do Importador";
         }
+
+        private void acImportacaoBackup_Click(object sender, EventArgs e)
+        {
+            if(ucAtual is UCBackup) return;
+            ucAtual = new UCBackup();
+
+            AlteraAba(ref fcPrincipal, ucAtual);
+            bsiTelaAtual.Caption = "Salvar Backup";
+        }
     }
 }

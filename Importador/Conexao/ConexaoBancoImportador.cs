@@ -86,16 +86,16 @@ namespace Importador.Conexao
             return string.Join("", entidade.GetProperties().Take(1).Select(p => $"{p.Name}"));
         }
 
-        internal static string GetSql(Enums.TabelaMyCommerce tabela)
+        internal static string GetSql(string tabela)
         {
-            var resultado = instancia.conexao.Query<Consultas>($"select consulta from consultas where tabelaconsulta = '{tabela.ToString()}' and codigoimplantacao = {Configuracoes.Default.CodigoImplantacao}");
+            var resultado = instancia.conexao.Query<Consultas>($"select consulta from consultas where tabelaconsulta = '{tabela}' and codigoimplantacao = {Configuracoes.Default.CodigoImplantacao}");
 
             if (resultado.FirstOrDefault() is Consultas c)
             {
                 return c.Consulta;
             }
 
-            return Classes.Utils.GetSqlPadrao(tabela.ToString());
+            return Classes.Utils.GetSqlPadrao(tabela);
         }
 
         internal static void AtualizarConexaoPadrao(Classes.Entidades.Conexao conexao)

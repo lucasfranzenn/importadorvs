@@ -72,6 +72,7 @@ namespace Importador
             blciTemas = new DevExpress.XtraBars.BarLinkContainerItem();
             skinDropDownButtonItem1 = new DevExpress.XtraBars.SkinDropDownButtonItem();
             skinPaletteDropDownButtonItem1 = new DevExpress.XtraBars.SkinPaletteDropDownButtonItem();
+            bsiTelaAtual = new DevExpress.XtraBars.BarStaticItem();
             fluentFormDefaultManager1 = new DevExpress.XtraBars.FluentDesignSystem.FluentFormDefaultManager(components);
             skin = new DefaultLookAndFeel(components);
             acImportacaoSeparador = new DevExpress.XtraBars.Navigation.AccordionControlSeparator();
@@ -80,7 +81,6 @@ namespace Importador
             barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             barDockControlRight = new DevExpress.XtraBars.BarDockControl();
-            bsiTelaAtual = new DevExpress.XtraBars.BarStaticItem();
             ((System.ComponentModel.ISupportInitialize)acPrincipal).BeginInit();
             ((System.ComponentModel.ISupportInitialize)fluentDesignFormControl1).BeginInit();
             fluentDesignFormControl1.SuspendLayout();
@@ -253,6 +253,7 @@ namespace Importador
             acImportacaoBackup.Name = "acImportacaoBackup";
             acImportacaoBackup.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
             acImportacaoBackup.Text = "Backup";
+            acImportacaoBackup.Click += acImportacaoBackup_Click;
             // 
             // acUtilitarios
             // 
@@ -369,6 +370,11 @@ namespace Importador
             skinPaletteDropDownButtonItem1.Id = 2;
             skinPaletteDropDownButtonItem1.Name = "skinPaletteDropDownButtonItem1";
             // 
+            // bsiTelaAtual
+            // 
+            bsiTelaAtual.Id = 3;
+            bsiTelaAtual.Name = "bsiTelaAtual";
+            // 
             // fluentFormDefaultManager1
             // 
             fluentFormDefaultManager1.AutoSaveInRegistry = true;
@@ -424,11 +430,6 @@ namespace Importador
             barDockControlRight.Location = new System.Drawing.Point(770, 31);
             barDockControlRight.Manager = barManager1;
             barDockControlRight.Size = new System.Drawing.Size(0, 548);
-            // 
-            // bsiTelaAtual
-            // 
-            bsiTelaAtual.Id = 3;
-            bsiTelaAtual.Name = "bsiTelaAtual";
             // 
             // frmPrincipal
             // 

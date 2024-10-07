@@ -13,7 +13,6 @@ using System.Threading.Tasks;
 using System.Windows;
 using static Importador.Classes.Constantes;
 using static Importador.Classes.Utils;
-using static System.Windows.Forms.Application;
 
 namespace Importador.Classes
 {

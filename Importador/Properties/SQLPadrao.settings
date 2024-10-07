@@ -20,5 +20,8 @@
     <Setting Name="servicos" Type="System.String" Scope="User">
       <Value Profile="(Default)">SELECT @ as Codigo, @ as Descricao, @ as ValorCusto, @ as valorvenda, @ as servicoterceiro, @'g' as status, @1 as ativo, @ as DescontoMaximo @ FROM servicos</Value>
     </Setting>
+    <Setting Name="backup" Type="System.String" Scope="User">
+      <Value Profile="(Default)">acertoestoque auditoriaestoque clientes contasapagar contasareceber fabricantes grupos produtos produtosestoque secoes subgrupos</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

@@ -23,6 +23,7 @@
     <None Remove="Configuracao\exportarSqlCsv.py" />
     <None Remove="Configuracao\imp.db" />
     <None Remove="Configuracao\implantacao.json" />
+    <None Remove="Configuracao\mysqldump.exe" />
     <None Remove="Configuracao\skin.txt" />
   </ItemGroup>
 
@@ -46,6 +47,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Configuracao\exportarSqlCsv.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Configuracao\mysqldump.exe">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Configuracao\skin.txt">

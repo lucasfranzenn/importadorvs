@@ -46,18 +46,29 @@ namespace Importador.Classes
             return SQLPadrao.Default[tabela].ToString().Replace("@", Environment.NewLine);
         }
 
-        internal static void AtualizaSQLImportacao(string sql, Enums.TabelaMyCommerce tabela)
+        internal static void AtualizaSQLImportacao(string sql, string tabela)
         {
             try
             {
-                var Consulta = ConexaoBancoImportador.GetEntidade<Consultas>(Enums.TabelaBancoLocal.consultas, $"TabelaConsulta = '{tabela.ToString()}'");
+                var Consulta = ConexaoBancoImportador.GetEntidade<Consultas>(Enums.TabelaBancoLocal.consultas, $"TabelaConsulta = '{tabela}'");
                 Consulta.Consulta = sql;
                 ConexaoBancoImportador.Update(Consulta, Enums.TabelaBancoLocal.consultas);
             }
             catch (Exception)
             {
-                ConexaoBancoImportador.InserirRegistro(new Consultas(tabela.ToString(), sql), Enums.TabelaBancoLocal.consultas);
+                ConexaoBancoImportador.InserirRegistro(new Consultas(tabela, sql), Enums.TabelaBancoLocal.consultas);
             }
+        }
+
+        public static string GetCmdDump(string tabelas, string caminhoBackup)
+        {
+            StringBuilder cmd = new(Caminhos.mysqlDump);
+
+            var Conexao = ConexaoBancoImportador.GetEntidade<Entidades.Conexao>(Enums.TabelaBancoLocal.conexoes, "TipoConexao = 0");
+            var Tabelas = ConexaoBancoImportador.GetSql("backup");
+            cmd.Append($" -u {Conexao.Usuario} -p{Conexao.Senha} -h {Conexao.Host} -P {Conexao.Porta} {Conexao.Banco} {tabelas} > \"{Path.ChangeExtension(caminhoBackup, ".sql")}\"");
+
+            return cmd.ToString();
         }
     }
 
