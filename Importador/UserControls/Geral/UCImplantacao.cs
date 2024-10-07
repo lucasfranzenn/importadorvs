@@ -68,6 +68,9 @@ namespace Importador.UserControls.Geral
             implantacao.ImportarLotes = Convert.ToBoolean((int)cbImportarProdutosOpcoes.Properties.Items[7].CheckState);
 
             ConexaoBancoImportador.Update(implantacao, Enums.TabelaBancoLocal.implantacoes);
+
+            Default.RegimeEmpresa = rgRegime.SelectedIndex;
+            Default.Save();
         }
 
         private void txtCodigoImplantacao_Leave(object sender, EventArgs e)

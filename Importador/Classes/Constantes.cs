@@ -118,9 +118,9 @@ namespace Importador.Classes
                   {"cbVincularPorContato", GerenciadorImportacao.VincularPorContato }
             };
 
-            public static readonly Dictionary<Enums.TabelaMyCommerce, List<string>> UpdatesPorTabela = new()
+            public static readonly Dictionary<string, List<string>> UpdatesPorTabela = new()
             {
-                { Enums.TabelaMyCommerce.clientes, new List<string>
+                { "clientes", new List<string>
                     { "UPDATE CLIENTES SET STATUS = 'ATIVA' WHERE STATUS = '' OR STATUS IS NULL",
                         "UPDATE CLIENTES SET STAT = 'f' WHERE STAT = '' OR STAT IS NULL",
                         "UPDATE CLIENTES SET TIPO = 'C' WHERE TIPO = '' OR TIPO IS NULL",
@@ -138,7 +138,7 @@ namespace Importador.Classes
                         "update clientes set consfinal = 1, Contribuinte_Icms = 0 where consfinal IS NULL;"
                     }
                 },
-                { Enums.TabelaMyCommerce.produtos, new List<string>
+                { "produtos", new List<string>
                     {
                         "UPDATE PRODUTOS SET Status =  'n' WHERE STATUS = '' OR STATUS IS NULL",
                         "UPDATE PRODUTOS SET ModalidadeControle =  'Normal' WHERE ModalidadeControle ='' OR ModalidadeControle IS NULL",

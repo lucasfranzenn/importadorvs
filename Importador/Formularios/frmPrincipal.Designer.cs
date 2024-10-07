@@ -246,6 +246,7 @@ namespace Importador
             acImportacaoGenerico.Name = "acImportacaoGenerico";
             acImportacaoGenerico.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
             acImportacaoGenerico.Text = "Genérico/Outros";
+            acImportacaoGenerico.Click += acImportacaoGenerico_Click;
             // 
             // acImportacaoBackup
             // 

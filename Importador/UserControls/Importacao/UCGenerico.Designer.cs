@@ -28,10 +28,80 @@
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UCGenerico));
+            cbTabelas = new DevExpress.XtraEditors.ComboBoxEdit();
+            lblSelecionarTabela = new DevExpress.XtraEditors.LabelControl();
+            ((System.ComponentModel.ISupportInitialize)txtSqlImportacao.Properties).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)gcParametros).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pbImportacao.Properties).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)cbTabelas.Properties).BeginInit();
+            SuspendLayout();
+            // 
+            // lblSqlImportacao
+            // 
+            lblSqlImportacao.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
+            lblSqlImportacao.Appearance.Options.UseFont = true;
+            // 
+            // txtSqlImportacao
+            // 
+            // 
+            // pbImportacao
+            // 
+            pbImportacao.Properties.DisplayFormat.FormatString = "Nenhum registro importado";
+            pbImportacao.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+            // 
+            // btnResetarSql
+            // 
+            btnResetarSql.Enabled = false;
+            btnResetarSql.ImageOptions.Image = (System.Drawing.Image)resources.GetObject("btnResetarSql.ImageOptions.Image");
+            btnResetarSql.Location = new System.Drawing.Point(292, 514);
+            btnResetarSql.Visible = false;
+            // 
+            // cbTabelas
+            // 
+            cbTabelas.Location = new System.Drawing.Point(414, 11);
+            cbTabelas.Name = "cbTabelas";
+            cbTabelas.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Plus) });
+            cbTabelas.Size = new System.Drawing.Size(121, 20);
+            cbTabelas.TabIndex = 17;
+            cbTabelas.ButtonClick += cbTabelas_ButtonClick;
+            // 
+            // lblSelecionarTabela
+            // 
+            lblSelecionarTabela.Location = new System.Drawing.Point(246, 14);
+            lblSelecionarTabela.Name = "lblSelecionarTabela";
+            lblSelecionarTabela.Size = new System.Drawing.Size(162, 13);
+            lblSelecionarTabela.TabIndex = 18;
+            lblSelecionarTabela.Text = "Cadastre ou selecione uma tabela";
+            // 
+            // UCGenerico
+            // 
+            AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            Controls.Add(lblSelecionarTabela);
+            Controls.Add(cbTabelas);
+            Name = "UCGenerico";
+            Controls.SetChildIndex(txtSqlImportacao, 0);
+            Controls.SetChildIndex(lblSqlImportacao, 0);
+            Controls.SetChildIndex(gcParametros, 0);
+            Controls.SetChildIndex(btnImportar, 0);
+            Controls.SetChildIndex(lblHorarioInicioImportacao, 0);
+            Controls.SetChildIndex(lblHorarioFimImportacao, 0);
+            Controls.SetChildIndex(pbImportacao, 0);
+            Controls.SetChildIndex(btnResetarSql, 0);
+            Controls.SetChildIndex(cbTabelas, 0);
+            Controls.SetChildIndex(lblSelecionarTabela, 0);
+            ((System.ComponentModel.ISupportInitialize)txtSqlImportacao.Properties).EndInit();
+            ((System.ComponentModel.ISupportInitialize)gcParametros).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pbImportacao.Properties).EndInit();
+            ((System.ComponentModel.ISupportInitialize)cbTabelas.Properties).EndInit();
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
+
+        private DevExpress.XtraEditors.ComboBoxEdit cbTabelas;
+        private DevExpress.XtraEditors.LabelControl lblSelecionarTabela;
     }
 }

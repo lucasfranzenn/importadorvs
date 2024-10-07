@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Importador.Conexao;
+using DevExpress.XtraBars.FluentDesignSystem;
 
 namespace Importador.UserControls.Importacao
 {
@@ -18,6 +19,11 @@ namespace Importador.UserControls.Importacao
         public UCProdutos()
         {
             InitializeComponent();
+        }
+
+        private void btnImportarAdicionais_Click(object sender, EventArgs e)
+        {
+           // new frmPrincipal().ShowDialog(this);
         }
     }
 }

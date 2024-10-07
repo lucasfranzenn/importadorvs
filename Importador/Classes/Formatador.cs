@@ -13,7 +13,7 @@ namespace Importador.Classes
         {
             if(string.IsNullOrWhiteSpace(ncm.ToString())) return DBNull.Value;
 
-            string ncmString = new string(ncm.ToString().Where(char.IsDigit).ToArray());
+            string ncmString = new string(ncm.ToString().Where(char.IsDigit).ToArray()).PadRight(8, '0');
 
             return $"{ncmString.Substring(0, 4)}.{ncmString.Substring(4, 2)}.{ncmString.Substring(6, 2)}";
         }

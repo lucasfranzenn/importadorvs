@@ -80,6 +80,7 @@
             // 
             // cbExcluirRegistros
             // 
+            cbExcluirRegistros.EditValue = true;
             cbExcluirRegistros.Location = new System.Drawing.Point(5, 26);
             cbExcluirRegistros.Name = "cbExcluirRegistros";
             cbExcluirRegistros.Properties.Caption = "Excluir registros existentes?";

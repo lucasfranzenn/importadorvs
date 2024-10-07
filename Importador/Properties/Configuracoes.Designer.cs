@@ -70,5 +70,17 @@ namespace Importador.Properties {
                 this["PaletaSkin"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int RegimeEmpresa {
+            get {
+                return ((int)(this["RegimeEmpresa"]));
+            }
+            set {
+                this["RegimeEmpresa"] = value;
+            }
+        }
     }
 }

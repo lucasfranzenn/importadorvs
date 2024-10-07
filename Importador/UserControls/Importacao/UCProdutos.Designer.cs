@@ -32,6 +32,7 @@
             cbCriarUnidades = new DevExpress.XtraEditors.CheckEdit();
             cbValidarCodBarras = new DevExpress.XtraEditors.CheckEdit();
             cbCriarTabelaPreco = new DevExpress.XtraEditors.CheckEdit();
+            btnImportarAdicionais = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)txtSqlImportacao.Properties).BeginInit();
             ((System.ComponentModel.ISupportInitialize)gcParametros).BeginInit();
             gcParametros.SuspendLayout();
@@ -51,12 +52,14 @@
             // 
             // gcParametros
             // 
+            gcParametros.Controls.Add(btnImportarAdicionais);
             gcParametros.Controls.Add(cbCriarTabelaPreco);
             gcParametros.Controls.Add(cbValidarCodBarras);
             gcParametros.Controls.Add(cbCriarUnidades);
             gcParametros.Controls.SetChildIndex(cbCriarUnidades, 0);
             gcParametros.Controls.SetChildIndex(cbValidarCodBarras, 0);
             gcParametros.Controls.SetChildIndex(cbCriarTabelaPreco, 0);
+            gcParametros.Controls.SetChildIndex(btnImportarAdicionais, 0);
             // 
             // pbImportacao
             // 
@@ -83,7 +86,6 @@
             // 
             // cbValidarCodBarras
             // 
-            cbValidarCodBarras.EditValue = true;
             cbValidarCodBarras.Location = new System.Drawing.Point(335, 26);
             cbValidarCodBarras.Name = "cbValidarCodBarras";
             cbValidarCodBarras.Properties.Caption = "Verificar existência de CodBar?";
@@ -98,6 +100,16 @@
             cbCriarTabelaPreco.Properties.Caption = "Criar tabela de preço?";
             cbCriarTabelaPreco.Size = new System.Drawing.Size(136, 20);
             cbCriarTabelaPreco.TabIndex = 19;
+            // 
+            // btnImportarAdicionais
+            // 
+            btnImportarAdicionais.Location = new System.Drawing.Point(339, 52);
+            btnImportarAdicionais.Name = "btnImportarAdicionais";
+            btnImportarAdicionais.Size = new System.Drawing.Size(163, 26);
+            btnImportarAdicionais.TabIndex = 20;
+            btnImportarAdicionais.Text = "&Adicionais dos Produtos ";
+            btnImportarAdicionais.ToolTip = "Configurar os Adicionais como: Estoque, Seções, Grupos, Marcas, etc";
+            btnImportarAdicionais.Click += btnImportarAdicionais_Click;
             // 
             // UCProdutos
             // 
@@ -120,5 +132,6 @@
         private DevExpress.XtraEditors.CheckEdit cbCriarUnidades;
         private DevExpress.XtraEditors.CheckEdit cbValidarCodBarras;
         private DevExpress.XtraEditors.CheckEdit cbCriarTabelaPreco;
+        private DevExpress.XtraEditors.SimpleButton btnImportarAdicionais;
     }
 }

@@ -43,9 +43,11 @@
             // 
             // lblDiretorio
             // 
+            lblDiretorio.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
+            lblDiretorio.Appearance.Options.UseFont = true;
             lblDiretorio.Location = new System.Drawing.Point(17, 31);
             lblDiretorio.Name = "lblDiretorio";
-            lblDiretorio.Size = new System.Drawing.Size(144, 13);
+            lblDiretorio.Size = new System.Drawing.Size(170, 13);
             lblDiretorio.TabIndex = 0;
             lblDiretorio.Text = "Selecione o destino do backup";
             // 
@@ -61,6 +63,7 @@
             // btnSelecionarDestino
             // 
             btnSelecionarDestino.Cursor = System.Windows.Forms.Cursors.Hand;
+            btnSelecionarDestino.ImageOptions.Image = Properties.Resources.up_16x16;
             btnSelecionarDestino.Location = new System.Drawing.Point(513, 49);
             btnSelecionarDestino.Name = "btnSelecionarDestino";
             btnSelecionarDestino.Size = new System.Drawing.Size(23, 21);

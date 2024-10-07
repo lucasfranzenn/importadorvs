@@ -157,11 +157,20 @@ namespace Importador
 
         private void acImportacaoBackup_Click(object sender, EventArgs e)
         {
-            if(ucAtual is UCBackup) return;
+            if (ucAtual is UCBackup) return;
             ucAtual = new UCBackup();
 
             AlteraAba(ref fcPrincipal, ucAtual);
             bsiTelaAtual.Caption = "Salvar Backup";
+        }
+
+        private void acImportacaoGenerico_Click(object sender, EventArgs e)
+        {
+            if (ucAtual is UCGenerico) return;
+            ucAtual = new UCGenerico();
+
+            AlteraAba(ref fcPrincipal, ucAtual);
+            bsiTelaAtual.Caption = "Importação de tabelas genéricas";
         }
     }
 }

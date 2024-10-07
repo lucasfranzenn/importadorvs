@@ -3,6 +3,8 @@ using DevExpress.CodeParser;
 using DevExpress.XtraEditors;
 using DevExpress.XtraRichEdit.Import.OpenDocument;
 using Importador.Conexao;
+using Importador.Properties;
+using Importador.UserControls.Importacao;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -26,7 +28,7 @@ namespace Importador.Classes
             return Convert.ToInt32(count.ExecuteScalar());
         }
 
-        public static void Importar(string sql, ref ProgressBarControl pbImportacao, Enums.TabelaMyCommerce tabela, List<CheckEdit> parametros)
+        public static void Importar(string sql, ref ProgressBarControl pbImportacao, string tabela, List<CheckEdit> parametros)
         {
             StringBuilder sbSql = new();
             IDbCommand sqlQuery = ConexaoManager.instancia.GetConexaoImportacao().CreateCommand();
@@ -42,7 +44,7 @@ namespace Importador.Classes
             pbImportacao.Properties.Maximum = qtdRegistros;
 
             //Limpa tabelas
-            if (parametros.Exists((p) => string.Equals(p.Name, "cbExcluirRegistros") && p.Checked)) LimpaTabelas(Mapeamento.TabelasTruncatePorTabela[tabela.ToString()]);
+            if (parametros.Exists((p) => string.Equals(p.Name, "cbExcluirRegistros") && p.Checked)) LimpaTabelas(Mapeamento.TabelasTruncatePorTabela[tabela]);
 
             //Rodar parametros pré-importação
             var list = Mapeamento.FuncoesPreImportacaoPorParametro.Keys.Where(k => parametros.Select(p => p.Name).Contains(k)).ToList();
@@ -56,11 +58,11 @@ namespace Importador.Classes
             for (int i = 0; i < qtdColunas; i++)
             {
                 nomeColunas[i] = reader.GetName(i).ToLower();
-                tamColunas[i] = GetTamanhoColuna(nomeColunas[i], tabela.ToString());
+                tamColunas[i] = GetTamanhoColuna(nomeColunas[i], tabela);
             }
 
             sbSql.Clear();
-            sbSql.Append($"INSERT INTO {tabela.ToString()} (");
+            sbSql.Append($"INSERT INTO {tabela} (");
             sbSql.Append(string.Join(", ", nomeColunas));
             sbSql.Append(") VALUES (");
             sbSql.Append(string.Join(", ", nomeColunas.Select(col => $"@{col}")));
@@ -136,14 +138,28 @@ namespace Importador.Classes
 
             //Rodar parametros pós-importação
             var funcoesPosImportacao = Mapeamento.FuncoesPosImportacaoPorParametro.Keys.Where(k => parametros.Select(p => p.Name).Contains(k)).ToList();
-            funcoesPosImportacao.ForEach(p => Mapeamento.FuncoesPosImportacaoPorParametro[p](tabela.ToString()));
+            funcoesPosImportacao.ForEach(p => Mapeamento.FuncoesPosImportacaoPorParametro[p](tabela));
         }
 
-        private static void UpdatesPorTabela(Enums.TabelaMyCommerce tabela)
+        private static void UpdatesPorTabela(string tabela)
         {
             List<string> updates;
             if (Mapeamento.UpdatesPorTabela.TryGetValue(tabela, out updates))
             {
+                if(tabela == "produtos")
+                {
+                    if(Configuracoes.Default.RegimeEmpresa == 0)
+                    {
+                        updates.Add("update produtos  set cst_simples = '0500' where cst_simples is null");
+                        updates.Add("update produtos p inner join situacaotributaria st on st.codigo = p.cst_simples set cst_simples_texto = left(st.descricao,45)");
+                    }
+                    else
+                    {
+                        updates.Add("update produtos set codigocf = '000' where codigocf is null");
+                        updates.Add("update produtos p inner join situacaotributaria st on st.codigo = p.codigocf set situacaotributaria= left(st.descricao,45)");
+                    }
+                }
+
                 foreach (string query in updates)
                 {
                     ConexaoManager.instancia.GetConexaoMyCommerce().Execute(query);
