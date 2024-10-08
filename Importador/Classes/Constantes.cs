@@ -46,7 +46,8 @@ namespace Importador.Classes
                 contasapagar,
                 contasareceber,
                 produto_st,
-                servicos
+                servicos,
+                backup
             }
 
             public enum TabelaBancoLocal

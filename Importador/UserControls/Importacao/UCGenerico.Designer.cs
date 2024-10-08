@@ -45,6 +45,10 @@
             // txtSqlImportacao
             // 
             // 
+            // btnImportar
+            // 
+            btnImportar.Click += btnImportar_Click_1;
+            // 
             // pbImportacao
             // 
             pbImportacao.Properties.DisplayFormat.FormatString = "Nenhum registro importado";
@@ -54,8 +58,12 @@
             // 
             btnResetarSql.Enabled = false;
             btnResetarSql.ImageOptions.Image = (System.Drawing.Image)resources.GetObject("btnResetarSql.ImageOptions.Image");
-            btnResetarSql.Location = new System.Drawing.Point(292, 514);
+            btnResetarSql.Location = new System.Drawing.Point(309, 519);
             btnResetarSql.Visible = false;
+            // 
+            // MyC
+            // 
+            MyC.Tela = Classes.Constantes.Enums.Tela.Generico;
             // 
             // cbTabelas
             // 
@@ -64,6 +72,7 @@
             cbTabelas.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Plus) });
             cbTabelas.Size = new System.Drawing.Size(121, 20);
             cbTabelas.TabIndex = 17;
+            cbTabelas.SelectedIndexChanged += cbTabelas_SelectedIndexChanged;
             cbTabelas.ButtonClick += cbTabelas_ButtonClick;
             // 
             // lblSelecionarTabela
@@ -81,6 +90,8 @@
             Controls.Add(lblSelecionarTabela);
             Controls.Add(cbTabelas);
             Name = "UCGenerico";
+            Load += UCGenerico_Load;
+            Controls.SetChildIndex(btnResetarSql, 0);
             Controls.SetChildIndex(txtSqlImportacao, 0);
             Controls.SetChildIndex(lblSqlImportacao, 0);
             Controls.SetChildIndex(gcParametros, 0);
@@ -88,7 +99,6 @@
             Controls.SetChildIndex(lblHorarioInicioImportacao, 0);
             Controls.SetChildIndex(lblHorarioFimImportacao, 0);
             Controls.SetChildIndex(pbImportacao, 0);
-            Controls.SetChildIndex(btnResetarSql, 0);
             Controls.SetChildIndex(cbTabelas, 0);
             Controls.SetChildIndex(lblSelecionarTabela, 0);
             ((System.ComponentModel.ISupportInitialize)txtSqlImportacao.Properties).EndInit();

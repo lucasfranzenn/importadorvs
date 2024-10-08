@@ -44,7 +44,11 @@ namespace Importador.Classes
             pbImportacao.Properties.Maximum = qtdRegistros;
 
             //Limpa tabelas
-            if (parametros.Exists((p) => string.Equals(p.Name, "cbExcluirRegistros") && p.Checked)) LimpaTabelas(Mapeamento.TabelasTruncatePorTabela[tabela]);
+            if (parametros.Exists((p) => string.Equals(p.Name, "cbExcluirRegistros", StringComparison.OrdinalIgnoreCase) && p.Checked))
+                if (Mapeamento.TabelasTruncatePorTabela.TryGetValue(tabela, out _))
+                    LimpaTabelas(Mapeamento.TabelasTruncatePorTabela[tabela]);
+                else
+                    LimpaTabelas(new List<string> { tabela });
 
             //Rodar parametros pré-importação
             var list = Mapeamento.FuncoesPreImportacaoPorParametro.Keys.Where(k => parametros.Select(p => p.Name).Contains(k)).ToList();

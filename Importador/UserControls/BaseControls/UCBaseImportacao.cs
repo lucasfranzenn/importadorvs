@@ -24,7 +24,7 @@ namespace Importador.UserControls.BaseControls
             txtSqlImportacao.Text = Utils.GetSqlPadrao(MyC.Tabela.ToString());
         }
 
-        private async void btnImportar_Click(object sender, EventArgs e)
+        protected async void btnImportar_Click(object sender, EventArgs e)
         {
             lblHorarioInicioImportacao.Text = DateTime.Now.ToString();
 
@@ -45,7 +45,7 @@ namespace Importador.UserControls.BaseControls
             Enabled = true;
         }
 
-        private void UCBaseImportacao_Load(object sender, EventArgs e)
+        protected void UCBaseImportacao_Load(object sender, EventArgs e)
         {
             //Validação necessária para não bugar o designer do Visual Studio
             if (DesignMode) return;

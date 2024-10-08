@@ -95,7 +95,14 @@ namespace Importador.Conexao
                 return c.Consulta;
             }
 
-            return Classes.Utils.GetSqlPadrao(tabela);
+            try
+            {
+                return Classes.Utils.GetSqlPadrao(tabela);
+            }
+            catch (System.Configuration.SettingsPropertyNotFoundException)
+            {
+                return $"select * from {tabela}";
+            }
         }
 
         internal static void AtualizarConexaoPadrao(Classes.Entidades.Conexao conexao)
@@ -105,19 +112,19 @@ namespace Importador.Conexao
             instancia.conexao.Execute(query, conexao);
         }
 
-        internal static void AtualizaParametros(TabelaMyCommerce myC, List<CheckEdit> listaParametros)
+        internal static void AtualizaParametros(TabelaMyCommerce tela, List<CheckEdit> listaParametros)
         {
             foreach (var parametro in listaParametros)
             {
                 try
                 {
-                    var Param = GetEntidade<Parametro>(Enums.TabelaBancoLocal.parametros, $"Tela = '{myC.Tela}' and NomeParametro = '{parametro.Name}'");
+                    var Param = GetEntidade<Parametro>(Enums.TabelaBancoLocal.parametros, $"Tela = '{tela.Tela}' and NomeParametro = '{parametro.Name}'");
                     Param.Valor = parametro.Checked;
                     Update(Param, Enums.TabelaBancoLocal.parametros);
                 }
                 catch (Exception)
                 {
-                    InserirRegistro(new Parametro(myC, parametro), Enums.TabelaBancoLocal.parametros);
+                    InserirRegistro(new Parametro(tela, parametro), Enums.TabelaBancoLocal.parametros);
                 }
             }
         }
