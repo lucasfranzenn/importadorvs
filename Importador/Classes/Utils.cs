@@ -65,7 +65,7 @@ namespace Importador.Classes
             StringBuilder cmd = new(Caminhos.mysqlDump);
 
             var Conexao = ConexaoBancoImportador.GetEntidade<Entidades.Conexao>(Enums.TabelaBancoLocal.conexoes, "TipoConexao = 0");
-            var Tabelas = ConexaoBancoImportador.GetSql("backup");
+            var Tabelas = ConexaoBancoImportador.GetSql(Enums.TabelaMyCommerce.backup.ToString());
             cmd.Append($" -u {Conexao.Usuario} -p{Conexao.Senha} -h {Conexao.Host} -P {Conexao.Porta} {Conexao.Banco} {tabelas} > \"{Path.ChangeExtension(caminhoBackup, ".sql")}\"");
 
             return cmd.ToString();

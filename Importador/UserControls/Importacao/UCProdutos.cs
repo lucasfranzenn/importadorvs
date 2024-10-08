@@ -23,7 +23,10 @@ namespace Importador.UserControls.Importacao
 
         private void btnImportarAdicionais_Click(object sender, EventArgs e)
         {
-           // new frmPrincipal().ShowDialog(this);
+            var backup = new UCBackup();
+            Controls.OfType<Control>().ToList().ForEach(c => c.Visible = !c.Visible);
+            backup.Dock = DockStyle.Fill;
+            Controls.Add(backup);
         }
     }
 }
