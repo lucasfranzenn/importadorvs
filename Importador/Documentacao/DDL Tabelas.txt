@@ -1,7 +1,7 @@
 ﻿-- Conexoes definition
 
 CREATE TABLE Conexoes(
-    CodigoConexao integer primary KEY auto_increment,
+    CodigoConexao integer primary key,
     CodigoImplantacao int,
     TipoConexao boolean,
     TipoBanco int,
@@ -41,7 +41,7 @@ CREATE TABLE Implantacoes(
 -- Consultas definition
 
 CREATE TABLE Consultas(
-    CodigoConsulta integer not null primary KEY,
+    CodigoConsulta integer primary KEY,
     CodigoImplantacao int,
     TabelaConsulta text,
     Consulta text
@@ -58,7 +58,7 @@ CREATE TABLE Nomenclaturas(
 -- Observacoes definition
 
 CREATE TABLE Observacoes(
-    CodigoObservacao integer not null  primary key,
+    CodigoObservacao integer primary key,
     CodigoImplantacao int,
     Tela text,
     observacao text
@@ -67,7 +67,7 @@ CREATE TABLE Observacoes(
 -- RegistrosDeTempo definition
 
 CREATE TABLE RegistrosDeTempo(
-    CodigoRegistroDeTempo integer not null  primary key,
+    CodigoRegistroDeTempo integer primary key,
     CodigoImplantacao int,
     Operador text not null,
     Tela text not null,
@@ -79,7 +79,7 @@ CREATE TABLE RegistrosDeTempo(
 -- SistemasImportados definition
 
 CREATE TABLE SistemasImportados(
-    CodigoSistemaImportado integer not null primary key,
+    CodigoSistemaImportado integer primary key,
     NomeSistema text,
     CodigoImplantacao int
 );
@@ -87,8 +87,9 @@ CREATE TABLE SistemasImportados(
 -- Parametros definition
 
 CREATE TABLE Parametros(
-    CodigoParametro integer not null primary key,
+    CodigoParametro integer PRIMARY KEY,
+    CodigoImplantacao integer,
     Tela text not null,
     NomeParametro text not null,
-     Valor text not null -- || Marcado boolean not null default 0 
+     Valor boolean not null -- || Marcado boolean not null default 0 
 );
