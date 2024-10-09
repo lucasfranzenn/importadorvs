@@ -1,23 +1,7 @@
-﻿using DevExpress.Xpo.Logger.Transport;
-using DevExpress.XtraEditors;
-using Importador.Classes;
-using Importador.Conexao;
-using MySqlConnector;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Data.SqlClient;
-using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using static Importador.Classes.Utils;
-using static Importador.Classes.Constantes;
+﻿using Importador.Conexao;
 using Importador.UserControls.BaseControls;
-using DevExpress.Pdf.Native.BouncyCastle.Asn1.X509.Qualified;
+using System;
+using static Importador.Classes.Constantes;
 
 namespace Importador.UserControls.Conexao
 {

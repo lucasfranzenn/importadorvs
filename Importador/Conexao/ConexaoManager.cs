@@ -1,18 +1,12 @@
-﻿using DevExpress.Office.Crypto;
+﻿using FirebirdSql.Data.FirebirdClient;
 using MySqlConnector;
+using Npgsql;
 using System;
-using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using static Importador.Classes.Constantes;
 using static Importador.Classes.Utils;
-using DevExpress.CodeParser;
-using Npgsql;
-using FirebirdSql.Data.FirebirdClient;
-using System.Data.SqlClient;
 
 namespace Importador.Conexao
 {
@@ -31,8 +25,8 @@ namespace Importador.Conexao
 
             try
             {
-               _conexaoMariaDB.Open();
-               _conexaoImportacao.Open();
+                _conexaoMariaDB.Open();
+                _conexaoImportacao.Open();
             }
             catch (Exception e)
             {

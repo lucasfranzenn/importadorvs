@@ -1,20 +1,12 @@
-﻿using DevExpress.Mvvm.Native;
-using DevExpress.XtraBars.FluentDesignSystem;
+﻿using DevExpress.XtraBars.FluentDesignSystem;
 using DevExpress.XtraEditors;
-using Importador.Conexao;
-using System;
-using System.Collections.Generic;
-using System.Data;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.Toolkit.Uwp.Notifications;
-using static Importador.Classes.Constantes;
-using DevExpress.LookAndFeel;
-using DevExpress.Charts.Native;
-using Importador.Properties;
 using Importador.Classes.Entidades;
+using Importador.Conexao;
+using Importador.Properties;
+using Microsoft.Toolkit.Uwp.Notifications;
+using System;
+using System.Text;
+using static Importador.Classes.Constantes;
 
 namespace Importador.Classes
 {
@@ -73,7 +65,7 @@ namespace Importador.Classes
 
         internal static string GerarArquivoRar(string caminhoBackup)
         {
-            return $"{AppDomain.CurrentDomain.BaseDirectory}{Caminhos.rar} a \"{caminhoBackup}\" \"MyBackup.sql\"";
+            return $"\"{AppDomain.CurrentDomain.BaseDirectory}{Caminhos.rar}\" a \"{caminhoBackup}\" \"MyBackup.sql\"";
         }
     }
 

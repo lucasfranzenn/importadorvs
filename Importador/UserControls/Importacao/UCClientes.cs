@@ -1,24 +1,4 @@
-﻿using DevExpress.DataAccess.Sql;
-using DevExpress.XtraEditors;
-using DevExpress.XtraMap;
-using DevExpress.XtraSpreadsheet.Import.OpenXml;
-using FirebirdSql.Data.FirebirdClient;
-using Importador.Classes;
-using Importador.Conexao;
-using Importador.Properties;
-using System;
-using System.Data;
-using System.Data.Common;
-using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Windows;
-using static Importador.Classes.Constantes;
-using Importador.Classes.Entidades;
-
-namespace Importador.UserControls.Importacao
+﻿namespace Importador.UserControls.Importacao
 {
     public partial class UCClientes : BaseControls.UCBaseImportacao
     {

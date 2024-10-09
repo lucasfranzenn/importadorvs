@@ -1,10 +1,4 @@
-﻿using DevExpress.Xpo.Metadata.Helpers;
-using MySqlConnector;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
 using static Importador.Classes.Constantes;
 
 namespace Importador.Conexao

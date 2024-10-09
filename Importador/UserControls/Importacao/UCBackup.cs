@@ -1,23 +1,16 @@
-﻿using DevExpress.XtraEditors;
+﻿using DevExpress.Mvvm.Native;
+using DevExpress.XtraEditors;
+using Importador.Classes;
+using Importador.Conexao;
+using Importador.Properties;
+using Importador.UserControls.BaseControls;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using Importador.UserControls.BaseControls;
-using Importador.Classes;
-using System.Windows.Controls;
-using Importador.Conexao;
-using Importador.Classes.Entidades;
 using System.Diagnostics;
-using Importador.Properties;
 using System.IO;
-using DevExpress.XtraGrid.Views.Grid;
-using DevExpress.Mvvm.Native;
+using System.Linq;
+using System.Windows.Forms;
 
 namespace Importador.UserControls.Importacao
 {
@@ -62,15 +55,15 @@ namespace Importador.UserControls.Importacao
             cmd.CommandText = "show tables";
 
             using IDataReader reader = cmd.ExecuteReader();
-                DataTable dt = new();
-                dt.Load(reader, LoadOption.PreserveChanges);
-                dt.Columns[0].ColumnName = "Tabelas";
+            DataTable dt = new();
+            dt.Load(reader, LoadOption.PreserveChanges);
+            dt.Columns[0].ColumnName = "Tabelas";
 
-                DataColumn checkColumn = new DataColumn("Restaurar?", typeof(bool));
-                checkColumn.DefaultValue = false;
-                dt.Columns.Add(checkColumn);
+            DataColumn checkColumn = new DataColumn("Restaurar?", typeof(bool));
+            checkColumn.DefaultValue = false;
+            dt.Columns.Add(checkColumn);
 
-                gcGridTabelas.DataSource = dt;
+            gcGridTabelas.DataSource = dt;
 
             if (gcGridTabelas.MainView is DevExpress.XtraGrid.Views.Grid.GridView gridView)
             {
@@ -132,7 +125,7 @@ namespace Importador.UserControls.Importacao
                     {
                         WindowStyle= ProcessWindowStyle.Hidden,
                         FileName = "cmd.exe",
-                        Arguments = $"/C \"{Utils.GerarArquivoRar(txtDestinoBackup.Text)}\"",
+                        Arguments = $"/C \"{Utils.GerarArquivoRar(txtDestinoBackup.Text)}",
                         UseShellExecute = false
                     }
                 };
@@ -148,7 +141,7 @@ namespace Importador.UserControls.Importacao
             {
                 throw;
             }
-            
+
         }
 
         private string PegarTabelasMarcadas()

@@ -1,18 +1,7 @@
-﻿using DevExpress.XtraEditors;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using static Importador.Classes.Utils;
-using static Importador.Classes.Constantes;
+﻿using Importador.Conexao;
 using Importador.UserControls.BaseControls;
-using Importador.Conexao;
-using Importador.Classes.Entidades;
+using System;
+using static Importador.Classes.Constantes;
 
 namespace Importador.UserControls.Conexao
 {

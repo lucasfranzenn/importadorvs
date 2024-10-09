@@ -1,20 +1,11 @@
 ﻿using DevExpress.XtraEditors;
-using Importador.Classes;
 using Importador.Classes.Entidades;
 using Importador.Conexao;
 using Importador.UserControls.BaseControls;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using static Importador.Classes.Utils;
-using static Importador.Properties.Configuracoes;
 using static Importador.Classes.Constantes;
+using static Importador.Properties.Configuracoes;
 
 namespace Importador.UserControls.Geral
 {
@@ -85,7 +76,7 @@ namespace Importador.UserControls.Geral
                 }
                 catch (Exception)
                 {
-                    if(XtraMessageBox.Show("Este código não está cadastrado\nDeseja cadastrar?", "..::Importador::..", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    if (XtraMessageBox.Show("Este código não está cadastrado\nDeseja cadastrar?", "..::Importador::..", MessageBoxButtons.YesNo) == DialogResult.Yes)
                     {
                         ConexaoBancoImportador.InserirRegistro(new Implantacao(txtCodigoImplantacao.Text), Enums.TabelaBancoLocal.implantacoes);
                         CarregaInformacoes(ConexaoBancoImportador.GetEntidade<Implantacao>(Enums.TabelaBancoLocal.implantacoes));

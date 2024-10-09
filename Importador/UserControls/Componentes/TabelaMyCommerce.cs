@@ -1,11 +1,4 @@
-﻿using DevExpress.XtraBars.Docking2010;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel;
 using static Importador.Classes.Constantes;
 
 namespace Importador.UserControls.Componentes

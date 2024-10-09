@@ -1,15 +1,5 @@
-﻿using DevExpress.XtraEditors;
-using Importador.Classes;
-using Importador.UserControls.BaseControls;
+﻿using Importador.UserControls.BaseControls;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using static Importador.Properties.Configuracoes;
 
 namespace Importador.UserControls.Conexao

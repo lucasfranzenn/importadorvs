@@ -1,17 +1,6 @@
-﻿using DevExpress.XtraEditors;
-using Importador.Classes;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
+﻿using System;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using Importador.Conexao;
-using DevExpress.XtraBars.FluentDesignSystem;
-using System.Threading;
 
 namespace Importador.UserControls.Importacao
 {

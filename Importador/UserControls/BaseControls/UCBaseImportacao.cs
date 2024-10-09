@@ -1,13 +1,11 @@
 ﻿using DevExpress.XtraEditors;
 using Importador.Classes;
-using Importador.Conexao;
-using System.Threading.Tasks;
-using System;
-using System.Linq;
-using System.Windows.Controls;
-using System.Collections.Generic;
-using System.Windows.Forms;
 using Importador.Classes.Entidades;
+using Importador.Conexao;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using static Importador.Classes.Constantes;
 
 namespace Importador.UserControls.BaseControls

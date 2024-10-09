@@ -1,17 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
 namespace Importador.Classes
 {
     public static class Formatadores
     {
-        public static object FormataNCM(object ncm) 
+        public static object FormataNCM(object ncm)
         {
-            if(string.IsNullOrWhiteSpace(ncm.ToString())) return DBNull.Value;
+            if (string.IsNullOrWhiteSpace(ncm.ToString())) return DBNull.Value;
 
             string ncmString = new string(ncm.ToString().Where(char.IsDigit).ToArray()).PadRight(8, '0');
 
@@ -22,7 +18,7 @@ namespace Importador.Classes
         {
             string cepString = new string(cep.ToString().Where(char.IsDigit).ToArray()).PadRight(8, '0');
 
-            return string.IsNullOrEmpty(cepString) ? "" : $"{cepString.Substring(0,2)}.{cepString.Substring(2, 3)}-{cepString.Substring(5, 3)}";
+            return string.IsNullOrEmpty(cepString) ? "" : $"{cepString.Substring(0, 2)}.{cepString.Substring(2, 3)}-{cepString.Substring(5, 3)}";
         }
 
         internal static object FormataCNPJ(object cnpj)

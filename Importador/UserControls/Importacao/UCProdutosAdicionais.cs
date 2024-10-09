@@ -1,19 +1,5 @@
-﻿using DevExpress.Utils.Extensions;
-using DevExpress.Xpo.Metadata.Helpers;
-using DevExpress.XtraEditors;
-using DevExpress.XtraTab;
-using Importador.Classes;
-using Importador.Classes.Entidades;
-using Importador.Conexao;
-using Importador.UserControls.BaseControls;
+﻿using Importador.UserControls.BaseControls;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Importador.UserControls.Importacao

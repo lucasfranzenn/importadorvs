@@ -1,14 +1,11 @@
-﻿using DevExpress.LookAndFeel;
-using DevExpress.XtraBars.Helpers;
-using UC = Importador.UserControls;
-using System;
-using static Importador.Classes.Utils;
-using Importador.Classes;
-using Importador.UserControls.BaseControls;
+﻿using Importador.UserControls.BaseControls;
+using Importador.UserControls.Conexao;
 using Importador.UserControls.Geral;
 using Importador.UserControls.Importacao;
-using Importador.UserControls.Conexao;
 using Importador.UserControls.Utilitarios;
+using System;
+using static Importador.Classes.Utils;
+using UC = Importador.UserControls;
 
 namespace Importador
 {

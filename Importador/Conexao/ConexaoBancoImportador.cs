@@ -1,21 +1,20 @@
-﻿using static Importador.Classes.Constantes;
-using Microsoft.Data.Sqlite;
-using System.Linq;
-using Dapper;
-using Importador.Classes.Entidades;
-using System;
+﻿using Dapper;
 using DevExpress.Mvvm.Native;
-using Importador.Properties;
-using DevExpress.Office.Crypto;
-using Importador.UserControls.Componentes;
-using System.Collections.Generic;
 using DevExpress.XtraEditors;
+using Importador.Classes.Entidades;
+using Importador.Properties;
+using Importador.UserControls.Componentes;
+using Microsoft.Data.Sqlite;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using static Importador.Classes.Constantes;
 
 namespace Importador.Conexao
 {
     public class ConexaoBancoImportador
     {
-        public SqliteConnection conexao = new SqliteConnection("Data Source="+ Configuracoes.Default.BancoLocal);
+        public SqliteConnection conexao = new SqliteConnection("Data Source=" + Configuracoes.Default.BancoLocal);
         public static ConexaoBancoImportador instancia = new();
 
         public ConexaoBancoImportador()

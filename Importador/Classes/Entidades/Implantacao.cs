@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Importador.Classes.Entidades
 {
@@ -15,8 +11,8 @@ namespace Importador.Classes.Entidades
 
         public Implantacao() { }
         public int CodigoImplantacao { get; set; }
-        public string RazaoSocialCliente { get; set; } = string.Empty;  
-        public string SistemaAntigo { get; set; } = string.Empty ;
+        public string RazaoSocialCliente { get; set; } = string.Empty;
+        public string SistemaAntigo { get; set; } = string.Empty;
         public string LinkFormulario { get; set; } = string.Empty;
         public string LinkBackup { get; set; } = string.Empty;
         public int RegimeEmpresa { get; set; } = 0;
@@ -30,7 +26,7 @@ namespace Importador.Classes.Entidades
         public bool ImportarSecoes { get; set; }
         public bool ImportarGrupos { get; set; }
         public bool ImportarSubGrupos { get; set; }
-        public bool ImportarFabricantes { get; set;}
+        public bool ImportarFabricantes { get; set; }
         public bool ImportarGrades { get; set; }
         public bool ImportarLotes { get; set; }
         public string Workflow { get; set; } = string.Empty;

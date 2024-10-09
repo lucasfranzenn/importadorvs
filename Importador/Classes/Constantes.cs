@@ -1,12 +1,6 @@
-﻿using DevExpress.CodeParser;
-using DevExpress.XtraEditors;
-using Importador.Classes.Entidades;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Importador.Classes
 {
@@ -17,7 +11,7 @@ namespace Importador.Classes
             public const string mysqlDump = @"Configuracao\mysqldump";
             public const string rar = @"Configuracao\rar";
         }
-        
+
         public static class Enums
         {
             public enum Sistema

@@ -1,19 +1,12 @@
 ﻿using Dapper;
-using DevExpress.CodeParser;
-using DevExpress.Pdf.Native.BouncyCastle.Utilities.Collections;
 using DevExpress.XtraEditors;
-using DevExpress.XtraRichEdit.Import.OpenDocument;
 using Importador.Conexao;
 using Importador.Properties;
-using Importador.UserControls.Importacao;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Globalization;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 using static Importador.Classes.Constantes;
 using static Importador.Classes.Utils;
 
@@ -88,7 +81,7 @@ namespace Importador.Classes
                     cmd.Parameters.Clear();
 
                     #region Funcoes Validadoras durante a importação (Validar CPF/CGC, CódBarras, etc)
-                    if(ListaFuncoesValidadoras.Count != 0)
+                    if (ListaFuncoesValidadoras.Count != 0)
                     {
                         List<bool> listaRetornos = new();
                         ListaFuncoesValidadoras.ForEach(func =>
@@ -151,9 +144,9 @@ namespace Importador.Classes
             List<string> updates;
             if (Mapeamento.UpdatesPorTabela.TryGetValue(tabela, out updates))
             {
-                if(tabela == "produtos")
+                if (tabela == "produtos")
                 {
-                    if(Configuracoes.Default.RegimeEmpresa == 0)
+                    if (Configuracoes.Default.RegimeEmpresa == 0)
                     {
                         updates.Add("update produtos  set cst_simples = '0500' where cst_simples is null");
                         updates.Add("update produtos p inner join situacaotributaria st on st.codigo = p.cst_simples set cst_simples_texto = left(st.descricao,45)");
@@ -187,14 +180,14 @@ namespace Importador.Classes
             cmd.CommandText = ConexaoManager.instancia.GetProcurarColunaQuery(coluna);
 
             using IDataReader reader = cmd.ExecuteReader();
-                DataTable dt = new();
-                dt.Load(reader, LoadOption.OverwriteChanges);
+            DataTable dt = new();
+            dt.Load(reader, LoadOption.OverwriteChanges);
             return dt;
         }
 
         private static void LimpaTabelas(List<string> tabelas)
         {
-           foreach (string tabela in tabelas)
+            foreach (string tabela in tabelas)
             {
                 IDbCommand truncate = ConexaoManager.instancia.GetConexaoMyCommerce().CreateCommand();
                 truncate.CommandText = $"truncate table {tabela};";
@@ -216,7 +209,7 @@ namespace Importador.Classes
             string cnpj = Formatadores.FormataCNPJ(reader["cnpj"]).ToString().Trim();
 
             bool existe = ConexaoManager.instancia.GetConexaoMyCommerce().ExecuteScalar($"SELECT codigo FROM CLIENTES WHERE CPF = '{cpf}' or CNPJ = '{cnpj}'") is not null;
-            
+
 
             //if (existe)
             //{
@@ -319,10 +312,10 @@ namespace Importador.Classes
             int qtdDivergencias = Convert.ToInt32(ConexaoManager.instancia.GetConexaoMyCommerce().ExecuteScalar("select group_concat(distinct empresa) as empresas, count(codigoproduto) as qtdProdutos from (select count(codigoproduto) as qt, CodigoProduto, Empresa from produtosestoque group by CodigoProduto, empresa having qt > 1) as tab"));
 
             if (qtdDivergencias != 0)
-                XtraMessageBox.Show($"Existem {qtdDivergencias} produtos que estão com estoque duplicado\n Verifique antes de continuar", "..::Importador::..");
+                XtraMessageBox.Show($"Existe {qtdDivergencias} produto(s) que estão com estoque duplicado!\nVerifique antes de continuar.", "..::Importador::..");
 
             return null;
-            
+
         }
     }
 }

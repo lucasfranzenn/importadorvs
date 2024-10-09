@@ -1,9 +1,5 @@
 ﻿using Importador.Properties;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Importador.Classes.Entidades
 {
@@ -19,7 +15,7 @@ namespace Importador.Classes.Entidades
             Usuario = "root";
             Senha = "vssql";
             Padrao = true;
-            if (sistema == Constantes.Enums.Sistema.MyCommerce) 
+            if (sistema == Constantes.Enums.Sistema.MyCommerce)
             {
                 Banco = $"imp_{CodigoImplantacao}";
             }
