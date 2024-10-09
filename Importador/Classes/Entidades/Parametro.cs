@@ -21,7 +21,7 @@ namespace Importador.Classes.Entidades
         {
             CodigoParametro = null;
             CodigoImplantacao = Convert.ToInt32(Configuracoes.Default.CodigoImplantacao);
-            Tela = myC.Tela.ToString();
+            Tela = myC.Tabela.ToString();
             NomeParametro = parametro.Name;
             Valor = parametro.Checked;
         }

@@ -100,7 +100,7 @@ namespace Importador.UserControls.Importacao
             {
                 try
                 {
-                    param = ConexaoBancoImportador.GetEntidade<Parametro>(Enums.TabelaBancoLocal.parametros, $"Tela = '{MyC.Tela}' and NomeParametro = '{parametro.Name}'");
+                    param = ConexaoBancoImportador.GetEntidade<Parametro>(Enums.TabelaBancoLocal.parametros, $"Tela = '{MyC.Tabela}' and NomeParametro = '{parametro.Name}'");
                 }
                 catch (Exception)
                 {
@@ -108,7 +108,7 @@ namespace Importador.UserControls.Importacao
                 }
                 finally
                 {
-                    param = ConexaoBancoImportador.GetEntidade<Parametro>(Enums.TabelaBancoLocal.parametros, $"Tela = '{MyC.Tela}' and NomeParametro = '{parametro.Name}'");
+                    param = ConexaoBancoImportador.GetEntidade<Parametro>(Enums.TabelaBancoLocal.parametros, $"Tela = '{MyC.Tabela}' and NomeParametro = '{parametro.Name}'");
 
                     parametro.Checked = param.Valor;
                 }

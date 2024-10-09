@@ -62,7 +62,6 @@
             // MyC
             // 
             MyC.Tabela = Classes.Constantes.Enums.TabelaMyCommerce.contasapagar;
-            MyC.Tela = Classes.Constantes.Enums.Tela.ContasAPagar;
             // 
             // cbVincularPorContato
             // 

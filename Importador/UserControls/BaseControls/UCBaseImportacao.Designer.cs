@@ -155,6 +155,7 @@
             // btnResetarSql
             // 
             btnResetarSql.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
+            btnResetarSql.Cursor = System.Windows.Forms.Cursors.Hand;
             btnResetarSql.ImageOptions.Image = Properties.Resources.reset2_16x16;
             btnResetarSql.Location = new System.Drawing.Point(512, 9);
             btnResetarSql.Name = "btnResetarSql";
@@ -166,7 +167,6 @@
             // MyC
             // 
             MyC.Tabela = Classes.Constantes.Enums.TabelaMyCommerce.clientes;
-            MyC.Tela = Classes.Constantes.Enums.Tela.Clientes;
             // 
             // UCBaseImportacao
             // 

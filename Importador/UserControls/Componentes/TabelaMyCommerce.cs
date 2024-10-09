@@ -19,12 +19,6 @@ namespace Importador.UserControls.Componentes
         [Description("Define a tabela do MyCommerce que é utilizada")]
         public Enums.TabelaMyCommerce Tabela { get; set; }
 
-        [DefaultValue(null)]
-        [Category("Appearance")]
-        [Browsable(true)]
-        [Description("Define a tela do sistema que está sendo utilizada")]
-        public Enums.Tela Tela { get; set; }
-
         public TabelaMyCommerce()
         {
             InitializeComponent();

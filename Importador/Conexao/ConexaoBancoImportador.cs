@@ -118,7 +118,7 @@ namespace Importador.Conexao
             {
                 try
                 {
-                    var Param = GetEntidade<Parametro>(Enums.TabelaBancoLocal.parametros, $"Tela = '{tela.Tela}' and NomeParametro = '{parametro.Name}'");
+                    var Param = GetEntidade<Parametro>(Enums.TabelaBancoLocal.parametros, $"Tela = '{tela.Tabela}' and NomeParametro = '{parametro.Name}'");
                     Param.Valor = parametro.Checked;
                     Update(Param, Enums.TabelaBancoLocal.parametros);
                 }

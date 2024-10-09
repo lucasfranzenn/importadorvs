@@ -23,5 +23,20 @@
     <Setting Name="backup" Type="System.String" Scope="User">
       <Value Profile="(Default)">acertoestoque auditoriaestoque clientes contasapagar contasareceber fabricantes grupos produtos produtosestoque secoes subgrupos</Value>
     </Setting>
+    <Setting Name="secoes" Type="System.String" Scope="User">
+      <Value Profile="(Default)">select @  as codigo, @  as descricao @from secoes</Value>
+    </Setting>
+    <Setting Name="grupos" Type="System.String" Scope="User">
+      <Value Profile="(Default)">select @  as codigo, @  as descricao, @  as codigosecao, @  as descricaosecao @from grupos</Value>
+    </Setting>
+    <Setting Name="subgrupos" Type="System.String" Scope="User">
+      <Value Profile="(Default)">select @  as codigo, @  as descricao, @  as codigogrupo, @  as descricaogrupo @from subgrupos</Value>
+    </Setting>
+    <Setting Name="fabricantes" Type="System.String" Scope="User">
+      <Value Profile="(Default)">select @  as codigo, @  as descricao @from fabricantes</Value>
+    </Setting>
+    <Setting Name="produtosestoque" Type="System.String" Scope="User">
+      <Value Profile="(Default)">select @  as codigoproduto,@  as estoque,@  as empresa,@  curdate() as DataUltimaMov,@  'MASTER' as Usuario @from produtosestoque</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

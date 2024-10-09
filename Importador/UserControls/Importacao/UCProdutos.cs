@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Importador.Conexao;
 using DevExpress.XtraBars.FluentDesignSystem;
+using System.Threading;
 
 namespace Importador.UserControls.Importacao
 {
@@ -23,10 +24,17 @@ namespace Importador.UserControls.Importacao
 
         private void btnImportarAdicionais_Click(object sender, EventArgs e)
         {
-            var backup = new UCBackup();
+            var adicionais = new UCProdutosAdicionais();
+            TrocaForm();
+            adicionais.Dock = DockStyle.Fill;
+            Controls.Add(adicionais);
+
+            adicionais.Disposed += (sender, args) => TrocaForm();
+        }
+
+        private void TrocaForm()
+        {
             Controls.OfType<Control>().ToList().ForEach(c => c.Visible = !c.Visible);
-            backup.Dock = DockStyle.Fill;
-            Controls.Add(backup);
         }
     }
 }

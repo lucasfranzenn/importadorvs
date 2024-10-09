@@ -53,6 +53,7 @@
             // 
             // txtDestinoBackup
             // 
+            txtDestinoBackup.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
             txtDestinoBackup.Location = new System.Drawing.Point(17, 50);
             txtDestinoBackup.Name = "txtDestinoBackup";
             txtDestinoBackup.Properties.ReadOnly = true;
@@ -62,6 +63,7 @@
             // 
             // btnSelecionarDestino
             // 
+            btnSelecionarDestino.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
             btnSelecionarDestino.Cursor = System.Windows.Forms.Cursors.Hand;
             btnSelecionarDestino.ImageOptions.Image = Properties.Resources.up_16x16;
             btnSelecionarDestino.Location = new System.Drawing.Point(513, 49);
@@ -72,6 +74,7 @@
             // 
             // gcGridTabelas
             // 
+            gcGridTabelas.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
             gcGridTabelas.Location = new System.Drawing.Point(17, 84);
             gcGridTabelas.MainView = gridView1;
             gcGridTabelas.Name = "gcGridTabelas";
@@ -86,6 +89,7 @@
             // 
             // btnGerarBackup
             // 
+            btnGerarBackup.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right;
             btnGerarBackup.Location = new System.Drawing.Point(422, 496);
             btnGerarBackup.Name = "btnGerarBackup";
             btnGerarBackup.Size = new System.Drawing.Size(114, 36);
@@ -95,6 +99,7 @@
             // 
             // progressBarControl1
             // 
+            progressBarControl1.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
             progressBarControl1.Location = new System.Drawing.Point(18, 464);
             progressBarControl1.Name = "progressBarControl1";
             progressBarControl1.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;

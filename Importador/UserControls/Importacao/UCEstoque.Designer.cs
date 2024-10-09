@@ -1,6 +1,6 @@
 ﻿namespace Importador.UserControls.Importacao
 {
-    partial class UCServicos
+    partial class UCEstoque
     {
         /// <summary> 
         /// Required designer variable.
@@ -28,10 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UCServicos));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UCEstoque));
+            cbImportarEstoque = new DevExpress.XtraEditors.CheckEdit();
             ((System.ComponentModel.ISupportInitialize)txtSqlImportacao.Properties).BeginInit();
             ((System.ComponentModel.ISupportInitialize)gcParametros).BeginInit();
+            gcParametros.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pbImportacao.Properties).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)cbImportarEstoque.Properties).BeginInit();
             SuspendLayout();
             // 
             // lblSqlImportacao
@@ -41,6 +44,11 @@
             // 
             // txtSqlImportacao
             // 
+            // 
+            // gcParametros
+            // 
+            gcParametros.Controls.Add(cbImportarEstoque);
+            gcParametros.Controls.SetChildIndex(cbImportarEstoque, 0);
             // 
             // pbImportacao
             // 
@@ -53,20 +61,34 @@
             // 
             // MyC
             // 
-            MyC.Tabela = Classes.Constantes.Enums.TabelaMyCommerce.servicos;
+            MyC.Tabela = Classes.Constantes.Enums.TabelaMyCommerce.produtosestoque;
             // 
-            // UCServicos
+            // cbImportarEstoque
+            // 
+            cbImportarEstoque.EditValue = true;
+            cbImportarEstoque.Location = new System.Drawing.Point(170, 26);
+            cbImportarEstoque.Name = "cbImportarEstoque";
+            cbImportarEstoque.Properties.Caption = "Importar Estoque?";
+            cbImportarEstoque.Size = new System.Drawing.Size(111, 20);
+            cbImportarEstoque.TabIndex = 17;
+            cbImportarEstoque.Visible = false;
+            // 
+            // UCEstoque
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            Name = "UCServicos";
+            Name = "UCEstoque";
             ((System.ComponentModel.ISupportInitialize)txtSqlImportacao.Properties).EndInit();
             ((System.ComponentModel.ISupportInitialize)gcParametros).EndInit();
+            gcParametros.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pbImportacao.Properties).EndInit();
+            ((System.ComponentModel.ISupportInitialize)cbImportarEstoque.Properties).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
+
+        private DevExpress.XtraEditors.CheckEdit cbImportarEstoque;
     }
 }

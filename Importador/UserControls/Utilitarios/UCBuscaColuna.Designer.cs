@@ -50,6 +50,7 @@
             // 
             // txtColuna
             // 
+            txtColuna.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
             txtColuna.EnterMoveNextControl = true;
             txtColuna.Location = new System.Drawing.Point(10, 48);
             txtColuna.Name = "txtColuna";
@@ -61,6 +62,7 @@
             // 
             // btnProcurar
             // 
+            btnProcurar.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
             btnProcurar.Cursor = System.Windows.Forms.Cursors.Hand;
             btnProcurar.Location = new System.Drawing.Point(396, 48);
             btnProcurar.Name = "btnProcurar";
@@ -95,7 +97,6 @@
             Controls.Add(lblBuscarColuna);
             Name = "UCBuscaColuna";
             Padding = new System.Windows.Forms.Padding(10);
-            Size = new System.Drawing.Size(556, 548);
             Load += UCBuscaColuna_Load;
             ((System.ComponentModel.ISupportInitialize)txtColuna.Properties).EndInit();
             ((System.ComponentModel.ISupportInitialize)gcGrid).EndInit();

@@ -1,6 +1,6 @@
 ﻿namespace Importador.UserControls.Importacao
 {
-    partial class UCServicos
+    partial class UCFabricantes
     {
         /// <summary> 
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UCServicos));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UCFabricantes));
             ((System.ComponentModel.ISupportInitialize)txtSqlImportacao.Properties).BeginInit();
             ((System.ComponentModel.ISupportInitialize)gcParametros).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pbImportacao.Properties).BeginInit();
@@ -53,13 +53,13 @@
             // 
             // MyC
             // 
-            MyC.Tabela = Classes.Constantes.Enums.TabelaMyCommerce.servicos;
+            MyC.Tabela = Classes.Constantes.Enums.TabelaMyCommerce.fabricantes;
             // 
-            // UCServicos
+            // UCFabricantes
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            Name = "UCServicos";
+            Name = "UCFabricantes";
             ((System.ComponentModel.ISupportInitialize)txtSqlImportacao.Properties).EndInit();
             ((System.ComponentModel.ISupportInitialize)gcParametros).EndInit();
             ((System.ComponentModel.ISupportInitialize)pbImportacao.Properties).EndInit();

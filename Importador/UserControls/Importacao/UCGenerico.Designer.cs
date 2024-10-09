@@ -63,7 +63,7 @@
             // 
             // MyC
             // 
-            MyC.Tela = Classes.Constantes.Enums.Tela.Generico;
+            MyC.Tabela = Classes.Constantes.Enums.TabelaMyCommerce.generico;
             // 
             // cbTabelas
             // 

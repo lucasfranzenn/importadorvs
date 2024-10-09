@@ -110,5 +110,68 @@ namespace Importador.Properties {
                 this["backup"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("select @  as codigo, @  as descricao @from secoes")]
+        public string secoes {
+            get {
+                return ((string)(this["secoes"]));
+            }
+            set {
+                this["secoes"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("select @  as codigo, @  as descricao, @  as codigosecao, @  as descricaosecao @fr" +
+            "om grupos")]
+        public string grupos {
+            get {
+                return ((string)(this["grupos"]));
+            }
+            set {
+                this["grupos"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("select @  as codigo, @  as descricao, @  as codigogrupo, @  as descricaogrupo @fr" +
+            "om subgrupos")]
+        public string subgrupos {
+            get {
+                return ((string)(this["subgrupos"]));
+            }
+            set {
+                this["subgrupos"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("select @  as codigo, @  as descricao @from fabricantes")]
+        public string fabricantes {
+            get {
+                return ((string)(this["fabricantes"]));
+            }
+            set {
+                this["fabricantes"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("select @  as codigoproduto,@  as estoque,@  as empresa,@  curdate() as DataUltima" +
+            "Mov,@  \'MASTER\' as Usuario @from produtosestoque")]
+        public string produtosestoque {
+            get {
+                return ((string)(this["produtosestoque"]));
+            }
+            set {
+                this["produtosestoque"] = value;
+            }
+        }
     }
 }

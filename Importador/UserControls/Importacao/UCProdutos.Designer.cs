@@ -73,7 +73,6 @@
             // MyC
             // 
             MyC.Tabela = Classes.Constantes.Enums.TabelaMyCommerce.produtos;
-            MyC.Tela = Classes.Constantes.Enums.Tela.Produtos;
             // 
             // cbCriarUnidades
             // 
@@ -86,7 +85,7 @@
             // 
             // cbValidarCodBarras
             // 
-            cbValidarCodBarras.Location = new System.Drawing.Point(335, 26);
+            cbValidarCodBarras.Location = new System.Drawing.Point(168, 52);
             cbValidarCodBarras.Name = "cbValidarCodBarras";
             cbValidarCodBarras.Properties.Caption = "Verificar existência de CodBar?";
             cbValidarCodBarras.Size = new System.Drawing.Size(174, 20);
@@ -103,9 +102,11 @@
             // 
             // btnImportarAdicionais
             // 
-            btnImportarAdicionais.Location = new System.Drawing.Point(339, 52);
+            btnImportarAdicionais.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            btnImportarAdicionais.Cursor = System.Windows.Forms.Cursors.Hand;
+            btnImportarAdicionais.Location = new System.Drawing.Point(346, 29);
             btnImportarAdicionais.Name = "btnImportarAdicionais";
-            btnImportarAdicionais.Size = new System.Drawing.Size(163, 26);
+            btnImportarAdicionais.Size = new System.Drawing.Size(163, 46);
             btnImportarAdicionais.TabIndex = 20;
             btnImportarAdicionais.Text = "&Adicionais dos Produtos ";
             btnImportarAdicionais.ToolTip = "Configurar os Adicionais como: Estoque, Seções, Grupos, Marcas, etc";

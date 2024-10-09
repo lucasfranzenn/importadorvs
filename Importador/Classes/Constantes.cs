@@ -25,29 +25,21 @@ namespace Importador.Classes
                 Importacao
             }
 
-            public enum Tela
-            {
-                Clientes,
-                Produtos,
-                Produtos_ST,
-                ContasAPagar,
-                ContasAReceber,
-                PreVendas,
-                Servicos,
-                Generico,
-                Backup
-            }
-
             public enum TabelaMyCommerce
             {
                 clientes,
                 produtos,
-                estoque,
+                produtosestoque,
                 contasapagar,
                 contasareceber,
                 produto_st,
                 servicos,
-                backup
+                backup,
+                secoes,
+                grupos,
+                subgrupos,
+                fabricantes,
+                generico
             }
 
             public enum TabelaBancoLocal
@@ -109,14 +101,16 @@ namespace Importador.Classes
             public static readonly Dictionary<string, Func<IDataReader, bool>> FuncoesDuranteImportacaoPorParametro = new()
             {
                 {"cbValidarDocumento",  GerenciadorImportacao.ValidarExistenciaDocumento},
-                {"cbValidarCodBarras",  GerenciadorImportacao.ValidarExistenciaCodBarras}
+                {"cbValidarCodBarras",  GerenciadorImportacao.ValidarExistenciaCodBarras},
+                {"cbImportarEstoque", GerenciadorImportacao.ImportarEstoque }
             };
 
             public static readonly Dictionary<string, Func<object, object>> FuncoesPosImportacaoPorParametro = new()
             {
                   {"cbCriarUnidades",  GerenciadorImportacao.CriarUnidades},
                   {"cbCriarTabelaPreco",  GerenciadorImportacao.CriarTabelaPreco},
-                  {"cbVincularPorContato", GerenciadorImportacao.VincularPorContato }
+                  {"cbVincularPorContato", GerenciadorImportacao.VincularPorContato },
+                  {"cbImportarEstoque", GerenciadorImportacao.VerificarDuplicidade }
             };
 
             public static readonly Dictionary<string, List<string>> UpdatesPorTabela = new()

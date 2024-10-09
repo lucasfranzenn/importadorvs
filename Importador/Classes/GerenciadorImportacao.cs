@@ -1,5 +1,6 @@
 ﻿using Dapper;
 using DevExpress.CodeParser;
+using DevExpress.Pdf.Native.BouncyCastle.Utilities.Collections;
 using DevExpress.XtraEditors;
 using DevExpress.XtraRichEdit.Import.OpenDocument;
 using Importador.Conexao;
@@ -294,6 +295,26 @@ namespace Importador.Classes
             ConexaoManager.instancia.GetConexaoMyCommerce().Execute($"UPDATE {arg} join CLIENTES on {arg}.codigo = clientes.contato SET {arg}.Codigo = clientes.codigo, {arg}.razaosocial = clientes.razaosocial");
 
             return true;
+        }
+
+        internal static bool ImportarEstoque(IDataReader reader)
+        {
+            ConexaoManager.instancia.GetConexaoMyCommerce()
+                .Execute($"INSERT INTO acertoestoque set data = curdate(), hora = curtime(), codigoproduto = {reader["codigoproduto"]}, qtde = {reader["estoque"]}, Tipo = 'E'" +
+                $", Empresa = {reader["empresa"]}, valor = 0, Usuario = 'MASTER', terminal = 'SERVIDOR', OBS= 'TRANSF. ESTOQUE'");
+
+            return false;
+        }
+
+        internal static object VerificarDuplicidade(object arg)
+        {
+            int qtdDivergencias = Convert.ToInt32(ConexaoManager.instancia.GetConexaoMyCommerce().ExecuteScalar("select group_concat(distinct empresa) as empresas, count(codigoproduto) as qtdProdutos from (select count(codigoproduto) as qt, CodigoProduto, Empresa from produtosestoque group by CodigoProduto, empresa having qt > 1) as tab"));
+
+            if (qtdDivergencias != 0)
+                XtraMessageBox.Show($"Existem {qtdDivergencias} produtos que estão duplicados\n Verifique antes de continuar");
+
+            return null;
+            
         }
     }
 }
