@@ -74,9 +74,10 @@ namespace Importador.Classes
             public static readonly Dictionary<string, List<string>> TabelasTruncatePorTabela = new()
             {
                 {"clientes", new List<string> { "clientes" } },
-                {"produtos", new List<string> { "produtos", "acertoestoque", "auditoriaestoque", "fabricantes", "unidades", "secoes", "grupos", "subgrupos", "tabelas_preco_produto", "tabelas", "produtos_st", "produtosestoque", "produtosfornecedor"} },
+                {"produtos", new List<string> { "produtos", "unidades", "tabelas_preco_produto", "tabelas"} },
                 {"contasapagar", new List<string> { "contasapagar" } },
-                {"contasareceber", new List<string> { "contasareceber" } }
+                {"contasareceber", new List<string> { "contasareceber" } },
+                {"produtosestoque", new List<string> { "produtosestoque", "acertoestoque", "auditoriaestoque"} }
             };
 
             public static readonly Dictionary<string, List<Func<object, object>>> FuncoesFormatadorasPorColuna = new()

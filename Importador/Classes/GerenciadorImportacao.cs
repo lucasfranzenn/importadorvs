@@ -102,7 +102,7 @@ namespace Importador.Classes
 
                     for (int i = 0; i < qtdColunas; i++)
                     {
-                        value = reader.GetValue(i);                        
+                        value = reader.GetValue(i);
 
                         if (Mapeamento.FuncoesFormatadorasPorColuna.ContainsKey(nomeColunas[i])) Mapeamento.FuncoesFormatadorasPorColuna[nomeColunas[i]].ForEach(func => value = func(value));
                         parameter = cmd.CreateParameter();
@@ -299,9 +299,17 @@ namespace Importador.Classes
 
         internal static bool ImportarEstoque(IDataReader reader)
         {
-            ConexaoManager.instancia.GetConexaoMyCommerce()
-                .Execute($"INSERT INTO acertoestoque set data = curdate(), hora = curtime(), codigoproduto = {reader["codigoproduto"]}, qtde = {reader["estoque"]}, Tipo = 'E'" +
-                $", Empresa = {reader["empresa"]}, valor = 0, Usuario = 'MASTER', terminal = 'SERVIDOR', OBS= 'TRANSF. ESTOQUE'");
+            var cmd = ConexaoManager.instancia.GetConexaoMyCommerce().CreateCommand();
+
+            cmd.CommandText = $"INSERT INTO acertoestoque set data = curdate(), hora = curtime(), codigoproduto = {reader["codigoproduto"]}, qtde = @Estoque, Tipo = 'E'" +
+                $", Empresa = {reader["empresa"]}, valor = 0, Usuario = 'MASTER', terminal = 'SERVIDOR', OBS= 'TRANSF. ESTOQUE'";
+
+            var parametro = cmd.CreateParameter();
+            parametro.ParameterName = "@Estoque";
+            parametro.Value = reader["estoque"];
+
+            cmd.Parameters.Add(parametro);
+            cmd.ExecuteNonQuery();
 
             return false;
         }
@@ -311,7 +319,7 @@ namespace Importador.Classes
             int qtdDivergencias = Convert.ToInt32(ConexaoManager.instancia.GetConexaoMyCommerce().ExecuteScalar("select group_concat(distinct empresa) as empresas, count(codigoproduto) as qtdProdutos from (select count(codigoproduto) as qt, CodigoProduto, Empresa from produtosestoque group by CodigoProduto, empresa having qt > 1) as tab"));
 
             if (qtdDivergencias != 0)
-                XtraMessageBox.Show($"Existem {qtdDivergencias} produtos que estão duplicados\n Verifique antes de continuar");
+                XtraMessageBox.Show($"Existem {qtdDivergencias} produtos que estão com estoque duplicado\n Verifique antes de continuar", "..::Importador::..");
 
             return null;
             
