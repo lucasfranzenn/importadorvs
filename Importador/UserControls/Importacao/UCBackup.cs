@@ -40,7 +40,7 @@ namespace Importador.UserControls.Importacao
         {
             SaveFileDialog ofd = new SaveFileDialog();
             ofd.FileName = Path.GetFileName(txtDestinoBackup.Text);
-            ofd.Filter = "Backup|.sql";
+            ofd.Filter = "Backup|.rar";
             if (ofd.ShowDialog() == DialogResult.OK)
             {
                 txtDestinoBackup.Text = ofd.FileName;
@@ -56,7 +56,7 @@ namespace Importador.UserControls.Importacao
                 return;
             }
 
-            txtDestinoBackup.Text = $"C:\\Implantação {Configuracoes.Default.CodigoImplantacao} - {DateTime.Now.ToString("ddMMyyyy HHmm")}.sql";
+            txtDestinoBackup.Text = $"C:\\Implantação {Configuracoes.Default.CodigoImplantacao} - {DateTime.Now.ToString("ddMMyyyy HHmm")}.rar";
 
             IDbCommand cmd = ConexaoManager.instancia.GetConexaoMyCommerce().CreateCommand();
             cmd.CommandText = "show tables";
@@ -124,7 +124,24 @@ namespace Importador.UserControls.Importacao
 
                 executarMySqlDump.WaitForExit();
 
-                if (XtraMessageBox.Show("Backup Gerado", "..::Importador::..", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                executarMySqlDump.Kill();
+
+                Process executarRar = new Process()
+                {
+                    StartInfo =
+                    {
+                        WindowStyle= ProcessWindowStyle.Hidden,
+                        FileName = "cmd.exe",
+                        Arguments = $"/C \"{Utils.GerarArquivoRar(txtDestinoBackup.Text)}\"",
+                        UseShellExecute = false
+                    }
+                };
+
+                executarRar.Start();
+                executarRar.WaitForExit();
+                File.Delete("MyBackup.sql");
+
+                if (XtraMessageBox.Show("Backup Gerado\nDeseja abrir a pasta de destino?", "..::Importador::..", MessageBoxButtons.YesNo) == DialogResult.Yes)
                     Process.Start("explorer.exe", $"/select, {txtDestinoBackup.Text}");
             }
             catch (Exception)

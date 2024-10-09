@@ -15,6 +15,7 @@ namespace Importador.Classes
         public static class Caminhos
         {
             public const string mysqlDump = @"Configuracao\mysqldump";
+            public const string rar = @"Configuracao\rar";
         }
         
         public static class Enums

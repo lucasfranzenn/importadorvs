@@ -24,6 +24,7 @@
     <None Remove="Configuracao\imp.db" />
     <None Remove="Configuracao\implantacao.json" />
     <None Remove="Configuracao\mysqldump.exe" />
+    <None Remove="Configuracao\Rar.exe" />
     <None Remove="Configuracao\skin.txt" />
   </ItemGroup>
 
@@ -50,6 +51,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Configuracao\mysqldump.exe">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Configuracao\Rar.exe">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Configuracao\skin.txt">
