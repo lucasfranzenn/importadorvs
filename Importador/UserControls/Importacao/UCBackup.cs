@@ -94,6 +94,13 @@ namespace Importador.UserControls.Importacao
 
         private void btnGerarBackup_Click(object sender, EventArgs e)
         {
+            if (gcGridTabelas.MainView is DevExpress.XtraGrid.Views.Grid.GridView gv1)
+            {
+                gv1.ClearGrouping();
+            }
+
+            MessageBox.Show("Test");
+
             string sql = PegarTabelasMarcadas();
 
             Utils.AtualizaSQLImportacao(sql, "backup");
