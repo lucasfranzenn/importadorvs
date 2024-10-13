@@ -99,8 +99,6 @@ namespace Importador.UserControls.Importacao
                 gv1.ClearGrouping();
             }
 
-            MessageBox.Show("Test");
-
             string sql = PegarTabelasMarcadas();
 
             Utils.AtualizaSQLImportacao(sql, "backup");

@@ -107,7 +107,8 @@ namespace Importador.Classes
                         }
                         else if (value is string valor && valor.Length > tamColunas[i])
                         {
-                            parameter.Value = valor.Substring(0, tamColunas[i]);
+                            valor = Encoding.Latin1.GetString(Encoding.Convert(Encoding.Unicode, Encoding.Latin1, Encoding.Unicode.GetBytes(valor)));
+                            parameter.Value = (valor.Length > tamColunas[i]) ? valor.Substring(0, tamColunas[i]) : valor;
                         }
                         else
                         {
