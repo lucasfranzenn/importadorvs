@@ -40,6 +40,7 @@
             // 
             // txtBancoDeDados
             // 
+            txtBancoDeDados.KeyDown += txtBancoDeDados_KeyDown;
             // 
             // txtSenha
             // 

@@ -39,6 +39,7 @@
             txtCaminhoBanco.Name = "txtCaminhoBanco";
             txtCaminhoBanco.Size = new System.Drawing.Size(513, 20);
             txtCaminhoBanco.TabIndex = 13;
+            txtCaminhoBanco.KeyDown += txtCaminhoBanco_KeyDown;
             // 
             // lblBanco
             // 
@@ -57,7 +58,6 @@
             Controls.Add(txtCaminhoBanco);
             Controls.Add(lblBanco);
             Name = "UCConexaoLocal";
-            Size = new System.Drawing.Size(556, 548);
             Load += UCConexaoLocal_Load;
             Leave += UCConexaoLocal_Leave;
             ((System.ComponentModel.ISupportInitialize)txtCaminhoBanco.Properties).EndInit();

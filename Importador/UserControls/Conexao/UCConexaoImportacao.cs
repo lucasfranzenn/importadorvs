@@ -1,6 +1,8 @@
 ﻿using Importador.Conexao;
 using Importador.UserControls.BaseControls;
 using System;
+using System.Windows.Forms;
+using System.Windows.Input;
 using static Importador.Classes.Constantes;
 
 namespace Importador.UserControls.Conexao
@@ -77,6 +79,19 @@ namespace Importador.UserControls.Conexao
         private void cbTipoBanco_SelectedValueChanged(object sender, EventArgs e)
         {
             AtualizaInformacoesConexao();
+        }
+
+        private void txtBancoDeDados_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
+        {
+            if (cbTipoBanco.SelectedIndex == 1 && e.KeyCode == Keys.F1)
+            {
+                OpenFileDialog ofd = new OpenFileDialog();
+                ofd.Filter = "Arquivo FDB|*.FDB";
+                if (ofd.ShowDialog() == DialogResult.OK)
+                {
+                    txtBancoDeDados.Text = ofd.FileName;
+                }
+            }
         }
     }
 }
