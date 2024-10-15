@@ -35,11 +35,11 @@ namespace Importador.Classes
 
             sqlQuery.CommandText = sql;
 
-            pbImportacao.Invoke((MethodInvoker)delegate
+            pbImportacao.Invoke((MethodInvoker)(() =>
             {
                 pbImportacao.EditValue = 0;
                 pbImportacao.Properties.Maximum = qtdRegistros;
-            });
+            }));
 
             //Limpa tabelas
             if (parametros.Exists((p) => string.Equals(p.Name, "cbExcluirRegistros", StringComparison.OrdinalIgnoreCase) && p.Checked))
@@ -70,13 +70,13 @@ namespace Importador.Classes
             sbSql.Append(string.Join(", ", nomeColunas.Select(col => $"@{col}")));
             sbSql.Append(");");
 
-            pbImportacao.Invoke((MethodInvoker)delegate
+            pbImportacao.Invoke((MethodInvoker)(() =>
             {
                 pbImportacao.CustomDisplayText += (sender, args) =>
                 {
                     args.DisplayText = $"{registroAtual} de {qtdRegistros} registros";
                 };
-            });
+            }));
 
             string sqlInsert = sbSql.ToString();
 
@@ -129,22 +129,23 @@ namespace Importador.Classes
 
                 ProximoItem:;
                     //Incrementa a progressbar e atualiza o seu texto
-                    pbImportacao.Invoke((MethodInvoker)delegate{
+                    pbImportacao.Invoke((MethodInvoker)(() => {
                         pbImportacao.PerformStep();
                         pbImportacao.Update();
-                    });
+                    }));
 
                     registroAtual = Convert.ToInt32(pbImportacao.EditValue);
                 }
 
             }
-            pbImportacao.Invoke((MethodInvoker)delegate
+            pbImportacao.Invoke((MethodInvoker)(() =>
             {
                 pbImportacao.CustomDisplayText += (sender, args) =>
                 {
                     args.DisplayText = $"Todos os {qtdRegistros} registros foram importados. Rodando updates para ajustes.";
                 };
-            });
+            }));
+
             UpdatesPorTabela(tabela);
 
             //Rodar parametros pós-importação
