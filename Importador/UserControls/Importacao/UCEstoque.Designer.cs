@@ -30,11 +30,13 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UCEstoque));
             cbImportarEstoque = new DevExpress.XtraEditors.CheckEdit();
+            cbVincularPorReferencia = new DevExpress.XtraEditors.CheckEdit();
             ((System.ComponentModel.ISupportInitialize)txtSqlImportacao.Properties).BeginInit();
             ((System.ComponentModel.ISupportInitialize)gcParametros).BeginInit();
             gcParametros.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pbImportacao.Properties).BeginInit();
             ((System.ComponentModel.ISupportInitialize)cbImportarEstoque.Properties).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)cbVincularPorReferencia.Properties).BeginInit();
             SuspendLayout();
             // 
             // lblSqlImportacao
@@ -47,8 +49,10 @@
             // 
             // gcParametros
             // 
+            gcParametros.Controls.Add(cbVincularPorReferencia);
             gcParametros.Controls.Add(cbImportarEstoque);
             gcParametros.Controls.SetChildIndex(cbImportarEstoque, 0);
+            gcParametros.Controls.SetChildIndex(cbVincularPorReferencia, 0);
             // 
             // pbImportacao
             // 
@@ -66,12 +70,21 @@
             // cbImportarEstoque
             // 
             cbImportarEstoque.EditValue = true;
-            cbImportarEstoque.Location = new System.Drawing.Point(170, 26);
+            cbImportarEstoque.Location = new System.Drawing.Point(5, 52);
             cbImportarEstoque.Name = "cbImportarEstoque";
             cbImportarEstoque.Properties.Caption = "Importar Estoque?";
             cbImportarEstoque.Size = new System.Drawing.Size(111, 20);
             cbImportarEstoque.TabIndex = 17;
             cbImportarEstoque.Visible = false;
+            // 
+            // cbVincularPorReferencia
+            // 
+            cbVincularPorReferencia.Location = new System.Drawing.Point(171, 26);
+            cbVincularPorReferencia.Name = "cbVincularPorReferencia";
+            cbVincularPorReferencia.Properties.Caption = "Vincular estoque por referencia?";
+            cbVincularPorReferencia.Size = new System.Drawing.Size(175, 20);
+            cbVincularPorReferencia.TabIndex = 18;
+            cbVincularPorReferencia.ToolTip = "Quando ativo, efetuará o vinculo do produto com o seu estoque, utilizando o campo produtos.referencia";
             // 
             // UCEstoque
             // 
@@ -83,6 +96,7 @@
             gcParametros.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pbImportacao.Properties).EndInit();
             ((System.ComponentModel.ISupportInitialize)cbImportarEstoque.Properties).EndInit();
+            ((System.ComponentModel.ISupportInitialize)cbVincularPorReferencia.Properties).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -90,5 +104,6 @@
         #endregion
 
         private DevExpress.XtraEditors.CheckEdit cbImportarEstoque;
+        private DevExpress.XtraEditors.CheckEdit cbVincularPorReferencia;
     }
 }

@@ -98,6 +98,7 @@ namespace Importador.Classes
             {
                 {"cbValidarDocumento",  GerenciadorImportacao.ValidarExistenciaDocumento},
                 {"cbValidarCodBarras",  GerenciadorImportacao.ValidarExistenciaCodBarras},
+                {"cbVincularPorReferencia", GerenciadorImportacao.VincularPorReferencia },
                 {"cbImportarEstoque", GerenciadorImportacao.ImportarEstoque }
             };
 

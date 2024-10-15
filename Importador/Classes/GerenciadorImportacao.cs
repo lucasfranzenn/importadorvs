@@ -90,13 +90,10 @@ namespace Importador.Classes
                     #region Funcoes Validadoras durante a importação (Validar CPF/CGC, CódBarras, etc)
                     if (ListaFuncoesValidadoras.Count != 0)
                     {
-                        List<bool> listaRetornos = new();
-                        ListaFuncoesValidadoras.ForEach(func =>
+                        foreach (var func in ListaFuncoesValidadoras)
                         {
-                            listaRetornos.Add(Mapeamento.FuncoesDuranteImportacaoPorParametro[func](reader));
-                        });
-
-                        if (listaRetornos.Any(ret => ret == true)) goto ProximoItem;
+                            if (Mapeamento.FuncoesDuranteImportacaoPorParametro[func](reader)) goto ProximoItem;
+                        }
                     }
                     #endregion
 
@@ -330,6 +327,27 @@ namespace Importador.Classes
 
             return null;
 
+        }
+
+        internal static bool VincularPorReferencia(IDataReader reader)
+        {
+            var cmd = ConexaoManager.instancia.GetConexaoMyCommerce().CreateCommand();
+            var parametro = cmd.CreateParameter();
+
+            parametro.ParameterName = "@Estoque";
+            parametro.Value = reader["estoque"];
+            cmd.Parameters.Add(parametro);
+
+            cmd.CommandText = $"INSERT INTO produtosestoque set codigoproduto = (select codigo from produtos where produtos.referencia = '{reader["codigoproduto"].ToString()}'), Estoque = @Estoque, Empresa = {Convert.ToInt32(reader["empresa"])}, DataUltimaMov = curdate(), USUARIO = 'MASTER'";
+            cmd.ExecuteNonQuery();
+
+            cmd.CommandText = $"INSERT INTO acertoestoque set data = curdate(), hora = curtime(), codigoproduto = (select codigo from produtos where produtos.referencia = '{reader["codigoproduto"].ToString()}'), qtde = @Estoque, Tipo = 'E'" +
+                $", Empresa = {reader["empresa"]}, valor = 0, Usuario = 'MASTER', terminal = 'SERVIDOR', OBS= 'TRANSF. ESTOQUE'";
+            cmd.ExecuteNonQuery();
+
+
+
+            return true;
         }
     }
 }
