@@ -58,7 +58,7 @@ namespace Importador.UserControls.Importacao
 
             Enabled = false;
 
-            await Task.Run(() => GerenciadorImportacao.Importar(txtSqlImportacao.Text, ref pbImportacao, cbTabelas.Text, listaParametros.Where(p => p.Checked).ToList()));
+            await Task.Run(() => GerenciadorImportacao.Importar(txtSqlImportacao.Text, pbImportacao, cbTabelas.Text, listaParametros.Where(p => p.Checked).ToList()));
 
             lblHorarioFimImportacao.Text = DateTime.Now.ToString();
 

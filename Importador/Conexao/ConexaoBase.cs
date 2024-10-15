@@ -4,6 +4,7 @@ using Npgsql;
 using System;
 using System.Data;
 using System.Data.SqlClient;
+using System.Text;
 using Ent = Importador.Classes.Entidades;
 
 namespace Importador.Conexao
@@ -33,7 +34,8 @@ namespace Importador.Conexao
     {
         public override IDbConnection CriarConexao(Ent.Conexao conexao)
         {
-            return new FbConnection($"DataSource={conexao.Host}  ;Port=  {conexao.Porta}  ;Database=  {conexao.Banco}  ;User=  {conexao.Usuario}  ;Password=  {conexao.Senha};");
+            Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+            return new FbConnection($"DataSource={conexao.Host}  ;Port=  {conexao.Porta}  ;Database=  {conexao.Banco}  ;User=  {conexao.Usuario}  ;Password=  {conexao.Senha};Charset=win1252");
         }
     }
 

@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Windows.Forms;
 using System.Text;
 using static Importador.Classes.Constantes;
 using static Importador.Classes.Utils;
@@ -22,7 +23,7 @@ namespace Importador.Classes
             return Convert.ToInt32(count.ExecuteScalar());
         }
 
-        public static void Importar(string sql, ref ProgressBarControl pbImportacao, string tabela, List<CheckEdit> parametros)
+        public static void Importar(string sql, ProgressBarControl pbImportacao, string tabela, List<CheckEdit> parametros)
         {
             StringBuilder sbSql = new();
             IDbCommand sqlQuery = ConexaoManager.instancia.GetConexaoImportacao().CreateCommand();
@@ -34,8 +35,11 @@ namespace Importador.Classes
 
             sqlQuery.CommandText = sql;
 
-            pbImportacao.EditValue = 0;
-            pbImportacao.Properties.Maximum = qtdRegistros;
+            pbImportacao.Invoke((MethodInvoker)delegate
+            {
+                pbImportacao.EditValue = 0;
+                pbImportacao.Properties.Maximum = qtdRegistros;
+            });
 
             //Limpa tabelas
             if (parametros.Exists((p) => string.Equals(p.Name, "cbExcluirRegistros", StringComparison.OrdinalIgnoreCase) && p.Checked))
@@ -66,10 +70,13 @@ namespace Importador.Classes
             sbSql.Append(string.Join(", ", nomeColunas.Select(col => $"@{col}")));
             sbSql.Append(");");
 
-            pbImportacao.CustomDisplayText += (sender, args) =>
+            pbImportacao.Invoke((MethodInvoker)delegate
             {
-                args.DisplayText = $"{registroAtual} de {qtdRegistros} registros";
-            };
+                pbImportacao.CustomDisplayText += (sender, args) =>
+                {
+                    args.DisplayText = $"{registroAtual} de {qtdRegistros} registros";
+                };
+            });
 
             string sqlInsert = sbSql.ToString();
 
@@ -107,8 +114,7 @@ namespace Importador.Classes
                         }
                         else if (value is string valor && valor.Length > tamColunas[i])
                         {
-                            valor = Encoding.Latin1.GetString(Encoding.Convert(Encoding.Unicode, Encoding.Latin1, Encoding.Unicode.GetBytes(valor)));
-                            parameter.Value = (valor.Length > tamColunas[i]) ? valor.Substring(0, tamColunas[i]) : valor;
+                            parameter.Value = valor.Substring(0, tamColunas[i]);
                         }
                         else
                         {
@@ -123,16 +129,22 @@ namespace Importador.Classes
 
                 ProximoItem:;
                     //Incrementa a progressbar e atualiza o seu texto
-                    pbImportacao.PerformStep();
-                    pbImportacao.Update();
+                    pbImportacao.Invoke((MethodInvoker)delegate{
+                        pbImportacao.PerformStep();
+                        pbImportacao.Update();
+                    });
+
                     registroAtual = Convert.ToInt32(pbImportacao.EditValue);
                 }
 
             }
-            pbImportacao.CustomDisplayText += (sender, args) =>
+            pbImportacao.Invoke((MethodInvoker)delegate
             {
-                args.DisplayText = $"Todos os {qtdRegistros} registros foram importados. Rodando updates para ajustes.";
-            };
+                pbImportacao.CustomDisplayText += (sender, args) =>
+                {
+                    args.DisplayText = $"Todos os {qtdRegistros} registros foram importados. Rodando updates para ajustes.";
+                };
+            });
             UpdatesPorTabela(tabela);
 
             //Rodar parametros pós-importação
