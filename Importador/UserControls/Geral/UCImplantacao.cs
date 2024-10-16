@@ -37,13 +37,17 @@ namespace Importador.UserControls.Geral
         {
             Implantacao implantacao = ConexaoBancoImportador.GetEntidade<Implantacao>(Enums.TabelaBancoLocal.implantacoes);
 
+            #region Informações da Implantação
             implantacao.RazaoSocialCliente = txtCliente.Text;
             implantacao.NomeResponsavel = txtResponsavel.Text;
             implantacao.SistemaAntigo = txtSistemaERP.Text;
             implantacao.LinkFormulario = txtFormularioOriginal.Text;
             implantacao.LinkBackup = txtBackupOriginal.Text;
-
             implantacao.RegimeEmpresa = rgRegime.SelectedIndex;
+            implantacao.Workflow = txtWorkflow.Text;
+            #endregion
+
+            #region Informações a serem importadas
             implantacao.ImportarClientes = ((byte)cbImportarClientes.SelectedIndex);
             implantacao.ImportarFornecedores = ((byte)cbImportarFornecedores.SelectedIndex);
             implantacao.ImportarContasAPagar = ((byte)cbImportarContasAPagar.SelectedIndex);
@@ -57,6 +61,7 @@ namespace Importador.UserControls.Geral
             implantacao.ImportarFabricantes = Convert.ToBoolean((int)cbImportarProdutosOpcoes.Properties.Items[5].CheckState);
             implantacao.ImportarGrades = Convert.ToBoolean((int)cbImportarProdutosOpcoes.Properties.Items[6].CheckState);
             implantacao.ImportarLotes = Convert.ToBoolean((int)cbImportarProdutosOpcoes.Properties.Items[7].CheckState);
+            #endregion
 
             ConexaoBancoImportador.Update(implantacao, Enums.TabelaBancoLocal.implantacoes);
 
@@ -94,6 +99,7 @@ namespace Importador.UserControls.Geral
             txtSistemaERP.Text = implantacao.SistemaAntigo;
             txtFormularioOriginal.Text = implantacao.LinkFormulario.ToString();
             txtBackupOriginal.Text = implantacao.LinkBackup.ToString();
+            txtWorkflow.Text = implantacao.Workflow;
             #endregion
 
             #region Setar Informações de importação
