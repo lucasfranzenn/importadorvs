@@ -17,15 +17,20 @@ namespace Importador.UserControls.Componentes
         {
             InitializeComponent();
 
-            Tamanho.Width = Tamanho.Width - (int)(Tamanho.Width * 0.5575);
-            Tamanho.Height = Tamanho.Height - (int)(Tamanho.Height * 0.7391);
-
-            Size = Tamanho;
-
-            Localizacao.X = Localizacao.X - Size.Width;
-            Location = Localizacao;
+            AtualizaProporcoes(Localizacao, Tamanho);
 
             lblTela.Text = "Observação - " + Tela;
+        }
+
+        public void AtualizaProporcoes(Point localizacao, Size tamanho)
+        {
+            tamanho.Width = tamanho.Width - (int)(tamanho.Width * 0.5575);
+            tamanho.Height = tamanho.Height - (int)(tamanho.Height * 0.7391);
+
+            Size = tamanho;
+
+            localizacao.X = localizacao.X - Size.Width;
+            Location = localizacao;
         }
 
         private void imgVoltar_Click(object sender, EventArgs e)

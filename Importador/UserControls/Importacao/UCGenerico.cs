@@ -115,14 +115,16 @@ namespace Importador.UserControls.Importacao
 
         private void btnObservacao_Click_1(object sender, EventArgs e)
         {
-            var obs = new Observacao(PointToClient(MousePosition), Size, cbTabelas.Text);
+            var obsObservacao = new Observacao(btnObservacao.Location, Size, cbTabelas.Text);
 
             AlternarVisibilidade();
-            Controls.Add(obs);
+            Controls.Add(obsObservacao);
 
-            obs.BringToFront();
+            obsObservacao.BringToFront();
 
-            obs.Disposed += (sender, args) => AlternarVisibilidade();
+            obsObservacao.Disposed += (sender, args) => AlternarVisibilidade();
+            SizeChanged -= (sender, args) => obsObservacao.AtualizaProporcoes(btnObservacao.Location, Size);
+            SizeChanged += (sender, args) => obsObservacao.AtualizaProporcoes(btnObservacao.Location, Size);
         }
     }
 }
