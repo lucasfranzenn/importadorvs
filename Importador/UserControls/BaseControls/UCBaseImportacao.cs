@@ -87,7 +87,7 @@ namespace Importador.UserControls.BaseControls
 
         protected void btnObservacao_Click(object sender, EventArgs e)
         {
-            var obs = new Observacao(PointToClient(MousePosition), MyC.Tabela.ToString());
+            var obs = new Observacao(PointToClient(MousePosition), Size, MyC.Tabela.ToString());
 
             AlternarVisibilidade();
             Controls.Add(obs);

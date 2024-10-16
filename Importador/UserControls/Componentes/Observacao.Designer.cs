@@ -46,6 +46,7 @@
             // 
             // txtObservacao
             // 
+            txtObservacao.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
             txtObservacao.Location = new System.Drawing.Point(12, 26);
             txtObservacao.Name = "txtObservacao";
             txtObservacao.Size = new System.Drawing.Size(284, 103);
@@ -53,6 +54,7 @@
             // 
             // imgVoltar
             // 
+            imgVoltar.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
             imgVoltar.Cursor = System.Windows.Forms.Cursors.Hand;
             imgVoltar.Location = new System.Drawing.Point(276, 4);
             imgVoltar.Name = "imgVoltar";

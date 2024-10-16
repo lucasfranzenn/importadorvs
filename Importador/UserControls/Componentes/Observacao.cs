@@ -13,9 +13,14 @@ namespace Importador.UserControls.Componentes
             InitializeComponent();
         }
 
-        public Observacao(Point Localizacao, string Tela)
+        public Observacao(Point Localizacao, Size Tamanho, string Tela)
         {
             InitializeComponent();
+
+            Tamanho.Width = Tamanho.Width - (int)(Tamanho.Width * 0.5575);
+            Tamanho.Height = Tamanho.Height - (int)(Tamanho.Height * 0.7391);
+
+            Size = Tamanho;
 
             Localizacao.X = Localizacao.X - Size.Width;
             Location = Localizacao;

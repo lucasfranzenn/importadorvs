@@ -345,8 +345,6 @@ namespace Importador.Classes
                 $", Empresa = {reader["empresa"]}, valor = 0, Usuario = 'MASTER', terminal = 'SERVIDOR', OBS= 'TRANSF. ESTOQUE'";
             cmd.ExecuteNonQuery();
 
-
-
             return true;
         }
     }

@@ -172,7 +172,7 @@ namespace Importador.UserControls.Importacao
 
         private void btnObservacao_Click(object sender, EventArgs e)
         {
-            var obs = new Observacao(PointToClient(MousePosition), "backup");
+            var obs = new Observacao(PointToClient(MousePosition), Size, "backup");
 
             AlternarVisibilidade();
             Controls.Add(obs);
