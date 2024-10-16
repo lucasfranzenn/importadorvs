@@ -1,5 +1,6 @@
 ﻿using DevExpress.XtraEditors;
 using Importador.Properties;
+using Importador.UserControls.Componentes;
 using System;
 
 namespace Importador.Classes.Entidades
@@ -9,11 +10,11 @@ namespace Importador.Classes.Entidades
 
         public Parametro() { }
 
-        public Parametro(UserControls.Componentes.TabelaMyCommerce myC, CheckEdit parametro)
+        public Parametro(TabelaMyCommerce myc, CheckEdit parametro)
         {
             CodigoParametro = null;
             CodigoImplantacao = Convert.ToInt32(Configuracoes.Default.CodigoImplantacao);
-            Tela = myC.Tabela.ToString();
+            Tela = myc.Tabela.ToString();
             NomeParametro = parametro.Name;
             Valor = parametro.Checked;
         }

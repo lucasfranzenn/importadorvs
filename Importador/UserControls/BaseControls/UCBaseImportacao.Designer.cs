@@ -41,6 +41,7 @@
             pbImportacao = new DevExpress.XtraEditors.ProgressBarControl();
             btnResetarSql = new DevExpress.XtraEditors.SimpleButton();
             MyC = new Componentes.TabelaMyCommerce(components);
+            btnObservacao = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)txtSqlImportacao.Properties).BeginInit();
             ((System.ComponentModel.ISupportInitialize)gcParametros).BeginInit();
             gcParametros.SuspendLayout();
@@ -168,10 +169,23 @@
             // 
             MyC.Tabela = Classes.Constantes.Enums.TabelaMyCommerce.clientes;
             // 
+            // btnObservacao
+            // 
+            btnObservacao.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
+            btnObservacao.Cursor = System.Windows.Forms.Cursors.Hand;
+            btnObservacao.ImageOptions.Image = Properties.Resources.notes_16x16;
+            btnObservacao.Location = new System.Drawing.Point(483, 9);
+            btnObservacao.Name = "btnObservacao";
+            btnObservacao.Size = new System.Drawing.Size(23, 23);
+            btnObservacao.TabIndex = 17;
+            btnObservacao.ToolTip = "Anotações referentes a importação deste módulo";
+            btnObservacao.Click += btnObservacao_Click;
+            // 
             // UCBaseImportacao
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            Controls.Add(btnObservacao);
             Controls.Add(btnResetarSql);
             Controls.Add(pbImportacao);
             Controls.Add(lblHorarioFimImportacao);
@@ -207,5 +221,6 @@
         private DevExpress.XtraEditors.CheckEdit cbExcluirRegistros;
         public DevExpress.XtraEditors.SimpleButton btnResetarSql;
         public Componentes.TabelaMyCommerce MyC;
+        public DevExpress.XtraEditors.SimpleButton btnObservacao;
     }
 }

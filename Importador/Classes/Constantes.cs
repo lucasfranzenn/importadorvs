@@ -42,7 +42,8 @@ namespace Importador.Classes
                 implantacoes,
                 conexoes,
                 consultas,
-                parametros
+                parametros,
+                observacoes
             }
 
             public enum Dml

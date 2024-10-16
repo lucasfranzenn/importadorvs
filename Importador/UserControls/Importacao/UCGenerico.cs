@@ -4,6 +4,7 @@ using Importador.Classes.Entidades;
 using Importador.Conexao;
 using Importador.Properties;
 using Importador.UserControls.BaseControls;
+using Importador.UserControls.Componentes;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -21,6 +22,7 @@ namespace Importador.UserControls.Importacao
 
             btnImportar.Click -= btnImportar_Click;
             Load -= UCBaseImportacao_Load;
+            btnObservacao.Click -= btnObservacao_Click;
         }
 
         private void cbTabelas_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
@@ -62,7 +64,7 @@ namespace Importador.UserControls.Importacao
 
             lblHorarioFimImportacao.Text = DateTime.Now.ToString();
 
-            Utils.MostrarNotificacao($"Importação dos {MyC.Tabela.ToString()} finalizada", "Importação");
+            Utils.MostrarNotificacao($"Importação dos {cbTabelas.SelectedText} finalizada", "Importação");
 
             Enabled = true;
         }
@@ -109,6 +111,18 @@ namespace Importador.UserControls.Importacao
                     parametro.Checked = param.Valor;
                 }
             }
+        }
+
+        private void btnObservacao_Click_1(object sender, EventArgs e)
+        {
+            var obs = new Observacao(PointToClient(MousePosition), cbTabelas.Text);
+
+            AlternarVisibilidade();
+            Controls.Add(obs);
+
+            obs.BringToFront();
+
+            obs.Disposed += (sender, args) => AlternarVisibilidade();
         }
     }
 }

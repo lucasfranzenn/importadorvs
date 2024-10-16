@@ -35,6 +35,7 @@
             gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             btnGerarBackup = new DevExpress.XtraEditors.SimpleButton();
             progressBarControl1 = new DevExpress.XtraEditors.ProgressBarControl();
+            btnObservacao = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)txtDestinoBackup.Properties).BeginInit();
             ((System.ComponentModel.ISupportInitialize)gcGridTabelas).BeginInit();
             ((System.ComponentModel.ISupportInitialize)gridView1).BeginInit();
@@ -57,7 +58,7 @@
             txtDestinoBackup.Location = new System.Drawing.Point(17, 50);
             txtDestinoBackup.Name = "txtDestinoBackup";
             txtDestinoBackup.Properties.ReadOnly = true;
-            txtDestinoBackup.Size = new System.Drawing.Size(490, 20);
+            txtDestinoBackup.Size = new System.Drawing.Size(461, 20);
             txtDestinoBackup.TabIndex = 1;
             txtDestinoBackup.KeyDown += txtDestinoBackup_KeyDown;
             // 
@@ -107,10 +108,24 @@
             progressBarControl1.Size = new System.Drawing.Size(518, 26);
             progressBarControl1.TabIndex = 5;
             // 
+            // btnObservacao
+            // 
+            btnObservacao.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
+            btnObservacao.Cursor = System.Windows.Forms.Cursors.Hand;
+            btnObservacao.ImageOptions.Image = Properties.Resources.notes_16x16;
+            btnObservacao.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
+            btnObservacao.Location = new System.Drawing.Point(484, 49);
+            btnObservacao.Name = "btnObservacao";
+            btnObservacao.Size = new System.Drawing.Size(23, 21);
+            btnObservacao.TabIndex = 18;
+            btnObservacao.ToolTip = "Anotações referentes a importação deste módulo";
+            btnObservacao.Click += btnObservacao_Click;
+            // 
             // UCBackup
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            Controls.Add(btnObservacao);
             Controls.Add(progressBarControl1);
             Controls.Add(btnGerarBackup);
             Controls.Add(gcGridTabelas);
@@ -136,5 +151,6 @@
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
         private DevExpress.XtraEditors.SimpleButton btnGerarBackup;
         private DevExpress.XtraEditors.ProgressBarControl progressBarControl1;
+        public DevExpress.XtraEditors.SimpleButton btnObservacao;
     }
 }

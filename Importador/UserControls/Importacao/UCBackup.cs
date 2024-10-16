@@ -4,6 +4,7 @@ using Importador.Classes;
 using Importador.Conexao;
 using Importador.Properties;
 using Importador.UserControls.BaseControls;
+using Importador.UserControls.Componentes;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -167,6 +168,23 @@ namespace Importador.UserControls.Importacao
         private void btnSelecionarDestino_CheckedChanged(object sender, EventArgs e)
         {
             SalvarArquivo();
+        }
+
+        private void btnObservacao_Click(object sender, EventArgs e)
+        {
+            var obs = new Observacao(PointToClient(MousePosition), "backup");
+
+            AlternarVisibilidade();
+            Controls.Add(obs);
+
+            obs.BringToFront();
+
+            obs.Disposed += (sender, args) => AlternarVisibilidade();
+        }
+
+        private void AlternarVisibilidade()
+        {
+            Controls.OfType<Control>().ToList().ForEach(c => c.Enabled = !c.Enabled);
         }
     }
 }

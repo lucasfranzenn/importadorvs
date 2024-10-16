@@ -65,9 +65,16 @@
             // 
             MyC.Tabela = Classes.Constantes.Enums.TabelaMyCommerce.generico;
             // 
+            // btnObservacao
+            // 
+            btnObservacao.ImageOptions.Image = (System.Drawing.Image)resources.GetObject("btnObservacao.ImageOptions.Image");
+            btnObservacao.Location = new System.Drawing.Point(512, 9);
+            btnObservacao.Click += btnObservacao_Click_1;
+            // 
             // cbTabelas
             // 
-            cbTabelas.Location = new System.Drawing.Point(414, 11);
+            cbTabelas.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
+            cbTabelas.Location = new System.Drawing.Point(385, 11);
             cbTabelas.Name = "cbTabelas";
             cbTabelas.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Plus) });
             cbTabelas.Size = new System.Drawing.Size(121, 20);
@@ -77,7 +84,8 @@
             // 
             // lblSelecionarTabela
             // 
-            lblSelecionarTabela.Location = new System.Drawing.Point(246, 14);
+            lblSelecionarTabela.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
+            lblSelecionarTabela.Location = new System.Drawing.Point(217, 14);
             lblSelecionarTabela.Name = "lblSelecionarTabela";
             lblSelecionarTabela.Size = new System.Drawing.Size(162, 13);
             lblSelecionarTabela.TabIndex = 18;
@@ -91,6 +99,7 @@
             Controls.Add(cbTabelas);
             Name = "UCGenerico";
             Load += UCGenerico_Load;
+            Controls.SetChildIndex(btnObservacao, 0);
             Controls.SetChildIndex(btnResetarSql, 0);
             Controls.SetChildIndex(txtSqlImportacao, 0);
             Controls.SetChildIndex(lblSqlImportacao, 0);

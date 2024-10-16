@@ -2,10 +2,12 @@
 using Importador.Classes;
 using Importador.Classes.Entidades;
 using Importador.Conexao;
+using Importador.UserControls.Componentes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using static Importador.Classes.Constantes;
 
 namespace Importador.UserControls.BaseControls
@@ -76,6 +78,23 @@ namespace Importador.UserControls.BaseControls
                     parametro.Checked = param.Valor;
                 }
             }
+        }
+
+        protected void AlternarVisibilidade()
+        {
+            Controls.OfType<Control>().ToList().ForEach(c => c.Enabled = !c.Enabled);
+        }
+
+        protected void btnObservacao_Click(object sender, EventArgs e)
+        {
+            var obs = new Observacao(PointToClient(MousePosition), MyC.Tabela.ToString());
+
+            AlternarVisibilidade();
+            Controls.Add(obs);
+
+            obs.BringToFront();
+
+            obs.Disposed += (sender, args) => AlternarVisibilidade();
         }
     }
 }
