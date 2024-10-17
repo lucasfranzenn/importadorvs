@@ -34,7 +34,8 @@ namespace Importador.Classes
                 grupos,
                 subgrupos,
                 fabricantes,
-                generico
+                generico,
+                produtosfornecedor
             }
 
             public enum TabelaBancoLocal

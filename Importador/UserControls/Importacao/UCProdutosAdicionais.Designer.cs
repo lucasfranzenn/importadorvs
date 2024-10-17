@@ -36,6 +36,7 @@
             tpGrupos = new DevExpress.XtraTab.XtraTabPage();
             tpSubGrupos = new DevExpress.XtraTab.XtraTabPage();
             tpFabricantes = new DevExpress.XtraTab.XtraTabPage();
+            tpFornecedores = new DevExpress.XtraTab.XtraTabPage();
             ((System.ComponentModel.ISupportInitialize)imgVoltar).BeginInit();
             ((System.ComponentModel.ISupportInitialize)tcAdicionais).BeginInit();
             tcAdicionais.SuspendLayout();
@@ -70,7 +71,7 @@
             tcAdicionais.SelectedTabPage = tpEstoque;
             tcAdicionais.Size = new System.Drawing.Size(527, 506);
             tcAdicionais.TabIndex = 3;
-            tcAdicionais.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] { tpEstoque, tpSecoes, tpGrupos, tpSubGrupos, tpFabricantes });
+            tcAdicionais.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] { tpEstoque, tpSecoes, tpGrupos, tpSubGrupos, tpFabricantes, tpFornecedores });
             // 
             // tpEstoque
             // 
@@ -81,26 +82,32 @@
             // tpSecoes
             // 
             tpSecoes.Name = "tpSecoes";
-            tpSecoes.Size = new System.Drawing.Size(454, 504);
+            tpSecoes.Size = new System.Drawing.Size(525, 481);
             tpSecoes.Text = "&Seções";
             // 
             // tpGrupos
             // 
             tpGrupos.Name = "tpGrupos";
-            tpGrupos.Size = new System.Drawing.Size(454, 504);
+            tpGrupos.Size = new System.Drawing.Size(525, 481);
             tpGrupos.Text = "&Grupos";
             // 
             // tpSubGrupos
             // 
             tpSubGrupos.Name = "tpSubGrupos";
-            tpSubGrupos.Size = new System.Drawing.Size(454, 504);
+            tpSubGrupos.Size = new System.Drawing.Size(525, 481);
             tpSubGrupos.Text = "S&ubGrupos";
             // 
             // tpFabricantes
             // 
             tpFabricantes.Name = "tpFabricantes";
-            tpFabricantes.Size = new System.Drawing.Size(454, 504);
+            tpFabricantes.Size = new System.Drawing.Size(525, 481);
             tpFabricantes.Text = "&Fabricantes";
+            // 
+            // tpFornecedores
+            // 
+            tpFornecedores.Name = "tpFornecedores";
+            tpFornecedores.Size = new System.Drawing.Size(525, 481);
+            tpFornecedores.Text = "Produto X Fornecedores";
             // 
             // UCProdutosAdicionais
             // 
@@ -127,5 +134,6 @@
         private DevExpress.XtraTab.XtraTabPage tpGrupos;
         private DevExpress.XtraTab.XtraTabPage tpSubGrupos;
         private DevExpress.XtraTab.XtraTabPage tpFabricantes;
+        private DevExpress.XtraTab.XtraTabPage tpFornecedores;
     }
 }

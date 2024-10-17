@@ -296,7 +296,15 @@ namespace Importador.Classes
 
         internal static object VincularPorContato(object arg)
         {
-            ConexaoManager.instancia.GetConexaoMyCommerce().Execute($"UPDATE {arg} join CLIENTES on {arg}.codigo = clientes.contato SET {arg}.Codigo = clientes.codigo, {arg}.razaosocial = clientes.razaosocial");
+            switch (arg)
+            {
+                case "produtosfornecedor":
+                    ConexaoManager.instancia.GetConexaoMyCommerce().Execute($"UPDATE {arg} join CLIENTES on {arg}.idFornecedor = clientes.contato and clientes.tipo = 'F' SET {arg}.idFornecedor = clientes.codigo");
+                    break;
+                default:
+                    ConexaoManager.instancia.GetConexaoMyCommerce().Execute($"UPDATE {arg} join CLIENTES on {arg}.codigo = clientes.contato SET {arg}.Codigo = clientes.codigo, {arg}.razaosocial = clientes.razaosocial");
+                    break;
+            }
 
             return true;
         }

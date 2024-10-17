@@ -15,6 +15,7 @@ namespace Importador.UserControls.Importacao
             tcAdicionais.TabPages[2].Controls.Add(new UCGrupos() { Dock = DockStyle.Fill });
             tcAdicionais.TabPages[3].Controls.Add(new UCSubGrupos() { Dock = DockStyle.Fill });
             tcAdicionais.TabPages[4].Controls.Add(new UCFabricantes() { Dock = DockStyle.Fill });
+            tcAdicionais.TabPages[5].Controls.Add(new UCFornecedores() { Dock = DockStyle.Fill });
         }
 
         private void imgVoltar_Click(object sender, EventArgs e)

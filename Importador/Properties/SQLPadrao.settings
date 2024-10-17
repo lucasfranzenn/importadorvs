@@ -38,5 +38,8 @@
     <Setting Name="produtosestoque" Type="System.String" Scope="User">
       <Value Profile="(Default)">select @  as codigoproduto,@  as estoque,@  as empresa,@  curdate() as DataUltimaMov,@  'MASTER' as Usuario @from produtosestoque</Value>
     </Setting>
+    <Setting Name="produtosfornecedor" Type="System.String" Scope="User">
+      <Value Profile="(Default)">select @  as idprodutos,@  as idfornecedor@fom produtosfornecedor</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
