@@ -36,7 +36,7 @@ namespace Importador.Conexao
         {
             //Alterar entre utf8 e win1252.
             Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
-            return new FbConnection($"DataSource={conexao.Host}  ;Port=  {conexao.Porta}  ;Database=  {conexao.Banco}  ;User=  {conexao.Usuario}  ;Password=  {conexao.Senha};Charset=WIN1252");
+            return new FbConnection($"DataSource={conexao.Host}  ;Port=  {conexao.Porta}  ;Database=  {conexao.Banco}  ;User=  {conexao.Usuario}  ;Password=  {conexao.Senha};");
         }
     }
 

@@ -1,4 +1,5 @@
-﻿using Importador.Conexao;
+﻿using DevExpress.XtraEditors;
+using Importador.Conexao;
 using Importador.UserControls.BaseControls;
 using System;
 using System.Windows.Forms;
@@ -85,11 +86,12 @@ namespace Importador.UserControls.Conexao
         {
             if (cbTipoBanco.SelectedIndex == 1 && e.KeyCode == Keys.F1)
             {
-                OpenFileDialog ofd = new OpenFileDialog();
-                ofd.Filter = "Arquivo FDB|*.FDB";
+                OpenFileDialog ofd = new();
+                ofd.Filter = "Arquivo FDB - UTF8|*.FDB|Arquivo FDB - WIN1252|*.FDB";
                 if (ofd.ShowDialog() == DialogResult.OK)
                 {
                     txtBancoDeDados.Text = ofd.FileName;
+                    txtBancoDeDados.Text += (ofd.FilterIndex == 1) ? ";Charset=UTF8" : ";Charset=WIN1252";
                 }
             }
         }
