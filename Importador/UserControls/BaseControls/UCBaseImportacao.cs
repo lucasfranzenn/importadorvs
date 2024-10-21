@@ -98,5 +98,16 @@ namespace Importador.UserControls.BaseControls
             SizeChanged -= (sender, args) => obsObservacao.AtualizaProporcoes(btnObservacao.Location, Size);
             SizeChanged += (sender, args) => obsObservacao.AtualizaProporcoes(btnObservacao.Location, Size);
         }
+
+        private void btnVerificarSintaxeSQL_Click(object sender, EventArgs e)
+        {
+            if (GerenciadorImportacao.VerificarSQL(txtSqlImportacao.Text) is string erro)
+            {
+                XtraMessageBox.Show(erro, "..::Importador::..", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            XtraMessageBox.Show("Comando SQL executado sem erros!", "..::Importador::..", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
     }
 }

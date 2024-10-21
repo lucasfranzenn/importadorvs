@@ -58,7 +58,7 @@
             // 
             btnResetarSql.Enabled = false;
             btnResetarSql.ImageOptions.Image = (System.Drawing.Image)resources.GetObject("btnResetarSql.ImageOptions.Image");
-            btnResetarSql.Location = new System.Drawing.Point(309, 519);
+            btnResetarSql.Location = new System.Drawing.Point(541, 525);
             btnResetarSql.Visible = false;
             // 
             // MyC
@@ -68,13 +68,17 @@
             // btnObservacao
             // 
             btnObservacao.ImageOptions.Image = (System.Drawing.Image)resources.GetObject("btnObservacao.ImageOptions.Image");
-            btnObservacao.Location = new System.Drawing.Point(512, 9);
             btnObservacao.Click += btnObservacao_Click_1;
+            // 
+            // btnVerificarSintaxeSQL
+            // 
+            btnVerificarSintaxeSQL.ImageOptions.Image = (System.Drawing.Image)resources.GetObject("btnVerificarSintaxeSQL.ImageOptions.Image");
+            btnVerificarSintaxeSQL.Location = new System.Drawing.Point(483, 9);
             // 
             // cbTabelas
             // 
             cbTabelas.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
-            cbTabelas.Location = new System.Drawing.Point(385, 11);
+            cbTabelas.Location = new System.Drawing.Point(356, 11);
             cbTabelas.Name = "cbTabelas";
             cbTabelas.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Plus) });
             cbTabelas.Size = new System.Drawing.Size(121, 20);
@@ -85,7 +89,7 @@
             // lblSelecionarTabela
             // 
             lblSelecionarTabela.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
-            lblSelecionarTabela.Location = new System.Drawing.Point(217, 14);
+            lblSelecionarTabela.Location = new System.Drawing.Point(188, 14);
             lblSelecionarTabela.Name = "lblSelecionarTabela";
             lblSelecionarTabela.Size = new System.Drawing.Size(162, 13);
             lblSelecionarTabela.TabIndex = 18;
@@ -99,6 +103,7 @@
             Controls.Add(cbTabelas);
             Name = "UCGenerico";
             Load += UCGenerico_Load;
+            Controls.SetChildIndex(btnVerificarSintaxeSQL, 0);
             Controls.SetChildIndex(btnObservacao, 0);
             Controls.SetChildIndex(btnResetarSql, 0);
             Controls.SetChildIndex(txtSqlImportacao, 0);

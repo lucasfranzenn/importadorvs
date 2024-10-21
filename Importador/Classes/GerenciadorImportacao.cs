@@ -299,10 +299,10 @@ namespace Importador.Classes
             switch (arg)
             {
                 case "produtosfornecedor":
-                    ConexaoManager.instancia.GetConexaoMyCommerce().Execute($"UPDATE {arg} join CLIENTES on {arg}.idFornecedor = clientes.contato and clientes.tipo = 'F' SET {arg}.idFornecedor = clientes.codigo");
+                    ConexaoManager.instancia.GetConexaoMyCommerce().ExecuteScalar($"UPDATE {arg} join CLIENTES on {arg}.idFornecedor = clientes.contato and clientes.tipo = 'F' SET {arg}.idFornecedor = clientes.codigo");
                     break;
                 default:
-                    ConexaoManager.instancia.GetConexaoMyCommerce().Execute($"UPDATE {arg} join CLIENTES on {arg}.codigo = clientes.contato SET {arg}.Codigo = clientes.codigo, {arg}.razaosocial = clientes.razaosocial");
+                    ConexaoManager.instancia.GetConexaoMyCommerce().ExecuteScalar($"UPDATE {arg} join CLIENTES on {arg}.RazaoSocial = clientes.contato SET {arg}.Codigo = clientes.codigo, {arg}.razaosocial = clientes.razaosocial");
                     break;
             }
 
@@ -339,21 +339,45 @@ namespace Importador.Classes
 
         internal static bool VincularPorReferencia(IDataReader reader)
         {
+            var cmdSelect = ConexaoManager.instancia.GetConexaoMyCommerce().CreateCommand();
+            cmdSelect.CommandText = $"select codigo from produtos where produtos.referencia = '{reader["codigoproduto"].ToString()}'";
+            var codigoProduto = cmdSelect.ExecuteScalar();
+
+            if (codigoProduto is null) return true;
+
             var cmd = ConexaoManager.instancia.GetConexaoMyCommerce().CreateCommand();
             var parametro = cmd.CreateParameter();
+
 
             parametro.ParameterName = "@Estoque";
             parametro.Value = reader["estoque"];
             cmd.Parameters.Add(parametro);
 
-            cmd.CommandText = $"INSERT INTO produtosestoque set codigoproduto = (select codigo from produtos where produtos.referencia = '{reader["codigoproduto"].ToString()}'), Estoque = @Estoque, Empresa = {Convert.ToInt32(reader["empresa"])}, DataUltimaMov = curdate(), USUARIO = 'MASTER'";
+            cmd.CommandText = $"INSERT INTO produtosestoque set codigoproduto = {codigoProduto}, Estoque = @Estoque, Empresa = {Convert.ToInt32(reader["empresa"])}, DataUltimaMov = curdate(), USUARIO = 'MASTER'";
             cmd.ExecuteNonQuery();
 
-            cmd.CommandText = $"INSERT INTO acertoestoque set data = curdate(), hora = curtime(), codigoproduto = (select codigo from produtos where produtos.referencia = '{reader["codigoproduto"].ToString()}'), qtde = @Estoque, Tipo = 'E'" +
+            cmd.CommandText = $"INSERT INTO acertoestoque set data = curdate(), hora = curtime(), codigoproduto = {codigoProduto}, qtde = @Estoque, Tipo = 'E'" +
                 $", Empresa = {reader["empresa"]}, valor = 0, Usuario = 'MASTER', terminal = 'SERVIDOR', OBS= 'TRANSF. ESTOQUE'";
             cmd.ExecuteNonQuery();
 
             return true;
+        }
+
+        internal static string VerificarSQL(string sql)
+        {
+            IDbCommand cmdSql = ConexaoManager.instancia.GetConexaoImportacao().CreateCommand();
+            cmdSql.CommandText = $"{sql}";
+
+            try
+            {
+                cmdSql.ExecuteNonQuery();
+            }
+            catch (Exception e)
+            {
+                return e.Message;
+            }
+
+            return null;
         }
     }
 }

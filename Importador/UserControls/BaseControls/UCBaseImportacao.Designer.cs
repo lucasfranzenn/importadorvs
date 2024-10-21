@@ -42,6 +42,7 @@
             btnResetarSql = new DevExpress.XtraEditors.SimpleButton();
             MyC = new Componentes.TabelaMyCommerce(components);
             btnObservacao = new DevExpress.XtraEditors.SimpleButton();
+            btnVerificarSintaxeSQL = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)txtSqlImportacao.Properties).BeginInit();
             ((System.ComponentModel.ISupportInitialize)gcParametros).BeginInit();
             gcParametros.SuspendLayout();
@@ -158,7 +159,7 @@
             btnResetarSql.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
             btnResetarSql.Cursor = System.Windows.Forms.Cursors.Hand;
             btnResetarSql.ImageOptions.Image = Properties.Resources.reset2_16x16;
-            btnResetarSql.Location = new System.Drawing.Point(512, 9);
+            btnResetarSql.Location = new System.Drawing.Point(454, 9);
             btnResetarSql.Name = "btnResetarSql";
             btnResetarSql.Size = new System.Drawing.Size(23, 23);
             btnResetarSql.TabIndex = 16;
@@ -174,17 +175,30 @@
             btnObservacao.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
             btnObservacao.Cursor = System.Windows.Forms.Cursors.Hand;
             btnObservacao.ImageOptions.Image = Properties.Resources.notes_16x16;
-            btnObservacao.Location = new System.Drawing.Point(483, 9);
+            btnObservacao.Location = new System.Drawing.Point(512, 9);
             btnObservacao.Name = "btnObservacao";
             btnObservacao.Size = new System.Drawing.Size(23, 23);
             btnObservacao.TabIndex = 17;
             btnObservacao.ToolTip = "Anotações referentes a importação deste módulo";
             btnObservacao.Click += btnObservacao_Click;
             // 
+            // btnVerificarSintaxeSQL
+            // 
+            btnVerificarSintaxeSQL.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
+            btnVerificarSintaxeSQL.Cursor = System.Windows.Forms.Cursors.Hand;
+            btnVerificarSintaxeSQL.ImageOptions.Image = Properties.Resources.spellcheck_16x16;
+            btnVerificarSintaxeSQL.Location = new System.Drawing.Point(483, 9);
+            btnVerificarSintaxeSQL.Name = "btnVerificarSintaxeSQL";
+            btnVerificarSintaxeSQL.Size = new System.Drawing.Size(23, 23);
+            btnVerificarSintaxeSQL.TabIndex = 18;
+            btnVerificarSintaxeSQL.ToolTip = "Este botão verifica a sintaxe sql";
+            btnVerificarSintaxeSQL.Click += btnVerificarSintaxeSQL_Click;
+            // 
             // UCBaseImportacao
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            Controls.Add(btnVerificarSintaxeSQL);
             Controls.Add(btnObservacao);
             Controls.Add(btnResetarSql);
             Controls.Add(pbImportacao);
@@ -222,5 +236,6 @@
         public DevExpress.XtraEditors.SimpleButton btnResetarSql;
         public Componentes.TabelaMyCommerce MyC;
         public DevExpress.XtraEditors.SimpleButton btnObservacao;
+        public DevExpress.XtraEditors.SimpleButton btnVerificarSintaxeSQL;
     }
 }
