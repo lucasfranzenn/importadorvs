@@ -37,6 +37,7 @@
             tpSubGrupos = new DevExpress.XtraTab.XtraTabPage();
             tpFabricantes = new DevExpress.XtraTab.XtraTabPage();
             tpFornecedores = new DevExpress.XtraTab.XtraTabPage();
+            tpCodigoBarrasAdicional = new DevExpress.XtraTab.XtraTabPage();
             ((System.ComponentModel.ISupportInitialize)imgVoltar).BeginInit();
             ((System.ComponentModel.ISupportInitialize)tcAdicionais).BeginInit();
             tcAdicionais.SuspendLayout();
@@ -67,11 +68,12 @@
             tcAdicionais.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
             tcAdicionais.HeaderAutoFill = DevExpress.Utils.DefaultBoolean.True;
             tcAdicionais.Location = new System.Drawing.Point(9, 27);
+            tcAdicionais.MultiLine = DevExpress.Utils.DefaultBoolean.True;
             tcAdicionais.Name = "tcAdicionais";
             tcAdicionais.SelectedTabPage = tpEstoque;
             tcAdicionais.Size = new System.Drawing.Size(527, 506);
             tcAdicionais.TabIndex = 3;
-            tcAdicionais.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] { tpEstoque, tpSecoes, tpGrupos, tpSubGrupos, tpFabricantes, tpFornecedores });
+            tcAdicionais.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] { tpEstoque, tpSecoes, tpGrupos, tpSubGrupos, tpFabricantes, tpFornecedores, tpCodigoBarrasAdicional });
             // 
             // tpEstoque
             // 
@@ -107,7 +109,13 @@
             // 
             tpFornecedores.Name = "tpFornecedores";
             tpFornecedores.Size = new System.Drawing.Size(525, 481);
-            tpFornecedores.Text = "Produto X Fornecedores";
+            tpFornecedores.Text = "&Produto X Fornecedores";
+            // 
+            // tpCodigoBarrasAdicional
+            // 
+            tpCodigoBarrasAdicional.Name = "tpCodigoBarrasAdicional";
+            tpCodigoBarrasAdicional.Size = new System.Drawing.Size(525, 481);
+            tpCodigoBarrasAdicional.Text = "&Codigos de Barras";
             // 
             // UCProdutosAdicionais
             // 
@@ -135,5 +143,6 @@
         private DevExpress.XtraTab.XtraTabPage tpSubGrupos;
         private DevExpress.XtraTab.XtraTabPage tpFabricantes;
         private DevExpress.XtraTab.XtraTabPage tpFornecedores;
+        private DevExpress.XtraTab.XtraTabPage tpCodigoBarrasAdicional;
     }
 }

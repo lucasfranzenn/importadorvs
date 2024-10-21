@@ -41,5 +41,8 @@
     <Setting Name="produtosfornecedor" Type="System.String" Scope="User">
       <Value Profile="(Default)">select @  as idprodutos,@  as idfornecedor@from produtosfornecedor</Value>
     </Setting>
+    <Setting Name="produtosbarcode" Type="System.String" Scope="User">
+      <Value Profile="(Default)">select @  as codigoproduto,@  as barcode,@  as fracionario,@  as grade_linha,@  as grade_coluna,@  as idgrade@from produtosbarcode</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

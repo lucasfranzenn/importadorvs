@@ -379,5 +379,51 @@ namespace Importador.Classes
 
             return null;
         }
+
+        internal static bool ImportarCodBarrasAdicionais(IDataReader reader)
+        {
+            string codbar = reader["barcode"].ToString() ?? string.Empty;
+
+            if (string.IsNullOrEmpty(codbar)) return true;
+
+            int codigoProduto = Convert.ToInt32(reader["codigoproduto"]);
+
+            string sql = $"select codigobarras from produtos where codigo = {codigoProduto} and codigobarras = '{codbar}'";
+
+            return (ConexaoManager.instancia.GetConexaoMyCommerce().ExecuteScalar(sql) is not null);
+        }
+
+        internal static object AtualizarCodBarras(object arg)
+        {
+            ConexaoManager.instancia.GetConexaoMyCommerce()
+                .ExecuteScalar("UPDATE PRODUTOS join (select min(sequencia), codigoproduto, barcode from produtosbarcode group by codigoproduto) bc on produtos.codigo = bc.codigoproduto" +
+                " set produtos.codigobarras = bc.barcode where produtos.codigobarras is null or produtos.codigobarras = ''");
+
+            return null;
+        }
+
+        internal static bool VincularCodBarPorReferencia(IDataReader reader)
+        {
+            string codbar = reader["barcode"].ToString() ?? string.Empty;
+
+            if (string.IsNullOrEmpty(codbar)) return true;
+
+            var codigoProduto = ConexaoManager.instancia.GetConexaoMyCommerce().ExecuteScalar($"select codigo from produtos where referencia = '{reader["codigoproduto"].ToString()}'") ?? "null";
+            var fracionario = reader["fracionario"] ?? 1;
+            var gradeLinha = reader["grade_linha"] is DBNull ? "null" : reader["grade_linha"];
+            var gradeColuna = reader["grade_coluna"] is DBNull ? "null" : reader["grade_coluna"];
+            var idGrade = reader["idgrade"] is DBNull ? "null" : reader["idgrade"];
+
+            string sql = $"select codigobarras from produtos where codigo = {codigoProduto} and codigobarras = '{codbar}'";
+
+            if (!string.Equals(codigoProduto.ToString(), "null", StringComparison.OrdinalIgnoreCase) && ConexaoManager.instancia.GetConexaoMyCommerce().ExecuteScalar(sql) is null)
+            {
+                string sqlInsert = $"INSERT INTO produtosbarcode SET codigoproduto = {codigoProduto}, barcode = '{codbar}', fracionario = {fracionario}, " +
+                    $"grade_linha = {gradeLinha}, grade_coluna = {gradeColuna}, idgrade={idGrade}" ;
+                ConexaoManager.instancia.GetConexaoMyCommerce().ExecuteScalar(sqlInsert);
+            }
+
+            return true;
+        }
     }
 }

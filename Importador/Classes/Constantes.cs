@@ -35,7 +35,8 @@ namespace Importador.Classes
                 subgrupos,
                 fabricantes,
                 generico,
-                produtosfornecedor
+                produtosfornecedor,
+                produtosbarcode
             }
 
             public enum TabelaBancoLocal
@@ -101,7 +102,9 @@ namespace Importador.Classes
                 {"cbValidarDocumento",  GerenciadorImportacao.ValidarExistenciaDocumento},
                 {"cbValidarCodBarras",  GerenciadorImportacao.ValidarExistenciaCodBarras},
                 {"cbVincularPorReferencia", GerenciadorImportacao.VincularPorReferencia },
-                {"cbImportarEstoque", GerenciadorImportacao.ImportarEstoque }
+                {"cbVincularCodBarPorReferencia", GerenciadorImportacao.VincularCodBarPorReferencia },
+                {"cbImportarEstoque", GerenciadorImportacao.ImportarEstoque },
+                {"cbImportarCodBarras", GerenciadorImportacao.ImportarCodBarrasAdicionais }
             };
 
             public static readonly Dictionary<string, Func<object, object>> FuncoesPosImportacaoPorParametro = new()
@@ -109,7 +112,8 @@ namespace Importador.Classes
                   {"cbCriarUnidades",  GerenciadorImportacao.CriarUnidades},
                   {"cbCriarTabelaPreco",  GerenciadorImportacao.CriarTabelaPreco},
                   {"cbVincularPorContato", GerenciadorImportacao.VincularPorContato },
-                  {"cbImportarEstoque", GerenciadorImportacao.VerificarDuplicidade }
+                  {"cbImportarEstoque", GerenciadorImportacao.VerificarDuplicidade },
+                  {"cbImportarCodBarras", GerenciadorImportacao.AtualizarCodBarras }
             };
 
             public static readonly Dictionary<string, List<string>> UpdatesPorTabela = new()

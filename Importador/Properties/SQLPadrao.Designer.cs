@@ -185,5 +185,18 @@ namespace Importador.Properties {
                 this["produtosfornecedor"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("select @  as codigoproduto,@  as barcode,@  as fracionario,@  as grade_linha,@  a" +
+            "s grade_coluna,@  as idgrade@from produtosbarcode")]
+        public string produtosbarcode {
+            get {
+                return ((string)(this["produtosbarcode"]));
+            }
+            set {
+                this["produtosbarcode"] = value;
+            }
+        }
     }
 }
