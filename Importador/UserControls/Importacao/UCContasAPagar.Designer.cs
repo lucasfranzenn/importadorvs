@@ -63,6 +63,14 @@
             // 
             MyC.Tabela = Classes.Constantes.Enums.TabelaMyCommerce.contasapagar;
             // 
+            // btnObservacao
+            // 
+            btnObservacao.ImageOptions.Image = (System.Drawing.Image)resources.GetObject("btnObservacao.ImageOptions.Image");
+            // 
+            // btnVerificarSintaxeSQL
+            // 
+            btnVerificarSintaxeSQL.ImageOptions.Image = (System.Drawing.Image)resources.GetObject("btnVerificarSintaxeSQL.ImageOptions.Image");
+            // 
             // cbVincularPorContato
             // 
             cbVincularPorContato.Location = new System.Drawing.Point(169, 26);
@@ -70,7 +78,7 @@
             cbVincularPorContato.Properties.Caption = "Vincular conta pelo campo contato?";
             cbVincularPorContato.Size = new System.Drawing.Size(199, 20);
             cbVincularPorContato.TabIndex = 18;
-            cbVincularPorContato.ToolTip = "Se ativo, vincular no campo código o mesmo valor que esta salvo em clientes.contato";
+            cbVincularPorContato.ToolTip = "Se ativo, vincular no campo razãosocial o mesmo valor que esta salvo em clientes.contato";
             // 
             // UCContasAPagar
             // 

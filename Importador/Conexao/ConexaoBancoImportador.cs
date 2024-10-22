@@ -22,12 +22,6 @@ namespace Importador.Conexao
             conexao.Open();
         }
 
-        public static void Executar(string comandoSQL)
-        {
-            SqliteCommand cmd = new SqliteCommand(comandoSQL, instancia.conexao);
-            cmd.ExecuteNonQuery();
-        }
-
         public static void InserirRegistro(object obj, Enums.TabelaBancoLocal tabela)
         {
             Type entidade = obj.GetType();

@@ -76,7 +76,6 @@ namespace Importador.UserControls.Importacao
 
             if (!ConexaoManager.ConexoesAbertas())
             {
-                XtraMessageBox.Show("Conexões não foram estabelecidas!\nConfigure-as corretamente", "..::Importador::..");
                 Enabled = false;
                 return;
             }

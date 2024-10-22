@@ -1,8 +1,10 @@
-﻿using FirebirdSql.Data.FirebirdClient;
+﻿using DevExpress.XtraEditors;
+using FirebirdSql.Data.FirebirdClient;
 using MySqlConnector;
 using Npgsql;
 using System;
 using System.Data;
+using System.Data.Common;
 using System.Data.SqlClient;
 using System.Diagnostics;
 using static Importador.Classes.Constantes;
@@ -20,18 +22,8 @@ namespace Importador.Conexao
         {
             _conexaoMariaDB = new MariaDbConnection().CriarConexao(GetImportacao(Enums.Sistema.MyCommerce));
 
-            var genericDbFactory = ConexaoFactory.CriarConexaoBanco((Enums.TipoBanco)GetImportacao(Enums.Sistema.Importacao).TipoBanco);
+            ConexaoBase genericDbFactory = ConexaoFactory.CriarConexaoBanco((Enums.TipoBanco)GetImportacao(Enums.Sistema.Importacao).TipoBanco);
             _conexaoImportacao = genericDbFactory.CriarConexao(GetImportacao(Enums.Sistema.Importacao));
-
-            try
-            {
-                _conexaoMariaDB.Open();
-                _conexaoImportacao.Open();
-            }
-            catch (Exception e)
-            {
-                Debug.Print(e.Message);
-            }
         }
 
         public IDbConnection GetConexaoMyCommerce()
@@ -50,8 +42,24 @@ namespace Importador.Conexao
                 instancia.CloseConnections();
 
             instancia = new();
+            bool conexaoAberta=false;
+            try
+            {
+                instancia._conexaoMariaDB.Open();
+                conexaoAberta = true;
+                instancia._conexaoImportacao.Open();
+            }
+            catch (DbException e)
+            {
+                if (conexaoAberta==true)
+                    XtraMessageBox.Show(e.Message, "..::Problema na conexão do Banco da Importação::..", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
+                else
+                    XtraMessageBox.Show(e.Message, "..::Problema na conexão do Banco do MyCommerce::..", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
 
-            return ((instancia._conexaoImportacao.State == ConnectionState.Open && instancia._conexaoMariaDB.State == ConnectionState.Open));
+                return false;
+            }
+
+            return true;
         }
 
         public void CloseConnections()
@@ -68,9 +76,6 @@ namespace Importador.Conexao
             (NpgsqlConnection) => $"SELECT table_name as tabela, column_name as coluna FROM information_schema.columns WHERE upper(column_name) like upper('%{coluna}%') order by table_name",
             _ => null
         };
-
-
-
     }
 
 }
