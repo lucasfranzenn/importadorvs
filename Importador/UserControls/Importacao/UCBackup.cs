@@ -33,6 +33,7 @@ namespace Importador.UserControls.Importacao
         private void SalvarArquivo()
         {
             SaveFileDialog ofd = new SaveFileDialog();
+            ofd.InitialDirectory = Path.GetDirectoryName(txtDestinoBackup.Text);
             ofd.FileName = Path.GetFileName(txtDestinoBackup.Text);
             ofd.Filter = "Backup|*.rar";
             if (ofd.ShowDialog() == DialogResult.OK)

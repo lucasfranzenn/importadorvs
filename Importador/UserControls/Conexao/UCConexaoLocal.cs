@@ -3,6 +3,7 @@ using System;
 using static Importador.Classes.Constantes.Enums;
 using System.Windows.Forms;
 using static Importador.Properties.Configuracoes;
+using System.IO;
 
 namespace Importador.UserControls.Conexao
 {
@@ -30,6 +31,7 @@ namespace Importador.UserControls.Conexao
             {
                 OpenFileDialog ofd = new OpenFileDialog();
                 ofd.Filter = "Banco SQLite|*.db";
+                ofd.InitialDirectory = Path.GetDirectoryName(txtCaminhoBanco.Text);
                 if (ofd.ShowDialog() == DialogResult.OK)
                 {
                     txtCaminhoBanco.Text = ofd.FileName;

@@ -2,6 +2,7 @@
 using Importador.Conexao;
 using Importador.UserControls.BaseControls;
 using System;
+using System.IO;
 using System.Windows.Forms;
 using System.Windows.Input;
 using static Importador.Classes.Constantes;
@@ -87,7 +88,8 @@ namespace Importador.UserControls.Conexao
             if (cbTipoBanco.SelectedIndex == 1 && e.KeyCode == Keys.F1)
             {
                 OpenFileDialog ofd = new();
-                ofd.Filter = "Arquivo FDB - UTF8|*.FDB|Arquivo FDB - WIN1252|*.FDB";
+                ofd.Filter = "Banco Firebird - UTF8|*.FDB;*.GDB|Banco Firebird - WIN1252|*.FDB;*.GDB";
+                ofd.InitialDirectory = Path.GetDirectoryName(txtBancoDeDados.Text);
                 if (ofd.ShowDialog() == DialogResult.OK)
                 {
                     txtBancoDeDados.Text = ofd.FileName;
