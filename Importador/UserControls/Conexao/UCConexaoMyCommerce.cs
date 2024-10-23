@@ -27,24 +27,19 @@ namespace Importador.UserControls.Conexao
 
         private void UCConexaoMyCommerce_Load(object sender, EventArgs e)
         {
-            Classes.Entidades.Conexao entidade;
-            try
-            {
-                entidade = ConexaoBancoImportador.GetEntidade<Classes.Entidades.Conexao>(Enums.TabelaBancoLocal.conexoes, "TipoConexao = 0");
-            }
-            catch (Exception)
+            Classes.Entidades.Conexao entidade = ConexaoBancoImportador.GetEntidade<Classes.Entidades.Conexao>(Enums.TabelaBancoLocal.conexoes, "TipoConexao = 0");
+            
+            if(entidade is null)
             {
                 ConexaoBancoImportador.InserirRegistro(new Classes.Entidades.Conexao(Enums.Sistema.MyCommerce), Enums.TabelaBancoLocal.conexoes);
-            }
-            finally
-            {
                 entidade = ConexaoBancoImportador.GetEntidade<Classes.Entidades.Conexao>(Enums.TabelaBancoLocal.conexoes, "TipoConexao = 0");
-                txtHost.Text = entidade.Host;
-                txtPorta.Text = entidade.Porta.ToString();
-                txtUsuario.Text = entidade.Usuario;
-                txtSenha.Text = entidade.Senha;
-                txtBancoDeDados.Text = entidade.Banco;
             }
+
+            txtHost.Text = entidade.Host;
+            txtPorta.Text = entidade.Porta.ToString();
+            txtUsuario.Text = entidade.Usuario;
+            txtSenha.Text = entidade.Senha;
+            txtBancoDeDados.Text = entidade.Banco;
         }
     }
 }

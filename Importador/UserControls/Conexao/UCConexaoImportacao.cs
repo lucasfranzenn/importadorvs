@@ -18,25 +18,20 @@ namespace Importador.UserControls.Conexao
 
         private void UCConexaoImportacao_Load(object sender, EventArgs e)
         {
-            Classes.Entidades.Conexao entidade;
-            try
-            {
-                entidade = ConexaoBancoImportador.GetEntidade<Classes.Entidades.Conexao>(Enums.TabelaBancoLocal.conexoes, $"TipoConexao = 1 and Padrao = 1");
-            }
-            catch (Exception)
+            Classes.Entidades.Conexao entidade = ConexaoBancoImportador.GetEntidade<Classes.Entidades.Conexao>(Enums.TabelaBancoLocal.conexoes, $"TipoConexao = 1 and Padrao = 1");
+
+            if (entidade is null)
             {
                 ConexaoBancoImportador.InserirRegistro(new Classes.Entidades.Conexao(Enums.Sistema.Importacao), Enums.TabelaBancoLocal.conexoes);
-            }
-            finally
-            {
                 entidade = ConexaoBancoImportador.GetEntidade<Classes.Entidades.Conexao>(Enums.TabelaBancoLocal.conexoes, $"TipoConexao = 1 and Padrao = 1");
-                cbTipoBanco.SelectedIndex = entidade.TipoBanco;
-                txtHost.Text = entidade.Host;
-                txtPorta.Text = entidade.Porta.ToString();
-                txtUsuario.Text = entidade.Usuario;
-                txtSenha.Text = entidade.Senha;
-                txtBancoDeDados.Text = entidade.Banco;
             }
+
+            cbTipoBanco.SelectedIndex = entidade.TipoBanco;
+            txtHost.Text = entidade.Host;
+            txtPorta.Text = entidade.Porta.ToString();
+            txtUsuario.Text = entidade.Usuario;
+            txtSenha.Text = entidade.Senha;
+            txtBancoDeDados.Text = entidade.Banco;
         }
 
         private void UCConexaoImportacao_Leave(object sender, EventArgs e)
@@ -57,18 +52,13 @@ namespace Importador.UserControls.Conexao
 
         private void AtualizaInformacoesConexao()
         {
-            Classes.Entidades.Conexao conexao;
+            Classes.Entidades.Conexao conexao = ConexaoBancoImportador.GetEntidade<Classes.Entidades.Conexao>(Enums.TabelaBancoLocal.conexoes, $"TipoConexao = 1 and TipoBanco = {cbTipoBanco.SelectedIndex}");
 
-            try
-            {
-                conexao = ConexaoBancoImportador.GetEntidade<Classes.Entidades.Conexao>(Enums.TabelaBancoLocal.conexoes, $"TipoConexao = 1 and TipoBanco = {cbTipoBanco.SelectedIndex}");
-            }
-            catch (Exception)
+            if (conexao is null)
             {
                 ConexaoBancoImportador.InserirRegistro(new Classes.Entidades.Conexao((Enums.TipoBanco)cbTipoBanco.SelectedIndex), Enums.TabelaBancoLocal.conexoes);
+                conexao = ConexaoBancoImportador.GetEntidade<Classes.Entidades.Conexao>(Enums.TabelaBancoLocal.conexoes, $"TipoConexao = 1 and TipoBanco = {cbTipoBanco.SelectedIndex}");
             }
-
-            conexao = ConexaoBancoImportador.GetEntidade<Classes.Entidades.Conexao>(Enums.TabelaBancoLocal.conexoes, $"TipoConexao = 1 and TipoBanco = {cbTipoBanco.SelectedIndex}");
 
             cbTipoBanco.SelectedIndex = conexao.TipoBanco;
             txtHost.Text = conexao.Host;

@@ -43,19 +43,16 @@ namespace Importador.UserControls.Componentes
         {
             Classes.Entidades.Observacoes entidade;
             string tela = lblTela.Text.Split('-')[1].TrimStart();
-            try
-            {
-                entidade = ConexaoBancoImportador.GetEntidade<Classes.Entidades.Observacoes>(Enums.TabelaBancoLocal.observacoes, $"Tela = '{tela}'");
-            }
-            catch (Exception)
+
+            entidade = ConexaoBancoImportador.GetEntidade<Classes.Entidades.Observacoes>(Enums.TabelaBancoLocal.observacoes, $"Tela = '{tela}'");
+
+            if (entidade is null)
             {
                 ConexaoBancoImportador.InserirRegistro(new Classes.Entidades.Observacoes(tela), Enums.TabelaBancoLocal.observacoes);
-            }
-            finally
-            {
                 entidade = ConexaoBancoImportador.GetEntidade<Classes.Entidades.Observacoes>(Enums.TabelaBancoLocal.observacoes, $"Tela = '{tela}'");
-                txtObservacao.Text = entidade.Observacao;
             }
+
+            txtObservacao.Text = entidade.Observacao;
         }
 
         private void Observacao_Leave(object sender, EventArgs e)

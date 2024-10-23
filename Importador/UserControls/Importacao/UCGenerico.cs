@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using static Importador.Classes.Constantes;
 
 namespace Importador.UserControls.Importacao
@@ -50,6 +51,12 @@ namespace Importador.UserControls.Importacao
 
         private async void btnImportar_Click_1(object sender, EventArgs e)
         {
+            if (GerenciadorImportacao.VerificarSQL(txtSqlImportacao.Text) is string erro)
+            {
+                XtraMessageBox.Show(erro, "..::Importador::..", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             lblHorarioInicioImportacao.Text = DateTime.Now.ToString();
 
             List<CheckEdit> listaParametros = gcParametros.Controls.OfType<CheckEdit>().ToList();
@@ -95,20 +102,15 @@ namespace Importador.UserControls.Importacao
 
             foreach (var parametro in gcParametros.Controls.OfType<CheckEdit>().ToList())
             {
-                try
-                {
-                    param = ConexaoBancoImportador.GetEntidade<Parametro>(Enums.TabelaBancoLocal.parametros, $"Tela = '{MyC.Tabela}' and NomeParametro = '{parametro.Name}'");
-                }
-                catch (Exception)
+                param = ConexaoBancoImportador.GetEntidade<Parametro>(Enums.TabelaBancoLocal.parametros, $"Tela = '{MyC.Tabela}' and NomeParametro = '{parametro.Name}'");
+
+                if (param is null)
                 {
                     ConexaoBancoImportador.InserirRegistro(new Parametro(MyC, parametro), Enums.TabelaBancoLocal.parametros);
-                }
-                finally
-                {
                     param = ConexaoBancoImportador.GetEntidade<Parametro>(Enums.TabelaBancoLocal.parametros, $"Tela = '{MyC.Tabela}' and NomeParametro = '{parametro.Name}'");
-
-                    parametro.Checked = param.Valor;
                 }
+
+                parametro.Checked = param.Valor;
             }
         }
 

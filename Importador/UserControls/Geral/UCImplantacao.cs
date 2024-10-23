@@ -1,4 +1,5 @@
-﻿using DevExpress.XtraEditors;
+﻿using DevExpress.CodeParser;
+using DevExpress.XtraEditors;
 using Importador.Classes.Entidades;
 using Importador.Conexao;
 using Importador.UserControls.BaseControls;
@@ -18,14 +19,11 @@ namespace Importador.UserControls.Geral
 
         private void UCImplantacao_Load(object sender, EventArgs e)
         {
-            try
-            {
-                CarregaInformacoes(ConexaoBancoImportador.GetEntidade<Implantacao>(Enums.TabelaBancoLocal.implantacoes));
-            }
-            catch (Exception ex)
-            {
-                XtraMessageBox.Show(ex.Message, "..::Importador::..");
-            }
+            Implantacao impAtual = ConexaoBancoImportador.GetEntidade<Implantacao>(Enums.TabelaBancoLocal.implantacoes);
+
+            if (impAtual is null) return;
+
+            CarregaInformacoes(impAtual);
         }
 
         private void UCImplantacao_Leave(object sender, EventArgs e)
@@ -36,6 +34,8 @@ namespace Importador.UserControls.Geral
         private void SalvaInformacoes()
         {
             Implantacao implantacao = ConexaoBancoImportador.GetEntidade<Implantacao>(Enums.TabelaBancoLocal.implantacoes);
+
+            if (implantacao is null) return;
 
             #region Informações da Implantação
             implantacao.RazaoSocialCliente = txtCliente.Text;
@@ -75,18 +75,18 @@ namespace Importador.UserControls.Geral
             {
                 Default.CodigoImplantacao = txtCodigoImplantacao.Text;
                 Default.Save();
-                try
-                {
-                    CarregaInformacoes(ConexaoBancoImportador.GetEntidade<Implantacao>(Enums.TabelaBancoLocal.implantacoes));
-                }
-                catch (Exception)
+                var impAtual = ConexaoBancoImportador.GetEntidade<Implantacao>(Enums.TabelaBancoLocal.implantacoes);
+
+                if (impAtual is null)
                 {
                     if (XtraMessageBox.Show("Este código não está cadastrado\nDeseja cadastrar?", "..::Importador::..", MessageBoxButtons.YesNo) == DialogResult.Yes)
                     {
                         ConexaoBancoImportador.InserirRegistro(new Implantacao(txtCodigoImplantacao.Text), Enums.TabelaBancoLocal.implantacoes);
-                        CarregaInformacoes(ConexaoBancoImportador.GetEntidade<Implantacao>(Enums.TabelaBancoLocal.implantacoes));
-                    }
-                }
+                        impAtual = ConexaoBancoImportador.GetEntidade<Implantacao>(Enums.TabelaBancoLocal.implantacoes);
+                    }else return;
+                }    
+
+                CarregaInformacoes(impAtual);
             }
         }
 

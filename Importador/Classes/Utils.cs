@@ -40,16 +40,16 @@ namespace Importador.Classes
 
         internal static void AtualizaSQLImportacao(string sql, string tabela)
         {
-            try
-            {
-                var Consulta = ConexaoBancoImportador.GetEntidade<Consultas>(Enums.TabelaBancoLocal.consultas, $"TabelaConsulta = '{tabela}'");
-                Consulta.Consulta = sql;
-                ConexaoBancoImportador.Update(Consulta, Enums.TabelaBancoLocal.consultas);
-            }
-            catch (Exception)
+            var Consulta = ConexaoBancoImportador.GetEntidade<Consultas>(Enums.TabelaBancoLocal.consultas, $"TabelaConsulta = '{tabela}'");
+
+            if (Consulta is null)
             {
                 ConexaoBancoImportador.InserirRegistro(new Consultas(tabela, sql), Enums.TabelaBancoLocal.consultas);
+                return;
             }
+
+            Consulta.Consulta = sql;
+            ConexaoBancoImportador.Update(Consulta, Enums.TabelaBancoLocal.consultas);
         }
 
         public static string GetCmdDump(string tabelas, string caminhoBackup)

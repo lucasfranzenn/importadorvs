@@ -48,7 +48,7 @@ namespace Importador.Conexao
                 return entidade;
             }
 
-            throw new NullReferenceException();
+            return null;
         }
 
         public static T GetEntidade<T>(Enums.TabelaBancoLocal tabela, string where) where T : class
@@ -60,7 +60,7 @@ namespace Importador.Conexao
                 return entidade;
             }
 
-            throw new NullReferenceException();
+            return null;
         }
 
         internal static void Update(object obj, Enums.TabelaBancoLocal tabela)
@@ -107,18 +107,16 @@ namespace Importador.Conexao
 
         internal static void AtualizaParametros(TabelaMyCommerce tela, List<CheckEdit> listaParametros)
         {
+            Parametro param;
+
             foreach (var parametro in listaParametros)
             {
-                try
-                {
-                    var Param = GetEntidade<Parametro>(Enums.TabelaBancoLocal.parametros, $"Tela = '{tela.Tabela}' and NomeParametro = '{parametro.Name}'");
-                    Param.Valor = parametro.Checked;
-                    Update(Param, Enums.TabelaBancoLocal.parametros);
-                }
-                catch (Exception)
-                {
-                    InserirRegistro(new Parametro(tela, parametro), Enums.TabelaBancoLocal.parametros);
-                }
+                param = GetEntidade<Parametro>(Enums.TabelaBancoLocal.parametros, $"Tela = '{tela.Tabela}' and NomeParametro = '{parametro.Name}'");
+
+                if (param is null) InserirRegistro(new Parametro(tela, parametro), Enums.TabelaBancoLocal.parametros);
+
+                param.Valor = parametro.Checked;
+                Update(param, Enums.TabelaBancoLocal.parametros);
             }
         }
     }

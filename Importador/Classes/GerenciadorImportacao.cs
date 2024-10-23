@@ -221,12 +221,6 @@ namespace Importador.Classes
 
             bool existe = ConexaoManager.instancia.GetConexaoMyCommerce().ExecuteScalar($"SELECT codigo FROM CLIENTES WHERE CPF = '{cpf}' or CNPJ = '{cnpj}'") is not null;
 
-
-            //if (existe)
-            //{
-            //    System.Windows.Forms.MessageBox.Show($"{reader["razaosocial"].ToString()} => ({cpf} - {cnpj})");
-            //}
-
             return existe;
         }
 
