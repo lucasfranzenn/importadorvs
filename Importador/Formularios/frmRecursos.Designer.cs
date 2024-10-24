@@ -123,7 +123,7 @@
             dpNomenclaturasEncontradas.ID = new System.Guid("a0437b03-ba04-4737-8bc1-99ea0db814ef");
             dpNomenclaturasEncontradas.Location = new System.Drawing.Point(3, 26);
             dpNomenclaturasEncontradas.Name = "dpNomenclaturasEncontradas";
-            dpNomenclaturasEncontradas.OriginalSize = new System.Drawing.Size(200, 200);
+            dpNomenclaturasEncontradas.OriginalSize = new System.Drawing.Size(310, 303);
             dpNomenclaturasEncontradas.Size = new System.Drawing.Size(303, 296);
             dpNomenclaturasEncontradas.Text = "Nomenclaturas Encontradas";
             // 
@@ -141,7 +141,7 @@
             dpSistemasImportados.ID = new System.Guid("3905d7ff-8afe-4780-9a51-0831ee3ca903");
             dpSistemasImportados.Location = new System.Drawing.Point(3, 26);
             dpSistemasImportados.Name = "dpSistemasImportados";
-            dpSistemasImportados.OriginalSize = new System.Drawing.Size(200, 200);
+            dpSistemasImportados.OriginalSize = new System.Drawing.Size(310, 303);
             dpSistemasImportados.Size = new System.Drawing.Size(303, 296);
             dpSistemasImportados.Text = "Sistemas Importados";
             // 
@@ -192,7 +192,7 @@
             dpBancosDeDados.ID = new System.Guid("fa1ebc48-6a6f-4699-956b-844b11d3cf04");
             dpBancosDeDados.Location = new System.Drawing.Point(3, 26);
             dpBancosDeDados.Name = "dpBancosDeDados";
-            dpBancosDeDados.OriginalSize = new System.Drawing.Size(200, 200);
+            dpBancosDeDados.OriginalSize = new System.Drawing.Size(459, 499);
             dpBancosDeDados.Size = new System.Drawing.Size(454, 493);
             dpBancosDeDados.Text = "Bancos de Dados";
             // 
@@ -210,7 +210,7 @@
             dpFiscal.ID = new System.Guid("c3604ce3-9a34-40bf-81c8-f2a324de98f8");
             dpFiscal.Location = new System.Drawing.Point(3, 26);
             dpFiscal.Name = "dpFiscal";
-            dpFiscal.OriginalSize = new System.Drawing.Size(200, 200);
+            dpFiscal.OriginalSize = new System.Drawing.Size(459, 499);
             dpFiscal.Size = new System.Drawing.Size(454, 493);
             dpFiscal.Text = "Fiscal";
             // 

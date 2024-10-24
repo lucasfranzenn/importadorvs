@@ -27,7 +27,11 @@ namespace Importador.Formularios
 
         private void frmAuxiliar_Load(object sender, EventArgs e)
         {
-            dpFiscal.Controls.Add(new UCFiscal() { Dock = DockStyle.Fill });
+            dpBancosDeDados.Controls.Add(null);
+            dpFiscal.ControlContainer.Controls.Add(new UCFiscal() { Dock = DockStyle.Fill});
+            dpNomenclaturasEncontradas.ControlContainer.Controls.Add(new UCNomenclaturas() { Dock = DockStyle.Fill});
+            dpSistemasImportados.ControlContainer.Controls.Add(new UCSistemasImportados() { Dock = DockStyle.Fill});
+            // dpSoftwaresUteis.Controls.Add(null);
         }
 
         private void frmAuxiliar_FormClosing(object sender, FormClosingEventArgs e)

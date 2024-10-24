@@ -19,6 +19,7 @@ CREATE TABLE Implantacoes(
     CodigoImplantacao int not null primary key,
     RazaoSocialCliente text,
     SistemaAntigo text,
+    BancoDeDados text,
     LinkFormulario text,
     LinkBackup text,
     RegimeEmpresa int not null Check(RegimeEmpresa in(0, 1, 2)),
@@ -50,7 +51,7 @@ CREATE TABLE Consultas(
 -- Nomenclaturas definition
 
 CREATE TABLE Nomenclaturas(
-    CodigoNomenclatura int not null primary key,
+    CodigoNomenclatura integer primary key,
     NomenclaturaMyCommerce text not null,
     NomenclaturaImportacao text not null unique
 );
@@ -74,14 +75,6 @@ CREATE TABLE RegistrosDeTempo(
     `Status` int,
     DataHoraInicio datetime not null,
     DataHoraFim datetime not null
-);
-
--- SistemasImportados definition
-
-CREATE TABLE SistemasImportados(
-    CodigoSistemaImportado integer primary key,
-    NomeSistema text,
-    CodigoImplantacao int
 );
 
 -- Parametros definition

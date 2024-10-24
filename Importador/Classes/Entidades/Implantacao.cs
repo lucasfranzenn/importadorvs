@@ -13,6 +13,7 @@ namespace Importador.Classes.Entidades
         public int CodigoImplantacao { get; set; }
         public string RazaoSocialCliente { get; set; } = string.Empty;
         public string SistemaAntigo { get; set; } = string.Empty;
+        public string BancoDeDados { get; set; } = string.Empty;
         public string LinkFormulario { get; set; } = string.Empty;
         public string LinkBackup { get; set; } = string.Empty;
         public int RegimeEmpresa { get; set; } = 0;

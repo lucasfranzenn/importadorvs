@@ -255,7 +255,7 @@ namespace Importador
             acUtilitarios.Elements.AddRange(new DevExpress.XtraBars.Navigation.AccordionControlElement[] { acUtilitariosBuscarColuna, acUtilitariosRecursos });
             acUtilitarios.Expanded = true;
             acUtilitarios.Name = "acUtilitarios";
-            acUtilitarios.Text = "Utilitários - Bancos";
+            acUtilitarios.Text = "Utilitários";
             // 
             // acUtilitariosBuscarColuna
             // 

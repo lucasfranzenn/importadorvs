@@ -1,6 +1,6 @@
 ﻿namespace Importador.UserControls.Auxiliar
 {
-    partial class UCNomenclaturas
+    partial class UCSistemasImportados
     {
         /// <summary> 
         /// Required designer variable.
@@ -40,7 +40,8 @@
             gcMain.Location = new System.Drawing.Point(5, 5);
             gcMain.MainView = gridView1;
             gcMain.Name = "gcMain";
-            gcMain.Size = new System.Drawing.Size(402, 347);
+            gcMain.Padding = new System.Windows.Forms.Padding(5);
+            gcMain.Size = new System.Drawing.Size(414, 363);
             gcMain.TabIndex = 0;
             gcMain.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] { gridView1 });
             // 
@@ -48,22 +49,24 @@
             // 
             gridView1.GridControl = gcMain;
             gridView1.Name = "gridView1";
-            gridView1.NewItemRowText = "Adicionar nova nomenclatura";
-            gridView1.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.True;
-            gridView1.OptionsBehavior.EditingMode = DevExpress.XtraGrid.Views.Grid.GridEditingMode.EditForm;
-            gridView1.OptionsView.NewItemRowPosition = DevExpress.XtraGrid.Views.Grid.NewItemRowPosition.Top;
-            gridView1.RowUpdated += gridView1_RowUpdated;
+            gridView1.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.False;
+            gridView1.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.False;
+            gridView1.OptionsBehavior.Editable = false;
+            gridView1.OptionsFilter.InHeaderSearchMode = DevExpress.XtraGrid.Views.Grid.GridInHeaderSearchMode.TextSearch;
+            gridView1.OptionsFind.AlwaysVisible = true;
+            gridView1.OptionsFind.FindMode = DevExpress.XtraEditors.FindMode.Always;
+            gridView1.OptionsFind.FindNullPrompt = "Digite o que deseja procurar...";
             // 
-            // UCNomenclaturas
+            // UCSistemasImportados
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             AutoSize = true;
             Controls.Add(gcMain);
-            Name = "UCNomenclaturas";
+            Name = "UCSistemasImportados";
             Padding = new System.Windows.Forms.Padding(5);
-            Size = new System.Drawing.Size(412, 357);
-            Load += UCNomenclaturas_Load;
+            Size = new System.Drawing.Size(424, 373);
+            Load += UCSistemasImportados_Load;
             ((System.ComponentModel.ISupportInitialize)gcMain).EndInit();
             ((System.ComponentModel.ISupportInitialize)gridView1).EndInit();
             ResumeLayout(false);

@@ -1,5 +1,6 @@
 ﻿using DevExpress.CodeParser;
 using DevExpress.XtraEditors;
+using Importador.Classes;
 using Importador.Classes.Entidades;
 using Importador.Conexao;
 using Importador.UserControls.BaseControls;
@@ -41,6 +42,7 @@ namespace Importador.UserControls.Geral
             implantacao.RazaoSocialCliente = txtCliente.Text;
             implantacao.NomeResponsavel = txtResponsavel.Text;
             implantacao.SistemaAntigo = txtSistemaERP.Text;
+            implantacao.BancoDeDados = txtSGBD.Text;
             implantacao.LinkFormulario = txtFormularioOriginal.Text;
             implantacao.LinkBackup = txtBackupOriginal.Text;
             implantacao.RegimeEmpresa = rgRegime.SelectedIndex;
@@ -83,8 +85,9 @@ namespace Importador.UserControls.Geral
                     {
                         ConexaoBancoImportador.InserirRegistro(new Implantacao(txtCodigoImplantacao.Text), Enums.TabelaBancoLocal.implantacoes);
                         impAtual = ConexaoBancoImportador.GetEntidade<Implantacao>(Enums.TabelaBancoLocal.implantacoes);
-                    }else return;
-                }    
+                    }
+                    else return;
+                }
 
                 CarregaInformacoes(impAtual);
             }
@@ -97,6 +100,7 @@ namespace Importador.UserControls.Geral
             txtCliente.Text = implantacao.RazaoSocialCliente;
             txtResponsavel.Text = $"{implantacao.NomeResponsavel}";
             txtSistemaERP.Text = implantacao.SistemaAntigo;
+            txtSGBD.Text = implantacao.BancoDeDados;
             txtFormularioOriginal.Text = implantacao.LinkFormulario.ToString();
             txtBackupOriginal.Text = implantacao.LinkBackup.ToString();
             txtWorkflow.Text = implantacao.Workflow;
@@ -129,6 +133,30 @@ namespace Importador.UserControls.Geral
             cbImportarProdutosOpcoes.Properties.Items[6].CheckState = (CheckState)Convert.ToInt16(implantacao.ImportarGrades);
             cbImportarProdutosOpcoes.Properties.Items[7].CheckState = (CheckState)Convert.ToInt16(implantacao.ImportarLotes);
             #endregion
+        }
+
+        private void txtResponsavel_Enter(object sender, EventArgs e)
+        {
+            var cmd = ConexaoBancoImportador.instancia.conexao.CreateCommand();
+            cmd.CommandText = "select distinct(nomeresponsavel) from implantacoes";
+
+            txtResponsavel.Properties.AdvancedModeOptions.AutoCompleteCustomSource = Utils.GetAutoCompleteCustomSource(cmd);
+        }
+
+        private void txtSGBD_Enter(object sender, EventArgs e)
+        {
+            var cmd = ConexaoBancoImportador.instancia.conexao.CreateCommand();
+            cmd.CommandText = "select distinct(BancoDeDados) from implantacoes";
+
+            txtSGBD.Properties.AdvancedModeOptions.AutoCompleteCustomSource = Utils.GetAutoCompleteCustomSource(cmd);
+        }
+
+        private void txtSistemaERP_Enter(object sender, EventArgs e)
+        {
+            var cmd = ConexaoBancoImportador.instancia.conexao.CreateCommand();
+            cmd.CommandText = "select distinct(SistemaAntigo) from implantacoes";
+
+            txtSistemaERP.Properties.AdvancedModeOptions.AutoCompleteCustomSource = Utils.GetAutoCompleteCustomSource(cmd);
         }
     }
 }

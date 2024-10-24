@@ -5,7 +5,9 @@ using Importador.Conexao;
 using Importador.Properties;
 using Microsoft.Toolkit.Uwp.Notifications;
 using System;
+using System.Data;
 using System.Text;
+using System.Windows.Forms;
 using static Importador.Classes.Constantes;
 
 namespace Importador.Classes
@@ -66,6 +68,19 @@ namespace Importador.Classes
         internal static string GerarArquivoRar(string caminhoBackup)
         {
             return $"\"{AppDomain.CurrentDomain.BaseDirectory}{Caminhos.exeRar}\" a \"{caminhoBackup}\" \"MyBackup.sql\"";
+        }
+
+        internal static AutoCompleteStringCollection GetAutoCompleteCustomSource(IDbCommand cmd)
+        {
+            var reader = cmd.ExecuteReader();
+            AutoCompleteStringCollection acsc = new();
+
+            while (reader.Read())
+            {
+                acsc.Add(reader.GetString(0));
+            }
+
+            return acsc;
         }
     }
 
