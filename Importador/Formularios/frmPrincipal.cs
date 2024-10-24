@@ -1,4 +1,5 @@
-﻿using Importador.UserControls.BaseControls;
+﻿using Importador.Formularios;
+using Importador.UserControls.BaseControls;
 using Importador.UserControls.Conexao;
 using Importador.UserControls.Geral;
 using Importador.UserControls.Importacao;
@@ -12,6 +13,7 @@ namespace Importador
     public partial class frmPrincipal : DevExpress.XtraBars.FluentDesignSystem.FluentDesignForm
     {
         public static UCBase ucAtual;
+        public static frmRecursos frmRecursos;
         public frmPrincipal()
         {
             InitializeComponent();
@@ -168,6 +170,14 @@ namespace Importador
 
             AlteraAba(ref fcPrincipal, ucAtual);
             bsiTelaAtual.Caption = "Importação de tabelas genéricas";
+        }
+
+        private void acUtilitariosAuxiliar_Click(object sender, EventArgs e)
+        {
+            frmRecursos = new();
+            frmRecursos.Disposed += (sender, args) => Show();
+            Hide();
+            frmRecursos.Show();
         }
     }
 }

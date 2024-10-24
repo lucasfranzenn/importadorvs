@@ -54,7 +54,7 @@ namespace Importador.Classes
 
         public static string GetCmdDump(string tabelas, string caminhoBackup)
         {
-            StringBuilder cmd = new(Caminhos.mysqlDump);
+            StringBuilder cmd = new(Caminhos.exeMySqlDump);
 
             var Conexao = ConexaoBancoImportador.GetEntidade<Entidades.Conexao>(Enums.TabelaBancoLocal.conexoes, "TipoConexao = 0");
             var Tabelas = ConexaoBancoImportador.GetSql(Enums.TabelaMyCommerce.backup.ToString());
@@ -65,7 +65,7 @@ namespace Importador.Classes
 
         internal static string GerarArquivoRar(string caminhoBackup)
         {
-            return $"\"{AppDomain.CurrentDomain.BaseDirectory}{Caminhos.rar}\" a \"{caminhoBackup}\" \"MyBackup.sql\"";
+            return $"\"{AppDomain.CurrentDomain.BaseDirectory}{Caminhos.exeRar}\" a \"{caminhoBackup}\" \"MyBackup.sql\"";
         }
     }
 

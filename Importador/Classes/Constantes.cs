@@ -8,8 +8,9 @@ namespace Importador.Classes
     {
         public static class Caminhos
         {
-            public const string mysqlDump = @"Configuracao\mysqldump";
-            public const string rar = @"Configuracao\rar";
+            public const string exeMySqlDump = @"Configuracao\mysqldump";
+            public const string exeRar = @"Configuracao\rar";
+            public const string pdfImportacaoFiscal = @"Configuracao\importacao_fiscal.pdf";
         }
 
         public static class Enums
