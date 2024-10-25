@@ -2,6 +2,7 @@
 using Importador.Classes;
 using Importador.Classes.Entidades;
 using Importador.Conexao;
+using Importador.Properties;
 using Importador.UserControls.Componentes;
 using System;
 using System.Collections.Generic;
@@ -75,9 +76,11 @@ namespace Importador.UserControls.BaseControls
                     ConexaoBancoImportador.InserirRegistro(new Parametro(MyC, parametro), Enums.TabelaBancoLocal.parametros);
                     param = ConexaoBancoImportador.GetEntidade<Parametro>(Enums.TabelaBancoLocal.parametros, $"Tela = '{MyC.Tabela}' and NomeParametro = '{parametro.Name}'");
                 }
-
+                
                 parametro.Checked = param.Valor;
             }
+
+            if (ConexaoBancoImportador.ExisteObservacao(MyC.Tabela.ToString())) { btnObservacao.ImageOptions.Image = Resources.newtask_16x16; }
         }
 
         protected void AlternarVisibilidade()

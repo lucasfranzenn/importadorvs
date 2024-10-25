@@ -47,6 +47,8 @@ namespace Importador.UserControls.Importacao
             }
 
             txtSqlImportacao.Text = ConexaoBancoImportador.GetSql(cbTabelas.Text);
+            if (ConexaoBancoImportador.ExisteObservacao(cbTabelas.Text)) { btnObservacao.ImageOptions.Image = Resources.newtask_16x16; }
+            else { btnObservacao.ImageOptions.Image = Resources.edittask_16x16; }
         }
 
         private async void btnImportar_Click_1(object sender, EventArgs e)
@@ -112,6 +114,8 @@ namespace Importador.UserControls.Importacao
 
                 parametro.Checked = param.Valor;
             }
+
+            if (ConexaoBancoImportador.ExisteObservacao(cbTabelas.Text)) { btnObservacao.ImageOptions.Image = Resources.newtask_16x16; }
         }
 
         private void btnObservacao_Click_1(object sender, EventArgs e)

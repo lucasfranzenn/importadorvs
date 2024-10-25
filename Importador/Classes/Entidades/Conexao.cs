@@ -42,7 +42,7 @@ namespace Importador.Classes.Entidades
                     Porta = 3050;
                     Usuario = "SYSDBA";
                     Senha = "masterkey";
-                    Banco = "C:\\banco.fdb";
+                    Banco = "C:\\banco.fdb;Charset=UTF8";
                     break;
                 case Constantes.Enums.TipoBanco.PostgreSQL:
                     Host = "LOCALHOST";
@@ -53,7 +53,7 @@ namespace Importador.Classes.Entidades
                     break;
                 case Constantes.Enums.TipoBanco.SQLServer:
                     Host = "localhost";
-                    Porta = 0;
+                    Porta = 1423;
                     Usuario = "SA";
                     Senha = "";
                     Banco = $"imp_{CodigoImplantacao}";

@@ -174,11 +174,13 @@
             // 
             btnObservacao.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
             btnObservacao.Cursor = System.Windows.Forms.Cursors.Hand;
-            btnObservacao.ImageOptions.Image = Properties.Resources.notes_16x16;
+            btnObservacao.ImageOptions.Image = Properties.Resources.edittask_16x16;
+            btnObservacao.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
             btnObservacao.Location = new System.Drawing.Point(512, 9);
             btnObservacao.Name = "btnObservacao";
             btnObservacao.Size = new System.Drawing.Size(23, 23);
             btnObservacao.TabIndex = 17;
+            btnObservacao.Text = "&";
             btnObservacao.ToolTip = "Anotações referentes a importação deste módulo";
             btnObservacao.Click += btnObservacao_Click;
             // 

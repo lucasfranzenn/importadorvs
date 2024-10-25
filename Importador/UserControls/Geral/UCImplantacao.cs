@@ -138,7 +138,7 @@ namespace Importador.UserControls.Geral
         private void txtResponsavel_Enter(object sender, EventArgs e)
         {
             var cmd = ConexaoBancoImportador.instancia.conexao.CreateCommand();
-            cmd.CommandText = "select distinct(nomeresponsavel) from implantacoes";
+            cmd.CommandText = "select distinct(nomeresponsavel) from implantacoes where nomeresponsavel is not null";
 
             txtResponsavel.Properties.AdvancedModeOptions.AutoCompleteCustomSource = Utils.GetAutoCompleteCustomSource(cmd);
         }
@@ -146,7 +146,7 @@ namespace Importador.UserControls.Geral
         private void txtSGBD_Enter(object sender, EventArgs e)
         {
             var cmd = ConexaoBancoImportador.instancia.conexao.CreateCommand();
-            cmd.CommandText = "select distinct(BancoDeDados) from implantacoes";
+            cmd.CommandText = "select distinct(BancoDeDados) from implantacoes where BancoDeDados is not null";
 
             txtSGBD.Properties.AdvancedModeOptions.AutoCompleteCustomSource = Utils.GetAutoCompleteCustomSource(cmd);
         }
@@ -154,7 +154,7 @@ namespace Importador.UserControls.Geral
         private void txtSistemaERP_Enter(object sender, EventArgs e)
         {
             var cmd = ConexaoBancoImportador.instancia.conexao.CreateCommand();
-            cmd.CommandText = "select distinct(SistemaAntigo) from implantacoes";
+            cmd.CommandText = "select distinct(SistemaAntigo) from implantacoes where SistemaAntigo is not null";
 
             txtSistemaERP.Properties.AdvancedModeOptions.AutoCompleteCustomSource = Utils.GetAutoCompleteCustomSource(cmd);
         }

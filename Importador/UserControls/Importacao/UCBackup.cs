@@ -73,6 +73,8 @@ namespace Importador.UserControls.Importacao
             }
 
             MarcarTabelas();
+
+            if (ConexaoBancoImportador.ExisteObservacao("backup")) { btnObservacao.ImageOptions.Image = Resources.newtask_16x16; }
         }
 
         private void MarcarTabelas()

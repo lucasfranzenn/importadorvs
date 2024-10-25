@@ -119,5 +119,13 @@ namespace Importador.Conexao
                 Update(param, Enums.TabelaBancoLocal.parametros);
             }
         }
+
+        internal static bool ExisteObservacao(string tabela)
+        {
+            var cmd = instancia.conexao.CreateCommand();
+            cmd.CommandText = $"select codigoobservacao from observacoes where codigoimplantacao = {Configuracoes.Default.CodigoImplantacao} and trim(observacao) <> '' and tela = '{tabela}'";
+
+            return (cmd.ExecuteScalar() != null) ? true : false;
+        }
     }
 }

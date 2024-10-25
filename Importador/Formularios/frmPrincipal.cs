@@ -39,7 +39,7 @@ namespace Importador
 
         public void btnSair_Click(object sender, EventArgs e)
         {
-            Dispose();
+            Close();
         }
 
         private void acImportacaoClientesForn_Click(object sender, EventArgs e)

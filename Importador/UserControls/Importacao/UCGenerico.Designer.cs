@@ -67,13 +67,13 @@
             // 
             // btnObservacao
             // 
-            btnObservacao.ImageOptions.Image = (System.Drawing.Image)resources.GetObject("btnObservacao.ImageOptions.Image");
+            btnObservacao.ImageOptions.Image = Properties.Resources.edittask_16x16;
+            btnObservacao.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
             btnObservacao.Click += btnObservacao_Click_1;
             // 
             // btnVerificarSintaxeSQL
             // 
             btnVerificarSintaxeSQL.ImageOptions.Image = (System.Drawing.Image)resources.GetObject("btnVerificarSintaxeSQL.ImageOptions.Image");
-            btnVerificarSintaxeSQL.Location = new System.Drawing.Point(483, 9);
             // 
             // cbTabelas
             // 

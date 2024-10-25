@@ -201,6 +201,16 @@ namespace Importador.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap edittask_16x16 {
+            get {
+                object obj = ResourceManager.GetObject("edittask_16x16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type DevExpress.Utils.Svg.SvgImage.
         /// </summary>
         internal static DevExpress.Utils.Svg.SvgImage electronics_desktopmac {
@@ -337,6 +347,36 @@ namespace Importador.Properties {
             get {
                 object obj = ResourceManager.GetObject("namemanager", resourceCulture);
                 return ((DevExpress.Utils.Svg.SvgImage)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap newcomment_16x16 {
+            get {
+                object obj = ResourceManager.GetObject("newcomment_16x16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap newmail_16x16 {
+            get {
+                object obj = ResourceManager.GetObject("newmail_16x16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap newtask_16x16 {
+            get {
+                object obj = ResourceManager.GetObject("newtask_16x16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         

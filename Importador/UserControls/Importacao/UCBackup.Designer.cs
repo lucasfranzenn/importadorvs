@@ -112,7 +112,7 @@
             // 
             btnObservacao.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
             btnObservacao.Cursor = System.Windows.Forms.Cursors.Hand;
-            btnObservacao.ImageOptions.Image = Properties.Resources.notes_16x16;
+            btnObservacao.ImageOptions.Image = Properties.Resources.edittask_16x16;
             btnObservacao.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
             btnObservacao.Location = new System.Drawing.Point(484, 49);
             btnObservacao.Name = "btnObservacao";
