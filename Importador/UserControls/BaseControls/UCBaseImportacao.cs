@@ -121,6 +121,11 @@ namespace Importador.UserControls.BaseControls
         {
             if (Convert.ToBoolean(btnContarTempo.Tag) == false)
             {
+                if (ConexaoBancoImportador.EstaContandoTempo() is string tela)
+                {
+                    XtraMessageBox.Show($"Usuário já esta contando tempo.\nImplantação {tela}", "..::Importador::..");
+                    return;
+                }
                 AlterarContagemTempo(true);
 
                 ConexaoBancoImportador.InserirRegistro(new RegistroDeTempo(MyC.Tabela.ToString()), Enums.TabelaBancoLocal.registrosdetempo);

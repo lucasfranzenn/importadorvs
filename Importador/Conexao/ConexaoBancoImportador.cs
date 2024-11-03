@@ -136,6 +136,16 @@ namespace Importador.Conexao
             return (cmd.ExecuteScalar() != null) ? true : false;
         }
 
+        internal static string EstaContandoTempo()
+        {
+            var cmd = instancia.conexao.CreateCommand();
+            cmd.CommandText = $"select codigoimplantacao || ' - ' || tela from registrosdetempo where Operador = '{Configuracoes.Default.UsuarioLogado}' and Status = 0";
+
+            var objeto = cmd.ExecuteScalar();
+
+            return (objeto != null) ? objeto.ToString() : null;
+        }
+
         internal static void AtualizarTempoImportacao(string dataInicio, string dataFim, string tabelaOrigem)
         {
             RegistroDeTempo rdt = GetEntidade<RegistroDeTempo>(Enums.TabelaBancoLocal.registrosdetempo, $"tela = '{tabelaOrigem}' and status = 2");
