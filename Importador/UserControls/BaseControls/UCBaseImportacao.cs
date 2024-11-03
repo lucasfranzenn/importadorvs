@@ -139,15 +139,15 @@ namespace Importador.UserControls.BaseControls
             using (var dialog = new FinalizarContagemDialog())
             {
                 if (dialog.ShowDialog() != DialogResult.OK) { return; }
-                
+
                 tempo.Status = Convert.ToInt32(dialog.cbStatus.Text[0].ToString());
                 tempo.Observacao = string.IsNullOrEmpty(dialog.txtObservacao.Text) ? null : dialog.txtObservacao.Text;
 
                 ConexaoBancoImportador.Update(tempo, Enums.TabelaBancoLocal.registrosdetempo);
                 AlterarContagemTempo(false);
-                
+
             }
-            
+
         }
 
         protected void AlterarContagemTempo(bool estaContando)
@@ -168,6 +168,11 @@ namespace Importador.UserControls.BaseControls
         private void btnContarTempo_Click(object sender, EventArgs e)
         {
             ContarTempo();
+        }
+
+        private void btnVerTempoContado_Click(object sender, EventArgs e)
+        {
+            new TempoContado(MyC.Tabela.ToString()).ShowDialog();
         }
     }
 }

@@ -220,6 +220,7 @@
             btnVerTempoContado.Name = "btnVerTempoContado";
             btnVerTempoContado.Size = new System.Drawing.Size(23, 23);
             btnVerTempoContado.TabIndex = 20;
+            btnVerTempoContado.Click += btnVerTempoContado_Click;
             // 
             // UCBaseImportacao
             // 
