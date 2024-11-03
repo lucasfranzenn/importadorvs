@@ -8,11 +8,6 @@ namespace Importador.UserControls.Componentes
 {
     public partial class Observacao : XtraUserControl
     {
-        public Observacao()
-        {
-            InitializeComponent();
-        }
-
         public Observacao(Point Localizacao, Size Tamanho, string Tela)
         {
             InitializeComponent();

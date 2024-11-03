@@ -6,6 +6,7 @@ using Importador.Properties;
 using Microsoft.Toolkit.Uwp.Notifications;
 using System;
 using System.Data;
+using System.Security.Principal;
 using System.Text;
 using System.Windows.Forms;
 using static Importador.Classes.Constantes;
@@ -81,6 +82,11 @@ namespace Importador.Classes
             }
 
             return acsc;
+        }
+
+        internal static string GetUsuarioSID()
+        {
+            return WindowsIdentity.GetCurrent().User.ToString();
         }
     }
 

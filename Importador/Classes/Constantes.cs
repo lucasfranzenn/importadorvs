@@ -46,7 +46,8 @@ namespace Importador.Classes
                 conexoes,
                 consultas,
                 parametros,
-                observacoes
+                observacoes,
+                registrosdetempo
             }
 
             public enum Dml
@@ -64,6 +65,13 @@ namespace Importador.Classes
                 SQLServer,
                 Access,
                 ConnectionString
+            }
+
+            public enum RegistrosDeTempoStatus
+            {
+                ContandoTempo = 0,
+                MontandoSQL,
+                ImportandoDados
             }
         }
 
@@ -134,7 +142,8 @@ namespace Importador.Classes
                         "update clientes set consfinal = 1, Contribuinte_Icms = 0 where fisicajuridica = 'F';",
                         "update clientes set consfinal = 0, Contribuinte_Icms = 1 where fisicajuridica = 'J' and ie != 'ISENTO';",
                         "update clientes set consfinal = 1, Contribuinte_Icms = 0 where fisicajuridica = 'J' and ie = 'ISENTO';",
-                        "update clientes set consfinal = 1, Contribuinte_Icms = 0 where consfinal IS NULL;"
+                        "update clientes set consfinal = 1, Contribuinte_Icms = 0 where consfinal IS NULL;",
+                        "insert into cep (select null as id, c.CodigoCidadeIbge as idcidade, c.CEP as cep from clientes c left join cep on cep.IDCidade = c.CodigoCidadeIbge and c.cep = cep.CEP Where c.CEP Is Not Null And c.CodigoCidadeIbge Is Not Null and cep.cep is null)"
                     }
                 },
                 { "produtos", new List<string>

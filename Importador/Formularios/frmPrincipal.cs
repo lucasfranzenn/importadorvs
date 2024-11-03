@@ -1,4 +1,6 @@
-﻿using Importador.Formularios;
+﻿using Importador.Classes;
+using Importador.Formularios;
+using Importador.Properties;
 using Importador.UserControls.BaseControls;
 using Importador.UserControls.Conexao;
 using Importador.UserControls.Geral;
@@ -98,6 +100,8 @@ namespace Importador
         {
             skin.LookAndFeel.SetSkinStyle(Properties.Configuracoes.Default.NomeSkin, Properties.Configuracoes.Default.PaletaSkin);
             skin.LookAndFeel.UseDefaultLookAndFeel = true;
+
+            Configuracoes.Default.UsuarioLogado = GetUsuarioSID();
         }
 
         private void acImportacaoProdutosST_Click(object sender, EventArgs e)

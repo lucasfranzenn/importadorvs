@@ -127,5 +127,33 @@ namespace Importador.Conexao
 
             return (cmd.ExecuteScalar() != null) ? true : false;
         }
+
+        internal static bool EstaContandoTempo(string tela)
+        {
+            var cmd = instancia.conexao.CreateCommand();
+            cmd.CommandText = $"select codigoregistrodetempo from registrosdetempo where codigoimplantacao = {Configuracoes.Default.CodigoImplantacao} and tela = '{tela}' and Operador = '{Configuracoes.Default.UsuarioLogado}' and Status = 0";
+
+            return (cmd.ExecuteScalar() != null) ? true : false;
+        }
+
+        internal static void AtualizarTempoImportacao(string dataInicio, string dataFim, string tabelaOrigem)
+        {
+            RegistroDeTempo rdt = GetEntidade<RegistroDeTempo>(Enums.TabelaBancoLocal.registrosdetempo, $"tela = '{tabelaOrigem}' and status = 2");
+
+            if ( rdt is null)
+            {
+                rdt = new(tabelaOrigem);
+                rdt.DataHoraInicio = Convert.ToDateTime(dataInicio);
+                rdt.DataHoraFim = Convert.ToDateTime(dataFim);
+                rdt.Status = (int)Enums.RegistrosDeTempoStatus.ImportandoDados;
+                rdt.Observacao = "Registro automático salvo pelo importador de dados.";
+                InserirRegistro(rdt, Enums.TabelaBancoLocal.registrosdetempo);
+                return;
+            }
+
+            rdt.DataHoraInicio = Convert.ToDateTime(dataInicio);
+            rdt.DataHoraFim = Convert.ToDateTime(dataFim);
+            Update(rdt, Enums.TabelaBancoLocal.registrosdetempo);
+        }
     }
 }

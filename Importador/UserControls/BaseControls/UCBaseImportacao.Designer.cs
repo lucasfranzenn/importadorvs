@@ -43,6 +43,8 @@
             MyC = new Componentes.TabelaMyCommerce(components);
             btnObservacao = new DevExpress.XtraEditors.SimpleButton();
             btnVerificarSintaxeSQL = new DevExpress.XtraEditors.SimpleButton();
+            btnContarTempo = new DevExpress.XtraEditors.SimpleButton();
+            btnVerTempoContado = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)txtSqlImportacao.Properties).BeginInit();
             ((System.ComponentModel.ISupportInitialize)gcParametros).BeginInit();
             gcParametros.SuspendLayout();
@@ -159,7 +161,7 @@
             btnResetarSql.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
             btnResetarSql.Cursor = System.Windows.Forms.Cursors.Hand;
             btnResetarSql.ImageOptions.Image = Properties.Resources.reset2_16x16;
-            btnResetarSql.Location = new System.Drawing.Point(454, 9);
+            btnResetarSql.Location = new System.Drawing.Point(298, 9);
             btnResetarSql.Name = "btnResetarSql";
             btnResetarSql.Size = new System.Drawing.Size(23, 23);
             btnResetarSql.TabIndex = 16;
@@ -176,7 +178,7 @@
             btnObservacao.Cursor = System.Windows.Forms.Cursors.Hand;
             btnObservacao.ImageOptions.Image = Properties.Resources.edittask_16x16;
             btnObservacao.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
-            btnObservacao.Location = new System.Drawing.Point(512, 9);
+            btnObservacao.Location = new System.Drawing.Point(356, 9);
             btnObservacao.Name = "btnObservacao";
             btnObservacao.Size = new System.Drawing.Size(23, 23);
             btnObservacao.TabIndex = 17;
@@ -189,17 +191,42 @@
             btnVerificarSintaxeSQL.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
             btnVerificarSintaxeSQL.Cursor = System.Windows.Forms.Cursors.Hand;
             btnVerificarSintaxeSQL.ImageOptions.Image = Properties.Resources.spellcheck_16x16;
-            btnVerificarSintaxeSQL.Location = new System.Drawing.Point(483, 9);
+            btnVerificarSintaxeSQL.Location = new System.Drawing.Point(327, 9);
             btnVerificarSintaxeSQL.Name = "btnVerificarSintaxeSQL";
             btnVerificarSintaxeSQL.Size = new System.Drawing.Size(23, 23);
             btnVerificarSintaxeSQL.TabIndex = 18;
             btnVerificarSintaxeSQL.ToolTip = "Este botão verifica a sintaxe sql";
             btnVerificarSintaxeSQL.Click += btnVerificarSintaxeSQL_Click;
             // 
+            // btnContarTempo
+            // 
+            btnContarTempo.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
+            btnContarTempo.Cursor = System.Windows.Forms.Cursors.Hand;
+            btnContarTempo.ImageOptions.Image = Properties.Resources.iconsetsigns3_16x16;
+            btnContarTempo.Location = new System.Drawing.Point(414, 9);
+            btnContarTempo.Name = "btnContarTempo";
+            btnContarTempo.Size = new System.Drawing.Size(121, 23);
+            btnContarTempo.TabIndex = 19;
+            btnContarTempo.Tag = "false";
+            btnContarTempo.Text = "Iniciar Contagem";
+            btnContarTempo.Click += btnContarTempo_Click;
+            // 
+            // btnVerTempoContado
+            // 
+            btnVerTempoContado.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
+            btnVerTempoContado.Cursor = System.Windows.Forms.Cursors.Hand;
+            btnVerTempoContado.ImageOptions.Image = Properties.Resources.showworktimeonly_16x16;
+            btnVerTempoContado.Location = new System.Drawing.Point(385, 9);
+            btnVerTempoContado.Name = "btnVerTempoContado";
+            btnVerTempoContado.Size = new System.Drawing.Size(23, 23);
+            btnVerTempoContado.TabIndex = 20;
+            // 
             // UCBaseImportacao
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            Controls.Add(btnVerTempoContado);
+            Controls.Add(btnContarTempo);
             Controls.Add(btnVerificarSintaxeSQL);
             Controls.Add(btnObservacao);
             Controls.Add(btnResetarSql);
@@ -239,5 +266,7 @@
         public Componentes.TabelaMyCommerce MyC;
         public DevExpress.XtraEditors.SimpleButton btnObservacao;
         public DevExpress.XtraEditors.SimpleButton btnVerificarSintaxeSQL;
+        private DevExpress.XtraEditors.SimpleButton btnContarTempo;
+        private DevExpress.XtraEditors.SimpleButton btnVerTempoContado;
     }
 }

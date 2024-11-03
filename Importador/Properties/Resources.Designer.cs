@@ -271,6 +271,26 @@ namespace Importador.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap iconsetredtoblack4_16x16 {
+            get {
+                object obj = ResourceManager.GetObject("iconsetredtoblack4_16x16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap iconsetsigns3_16x16 {
+            get {
+                object obj = ResourceManager.GetObject("iconsetsigns3_16x16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type DevExpress.Utils.Svg.SvgImage.
         /// </summary>
         internal static DevExpress.Utils.Svg.SvgImage import {
@@ -487,6 +507,16 @@ namespace Importador.Properties {
             get {
                 object obj = ResourceManager.GetObject("shopping_wallet", resourceCulture);
                 return ((DevExpress.Utils.Svg.SvgImage)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap showworktimeonly_16x16 {
+            get {
+                object obj = ResourceManager.GetObject("showworktimeonly_16x16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         

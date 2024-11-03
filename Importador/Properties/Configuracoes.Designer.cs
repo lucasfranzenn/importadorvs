@@ -82,5 +82,17 @@ namespace Importador.Properties {
                 this["RegimeEmpresa"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string UsuarioLogado {
+            get {
+                return ((string)(this["UsuarioLogado"]));
+            }
+            set {
+                this["UsuarioLogado"] = value;
+            }
+        }
     }
 }

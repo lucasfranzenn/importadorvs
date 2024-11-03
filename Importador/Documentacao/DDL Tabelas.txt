@@ -74,7 +74,8 @@ CREATE TABLE RegistrosDeTempo(
     Tela text not null,
     `Status` int,
     DataHoraInicio datetime not null,
-    DataHoraFim datetime not null
+    DataHoraFim datetime null,
+    Observacao text null
 );
 
 -- Parametros definition

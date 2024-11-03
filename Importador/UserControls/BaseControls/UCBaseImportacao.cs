@@ -47,6 +47,8 @@ namespace Importador.UserControls.BaseControls
 
             lblHorarioFimImportacao.Text = DateTime.Now.ToString();
 
+            ConexaoBancoImportador.AtualizarTempoImportacao(lblHorarioInicioImportacao.Text, lblHorarioFimImportacao.Text, MyC.Tabela.ToString());
+
             Utils.MostrarNotificacao($"Importação dos {MyC.Tabela.ToString()} finalizada", "Importação");
 
             Enabled = true;
@@ -76,11 +78,13 @@ namespace Importador.UserControls.BaseControls
                     ConexaoBancoImportador.InserirRegistro(new Parametro(MyC, parametro), Enums.TabelaBancoLocal.parametros);
                     param = ConexaoBancoImportador.GetEntidade<Parametro>(Enums.TabelaBancoLocal.parametros, $"Tela = '{MyC.Tabela}' and NomeParametro = '{parametro.Name}'");
                 }
-                
+
                 parametro.Checked = param.Valor;
             }
 
             if (ConexaoBancoImportador.ExisteObservacao(MyC.Tabela.ToString())) { btnObservacao.ImageOptions.Image = Resources.newtask_16x16; }
+
+            if (ConexaoBancoImportador.EstaContandoTempo(MyC.Tabela.ToString())) { AlterarContagemTempo(true); }
         }
 
         protected void AlternarVisibilidade()
@@ -111,6 +115,54 @@ namespace Importador.UserControls.BaseControls
             }
 
             XtraMessageBox.Show("Comando SQL executado sem erros!", "..::Importador::..", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void ContarTempo()
+        {
+            if (Convert.ToBoolean(btnContarTempo.Tag) == false)
+            {
+                AlterarContagemTempo(true);
+
+                ConexaoBancoImportador.InserirRegistro(new RegistroDeTempo(MyC.Tabela.ToString()), Enums.TabelaBancoLocal.registrosdetempo);
+                return;
+            }
+
+            RegistroDeTempo tempo = ConexaoBancoImportador.GetEntidade<RegistroDeTempo>(Enums.TabelaBancoLocal.registrosdetempo, $"tela = '{MyC.Tabela.ToString()}' and Operador = '{Configuracoes.Default.UsuarioLogado}' and Status = 0");
+
+            tempo.DataHoraFim = Convert.ToDateTime(DateTime.Now.ToString());
+
+            using (var dialog = new FinalizarContagemDialog())
+            {
+                if (dialog.ShowDialog() != DialogResult.OK) { return; }
+                
+                tempo.Status = Convert.ToInt32(dialog.cbStatus.Text[0].ToString());
+                tempo.Observacao = string.IsNullOrEmpty(dialog.txtObservacao.Text) ? null : dialog.txtObservacao.Text;
+
+                ConexaoBancoImportador.Update(tempo, Enums.TabelaBancoLocal.registrosdetempo);
+                AlterarContagemTempo(false);
+                
+            }
+            
+        }
+
+        protected void AlterarContagemTempo(bool estaContando)
+        {
+            if (estaContando)
+            {
+                btnContarTempo.ImageOptions.Image = Resources.iconsetredtoblack4_16x16;
+                btnContarTempo.Text = "Finalizar Contagem";
+                btnContarTempo.Tag = true;
+                return;
+            }
+
+            btnContarTempo.ImageOptions.Image = Resources.iconsetsigns3_16x16;
+            btnContarTempo.Text = "Iniciar Contagem";
+            btnContarTempo.Tag = false;
+        }
+
+        private void btnContarTempo_Click(object sender, EventArgs e)
+        {
+            ContarTempo();
         }
     }
 }

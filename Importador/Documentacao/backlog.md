@@ -12,7 +12,7 @@
 ~~- [ ] ** Criar um facilitador para restaurar diversos backups;~~
 
 # 3. Importacao
-- [ ] ** Salvar o tempo gasto por tela na importacao (Ex: 1 hora para criar sql de produtos e 30min para importar os 40mil produtos);
+- [x] ** Salvar o tempo gasto por tela na importacao (Ex: 1 hora para criar sql de produtos e 30min para importar os 40mil produtos);
 ~~- [ ] ** Utilizar Grau de complexidade baseado na Sequencia de Fibonacci (Levar em considera��o arquitetura do banco);~~
 - [x] ** Criar um Story Telling sobre como realizar determinada importacao (Ex: Importar os produtos com a opcao de validar cod de barras ativada);
 - [ ] ** Criar um relatorio geral da importacao e como foi realizada;

@@ -41,10 +41,7 @@ namespace Importador.UserControls.Importacao
 
         private void cbTabelas_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (!cbTabelas.Properties.Items.Contains(cbTabelas.Text))
-            {
-                return;
-            }
+            if (!cbTabelas.Properties.Items.Contains(cbTabelas.Text) || cbTabelas.SelectedIndex == 0) { return; }
 
             txtSqlImportacao.Text = ConexaoBancoImportador.GetSql(cbTabelas.Text);
             if (ConexaoBancoImportador.ExisteObservacao(cbTabelas.Text)) { btnObservacao.ImageOptions.Image = Resources.newtask_16x16; }
@@ -53,6 +50,8 @@ namespace Importador.UserControls.Importacao
 
         private async void btnImportar_Click_1(object sender, EventArgs e)
         {
+            if (cbTabelas.SelectedIndex == 0) { XtraMessageBox.Show("Essa tabela não é válida.", "..::Importador::.."); return; }
+
             if (GerenciadorImportacao.VerificarSQL(txtSqlImportacao.Text) is string erro)
             {
                 XtraMessageBox.Show(erro, "..::Importador::..", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -72,6 +71,8 @@ namespace Importador.UserControls.Importacao
             await Task.Run(() => GerenciadorImportacao.Importar(txtSqlImportacao.Text, pbImportacao, cbTabelas.Text, listaParametros.Where(p => p.Checked).ToList()));
 
             lblHorarioFimImportacao.Text = DateTime.Now.ToString();
+
+            ConexaoBancoImportador.AtualizarTempoImportacao(lblHorarioInicioImportacao.Text, lblHorarioFimImportacao.Text, cbTabelas.Text);
 
             Utils.MostrarNotificacao($"Importação dos {cbTabelas.SelectedText} finalizada", "Importação");
 
@@ -98,9 +99,11 @@ namespace Importador.UserControls.Importacao
 
             Parametro param;
 
-            if (cbTabelas.Properties.Items.Count > 0) cbTabelas.SelectedIndex = 0;
-
-            txtSqlImportacao.Text = ConexaoBancoImportador.GetSql(cbTabelas.Text);
+            if (cbTabelas.Properties.Items.Count > 1)
+            {
+                cbTabelas.SelectedIndex = 1;
+                txtSqlImportacao.Text = ConexaoBancoImportador.GetSql(cbTabelas.Text);
+            }
 
             foreach (var parametro in gcParametros.Controls.OfType<CheckEdit>().ToList())
             {
@@ -116,6 +119,8 @@ namespace Importador.UserControls.Importacao
             }
 
             if (ConexaoBancoImportador.ExisteObservacao(cbTabelas.Text)) { btnObservacao.ImageOptions.Image = Resources.newtask_16x16; }
+
+            if (ConexaoBancoImportador.EstaContandoTempo(MyC.Tabela.ToString())) { AlterarContagemTempo(true); }
         }
 
         private void btnObservacao_Click_1(object sender, EventArgs e)

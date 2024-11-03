@@ -30,7 +30,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UCGenerico));
             cbTabelas = new DevExpress.XtraEditors.ComboBoxEdit();
-            lblSelecionarTabela = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)txtSqlImportacao.Properties).BeginInit();
             ((System.ComponentModel.ISupportInitialize)gcParametros).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pbImportacao.Properties).BeginInit();
@@ -44,6 +43,7 @@
             // 
             // txtSqlImportacao
             // 
+            txtSqlImportacao.EditValue = "select  * from tabela";
             // 
             // btnImportar
             // 
@@ -78,31 +78,24 @@
             // cbTabelas
             // 
             cbTabelas.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
-            cbTabelas.Location = new System.Drawing.Point(356, 11);
+            cbTabelas.EditValue = "Cadastre ou selecione uma tabela";
+            cbTabelas.Location = new System.Drawing.Point(118, 11);
             cbTabelas.Name = "cbTabelas";
             cbTabelas.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Plus) });
-            cbTabelas.Size = new System.Drawing.Size(121, 20);
+            cbTabelas.Properties.Items.AddRange(new object[] { "Cadastre ou selecione uma tabela" });
+            cbTabelas.Size = new System.Drawing.Size(203, 20);
             cbTabelas.TabIndex = 17;
             cbTabelas.SelectedIndexChanged += cbTabelas_SelectedIndexChanged;
             cbTabelas.ButtonClick += cbTabelas_ButtonClick;
-            // 
-            // lblSelecionarTabela
-            // 
-            lblSelecionarTabela.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
-            lblSelecionarTabela.Location = new System.Drawing.Point(188, 14);
-            lblSelecionarTabela.Name = "lblSelecionarTabela";
-            lblSelecionarTabela.Size = new System.Drawing.Size(162, 13);
-            lblSelecionarTabela.TabIndex = 18;
-            lblSelecionarTabela.Text = "Cadastre ou selecione uma tabela";
             // 
             // UCGenerico
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            Controls.Add(lblSelecionarTabela);
             Controls.Add(cbTabelas);
             Name = "UCGenerico";
             Load += UCGenerico_Load;
+            Controls.SetChildIndex(cbTabelas, 0);
             Controls.SetChildIndex(btnVerificarSintaxeSQL, 0);
             Controls.SetChildIndex(btnObservacao, 0);
             Controls.SetChildIndex(btnResetarSql, 0);
@@ -113,8 +106,6 @@
             Controls.SetChildIndex(lblHorarioInicioImportacao, 0);
             Controls.SetChildIndex(lblHorarioFimImportacao, 0);
             Controls.SetChildIndex(pbImportacao, 0);
-            Controls.SetChildIndex(cbTabelas, 0);
-            Controls.SetChildIndex(lblSelecionarTabela, 0);
             ((System.ComponentModel.ISupportInitialize)txtSqlImportacao.Properties).EndInit();
             ((System.ComponentModel.ISupportInitialize)gcParametros).EndInit();
             ((System.ComponentModel.ISupportInitialize)pbImportacao.Properties).EndInit();
@@ -126,6 +117,5 @@
         #endregion
 
         private DevExpress.XtraEditors.ComboBoxEdit cbTabelas;
-        private DevExpress.XtraEditors.LabelControl lblSelecionarTabela;
     }
 }
