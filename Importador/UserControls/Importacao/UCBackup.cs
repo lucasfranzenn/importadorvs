@@ -127,6 +127,8 @@ namespace Importador.UserControls.Importacao
 
                 executarMySqlDump.Kill();
 
+                Relatorios.GerarRelatorio();
+
                 Process executarRar = new Process()
                 {
                     StartInfo =
@@ -141,6 +143,7 @@ namespace Importador.UserControls.Importacao
                 executarRar.Start();
                 executarRar.WaitForExit();
                 File.Delete("MyBackup.sql");
+                File.Delete($"Implantação {Configuracoes.Default.CodigoImplantacao}.pdf");
 
                 if (XtraMessageBox.Show("Backup Gerado\nDeseja abrir a pasta de destino?", "..::Importador::..", MessageBoxButtons.YesNo) == DialogResult.Yes)
                     Process.Start("explorer.exe", $"/select, {txtDestinoBackup.Text}");

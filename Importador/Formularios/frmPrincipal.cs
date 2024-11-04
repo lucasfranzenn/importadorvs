@@ -17,6 +17,7 @@ using System;
 using System.Data;
 using static Importador.Classes.Utils;
 using UC = Importador.UserControls;
+using DevExpress.XtraEditors;
 
 namespace Importador
 {
@@ -195,6 +196,9 @@ namespace Importador
         private void acGeralRelatorio_Click(object sender, EventArgs e)
         {
             Relatorios.GerarRelatorio();
+
+            if(XtraMessageBox.Show("Relatório Gerado\nDeseja abrir?", "..::Importador::..", System.Windows.Forms.MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.Yes)
+                System.Diagnostics.Process.Start("explorer.exe", $"/select, \"Implantação {Configuracoes.Default.CodigoImplantacao}.pdf\"");
         }
     }
 }

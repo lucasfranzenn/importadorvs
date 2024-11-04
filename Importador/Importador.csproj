@@ -27,7 +27,7 @@
     <None Remove="Configuracao\mysqldump.exe" />
     <None Remove="Configuracao\Rar.exe" />
     <None Remove="Configuracao\skin.txt" />
-    <None Remove="Relatorios\Geral2.frx" />
+    <None Remove="Relatorios\Geral.frx" />
   </ItemGroup>
 
   <ItemGroup>
@@ -64,7 +64,7 @@
     <Content Include="Configuracao\skin.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Relatorios\Geral2.frx">
+    <Content Include="Relatorios\Geral.frx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\refresh.ico" />
