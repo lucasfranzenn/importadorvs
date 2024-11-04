@@ -130,6 +130,7 @@ namespace Importador
             acGeralRelatorio.Name = "acGeralRelatorio";
             acGeralRelatorio.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
             acGeralRelatorio.Text = "Relatório";
+            acGeralRelatorio.Click += acGeralRelatorio_Click;
             // 
             // acExportarDados
             // 

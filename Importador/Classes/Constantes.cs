@@ -11,6 +11,7 @@ namespace Importador.Classes
             public const string exeMySqlDump = @"Configuracao\mysqldump";
             public const string exeRar = @"Configuracao\rar";
             public const string pdfImportacaoFiscal = @"Configuracao\importacao_fiscal.pdf";
+            public const string relatorioGeral = @"Relatorios\Geral.frx";
         }
 
         public static class Enums

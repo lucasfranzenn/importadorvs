@@ -1,4 +1,10 @@
-﻿using Importador.Classes;
+﻿using DevExpress.DataAccess.Sql;
+using DevExpress.Printing.Core.NativePdfExport;
+using FastReport;
+using FastReport.Export.PdfSimple;
+using FastReport.Data;
+using Importador.Classes;
+using Importador.Conexao;
 using Importador.Formularios;
 using Importador.Properties;
 using Importador.UserControls.BaseControls;
@@ -6,7 +12,9 @@ using Importador.UserControls.Conexao;
 using Importador.UserControls.Geral;
 using Importador.UserControls.Importacao;
 using Importador.UserControls.Utilitarios;
+using Microsoft.Data.Sqlite;
 using System;
+using System.Data;
 using static Importador.Classes.Utils;
 using UC = Importador.UserControls;
 
@@ -182,6 +190,11 @@ namespace Importador
             frmRecursos.Disposed += (sender, args) => Show();
             Hide();
             frmRecursos.Show();
+        }
+
+        private void acGeralRelatorio_Click(object sender, EventArgs e)
+        {
+            Relatorios.GerarRelatorio();
         }
     }
 }

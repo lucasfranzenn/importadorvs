@@ -156,7 +156,7 @@ namespace Importador.Conexao
                 rdt.DataHoraInicio = Convert.ToDateTime(dataInicio);
                 rdt.DataHoraFim = Convert.ToDateTime(dataFim);
                 rdt.Status = (int)Enums.RegistrosDeTempoStatus.ImportandoDados;
-                rdt.Observacao = "Registro automático salvo pelo importador de dados.";
+                rdt.Observacao = "Tempo médio para importação";
                 InserirRegistro(rdt, Enums.TabelaBancoLocal.registrosdetempo);
                 return;
             }
