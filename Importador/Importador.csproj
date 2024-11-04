@@ -64,7 +64,7 @@
     <Content Include="Configuracao\skin.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Relatorios\Geral.frx">
+    <Content Include="Relatorios\Modelos\Geral.frx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\refresh.ico" />
@@ -85,9 +85,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="FastReport.Data.SQLite">
-      <HintPath>..\..\..\Users\franzen\Desktop\FastReport.Community.2025.1.0\FastReport.Data.SQLite.dll</HintPath>
-    </Reference>
     <Reference Include="FastReport.SQLite">
       <HintPath>..\..\..\..\FastReport .NET Trial\Extras\Connections\FastReport.SQLite\bin\Release\FastReport.SQLite.dll</HintPath>
     </Reference>

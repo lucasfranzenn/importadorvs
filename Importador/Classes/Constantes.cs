@@ -11,7 +11,7 @@ namespace Importador.Classes
             public const string exeMySqlDump = @"Configuracao\mysqldump";
             public const string exeRar = @"Configuracao\rar";
             public const string pdfImportacaoFiscal = @"Configuracao\importacao_fiscal.pdf";
-            public const string relatorioGeral = @"Relatorios\Geral.frx";
+            public const string relatorioGeral = @"Relatorios\Modelos\Geral.frx";
         }
 
         public static class Enums
@@ -29,7 +29,7 @@ namespace Importador.Classes
                 produtosestoque,
                 contasapagar,
                 contasareceber,
-                produto_st,
+                produtos_st,
                 servicos,
                 backup,
                 secoes,

@@ -17,7 +17,7 @@ namespace Importador.Classes
     {
         public static int GetQtdRegistros(string sql)
         {
-            IDbCommand count = ConexaoManager.instancia.GetConexaoImportacao().CreateCommand();
+            IDbCommand count = ConexaoManager.instancia.GetConexaoImportacao().CriarComando();
             count.CommandText = $"select count(*) from ({sql.Trim().TrimEnd(';')}) as qtd";
 
             return Convert.ToInt32(count.ExecuteScalar());
@@ -26,7 +26,7 @@ namespace Importador.Classes
         public static void Importar(string sql, ProgressBarControl pbImportacao, string tabela, List<CheckEdit> parametros)
         {
             StringBuilder sbSql = new();
-            IDbCommand sqlQuery = ConexaoManager.instancia.GetConexaoImportacao().CreateCommand();
+            IDbCommand sqlQuery = ConexaoManager.instancia.GetConexaoImportacao().CriarComando();
             int qtdRegistros = GetQtdRegistros(sql);
             int registroAtual = 1;
             object value = null;
@@ -80,7 +80,7 @@ namespace Importador.Classes
 
             string sqlInsert = sbSql.ToString();
 
-            using (IDbCommand cmd = ConexaoManager.instancia.GetConexaoMyCommerce().CreateCommand())
+            using (IDbCommand cmd = ConexaoManager.instancia.GetConexaoMyCommerce().CriarComando())
             {
                 while (reader.Read())
                 {
@@ -153,6 +153,7 @@ namespace Importador.Classes
         private static void UpdatesPorTabela(string tabela)
         {
             List<string> updates;
+            IDbCommand cmd = ConexaoManager.instancia.GetConexaoMyCommerce().CriarComando();
             if (Mapeamento.UpdatesPorTabela.TryGetValue(tabela, out updates))
             {
                 if (tabela == "produtos")
@@ -171,14 +172,15 @@ namespace Importador.Classes
 
                 foreach (string query in updates)
                 {
-                    ConexaoManager.instancia.GetConexaoMyCommerce().Execute(query);
+                    cmd.CommandText = query;
+                    cmd.ExecuteNonQuery();
                 }
             }
         }
 
         private static int GetTamanhoColuna(string coluna, string tabela)
         {
-            IDbCommand cmd = ConexaoManager.instancia.GetConexaoMyCommerce().CreateCommand();
+            IDbCommand cmd = ConexaoManager.instancia.GetConexaoMyCommerce().CriarComando();
             cmd.CommandText = $"SELECT CHARACTER_MAXIMUM_LENGTH FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = '{tabela}' AND COLUMN_NAME = '{coluna}' AND TABLE_SCHEMA = '{GetImportacao(Enums.Sistema.MyCommerce).Banco}'";
             int retorno = int.TryParse(cmd.ExecuteScalar().ToString(), out retorno) ? retorno : 1;
 
@@ -187,7 +189,7 @@ namespace Importador.Classes
 
         public static DataTable PreencheGrid(string coluna)
         {
-            IDbCommand cmd = ConexaoManager.instancia.GetConexaoImportacao().CreateCommand();
+            IDbCommand cmd = ConexaoManager.instancia.GetConexaoImportacao().CriarComando();
             cmd.CommandText = ConexaoManager.instancia.GetProcurarColunaQuery(coluna);
 
             using IDataReader reader = cmd.ExecuteReader();
@@ -200,7 +202,7 @@ namespace Importador.Classes
         {
             foreach (string tabela in tabelas)
             {
-                IDbCommand truncate = ConexaoManager.instancia.GetConexaoMyCommerce().CreateCommand();
+                IDbCommand truncate = ConexaoManager.instancia.GetConexaoMyCommerce().CriarComando();
                 truncate.CommandText = $"truncate table {tabela};";
                 truncate.ExecuteNonQuery();
             }
@@ -228,7 +230,7 @@ namespace Importador.Classes
         {
             string sql = "SELECT UNVENDA, IF(UNVENDA = 'UN', 1, 0) AS padrao FROM PRODUTOS WHERE UNVENDA IS NOT NULL GROUP BY unvenda";
 
-            IDbCommand cmd = ConexaoManager.instancia.GetConexaoMyCommerce().CreateCommand();
+            IDbCommand cmd = ConexaoManager.instancia.GetConexaoMyCommerce().CriarComando();
             cmd.CommandText = sql;
             IDataReader reader = cmd.ExecuteReader();
             List<(string unvenda, int padrao)> result = new List<(string unvenda, int padrao)>();
@@ -260,8 +262,8 @@ namespace Importador.Classes
 
         internal static object CriarTabelaPreco(object _)
         {
-            var cmdSelect = ConexaoManager.instancia.GetConexaoMyCommerce().CreateCommand();
-            var cmdInsert = ConexaoManager.instancia.GetConexaoMyCommerce().CreateCommand();
+            var cmdSelect = ConexaoManager.instancia.GetConexaoMyCommerce().CriarComando();
+            var cmdInsert = ConexaoManager.instancia.GetConexaoMyCommerce().CriarComando();
             cmdSelect.CommandText = "select concat(sum(padrao), ';', sum(if (TP_preco = 'G', 1,0))) from tabelas";
 
             object x = cmdSelect.ExecuteScalar();
@@ -305,7 +307,7 @@ namespace Importador.Classes
 
         internal static bool ImportarEstoque(IDataReader reader)
         {
-            var cmd = ConexaoManager.instancia.GetConexaoMyCommerce().CreateCommand();
+            var cmd = ConexaoManager.instancia.GetConexaoMyCommerce().CriarComando();
 
             cmd.CommandText = $"INSERT INTO acertoestoque set data = curdate(), hora = curtime(), codigoproduto = {reader["codigoproduto"]}, qtde = @Estoque, Tipo = 'E'" +
                 $", Empresa = {reader["empresa"]}, valor = 0, Usuario = 'MASTER', terminal = 'SERVIDOR', OBS= 'TRANSF. ESTOQUE'";
@@ -333,13 +335,13 @@ namespace Importador.Classes
 
         internal static bool VincularPorReferencia(IDataReader reader)
         {
-            var cmdSelect = ConexaoManager.instancia.GetConexaoMyCommerce().CreateCommand();
+            var cmdSelect = ConexaoManager.instancia.GetConexaoMyCommerce().CriarComando();
             cmdSelect.CommandText = $"select codigo from produtos where produtos.referencia = '{reader["codigoproduto"].ToString()}'";
             var codigoProduto = cmdSelect.ExecuteScalar();
 
             if (codigoProduto is null) return true;
 
-            var cmd = ConexaoManager.instancia.GetConexaoMyCommerce().CreateCommand();
+            var cmd = ConexaoManager.instancia.GetConexaoMyCommerce().CriarComando();
             var parametro = cmd.CreateParameter();
 
 
@@ -359,7 +361,7 @@ namespace Importador.Classes
 
         internal static string VerificarSQL(string sql)
         {
-            IDbCommand cmdSql = ConexaoManager.instancia.GetConexaoImportacao().CreateCommand();
+            IDbCommand cmdSql = ConexaoManager.instancia.GetConexaoImportacao().CriarComando();
             cmdSql.CommandText = $"{sql}";
 
             try

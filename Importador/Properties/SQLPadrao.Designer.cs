@@ -52,12 +52,12 @@ namespace Importador.Properties {
         [global::System.Configuration.DefaultSettingValueAttribute("SELECT @as codigoproduto, @as uf, @as MVA, @as MVA_AJUST , @as MVA_SIMPLES , @as " +
             "ICMS , @as ICMS_Intra , @as ICMS_Inter_PF , @as CST , @as CST_Simples , @as Valo" +
             "rPauta, @as Empresa , @as BaseST @FROM produtos_st;")]
-        public string produto_st {
+        public string produtos_st {
             get {
-                return ((string)(this["produto_st"]));
+                return ((string)(this["produtos_st"]));
             }
             set {
-                this["produto_st"] = value;
+                this["produtos_st"] = value;
             }
         }
         

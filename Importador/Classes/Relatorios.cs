@@ -39,7 +39,7 @@ namespace Importador.Classes
             rpt.Prepare();
 
             PDFSimpleExport exportPDF = new();
-            rpt.Export(exportPDF, $"Implantação {Configuracoes.Default.CodigoImplantacao}.pdf");
+            rpt.Export(exportPDF, $"Relatorios\\Implantação {Configuracoes.Default.CodigoImplantacao}.pdf");
         }
     }
 }

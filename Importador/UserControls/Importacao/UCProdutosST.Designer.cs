@@ -53,7 +53,7 @@
             // 
             // MyC
             // 
-            MyC.Tabela = Classes.Constantes.Enums.TabelaMyCommerce.produto_st;
+            MyC.Tabela = Classes.Constantes.Enums.TabelaMyCommerce.produtos_st;
             // 
             // UCProdutosST
             // 
