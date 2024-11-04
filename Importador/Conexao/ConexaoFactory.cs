@@ -17,6 +17,8 @@ namespace Importador.Conexao
                     return new PostgreSqlConnection();
                 case Enums.TipoBanco.SQLServer:
                     return new MSSqlConnection();
+                case Enums.TipoBanco.Access:
+                    return new MSAccessConnection();
                 default:
                     throw new NotSupportedException($"O banco de dados '{tipoBanco.ToString()}' não é suportado ou não foi implementado.");
             }

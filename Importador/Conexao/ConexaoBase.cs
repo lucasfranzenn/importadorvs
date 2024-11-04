@@ -3,6 +3,7 @@ using MySqlConnector;
 using Npgsql;
 using System;
 using System.Data;
+using System.Data.OleDb;
 using System.Data.SqlClient;
 using System.Text;
 using Ent = Importador.Classes.Entidades;
@@ -47,6 +48,14 @@ namespace Importador.Conexao
             return new SqlConnection($"Server={conexao.Host};Database={conexao.Banco};Trusted_Connection=yes");
             /* String de conexão caso precise se conectar em um servidor dedicado.
             return new SqlConnection($"Server={conexao.Host},{conexao.Porta};Database={conexao.Banco};User Id={conexao.Usuario};Password={conexao.Senha}"); */
+        }
+    }
+
+    public class MSAccessConnection : ConexaoBase
+    {
+        public override IDbConnection CriarConexao(Ent.Conexao conexao)
+        {
+            return new OleDbConnection($"Provider=Microsoft.ACE.OLEDB.12.0;Data Source={conexao.Banco};Jet OLEDB:Database Password={conexao.Senha};");
         }
     }
 

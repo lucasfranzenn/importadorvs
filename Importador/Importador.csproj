@@ -81,11 +81,15 @@
     <PackageReference Include="MySqlConnector" Version="2.3.7" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="Npgsql" Version="8.0.3" />
+    <PackageReference Include="System.Data.OleDb" Version="8.0.1" />
   </ItemGroup>
 
   <ItemGroup>
     <Reference Include="FastReport.Data.SQLite">
       <HintPath>..\..\..\Users\franzen\Desktop\FastReport.Community.2025.1.0\FastReport.Data.SQLite.dll</HintPath>
+    </Reference>
+    <Reference Include="FastReport.SQLite">
+      <HintPath>..\..\..\..\FastReport .NET Trial\Extras\Connections\FastReport.SQLite\bin\Release\FastReport.SQLite.dll</HintPath>
     </Reference>
   </ItemGroup>
 

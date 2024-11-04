@@ -127,8 +127,6 @@ namespace Importador.UserControls.Importacao
 
                 executarMySqlDump.Kill();
 
-                Relatorios.GerarRelatorio();
-
                 Process executarRar = new Process()
                 {
                     StartInfo =

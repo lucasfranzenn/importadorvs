@@ -68,7 +68,7 @@ namespace Importador.Classes
 
         internal static string GerarArquivoRar(string caminhoBackup)
         {
-            return $"\"{AppDomain.CurrentDomain.BaseDirectory}{Caminhos.exeRar}\" a \"{caminhoBackup}\" \"MyBackup.sql\" \"Implantação {Configuracoes.Default.CodigoImplantacao}.pdf\"";
+            return $"\"{AppDomain.CurrentDomain.BaseDirectory}{Caminhos.exeRar}\" a \"{caminhoBackup}\" \"MyBackup.sql\"";
         }
 
         internal static AutoCompleteStringCollection GetAutoCompleteCustomSource(IDbCommand cmd)
