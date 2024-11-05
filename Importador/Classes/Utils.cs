@@ -18,15 +18,9 @@ namespace Importador.Classes
         public static void AlteraAba(ref FluentDesignFormContainer container, XtraUserControl userControl)
         {
             container.Controls.Clear();
-            userControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            userControl.Dock = DockStyle.Fill;
             container.Controls.Add(userControl);
         }
-
-        public static Entidades.Conexao GetImportacao(Enums.Sistema sistema) => sistema switch
-        {
-            Enums.Sistema.MyCommerce => ConexaoBancoImportador.GetEntidade<Entidades.Conexao>(Enums.TabelaBancoLocal.conexoes, "TipoConexao = 0"),
-            _ => ConexaoBancoImportador.GetEntidade<Entidades.Conexao>(Enums.TabelaBancoLocal.conexoes, "TipoConexao = 1 and Padrao = 1")
-        };
 
         public static void MostrarNotificacao(string msg, string titulo)
         {
@@ -36,10 +30,6 @@ namespace Importador.Classes
                 .Show();
         }
 
-        internal static string GetSqlPadrao(string tabela)
-        {
-            return SQLPadrao.Default[tabela].ToString().Replace("@", Environment.NewLine);
-        }
 
         internal static void AtualizaSQLImportacao(string sql, string tabela)
         {
@@ -66,10 +56,6 @@ namespace Importador.Classes
             return cmd.ToString();
         }
 
-        internal static string GerarArquivoRar(string caminhoBackup)
-        {
-            return $"\"{AppDomain.CurrentDomain.BaseDirectory}{Caminhos.exeRar}\" a \"{caminhoBackup}\" \"MyBackup.sql\"";
-        }
 
         internal static AutoCompleteStringCollection GetAutoCompleteCustomSource(IDbCommand cmd)
         {
@@ -84,10 +70,16 @@ namespace Importador.Classes
             return acsc;
         }
 
-        internal static string GetUsuarioSID()
+        public static Entidades.Conexao GetImportacao(Enums.Sistema sistema) => sistema switch
         {
-            return WindowsIdentity.GetCurrent().User.ToString();
-        }
+            Enums.Sistema.MyCommerce => ConexaoBancoImportador.GetEntidade<Entidades.Conexao>(Enums.TabelaBancoLocal.conexoes, "TipoConexao = 0"),
+            _ => ConexaoBancoImportador.GetEntidade<Entidades.Conexao>(Enums.TabelaBancoLocal.conexoes, "TipoConexao = 1 and Padrao = 1")
+        };
+
+        internal static string GetUsuarioSID() => WindowsIdentity.GetCurrent().User.ToString();
+        internal static string GetSqlPadrao(string tabela) => SQLPadrao.Default[tabela].ToString().Replace("@", Environment.NewLine);
+        internal static string GerarArquivoRar(string caminhoBackup) => $"\"{AppDomain.CurrentDomain.BaseDirectory}{Caminhos.exeRar}\" a \"{caminhoBackup}\" \"MyBackup.sql\"";
+
     }
 
 }

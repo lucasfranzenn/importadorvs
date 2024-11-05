@@ -83,10 +83,7 @@ namespace Importador.Conexao
         {
             var resultado = instancia.conexao.Query<Consultas>($"select consulta from consultas where tabelaconsulta = '{tabela}' and codigoimplantacao = {Configuracoes.Default.CodigoImplantacao}");
 
-            if (resultado.FirstOrDefault() is Consultas c)
-            {
-                return c.Consulta;
-            }
+            if (resultado.FirstOrDefault() is Consultas c) { return c.Consulta; }
 
             try
             {
