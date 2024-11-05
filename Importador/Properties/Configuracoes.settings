@@ -1,0 +1,24 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Importador.Properties" GeneratedClassName="Configuracoes">
+  <Profiles />
+  <Settings>
+    <Setting Name="BancoLocal" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Configuracao\imp.db</Value>
+    </Setting>
+    <Setting Name="CodigoImplantacao" Type="System.String" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="NomeSkin" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Basic</Value>
+    </Setting>
+    <Setting Name="PaletaSkin" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Violet Dark</Value>
+    </Setting>
+    <Setting Name="RegimeEmpresa" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="UsuarioLogado" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+  </Settings>
+</SettingsFile>

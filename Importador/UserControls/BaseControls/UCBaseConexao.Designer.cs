@@ -47,6 +47,7 @@
             // 
             // txtBancoDeDados
             // 
+            txtBancoDeDados.EnterMoveNextControl = true;
             txtBancoDeDados.Location = new System.Drawing.Point(405, 52);
             txtBancoDeDados.Name = "txtBancoDeDados";
             txtBancoDeDados.Size = new System.Drawing.Size(128, 20);
@@ -64,6 +65,7 @@
             // 
             // txtSenha
             // 
+            txtSenha.EnterMoveNextControl = true;
             txtSenha.Location = new System.Drawing.Point(316, 52);
             txtSenha.Name = "txtSenha";
             txtSenha.Properties.UseSystemPasswordChar = true;
@@ -82,6 +84,7 @@
             // 
             // txtUsuario
             // 
+            txtUsuario.EnterMoveNextControl = true;
             txtUsuario.Location = new System.Drawing.Point(227, 52);
             txtUsuario.Name = "txtUsuario";
             txtUsuario.Size = new System.Drawing.Size(83, 20);
@@ -99,6 +102,7 @@
             // 
             // txtPorta
             // 
+            txtPorta.EnterMoveNextControl = true;
             txtPorta.Location = new System.Drawing.Point(127, 52);
             txtPorta.Name = "txtPorta";
             txtPorta.Size = new System.Drawing.Size(94, 20);
@@ -116,6 +120,7 @@
             // 
             // txtHost
             // 
+            txtHost.EnterMoveNextControl = true;
             txtHost.Location = new System.Drawing.Point(16, 52);
             txtHost.Name = "txtHost";
             txtHost.Size = new System.Drawing.Size(101, 20);

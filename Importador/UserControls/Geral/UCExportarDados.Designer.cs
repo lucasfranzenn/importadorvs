@@ -162,9 +162,6 @@
 
         private DevExpress.XtraEditors.LabelControl lbSql;
         private DevExpress.XtraEditors.MemoEdit meSql;
-        private DevExpress.XtraEditors.RadioGroup radioGroup1;
-        private System.Windows.Forms.RadioButton radioButton1;
-        private System.Windows.Forms.RadioButton rbBancoImp;
         private DevExpress.XtraEditors.PanelControl panelControl1;
         private DevExpress.XtraEditors.LabelControl labelControl1;
         private System.Windows.Forms.RadioButton rbBancoImpl;

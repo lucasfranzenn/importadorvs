@@ -28,12 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
-            cbCriarConsumidor = new DevExpress.XtraEditors.CheckEdit();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UCClientes));
+            cbCriarConsumidorFinal = new DevExpress.XtraEditors.CheckEdit();
+            cbValidarDocumento = new DevExpress.XtraEditors.CheckEdit();
+            cbAlterarTabela = new DevExpress.XtraEditors.CheckEdit();
             ((System.ComponentModel.ISupportInitialize)txtSqlImportacao.Properties).BeginInit();
             ((System.ComponentModel.ISupportInitialize)gcParametros).BeginInit();
             gcParametros.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pbImportacao.Properties).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)cbCriarConsumidor.Properties).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)cbCriarConsumidorFinal.Properties).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)cbValidarDocumento.Properties).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)cbAlterarTabela.Properties).BeginInit();
             SuspendLayout();
             // 
             // lblSqlImportacao
@@ -46,43 +51,69 @@
             // 
             // gcParametros
             // 
-            gcParametros.Controls.Add(cbCriarConsumidor);
-            gcParametros.Controls.SetChildIndex(cbCriarConsumidor, 0);
-            // 
-            // btnImportar
-            // 
-            btnImportar.Click += btnImportar_Click;
+            gcParametros.Controls.Add(cbAlterarTabela);
+            gcParametros.Controls.Add(cbValidarDocumento);
+            gcParametros.Controls.Add(cbCriarConsumidorFinal);
+            gcParametros.Controls.SetChildIndex(cbCriarConsumidorFinal, 0);
+            gcParametros.Controls.SetChildIndex(cbValidarDocumento, 0);
+            gcParametros.Controls.SetChildIndex(cbAlterarTabela, 0);
             // 
             // pbImportacao
             // 
             pbImportacao.Properties.DisplayFormat.FormatString = "Nenhum registro importado";
             pbImportacao.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             // 
-            // cbCriarConsumidor
+            // btnResetarSql
             // 
-            cbCriarConsumidor.Location = new System.Drawing.Point(181, 26);
-            cbCriarConsumidor.Name = "cbCriarConsumidor";
-            cbCriarConsumidor.Properties.Caption = "Criar consumidor final?";
-            cbCriarConsumidor.Size = new System.Drawing.Size(155, 20);
-            cbCriarConsumidor.TabIndex = 1;
+            btnResetarSql.ImageOptions.Image = (System.Drawing.Image)resources.GetObject("btnResetarSql.ImageOptions.Image");
+            // 
+            // cbCriarConsumidorFinal
+            // 
+            cbCriarConsumidorFinal.Location = new System.Drawing.Point(181, 26);
+            cbCriarConsumidorFinal.Name = "cbCriarConsumidorFinal";
+            cbCriarConsumidorFinal.Properties.Caption = "Criar consumidor final?";
+            cbCriarConsumidorFinal.Size = new System.Drawing.Size(155, 20);
+            cbCriarConsumidorFinal.TabIndex = 1;
+            // 
+            // cbValidarDocumento
+            // 
+            cbValidarDocumento.Location = new System.Drawing.Point(320, 26);
+            cbValidarDocumento.Name = "cbValidarDocumento";
+            cbValidarDocumento.Properties.Caption = "Verificar existência de CPF/CNPJ?";
+            cbValidarDocumento.Size = new System.Drawing.Size(189, 20);
+            cbValidarDocumento.TabIndex = 17;
+            // 
+            // cbAlterarTabela
+            // 
+            cbAlterarTabela.EditValue = true;
+            cbAlterarTabela.Location = new System.Drawing.Point(5, 52);
+            cbAlterarTabela.Name = "cbAlterarTabela";
+            cbAlterarTabela.Properties.Caption = "Alterar Tabela Clientes";
+            cbAlterarTabela.Properties.ReadOnly = true;
+            cbAlterarTabela.Size = new System.Drawing.Size(134, 20);
+            cbAlterarTabela.TabIndex = 18;
+            cbAlterarTabela.Visible = false;
             // 
             // UCClientes
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             Name = "UCClientes";
-            Load += UCClientes_Load;
             ((System.ComponentModel.ISupportInitialize)txtSqlImportacao.Properties).EndInit();
             ((System.ComponentModel.ISupportInitialize)gcParametros).EndInit();
             gcParametros.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pbImportacao.Properties).EndInit();
-            ((System.ComponentModel.ISupportInitialize)cbCriarConsumidor.Properties).EndInit();
+            ((System.ComponentModel.ISupportInitialize)cbCriarConsumidorFinal.Properties).EndInit();
+            ((System.ComponentModel.ISupportInitialize)cbValidarDocumento.Properties).EndInit();
+            ((System.ComponentModel.ISupportInitialize)cbAlterarTabela.Properties).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
 
-        private DevExpress.XtraEditors.CheckEdit cbCriarConsumidor;
+        private DevExpress.XtraEditors.CheckEdit cbCriarConsumidorFinal;
+        private DevExpress.XtraEditors.CheckEdit cbValidarDocumento;
+        private DevExpress.XtraEditors.CheckEdit cbAlterarTabela;
     }
 }

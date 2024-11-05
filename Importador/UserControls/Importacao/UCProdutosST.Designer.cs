@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UCProdutosST));
             ((System.ComponentModel.ISupportInitialize)txtSqlImportacao.Properties).BeginInit();
             ((System.ComponentModel.ISupportInitialize)gcParametros).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pbImportacao.Properties).BeginInit();
@@ -46,12 +47,19 @@
             pbImportacao.Properties.DisplayFormat.FormatString = "Nenhum registro importado";
             pbImportacao.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             // 
+            // btnResetarSql
+            // 
+            btnResetarSql.ImageOptions.Image = (System.Drawing.Image)resources.GetObject("btnResetarSql.ImageOptions.Image");
+            // 
+            // MyC
+            // 
+            MyC.Tabela = Classes.Constantes.Enums.TabelaMyCommerce.produtos_st;
+            // 
             // UCProdutosST
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             Name = "UCProdutosST";
-            Load += UCProdutosST_Load;
             ((System.ComponentModel.ISupportInitialize)txtSqlImportacao.Properties).EndInit();
             ((System.ComponentModel.ISupportInitialize)gcParametros).EndInit();
             ((System.ComponentModel.ISupportInitialize)pbImportacao.Properties).EndInit();

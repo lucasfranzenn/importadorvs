@@ -36,6 +36,8 @@ namespace Importador
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
+            DevExpress.Utils.SuperToolTip superToolTip1 = new DevExpress.Utils.SuperToolTip();
+            DevExpress.Utils.ToolTipItem toolTipItem1 = new DevExpress.Utils.ToolTipItem();
             fcPrincipal = new DevExpress.XtraBars.FluentDesignSystem.FluentDesignFormContainer();
             btnSair = new SimpleButton();
             acPrincipal = new DevExpress.XtraBars.Navigation.AccordionControl();
@@ -46,6 +48,7 @@ namespace Importador
             acConexao = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             acConexaoMyCommerce = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             acConexaoImportacao = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            acConexaoLocal = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             acImportacao = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             acImportacaoClientesForn = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             acImportacaoProdutos = new DevExpress.XtraBars.Navigation.AccordionControlElement();
@@ -58,21 +61,14 @@ namespace Importador
             acImportacaoBackup = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             acUtilitarios = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             acUtilitariosBuscarColuna = new DevExpress.XtraBars.Navigation.AccordionControlElement();
-            acUtilitariosVerificarUltimoRegistro = new DevExpress.XtraBars.Navigation.AccordionControlElement();
-            acDrivers = new DevExpress.XtraBars.Navigation.AccordionControlElement();
-            acDriversMariaDB = new DevExpress.XtraBars.Navigation.AccordionControlElement();
-            acDriversFirebird = new DevExpress.XtraBars.Navigation.AccordionControlElement();
-            acDriversPostgree = new DevExpress.XtraBars.Navigation.AccordionControlElement();
-            acDriversMSSQL = new DevExpress.XtraBars.Navigation.AccordionControlElement();
-            acFiscal = new DevExpress.XtraBars.Navigation.AccordionControlElement();
-            acFiscalICMS = new DevExpress.XtraBars.Navigation.AccordionControlElement();
-            acFiscalPisCofins = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            acUtilitariosRecursos = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             fluentDesignFormControl1 = new DevExpress.XtraBars.FluentDesignSystem.FluentDesignFormControl();
             blciTemas = new DevExpress.XtraBars.BarLinkContainerItem();
             skinDropDownButtonItem1 = new DevExpress.XtraBars.SkinDropDownButtonItem();
             skinPaletteDropDownButtonItem1 = new DevExpress.XtraBars.SkinPaletteDropDownButtonItem();
+            bsiTelaAtual = new DevExpress.XtraBars.BarStaticItem();
             fluentFormDefaultManager1 = new DevExpress.XtraBars.FluentDesignSystem.FluentFormDefaultManager(components);
-            defaultLookAndFeel1 = new DefaultLookAndFeel(components);
+            skin = new DefaultLookAndFeel(components);
             acImportacaoSeparador = new DevExpress.XtraBars.Navigation.AccordionControlSeparator();
             barManager1 = new DevExpress.XtraBars.BarManager(components);
             barDockControlTop = new DevExpress.XtraBars.BarDockControl();
@@ -105,7 +101,7 @@ namespace Importador
             // acPrincipal
             // 
             acPrincipal.Dock = System.Windows.Forms.DockStyle.Left;
-            acPrincipal.Elements.AddRange(new DevExpress.XtraBars.Navigation.AccordionControlElement[] { acGeral, acConexao, acImportacao, acUtilitarios, acDrivers, acFiscal });
+            acPrincipal.Elements.AddRange(new DevExpress.XtraBars.Navigation.AccordionControlElement[] { acGeral, acConexao, acImportacao, acUtilitarios });
             acPrincipal.Location = new System.Drawing.Point(0, 31);
             acPrincipal.Name = "acPrincipal";
             acPrincipal.ScrollBarMode = DevExpress.XtraBars.Navigation.ScrollBarMode.Fluent;
@@ -133,7 +129,8 @@ namespace Importador
             acGeralRelatorio.ImageOptions.SvgImage = Properties.Resources.reportlayoutpivottable;
             acGeralRelatorio.Name = "acGeralRelatorio";
             acGeralRelatorio.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
-            acGeralRelatorio.Text = "Relatório";
+            acGeralRelatorio.Text = "Gerar Relatório de Tempo Gasto";
+            acGeralRelatorio.Click += acGeralRelatorio_Click;
             // 
             // acExportarDados
             // 
@@ -142,11 +139,12 @@ namespace Importador
             acExportarDados.Name = "acExportarDados";
             acExportarDados.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
             acExportarDados.Text = "Exportar Dados CSV";
+            acExportarDados.Visible = false;
             acExportarDados.Click += acExportarDados_Click;
             // 
             // acConexao
             // 
-            acConexao.Elements.AddRange(new DevExpress.XtraBars.Navigation.AccordionControlElement[] { acConexaoMyCommerce, acConexaoImportacao });
+            acConexao.Elements.AddRange(new DevExpress.XtraBars.Navigation.AccordionControlElement[] { acConexaoMyCommerce, acConexaoImportacao, acConexaoLocal });
             acConexao.Expanded = true;
             acConexao.Name = "acConexao";
             acConexao.Text = "Conexão";
@@ -166,6 +164,14 @@ namespace Importador
             acConexaoImportacao.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
             acConexaoImportacao.Text = "Importação";
             acConexaoImportacao.Click += acConexaoImportacao_Click;
+            // 
+            // acConexaoLocal
+            // 
+            acConexaoLocal.ImageOptions.SvgImage = Properties.Resources.bo_address;
+            acConexaoLocal.Name = "acConexaoLocal";
+            acConexaoLocal.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            acConexaoLocal.Text = "Local";
+            acConexaoLocal.Click += acConexaoLocal_Click;
             // 
             // acImportacao
             // 
@@ -236,6 +242,7 @@ namespace Importador
             acImportacaoGenerico.Name = "acImportacaoGenerico";
             acImportacaoGenerico.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
             acImportacaoGenerico.Text = "Genérico/Outros";
+            acImportacaoGenerico.Click += acImportacaoGenerico_Click;
             // 
             // acImportacaoBackup
             // 
@@ -243,13 +250,14 @@ namespace Importador
             acImportacaoBackup.Name = "acImportacaoBackup";
             acImportacaoBackup.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
             acImportacaoBackup.Text = "Backup";
+            acImportacaoBackup.Click += acImportacaoBackup_Click;
             // 
             // acUtilitarios
             // 
-            acUtilitarios.Elements.AddRange(new DevExpress.XtraBars.Navigation.AccordionControlElement[] { acUtilitariosBuscarColuna, acUtilitariosVerificarUltimoRegistro });
+            acUtilitarios.Elements.AddRange(new DevExpress.XtraBars.Navigation.AccordionControlElement[] { acUtilitariosBuscarColuna, acUtilitariosRecursos });
             acUtilitarios.Expanded = true;
             acUtilitarios.Name = "acUtilitarios";
-            acUtilitarios.Text = "Utilitários - Bancos";
+            acUtilitarios.Text = "Utilitários";
             // 
             // acUtilitariosBuscarColuna
             // 
@@ -259,74 +267,24 @@ namespace Importador
             acUtilitariosBuscarColuna.Text = "Buscar Colunas";
             acUtilitariosBuscarColuna.Click += acUtilitariosBuscarColuna_Click;
             // 
-            // acUtilitariosVerificarUltimoRegistro
+            // acUtilitariosRecursos
             // 
-            acUtilitariosVerificarUltimoRegistro.ImageOptions.SvgImage = Properties.Resources.last;
-            acUtilitariosVerificarUltimoRegistro.Name = "acUtilitariosVerificarUltimoRegistro";
-            acUtilitariosVerificarUltimoRegistro.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
-            acUtilitariosVerificarUltimoRegistro.Text = "Verificar Ultimo Registro";
-            // 
-            // acDrivers
-            // 
-            acDrivers.Elements.AddRange(new DevExpress.XtraBars.Navigation.AccordionControlElement[] { acDriversMariaDB, acDriversFirebird, acDriversPostgree, acDriversMSSQL });
-            acDrivers.Expanded = true;
-            acDrivers.Name = "acDrivers";
-            acDrivers.Text = "Drivers ODBC/Servidores";
-            // 
-            // acDriversMariaDB
-            // 
-            acDriversMariaDB.ImageOptions.Image = Properties.Resources.mariadb;
-            acDriversMariaDB.Name = "acDriversMariaDB";
-            acDriversMariaDB.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
-            acDriversMariaDB.Text = "MariaDB";
-            // 
-            // acDriversFirebird
-            // 
-            acDriversFirebird.ImageOptions.Image = Properties.Resources.firebird;
-            acDriversFirebird.Name = "acDriversFirebird";
-            acDriversFirebird.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
-            acDriversFirebird.Text = "Firebird";
-            // 
-            // acDriversPostgree
-            // 
-            acDriversPostgree.ImageOptions.Image = Properties.Resources.postgree;
-            acDriversPostgree.Name = "acDriversPostgree";
-            acDriversPostgree.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
-            acDriversPostgree.Text = "Postgree";
-            // 
-            // acDriversMSSQL
-            // 
-            acDriversMSSQL.ImageOptions.Image = Properties.Resources.mssql;
-            acDriversMSSQL.Name = "acDriversMSSQL";
-            acDriversMSSQL.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
-            acDriversMSSQL.Text = "MS-SQL/SQL Server";
-            // 
-            // acFiscal
-            // 
-            acFiscal.Elements.AddRange(new DevExpress.XtraBars.Navigation.AccordionControlElement[] { acFiscalICMS, acFiscalPisCofins });
-            acFiscal.Expanded = true;
-            acFiscal.Name = "acFiscal";
-            acFiscal.Text = "Auxiliar - Fiscal";
-            // 
-            // acFiscalICMS
-            // 
-            acFiscalICMS.ImageOptions.SvgImage = Properties.Resources.bo_price1;
-            acFiscalICMS.Name = "acFiscalICMS";
-            acFiscalICMS.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
-            acFiscalICMS.Text = "CheatSheet ICMS";
-            // 
-            // acFiscalPisCofins
-            // 
-            acFiscalPisCofins.ImageOptions.SvgImage = Properties.Resources.accounting1;
-            acFiscalPisCofins.Name = "acFiscalPisCofins";
-            acFiscalPisCofins.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
-            acFiscalPisCofins.Text = "CheatSheet Pis/Cofins";
+            acUtilitariosRecursos.ImageOptions.SvgImage = Properties.Resources.functionsinformation;
+            acUtilitariosRecursos.Name = "acUtilitariosRecursos";
+            acUtilitariosRecursos.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            toolTipItem1.AllowHtmlText = DevExpress.Utils.DefaultBoolean.True;
+            toolTipItem1.ImageOptions.SvgImage = Properties.Resources.functionsinformation;
+            toolTipItem1.Text = "Recursos de apoio para facilitar a importação.\r\nEstá incluso: \r\n * Nomenclaturas de colunas;\r\n * Validações Fiscais;\r\n * Sistemas Importados;\r\n * Software Úteis;\r\n * Dicas de Bancos de Dados.";
+            superToolTip1.Items.Add(toolTipItem1);
+            acUtilitariosRecursos.SuperTip = superToolTip1;
+            acUtilitariosRecursos.Text = "Recursos de Apoio";
+            acUtilitariosRecursos.Click += acUtilitariosAuxiliar_Click;
             // 
             // fluentDesignFormControl1
             // 
             fluentDesignFormControl1.Controls.Add(btnSair);
             fluentDesignFormControl1.FluentDesignForm = this;
-            fluentDesignFormControl1.Items.AddRange(new DevExpress.XtraBars.BarItem[] { blciTemas, skinDropDownButtonItem1, skinPaletteDropDownButtonItem1 });
+            fluentDesignFormControl1.Items.AddRange(new DevExpress.XtraBars.BarItem[] { blciTemas, skinDropDownButtonItem1, skinPaletteDropDownButtonItem1, bsiTelaAtual });
             fluentDesignFormControl1.Location = new System.Drawing.Point(0, 0);
             fluentDesignFormControl1.Manager = fluentFormDefaultManager1;
             fluentDesignFormControl1.Name = "fluentDesignFormControl1";
@@ -334,6 +292,7 @@ namespace Importador
             fluentDesignFormControl1.TabIndex = 2;
             fluentDesignFormControl1.TabStop = false;
             fluentDesignFormControl1.TitleItemLinks.Add(blciTemas);
+            fluentDesignFormControl1.TitleItemLinks.Add(bsiTelaAtual);
             // 
             // blciTemas
             // 
@@ -358,16 +317,21 @@ namespace Importador
             skinPaletteDropDownButtonItem1.Id = 2;
             skinPaletteDropDownButtonItem1.Name = "skinPaletteDropDownButtonItem1";
             // 
+            // bsiTelaAtual
+            // 
+            bsiTelaAtual.Id = 3;
+            bsiTelaAtual.Name = "bsiTelaAtual";
+            // 
             // fluentFormDefaultManager1
             // 
             fluentFormDefaultManager1.AutoSaveInRegistry = true;
             fluentFormDefaultManager1.Form = this;
-            fluentFormDefaultManager1.Items.AddRange(new DevExpress.XtraBars.BarItem[] { blciTemas, skinDropDownButtonItem1, skinPaletteDropDownButtonItem1 });
-            fluentFormDefaultManager1.MaxItemId = 3;
+            fluentFormDefaultManager1.Items.AddRange(new DevExpress.XtraBars.BarItem[] { blciTemas, skinDropDownButtonItem1, skinPaletteDropDownButtonItem1, bsiTelaAtual });
+            fluentFormDefaultManager1.MaxItemId = 4;
             // 
-            // defaultLookAndFeel1
+            // skin
             // 
-            defaultLookAndFeel1.EnableBonusSkins = true;
+            skin.EnableBonusSkins = true;
             // 
             // acImportacaoSeparador
             // 
@@ -467,15 +431,6 @@ namespace Importador
         private DevExpress.XtraBars.Navigation.AccordionControlElement acImportacaoGenerico;
         private DevExpress.XtraBars.Navigation.AccordionControlElement acUtilitarios;
         private DevExpress.XtraBars.Navigation.AccordionControlElement acUtilitariosBuscarColuna;
-        private DevExpress.XtraBars.Navigation.AccordionControlElement acUtilitariosVerificarUltimoRegistro;
-        private DevExpress.XtraBars.Navigation.AccordionControlElement acDrivers;
-        private DevExpress.XtraBars.Navigation.AccordionControlElement acDriversMariaDB;
-        private DevExpress.XtraBars.Navigation.AccordionControlElement acDriversFirebird;
-        private DevExpress.XtraBars.Navigation.AccordionControlElement acDriversPostgree;
-        private DevExpress.XtraBars.Navigation.AccordionControlElement acDriversMSSQL;
-        private DevExpress.XtraBars.Navigation.AccordionControlElement acFiscal;
-        private DevExpress.XtraBars.Navigation.AccordionControlElement acFiscalICMS;
-        private DevExpress.XtraBars.Navigation.AccordionControlElement acFiscalPisCofins;
         private DevExpress.XtraBars.BarLinkContainerItem blciTemas;
         private DevExpress.XtraBars.SkinDropDownButtonItem skinDropDownButtonItem1;
         private DevExpress.XtraBars.SkinPaletteDropDownButtonItem skinPaletteDropDownButtonItem1;
@@ -483,7 +438,7 @@ namespace Importador
         private DevExpress.XtraBars.Navigation.AccordionControlElement acGeralImplantacao;
         private DevExpress.XtraBars.Navigation.AccordionControlElement acGeralRelatorio;
         private SimpleButton btnSair;
-        private DevExpress.LookAndFeel.DefaultLookAndFeel defaultLookAndFeel1;
+        private DevExpress.LookAndFeel.DefaultLookAndFeel skin;
         private DevExpress.XtraBars.Navigation.AccordionControlSeparator acImportacaoSeparador;
         private DevExpress.XtraBars.Navigation.AccordionControlElement acImportacaoBackup;
         private DevExpress.XtraBars.BarDockControl barDockControlLeft;
@@ -492,6 +447,9 @@ namespace Importador
         private DevExpress.XtraBars.BarDockControl barDockControlBottom;
         private DevExpress.XtraBars.BarDockControl barDockControlRight;
         private DevExpress.XtraBars.Navigation.AccordionControlElement acExportarDados;
+        private DevExpress.XtraBars.Navigation.AccordionControlElement acConexaoLocal;
+        private DevExpress.XtraBars.BarStaticItem bsiTelaAtual;
+        private DevExpress.XtraBars.Navigation.AccordionControlElement acUtilitariosRecursos;
     }
 }
 

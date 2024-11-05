@@ -51,7 +51,6 @@
             AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             Name = "UCPreVendas";
-            Load += UCPreVendas_Load;
             ((System.ComponentModel.ISupportInitialize)txtSqlImportacao.Properties).EndInit();
             ((System.ComponentModel.ISupportInitialize)gcParametros).EndInit();
             ((System.ComponentModel.ISupportInitialize)pbImportacao.Properties).EndInit();

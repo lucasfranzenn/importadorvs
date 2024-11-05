@@ -1,19 +1,12 @@
 ﻿using DevExpress.XtraEditors;
 using Importador.Classes;
 using Importador.Conexao;
+using Importador.UserControls.BaseControls;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace Importador.UserControls.Utilitarios
 {
-    public partial class UCBuscaColuna : DevExpress.XtraEditors.XtraUserControl
+    public partial class UCBuscaColuna : UCBase
     {
         public UCBuscaColuna()
         {
@@ -29,7 +22,6 @@ namespace Importador.UserControls.Utilitarios
         {
             if (!ConexaoManager.ConexoesAbertas())
             {
-                XtraMessageBox.Show("Conexões não foram estabelecidas!\nConfigure-as corretamente", "..::Importador::..");
                 Enabled = false;
             }
         }

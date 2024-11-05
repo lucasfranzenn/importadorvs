@@ -1,19 +1,15 @@
-﻿using DevExpress.Mvvm.Native;
-using DevExpress.XtraBars.FluentDesignSystem;
+﻿using DevExpress.XtraBars.FluentDesignSystem;
 using DevExpress.XtraEditors;
-using Importador.Classes.JSON;
+using Importador.Classes.Entidades;
 using Importador.Conexao;
-using System;
-using System.Collections.Generic;
-using System.Data;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Importador.Properties;
 using Microsoft.Toolkit.Uwp.Notifications;
+using System;
+using System.Data;
+using System.Security.Principal;
+using System.Text;
+using System.Windows.Forms;
 using static Importador.Classes.Constantes;
-using DevExpress.LookAndFeel;
-using DevExpress.Charts.Native;
 
 namespace Importador.Classes
 {
@@ -26,17 +22,11 @@ namespace Importador.Classes
             container.Controls.Add(userControl);
         }
 
-        public static Importacao GetImportacao(Enums.Sistema sistema) => sistema switch
+        public static Entidades.Conexao GetImportacao(Enums.Sistema sistema) => sistema switch
         {
-            Enums.Sistema.MyCommerce => ConexoesJson.FromJson(File.ReadAllText(Caminhos.ConexoesJson)).Mycommerce,
-            _ => ConexoesJson.FromJson(File.ReadAllText(Caminhos.ConexoesJson)).Importacao
+            Enums.Sistema.MyCommerce => ConexaoBancoImportador.GetEntidade<Entidades.Conexao>(Enums.TabelaBancoLocal.conexoes, "TipoConexao = 0"),
+            _ => ConexaoBancoImportador.GetEntidade<Entidades.Conexao>(Enums.TabelaBancoLocal.conexoes, "TipoConexao = 1 and Padrao = 1")
         };
-
-        public static ImplantacaoJson GetImplantacaoJson() => ImplantacaoJson.FromJson(File.ReadAllText(Caminhos.ImplantacaoJson));
-        public static void SetImplantacaoJson(ImplantacaoJson implantacao) => File.WriteAllText(Caminhos.ImplantacaoJson, implantacao.ToJson());
-        public static ConexoesJson GetConexoesJson() => ConexoesJson.FromJson(File.ReadAllText(Caminhos.ConexoesJson));
-        public static void SetConexoesJson(ConexoesJson conexoesJson) => File.WriteAllText(Caminhos.ConexoesJson, conexoesJson.ToJson());
-        public static void SalvarSkin(string skinName, string skinPalette) => File.WriteAllText(Caminhos.SkinTxt, skinName + "," + skinPalette);
 
         public static void MostrarNotificacao(string msg, string titulo)
         {
@@ -46,10 +36,57 @@ namespace Importador.Classes
                 .Show();
         }
 
-        public static void CarregaSkin(ref DefaultLookAndFeel skin)
+        internal static string GetSqlPadrao(string tabela)
         {
-            skin.LookAndFeel.SetSkinStyle(File.ReadAllText(Caminhos.SkinTxt).Split(',')[0], File.ReadAllText(Caminhos.SkinTxt).Split(',')[1]);
-            skin.LookAndFeel.UseDefaultLookAndFeel = true;
+            return SQLPadrao.Default[tabela].ToString().Replace("@", Environment.NewLine);
+        }
+
+        internal static void AtualizaSQLImportacao(string sql, string tabela)
+        {
+            var Consulta = ConexaoBancoImportador.GetEntidade<Consultas>(Enums.TabelaBancoLocal.consultas, $"TabelaConsulta = '{tabela}'");
+
+            if (Consulta is null)
+            {
+                ConexaoBancoImportador.InserirRegistro(new Consultas(tabela, sql), Enums.TabelaBancoLocal.consultas);
+                return;
+            }
+
+            Consulta.Consulta = sql;
+            ConexaoBancoImportador.Update(Consulta, Enums.TabelaBancoLocal.consultas);
+        }
+
+        public static string GetCmdDump(string tabelas, string caminhoBackup)
+        {
+            StringBuilder cmd = new(Caminhos.exeMySqlDump);
+
+            var Conexao = ConexaoBancoImportador.GetEntidade<Entidades.Conexao>(Enums.TabelaBancoLocal.conexoes, "TipoConexao = 0");
+            var Tabelas = ConexaoBancoImportador.GetSql(Enums.TabelaMyCommerce.backup.ToString());
+            cmd.Append($" -u {Conexao.Usuario} -p{Conexao.Senha} -h {Conexao.Host} -P {Conexao.Porta} {Conexao.Banco} {tabelas} > \"MyBackup.sql\"");
+
+            return cmd.ToString();
+        }
+
+        internal static string GerarArquivoRar(string caminhoBackup)
+        {
+            return $"\"{AppDomain.CurrentDomain.BaseDirectory}{Caminhos.exeRar}\" a \"{caminhoBackup}\" \"MyBackup.sql\"";
+        }
+
+        internal static AutoCompleteStringCollection GetAutoCompleteCustomSource(IDbCommand cmd)
+        {
+            var reader = cmd.ExecuteReader();
+            AutoCompleteStringCollection acsc = new();
+
+            while (reader.Read())
+            {
+                acsc.Add(reader.GetString(0));
+            }
+
+            return acsc;
+        }
+
+        internal static string GetUsuarioSID()
+        {
+            return WindowsIdentity.GetCurrent().User.ToString();
         }
     }
 

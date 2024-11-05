@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             lblSqlImportacao = new DevExpress.XtraEditors.LabelControl();
             txtSqlImportacao = new DevExpress.XtraEditors.MemoEdit();
             gcParametros = new DevExpress.XtraEditors.GroupControl();
@@ -38,6 +39,12 @@
             lblFimImportacao = new DevExpress.XtraEditors.LabelControl();
             lblInicioImportacao = new DevExpress.XtraEditors.LabelControl();
             pbImportacao = new DevExpress.XtraEditors.ProgressBarControl();
+            btnResetarSql = new DevExpress.XtraEditors.SimpleButton();
+            MyC = new Componentes.TabelaMyCommerce(components);
+            btnObservacao = new DevExpress.XtraEditors.SimpleButton();
+            btnVerificarSintaxeSQL = new DevExpress.XtraEditors.SimpleButton();
+            btnContarTempo = new DevExpress.XtraEditors.SimpleButton();
+            btnVerTempoContado = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)txtSqlImportacao.Properties).BeginInit();
             ((System.ComponentModel.ISupportInitialize)gcParametros).BeginInit();
             gcParametros.SuspendLayout();
@@ -58,7 +65,7 @@
             // txtSqlImportacao
             // 
             txtSqlImportacao.AllowHtmlTextInToolTip = DevExpress.Utils.DefaultBoolean.False;
-            txtSqlImportacao.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            txtSqlImportacao.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
             txtSqlImportacao.Location = new System.Drawing.Point(21, 33);
             txtSqlImportacao.Name = "txtSqlImportacao";
             txtSqlImportacao.Properties.AllowHtmlDraw = DevExpress.Utils.DefaultBoolean.False;
@@ -77,6 +84,7 @@
             // 
             // cbExcluirRegistros
             // 
+            cbExcluirRegistros.EditValue = true;
             cbExcluirRegistros.Location = new System.Drawing.Point(5, 26);
             cbExcluirRegistros.Name = "cbExcluirRegistros";
             cbExcluirRegistros.Properties.Caption = "Excluir registros existentes?";
@@ -92,6 +100,7 @@
             btnImportar.Size = new System.Drawing.Size(139, 32);
             btnImportar.TabIndex = 6;
             btnImportar.Text = "&Importar";
+            btnImportar.Click += btnImportar_Click;
             // 
             // lblHorarioFimImportacao
             // 
@@ -147,10 +156,82 @@
             pbImportacao.Size = new System.Drawing.Size(514, 26);
             pbImportacao.TabIndex = 15;
             // 
+            // btnResetarSql
+            // 
+            btnResetarSql.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
+            btnResetarSql.Cursor = System.Windows.Forms.Cursors.Hand;
+            btnResetarSql.ImageOptions.Image = Properties.Resources.reset2_16x16;
+            btnResetarSql.Location = new System.Drawing.Point(298, 9);
+            btnResetarSql.Name = "btnResetarSql";
+            btnResetarSql.Size = new System.Drawing.Size(23, 23);
+            btnResetarSql.TabIndex = 16;
+            btnResetarSql.ToolTip = "Este botão reseta para a sql padrão";
+            btnResetarSql.Click += btnResetarSql_Click;
+            // 
+            // MyC
+            // 
+            MyC.Tabela = Classes.Constantes.Enums.TabelaMyCommerce.clientes;
+            // 
+            // btnObservacao
+            // 
+            btnObservacao.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
+            btnObservacao.Cursor = System.Windows.Forms.Cursors.Hand;
+            btnObservacao.ImageOptions.Image = Properties.Resources.edittask_16x16;
+            btnObservacao.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
+            btnObservacao.Location = new System.Drawing.Point(356, 9);
+            btnObservacao.Name = "btnObservacao";
+            btnObservacao.Size = new System.Drawing.Size(23, 23);
+            btnObservacao.TabIndex = 17;
+            btnObservacao.Text = "&";
+            btnObservacao.ToolTip = "Anotações referentes a importação deste módulo";
+            btnObservacao.Click += btnObservacao_Click;
+            // 
+            // btnVerificarSintaxeSQL
+            // 
+            btnVerificarSintaxeSQL.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
+            btnVerificarSintaxeSQL.Cursor = System.Windows.Forms.Cursors.Hand;
+            btnVerificarSintaxeSQL.ImageOptions.Image = Properties.Resources.spellcheck_16x16;
+            btnVerificarSintaxeSQL.Location = new System.Drawing.Point(327, 9);
+            btnVerificarSintaxeSQL.Name = "btnVerificarSintaxeSQL";
+            btnVerificarSintaxeSQL.Size = new System.Drawing.Size(23, 23);
+            btnVerificarSintaxeSQL.TabIndex = 18;
+            btnVerificarSintaxeSQL.ToolTip = "Este botão verifica a sintaxe sql";
+            btnVerificarSintaxeSQL.Click += btnVerificarSintaxeSQL_Click;
+            // 
+            // btnContarTempo
+            // 
+            btnContarTempo.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
+            btnContarTempo.Cursor = System.Windows.Forms.Cursors.Hand;
+            btnContarTempo.ImageOptions.Image = Properties.Resources.iconsetsigns3_16x16;
+            btnContarTempo.Location = new System.Drawing.Point(414, 9);
+            btnContarTempo.Name = "btnContarTempo";
+            btnContarTempo.Size = new System.Drawing.Size(121, 23);
+            btnContarTempo.TabIndex = 19;
+            btnContarTempo.Tag = "false";
+            btnContarTempo.Text = "Iniciar Contagem";
+            btnContarTempo.Click += btnContarTempo_Click;
+            // 
+            // btnVerTempoContado
+            // 
+            btnVerTempoContado.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
+            btnVerTempoContado.Cursor = System.Windows.Forms.Cursors.Hand;
+            btnVerTempoContado.ImageOptions.Image = Properties.Resources.showworktimeonly_16x16;
+            btnVerTempoContado.Location = new System.Drawing.Point(385, 9);
+            btnVerTempoContado.Name = "btnVerTempoContado";
+            btnVerTempoContado.Size = new System.Drawing.Size(23, 23);
+            btnVerTempoContado.TabIndex = 20;
+            btnVerTempoContado.ToolTip = "Este botão serve para verificar o tempo de trabalho desta tela";
+            btnVerTempoContado.Click += btnVerTempoContado_Click;
+            // 
             // UCBaseImportacao
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            Controls.Add(btnVerTempoContado);
+            Controls.Add(btnContarTempo);
+            Controls.Add(btnVerificarSintaxeSQL);
+            Controls.Add(btnObservacao);
+            Controls.Add(btnResetarSql);
             Controls.Add(pbImportacao);
             Controls.Add(lblHorarioFimImportacao);
             Controls.Add(lblHorarioInicioImportacao);
@@ -161,6 +242,7 @@
             Controls.Add(lblSqlImportacao);
             Controls.Add(txtSqlImportacao);
             Name = "UCBaseImportacao";
+            Load += UCBaseImportacao_Load;
             ((System.ComponentModel.ISupportInitialize)txtSqlImportacao.Properties).EndInit();
             ((System.ComponentModel.ISupportInitialize)gcParametros).EndInit();
             gcParametros.ResumeLayout(false);
@@ -182,5 +264,11 @@
         public DevExpress.XtraEditors.LabelControl lblHorarioFimImportacao;
         public DevExpress.XtraEditors.LabelControl lblHorarioInicioImportacao;
         private DevExpress.XtraEditors.CheckEdit cbExcluirRegistros;
+        public DevExpress.XtraEditors.SimpleButton btnResetarSql;
+        public Componentes.TabelaMyCommerce MyC;
+        public DevExpress.XtraEditors.SimpleButton btnObservacao;
+        public DevExpress.XtraEditors.SimpleButton btnVerificarSintaxeSQL;
+        private DevExpress.XtraEditors.SimpleButton btnContarTempo;
+        private DevExpress.XtraEditors.SimpleButton btnVerTempoContado;
     }
 }
