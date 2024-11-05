@@ -37,7 +37,7 @@ namespace Importador.Classes
         internal static DataTable GetDataTablePeloNome(Constantes.Enums.RelatorioGeralDataTable rgdt)
         {
             SqliteCommand cmd = ConexaoBancoImportador.instancia.conexao.CreateCommand();
-            cmd.CommandText = Constantes.Mapeamento.ConsultaPorDataTable[rgdt];
+            cmd.CommandText = Constantes.Mapeamento.ConsultaPorDataTable[rgdt] + $" where codigoimplantacao = {Configuracoes.Default.CodigoImplantacao}";
 
             using IDataReader reader = cmd.ExecuteReader();
                 DataTable dt = new DataTable();
