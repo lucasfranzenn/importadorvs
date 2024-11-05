@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Importador.Properties;
+using System;
 using System.Collections.Generic;
 using System.Data;
 
@@ -74,10 +75,22 @@ namespace Importador.Classes
                 MontandoSQL,
                 ImportandoDados
             }
+
+            public enum RelatorioGeralDataTable
+            {
+                Implantacoes,
+                Minutagem
+            }
         }
 
         public static class Mapeamento
         {
+            public static readonly Dictionary<Enums.RelatorioGeralDataTable, string> ConsultaPorDataTable = new()
+            {
+                {Enums.RelatorioGeralDataTable.Minutagem,  $"select tela, strftime('%d/%m/%Y %H:%M', DataHoraInicio) AS Inicio,  strftime('%d/%m/%Y %H:%M', DataHoraFim) AS Término, CASE status WHEN 0 THEN '0 - Contando Tempo' WHEN 1 THEN '1 - Montando SQL' WHEN 2 THEN '2 - Importando Dados' ELSE 'Não identificado' END AS Status, printf('%02d:%02d:%02d',(julianday(DataHoraFim) - julianday(DataHoraInicio)) * 24,((julianday(DataHoraFim) - julianday(DataHoraInicio)) * 24 * 60) % 60,round(((julianday(datahorafim) - julianday(datahorainicio)) * 24 * 60 * 60)) % 60 ) as Minutagem, Observacao from registrosdetempo where codigoimplantacao = {Configuracoes.Default.CodigoImplantacao}"},
+                {Enums.RelatorioGeralDataTable.Implantacoes, $"SELECT codigoimplantacao, RazaoSocialCliente, SistemaAntigo, BancoDeDados, RegimeEmpresa, NomeResponsavel,Workflow FROM Implantacoes i where codigoimplantacao  = {Configuracoes.Default.CodigoImplantacao}" }
+            };
+
             public static readonly Dictionary<string, List<string>> TabelasTruncatePorTabela = new()
             {
                 {"clientes", new List<string> { "clientes" } },

@@ -16,7 +16,7 @@ namespace Importador.UserControls.Auxiliar
         private void UCSistemasImportados_Load(object sender, EventArgs e)
         {
             SqliteCommand cmd = ConexaoBancoImportador.instancia.conexao.CreateCommand();
-            cmd.CommandText = "SELECT CodigoImplantacao as 'Codigo da Implantação', RazaoSocialCliente AS 'Razao Social', SistemaAntigo AS 'Sistema Importado', BancoDeDados FROM Implantacoes GROUP BY SistemaAntigo";
+            cmd.CommandText = "SELECT CodigoImplantacao as 'Codigo da Implantação', RazaoSocialCliente AS 'Razao Social', SistemaAntigo AS 'Sistema Importado', BancoDeDados FROM Implantacoes";
 
             using IDataReader reader = cmd.ExecuteReader();
             DataTable dt = new DataTable();

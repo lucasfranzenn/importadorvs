@@ -129,7 +129,7 @@ namespace Importador
             acGeralRelatorio.ImageOptions.SvgImage = Properties.Resources.reportlayoutpivottable;
             acGeralRelatorio.Name = "acGeralRelatorio";
             acGeralRelatorio.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
-            acGeralRelatorio.Text = "Relatório";
+            acGeralRelatorio.Text = "Gerar Relatório de Tempo Gasto";
             acGeralRelatorio.Click += acGeralRelatorio_Click;
             // 
             // acExportarDados
@@ -139,6 +139,7 @@ namespace Importador
             acExportarDados.Name = "acExportarDados";
             acExportarDados.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
             acExportarDados.Text = "Exportar Dados CSV";
+            acExportarDados.Visible = false;
             acExportarDados.Click += acExportarDados_Click;
             // 
             // acConexao
