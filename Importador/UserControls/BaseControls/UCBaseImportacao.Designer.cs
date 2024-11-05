@@ -220,6 +220,7 @@
             btnVerTempoContado.Name = "btnVerTempoContado";
             btnVerTempoContado.Size = new System.Drawing.Size(23, 23);
             btnVerTempoContado.TabIndex = 20;
+            btnVerTempoContado.ToolTip = "Este botão serve para verificar o tempo de trabalho desta tela";
             btnVerTempoContado.Click += btnVerTempoContado_Click;
             // 
             // UCBaseImportacao

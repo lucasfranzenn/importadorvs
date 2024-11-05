@@ -7,7 +7,7 @@
 - [ ] ** Utilizar API para integracao com o Jira e poder controlar as Issues;
 
 # 2. Ferramentas
-- [ ] ** Mostrar comandos comulmente utilizados em terminais de banco (gbak, mysql, pgbackup);
+~~- [ ] ** Mostrar comandos comulmente utilizados em terminais de banco (gbak, mysql, pgbackup);~~
 - [x] ** Adicionar nomenclaturas comuns para dados (EX: A tabela onde e guardado os clientes, pode ser chamada de: 'Pessoas', 'Consumidores', etc.);
 ~~- [ ] ** Criar um facilitador para restaurar diversos backups;~~
 

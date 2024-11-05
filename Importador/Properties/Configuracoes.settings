@@ -6,7 +6,7 @@
       <Value Profile="(Default)">Configuracao\imp.db</Value>
     </Setting>
     <Setting Name="CodigoImplantacao" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">0</Value>
     </Setting>
     <Setting Name="NomeSkin" Type="System.String" Scope="User">
       <Value Profile="(Default)">Basic</Value>
