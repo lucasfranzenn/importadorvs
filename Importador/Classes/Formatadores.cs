@@ -48,9 +48,17 @@ namespace Importador.Classes
 
         internal static object FormataTelefone(object fone)
         {
-            string foneString = new string(fone.ToString().Where(char.IsDigit).ToArray()).PadLeft(11, '0');
+            string foneString = new string(fone.ToString().Where(char.IsDigit).ToArray());
 
-            return Convert.ToInt64(foneString) == 0 ? DBNull.Value : $"({foneString.Substring(0, 2)}){foneString.Substring(2, 5)}-{foneString.Substring(7, 4)}";
+            if (foneString.Length == 11 || foneString.Length == 9)
+            {
+                foneString = foneString.PadLeft(11, '0');
+                return Convert.ToInt64(foneString) == 0 ? DBNull.Value : $"({foneString.Substring(0, 2)}){foneString.Substring(2, 5)}-{foneString.Substring(7, 4)}"; 
+            }
+
+            foneString = foneString.PadLeft(10, '0');
+
+            return Convert.ToInt64(foneString) == 0 ? DBNull.Value : $"({foneString.Substring(0, 2)}){foneString.Substring(2, 4)}-{foneString.Substring(6, 4)}";
         }
     }
 }
