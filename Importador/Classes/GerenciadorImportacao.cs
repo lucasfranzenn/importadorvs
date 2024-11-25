@@ -40,7 +40,7 @@ namespace Importador.Classes
                 pbImportacao.EditValue = 0;
                 pbImportacao.Properties.Maximum = qtdRegistros;
             }));
-
+            
             //Limpa tabelas
             if (parametros.Exists((p) => string.Equals(p.Name, "cbExcluirRegistros", StringComparison.OrdinalIgnoreCase) && p.Checked))
                 if (Mapeamento.TabelasTruncatePorTabela.TryGetValue(tabela, out _))
@@ -296,6 +296,9 @@ namespace Importador.Classes
             {
                 case "produtosfornecedor":
                     ConexaoManager.instancia.GetConexaoMyCommerce().ExecuteScalar($"UPDATE {arg} join CLIENTES on {arg}.idFornecedor = clientes.contato and clientes.tipo = 'F' SET {arg}.idFornecedor = clientes.codigo");
+                    break;
+                case "contasapagar":
+                    ConexaoManager.instancia.GetConexaoMyCommerce().ExecuteScalar($"UPDATE {arg} join CLIENTES on {arg}.RazaoSocial = clientes.contato and clientes.tipo = 'F' SET {arg}.Codigo = clientes.codigo, {arg}.razaosocial = clientes.razaosocial");
                     break;
                 default:
                     ConexaoManager.instancia.GetConexaoMyCommerce().ExecuteScalar($"UPDATE {arg} join CLIENTES on {arg}.RazaoSocial = clientes.contato SET {arg}.Codigo = clientes.codigo, {arg}.razaosocial = clientes.razaosocial");

@@ -47,7 +47,7 @@ namespace Importador.UserControls.BaseControls
 
             lblHorarioFimImportacao.Text = DateTime.Now.ToString();
 
-            ConexaoBancoImportador.AtualizarTempoImportacao(lblHorarioInicioImportacao.Text, lblHorarioFimImportacao.Text, MyC.Tabela.ToString());
+            ConexaoBancoImportador.AtualizarTempoImportacao(lblHorarioInicioImportacao.Text, lblHorarioFimImportacao.Text, MyC.Tabela.ToString(), GerenciadorImportacao.GetQtdRegistros(txtSqlImportacao.Text));
 
             Utils.MostrarNotificacao($"Importação dos {MyC.Tabela.ToString()} finalizada", "Importação");
 

@@ -143,7 +143,7 @@ namespace Importador.Conexao
             return (objeto != null) ? objeto.ToString() : null;
         }
 
-        internal static void AtualizarTempoImportacao(string dataInicio, string dataFim, string tabelaOrigem)
+        internal static void AtualizarTempoImportacao(string dataInicio, string dataFim, string tabelaOrigem, int qtdRegistros)
         {
             RegistroDeTempo rdt = GetEntidade<RegistroDeTempo>(Enums.TabelaBancoLocal.registrosdetempo, $"tela = '{tabelaOrigem}' and status = 2");
 
@@ -153,11 +153,12 @@ namespace Importador.Conexao
                 rdt.DataHoraInicio = Convert.ToDateTime(dataInicio);
                 rdt.DataHoraFim = Convert.ToDateTime(dataFim);
                 rdt.Status = (int)Enums.RegistrosDeTempoStatus.ImportandoDados;
-                rdt.Observacao = "Tempo médio para importação";
+                rdt.Observacao = $"Tempo médio para importação de {qtdRegistros} registros";
                 InserirRegistro(rdt, Enums.TabelaBancoLocal.registrosdetempo);
                 return;
             }
 
+            rdt.Observacao = $"Tempo médio para importação de {qtdRegistros} registros";
             rdt.DataHoraInicio = Convert.ToDateTime(dataInicio);
             rdt.DataHoraFim = Convert.ToDateTime(dataFim);
             Update(rdt, Enums.TabelaBancoLocal.registrosdetempo);

@@ -72,7 +72,7 @@ namespace Importador.UserControls.Importacao
 
             lblHorarioFimImportacao.Text = DateTime.Now.ToString();
 
-            ConexaoBancoImportador.AtualizarTempoImportacao(lblHorarioInicioImportacao.Text, lblHorarioFimImportacao.Text, cbTabelas.Text);
+            ConexaoBancoImportador.AtualizarTempoImportacao(lblHorarioInicioImportacao.Text, lblHorarioFimImportacao.Text, cbTabelas.Text, GerenciadorImportacao.GetQtdRegistros(txtSqlImportacao.Text));
 
             Utils.MostrarNotificacao($"Importação dos {cbTabelas.SelectedText} finalizada", "Importação");
 
