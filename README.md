@@ -34,7 +34,7 @@ Este é o projeto do importador de dados para o sistema ERP MyCommerce da Visual
 
 ### Download do executável 
 
- - <a href="https://drive.google.com/file/d/19xxL3Ml-chqKnUUiUxbrz-QvHUPxyXkf/view?usp=sharing">Standalone - win x64</a>
+ - <a href="https://drive.google.com/file/d/106Bib2KGhAzKRkl9Q3MAU4anwSOYmMQG">Standalone - win x64</a>
 
 ### Documentações
   - <a href="https://github.com/lucasfranzenn/importadorvs/blob/main/Importador/Documentacao/backlog.md"> Backlog inicial do projeto</a>
