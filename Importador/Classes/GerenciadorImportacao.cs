@@ -290,7 +290,7 @@ namespace Importador.Classes
             return true;
         }
 
-        internal static object VincularPorContato(object arg)
+        internal static object VincularCliForPorCodigoImpDados(object arg)
         {
             switch (arg)
             {
@@ -336,17 +336,16 @@ namespace Importador.Classes
 
         }
 
-        internal static bool VincularPorReferencia(IDataReader reader)
+        internal static bool VincularProdPorCodigoImpDados(IDataReader reader)
         {
             var cmdSelect = ConexaoManager.instancia.GetConexaoMyCommerce().CriarComando();
-            cmdSelect.CommandText = $"select codigo from produtos where produtos.referencia = '{reader["codigoproduto"].ToString()}'";
+            cmdSelect.CommandText = $"select codigo from produtos where produtos.CodigoImportacaoDados = '{reader["codigoproduto"].ToString()}'";
             var codigoProduto = cmdSelect.ExecuteScalar();
 
             if (codigoProduto is null) return true;
 
             var cmd = ConexaoManager.instancia.GetConexaoMyCommerce().CriarComando();
             var parametro = cmd.CreateParameter();
-
 
             parametro.ParameterName = "@Estoque";
             parametro.Value = reader["estoque"];
@@ -401,13 +400,13 @@ namespace Importador.Classes
             return null;
         }
 
-        internal static bool VincularCodBarPorReferencia(IDataReader reader)
+        internal static bool VincularCodBarPorCodigoImpDados(IDataReader reader)
         {
             string codbar = reader["barcode"].ToString() ?? string.Empty;
 
             if (string.IsNullOrEmpty(codbar)) return true;
 
-            var codigoProduto = ConexaoManager.instancia.GetConexaoMyCommerce().ExecuteScalar($"select codigo from produtos where referencia = '{reader["codigoproduto"].ToString()}'") ?? "null";
+            var codigoProduto = ConexaoManager.instancia.GetConexaoMyCommerce().ExecuteScalar($"select codigo from produtos where CodigoImportacaoDados = '{reader["codigoproduto"].ToString()}'") ?? "null";
             var fracionario = reader["fracionario"] ?? 1;
             var gradeLinha = reader["grade_linha"] is DBNull ? "null" : reader["grade_linha"];
             var gradeColuna = reader["grade_coluna"] is DBNull ? "null" : reader["grade_coluna"];

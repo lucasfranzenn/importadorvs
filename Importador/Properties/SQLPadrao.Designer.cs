@@ -25,7 +25,7 @@ namespace Importador.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute(@"SELECT @as Codigo, @as tipo, @as RazaoSocial, @as NomeFantasia, @as Endereco, @as Bairro, @as Cidade, @as UF, @as CEP, @as codigocidadeibge, @as numero, @as complemento, @as telefone1, @as telefone2, @as fax, @as DataNascimento, @as CNPJ, @as IE, @as CPF, @as RG, @as ValorCredito, @as email, @as FisicaJuridica, @as contato, @'IMPORTACAO' as usuario, @'IMPORTACAO' AS terminal, @0 as EmpresaCadastro @FROM CLIENTES;")]
+        [global::System.Configuration.DefaultSettingValueAttribute(@"SELECT @as Codigo, @as tipo, @as RazaoSocial, @as NomeFantasia, @as Endereco, @as Bairro, @as Cidade, @as UF, @as CEP, @as codigocidadeibge, @as numero, @as complemento, @as telefone1, @as telefone2, @as fax, @as DataNascimento, @as CNPJ, @as IE, @as CPF, @as RG, @as ValorCredito, @as email, @as FisicaJuridica, @as contato, @'IMPORTACAO' as usuario, @'IMPORTACAO' AS terminal, @0 as EmpresaCadastro, @as Status, @as CodigoImportacaoDados @FROM CLIENTES;")]
         public string clientes {
             get {
                 return ((string)(this["clientes"]));
@@ -37,7 +37,7 @@ namespace Importador.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute(@"SELECT @as Codigo, @ as Descricao, @ as detalhamento, @ as referencia, @ as codigobarras, @ as UNVenda, @ as ValorCusto, @(custofinal - valorcusto) as outroscustos, @ as custofinal, @ as VendaT1, @ as cst_simples, @ as codigocf, @ as ncm, @ as cest, @ as CodigoFabricante, @ as fabricante, @ as CodigoSecao, @ as Secao, @ as CodigoGrupo, @ as grupo, @ as CodigoSubGrupo, @ as SubGrupo, @'Revenda' as TipoProduto , @'Normal' as ModalidadeControle, @'IMPORTACAO' as Usuario, @'IMPORTACAO' as Terminal, @ AS cst_pis, @ AS Cst_Cofins, @ AS aliq_COFINS, @ AS aliq_pis, @ AS BaseCalculoICMS, @ AS AliquotaICMS @FROM PRODUTOS")]
+        [global::System.Configuration.DefaultSettingValueAttribute(@"SELECT @as Codigo, @ as Descricao, @ as detalhamento, @ as referencia, @ as codigobarras, @ as UNVenda, @ as ValorCusto, @(custofinal - valorcusto) as outroscustos, @ as custofinal, @ as VendaT1, @ as cst_simples, @ as codigocf, @ as ncm, @ as cest, @ as CodigoFabricante, @ as fabricante, @ as CodigoSecao, @ as Secao, @ as CodigoGrupo, @ as grupo, @ as CodigoSubGrupo, @ as SubGrupo, @'Revenda' as TipoProduto , @'Normal' as ModalidadeControle, @'IMPORTACAO' as Usuario, @'IMPORTACAO' as Terminal, @ AS cst_pis, @ AS Cst_Cofins, @ AS aliq_COFINS, @ AS aliq_pis, @ AS BaseCalculoICMS, @ AS AliquotaICMS, @as Cancelado, @as CodigoImportacaoDados @FROM PRODUTOS")]
         public string produtos {
             get {
                 return ((string)(this["produtos"]));
@@ -100,8 +100,8 @@ namespace Importador.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("acertoestoque auditoriaestoque clientes contasapagar contasareceber fabricantes g" +
-            "rupos produtos produtosestoque secoes subgrupos")]
+        [global::System.Configuration.DefaultSettingValueAttribute("acertoestoque auditoriaestoque cidades clientes contasapagar contasareceber fabri" +
+            "cantes grupos produtos produtosestoque secoes subgrupos unidades")]
         public string backup {
             get {
                 return ((string)(this["backup"]));

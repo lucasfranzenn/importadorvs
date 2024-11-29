@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UCFornecedores));
-            cbVincularPorContato = new DevExpress.XtraEditors.CheckEdit();
+            cbVincularCliForCodImpDados = new DevExpress.XtraEditors.CheckEdit();
             ((System.ComponentModel.ISupportInitialize)txtSqlImportacao.Properties).BeginInit();
             ((System.ComponentModel.ISupportInitialize)gcParametros).BeginInit();
             gcParametros.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pbImportacao.Properties).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)cbVincularPorContato.Properties).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)cbVincularCliForCodImpDados.Properties).BeginInit();
             SuspendLayout();
             // 
             // lblSqlImportacao
@@ -47,8 +47,8 @@
             // 
             // gcParametros
             // 
-            gcParametros.Controls.Add(cbVincularPorContato);
-            gcParametros.Controls.SetChildIndex(cbVincularPorContato, 0);
+            gcParametros.Controls.Add(cbVincularCliForCodImpDados);
+            gcParametros.Controls.SetChildIndex(cbVincularCliForCodImpDados, 0);
             // 
             // pbImportacao
             // 
@@ -66,14 +66,19 @@
             // btnObservacao
             // 
             btnObservacao.ImageOptions.Image = (System.Drawing.Image)resources.GetObject("btnObservacao.ImageOptions.Image");
+            btnObservacao.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
             // 
-            // cbVincularPorContato
+            // btnVerificarSintaxeSQL
             // 
-            cbVincularPorContato.Location = new System.Drawing.Point(169, 26);
-            cbVincularPorContato.Name = "cbVincularPorContato";
-            cbVincularPorContato.Properties.Caption = "Vincular por contato?";
-            cbVincularPorContato.Size = new System.Drawing.Size(148, 20);
-            cbVincularPorContato.TabIndex = 17;
+            btnVerificarSintaxeSQL.ImageOptions.Image = (System.Drawing.Image)resources.GetObject("btnVerificarSintaxeSQL.ImageOptions.Image");
+            // 
+            // cbVincularCliForCodImpDados
+            // 
+            cbVincularCliForCodImpDados.Location = new System.Drawing.Point(169, 26);
+            cbVincularCliForCodImpDados.Name = "cbVincularCliForCodImpDados";
+            cbVincularCliForCodImpDados.Properties.Caption = "Vincular pelo Código de Importação de Dados?";
+            cbVincularCliForCodImpDados.Size = new System.Drawing.Size(248, 20);
+            cbVincularCliForCodImpDados.TabIndex = 17;
             // 
             // UCFornecedores
             // 
@@ -84,13 +89,13 @@
             ((System.ComponentModel.ISupportInitialize)gcParametros).EndInit();
             gcParametros.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pbImportacao.Properties).EndInit();
-            ((System.ComponentModel.ISupportInitialize)cbVincularPorContato.Properties).EndInit();
+            ((System.ComponentModel.ISupportInitialize)cbVincularCliForCodImpDados.Properties).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
 
-        private DevExpress.XtraEditors.CheckEdit cbVincularPorContato;
+        private DevExpress.XtraEditors.CheckEdit cbVincularCliForCodImpDados;
     }
 }

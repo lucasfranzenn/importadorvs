@@ -124,8 +124,8 @@ namespace Importador.Classes
             {
                 {"cbValidarDocumento",  GerenciadorImportacao.ValidarExistenciaDocumento},
                 {"cbValidarCodBarras",  GerenciadorImportacao.ValidarExistenciaCodBarras},
-                {"cbVincularPorReferencia", GerenciadorImportacao.VincularPorReferencia },
-                {"cbVincularCodBarPorReferencia", GerenciadorImportacao.VincularCodBarPorReferencia },
+                {"cbVincularPorReferencia", GerenciadorImportacao.VincularProdPorCodigoImpDados },
+                {"cbVincularCodBarPorReferencia", GerenciadorImportacao.VincularCodBarPorCodigoImpDados },
                 {"cbImportarEstoque", GerenciadorImportacao.ImportarEstoque },
                 {"cbImportarCodBarras", GerenciadorImportacao.ImportarCodBarrasAdicionais }
             };
@@ -134,7 +134,7 @@ namespace Importador.Classes
             {
                   {"cbCriarUnidades",  GerenciadorImportacao.CriarUnidades},
                   {"cbCriarTabelaPreco",  GerenciadorImportacao.CriarTabelaPreco},
-                  {"cbVincularPorContato", GerenciadorImportacao.VincularPorContato },
+                  {"cbVincularPorContato", GerenciadorImportacao.VincularCliForPorCodigoImpDados },
                   {"cbImportarEstoque", GerenciadorImportacao.VerificarDuplicidade },
                   {"cbImportarCodBarras", GerenciadorImportacao.AtualizarCodBarras }
             };

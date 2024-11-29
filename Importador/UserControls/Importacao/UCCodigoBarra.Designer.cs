@@ -70,6 +70,7 @@
             // btnObservacao
             // 
             btnObservacao.ImageOptions.Image = (System.Drawing.Image)resources.GetObject("btnObservacao.ImageOptions.Image");
+            btnObservacao.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
             // 
             // btnVerificarSintaxeSQL
             // 
@@ -89,8 +90,8 @@
             // 
             cbVincularCodBarPorReferencia.Location = new System.Drawing.Point(172, 26);
             cbVincularCodBarPorReferencia.Name = "cbVincularCodBarPorReferencia";
-            cbVincularCodBarPorReferencia.Properties.Caption = "Vincular CodBar por referencia?";
-            cbVincularCodBarPorReferencia.Size = new System.Drawing.Size(174, 20);
+            cbVincularCodBarPorReferencia.Properties.Caption = "Vincular CodBar pelo Código de Importção de Dados?";
+            cbVincularCodBarPorReferencia.Size = new System.Drawing.Size(281, 20);
             cbVincularCodBarPorReferencia.TabIndex = 20;
             // 
             // UCCodigoBarra

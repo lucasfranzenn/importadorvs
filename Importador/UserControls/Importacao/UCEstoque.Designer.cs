@@ -67,6 +67,15 @@
             // 
             MyC.Tabela = Classes.Constantes.Enums.TabelaMyCommerce.produtosestoque;
             // 
+            // btnObservacao
+            // 
+            btnObservacao.ImageOptions.Image = (System.Drawing.Image)resources.GetObject("btnObservacao.ImageOptions.Image");
+            btnObservacao.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
+            // 
+            // btnVerificarSintaxeSQL
+            // 
+            btnVerificarSintaxeSQL.ImageOptions.Image = (System.Drawing.Image)resources.GetObject("btnVerificarSintaxeSQL.ImageOptions.Image");
+            // 
             // cbImportarEstoque
             // 
             cbImportarEstoque.EditValue = true;
@@ -81,10 +90,10 @@
             // 
             cbVincularPorReferencia.Location = new System.Drawing.Point(171, 26);
             cbVincularPorReferencia.Name = "cbVincularPorReferencia";
-            cbVincularPorReferencia.Properties.Caption = "Vincular estoque por referencia?";
-            cbVincularPorReferencia.Size = new System.Drawing.Size(175, 20);
+            cbVincularPorReferencia.Properties.Caption = "Vincular estoque pelo Código de Importação de Dados?";
+            cbVincularPorReferencia.Size = new System.Drawing.Size(292, 20);
             cbVincularPorReferencia.TabIndex = 18;
-            cbVincularPorReferencia.ToolTip = "Quando ativo, efetuará o vinculo do produto com o seu estoque, utilizando o campo produtos.referencia";
+            cbVincularPorReferencia.ToolTip = "Quando ativo, efetuará o vinculo do produto com o seu estoque, utilizando o campo produtos.CodigoImportacaoDados";
             // 
             // UCEstoque
             // 

@@ -66,6 +66,7 @@
             // btnObservacao
             // 
             btnObservacao.ImageOptions.Image = (System.Drawing.Image)resources.GetObject("btnObservacao.ImageOptions.Image");
+            btnObservacao.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
             // 
             // btnVerificarSintaxeSQL
             // 
@@ -75,10 +76,10 @@
             // 
             cbVincularPorContato.Location = new System.Drawing.Point(169, 26);
             cbVincularPorContato.Name = "cbVincularPorContato";
-            cbVincularPorContato.Properties.Caption = "Vincular conta pelo campo contato?";
-            cbVincularPorContato.Size = new System.Drawing.Size(199, 20);
+            cbVincularPorContato.Properties.Caption = "Vincular conta pelo campo de Importação de Dados?";
+            cbVincularPorContato.Size = new System.Drawing.Size(276, 20);
             cbVincularPorContato.TabIndex = 18;
-            cbVincularPorContato.ToolTip = "Se ativo, vincular no campo razãosocial o mesmo valor que esta salvo em clientes.contato";
+            cbVincularPorContato.ToolTip = "Se ativo, vincular no campo razãosocial o mesmo valor que esta salvo em clientes.CodigoImportacaoDados";
             // 
             // UCContasAPagar
             // 
