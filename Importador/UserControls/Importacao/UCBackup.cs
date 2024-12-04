@@ -127,6 +127,9 @@ namespace Importador.UserControls.Importacao
 
                 executarMySqlDump.Kill();
 
+                Relatorios.GerarRelatorio();
+                Utils.GerarLeiaME(sql);
+
                 Process executarRar = new Process()
                 {
                     StartInfo =
@@ -140,6 +143,7 @@ namespace Importador.UserControls.Importacao
 
                 executarRar.Start();
                 executarRar.WaitForExit();
+                File.Delete("LEIA-ME.txt");
                 File.Delete("MyBackup.sql");
                 File.Delete($"Implantação {Configuracoes.Default.CodigoImplantacao}.pdf");
 

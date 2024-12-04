@@ -6,6 +6,7 @@ using Importador.Properties;
 using Microsoft.Toolkit.Uwp.Notifications;
 using System;
 using System.Data;
+using System.IO;
 using System.Security.Principal;
 using System.Text;
 using System.Windows.Forms;
@@ -78,8 +79,14 @@ namespace Importador.Classes
 
         internal static string GetUsuarioSID() => WindowsIdentity.GetCurrent().User.ToString();
         internal static string GetSqlPadrao(string tabela) => SQLPadrao.Default[tabela].ToString().Replace("@", Environment.NewLine);
-        internal static string GerarArquivoRar(string caminhoBackup) => $"\"{AppDomain.CurrentDomain.BaseDirectory}{Caminhos.exeRar}\" a \"{caminhoBackup}\" \"MyBackup.sql\"";
+        internal static string GerarArquivoRar(string caminhoBackup) => $"\"{AppDomain.CurrentDomain.BaseDirectory}{Caminhos.exeRar}\" a -ep \"{caminhoBackup}\" \"MyBackup.sql\" \"Relatorios\\Implantação {Configuracoes.Default.CodigoImplantacao}.pdf\" \"LEIA-ME.txt\"";
 
+        internal static void GerarLeiaME(string sql)
+        {
+            string conteudo = $"O script dentro desse arquivo contém informações das seguintes tabelas:\n`{sql.Replace(" ", "`, `")}`\n\nQualquer informação que esteja em uma das tabelas dessa lista será subscrita pelos dados do script.";
+
+            File.WriteAllText("LEIA-ME.txt", conteudo);
+        }
     }
 
 }

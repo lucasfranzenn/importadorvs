@@ -56,11 +56,13 @@ namespace Importador.Classes
             int qtdColunas = reader.FieldCount;
             string[] nomeColunas = new string[qtdColunas];
             int[] tamColunas = new int[qtdColunas];
+            string[] datatypeColunas = new string[qtdColunas];
 
             for (int i = 0; i < qtdColunas; i++)
             {
                 nomeColunas[i] = reader.GetName(i).ToLower();
                 tamColunas[i] = GetTamanhoColuna(nomeColunas[i], tabela);
+                datatypeColunas[i] = GetDataType(nomeColunas[i], tabela);
             }
 
             sbSql.Clear();
@@ -105,18 +107,20 @@ namespace Importador.Classes
                         parameter = cmd.CreateParameter();
                         parameter.ParameterName = $"@{nomeColunas[i]}";
 
-                        if ((value is DBNull) || (value is string v && string.IsNullOrEmpty(v)))
-                        {
-                            parameter.Value = DBNull.Value;
-                        }
-                        else if (value is string valor && valor.Length > tamColunas[i])
-                        {
-                            parameter.Value = valor.Substring(0, tamColunas[i]);
-                        }
-                        else
-                        {
-                            parameter.Value = value;
-                        }
+                        parameter.Value = CastDataType(tamColunas[i], datatypeColunas[i], value);
+
+                        //if ((value is DBNull) || (value is string v && string.IsNullOrEmpty(v)))
+                        //{
+                        //    parameter.Value = DBNull.Value;
+                        //}
+                        //else if (value is string valor && valor.Length > tamColunas[i])
+                        //{
+                        //    parameter.Value = valor.Substring(0, tamColunas[i]);
+                        //}
+                        //else
+                        //{
+                        //    parameter.Value = value;
+                        //}
                         cmd.Parameters.Add(parameter);
 
                         value = null;
@@ -148,6 +152,34 @@ namespace Importador.Classes
             //Rodar parametros pós-importação
             var funcoesPosImportacao = Mapeamento.FuncoesPosImportacaoPorParametro.Keys.Where(k => parametros.Select(p => p.Name).Contains(k)).ToList();
             funcoesPosImportacao.ForEach(p => Mapeamento.FuncoesPosImportacaoPorParametro[p](tabela));
+        }
+
+        private static object CastDataType(int tamCol, string dataType, object value)
+        {
+            if (value is DBNull) return DBNull.Value;
+
+            switch (dataType)
+            {
+                case "int":
+                    return Convert.ToInt32(value);
+                default:
+                    if (value is string v)
+                    {
+                        if (string.IsNullOrEmpty(v)) return DBNull.Value;
+                        if(v.Length > tamCol) return v.Substring(0, tamCol);
+                    }
+
+                    return value;    
+            }
+        }
+
+        private static string GetDataType(string coluna, string tabela)
+        {
+            IDbCommand cmd = ConexaoManager.instancia.GetConexaoMyCommerce().CriarComando();
+            cmd.CommandText = $"SELECT DATA_TYPE FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = '{tabela}' AND COLUMN_NAME = '{coluna}' AND TABLE_SCHEMA = '{GetImportacao(Enums.Sistema.MyCommerce).Banco}'";
+            string retorno = cmd.ExecuteScalar().ToString();
+
+            return retorno;
         }
 
         private static void UpdatesPorTabela(string tabela)
