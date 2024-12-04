@@ -109,18 +109,6 @@ namespace Importador.Classes
 
                         parameter.Value = CastDataType(tamColunas[i], datatypeColunas[i], value);
 
-                        //if ((value is DBNull) || (value is string v && string.IsNullOrEmpty(v)))
-                        //{
-                        //    parameter.Value = DBNull.Value;
-                        //}
-                        //else if (value is string valor && valor.Length > tamColunas[i])
-                        //{
-                        //    parameter.Value = valor.Substring(0, tamColunas[i]);
-                        //}
-                        //else
-                        //{
-                        //    parameter.Value = value;
-                        //}
                         cmd.Parameters.Add(parameter);
 
                         value = null;
@@ -165,7 +153,7 @@ namespace Importador.Classes
                 default:
                     if (value is string v)
                     {
-                        if (string.IsNullOrEmpty(v)) return DBNull.Value;
+                        if(string.IsNullOrEmpty(v)) return DBNull.Value;
                         if(v.Length > tamCol) return v.Substring(0, tamCol);
                     }
 
