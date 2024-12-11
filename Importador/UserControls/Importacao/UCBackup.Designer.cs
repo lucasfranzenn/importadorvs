@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             lblDiretorio = new DevExpress.XtraEditors.LabelControl();
             txtDestinoBackup = new DevExpress.XtraEditors.TextEdit();
             btnSelecionarDestino = new DevExpress.XtraEditors.CheckButton();
@@ -36,10 +37,16 @@
             btnGerarBackup = new DevExpress.XtraEditors.SimpleButton();
             progressBarControl1 = new DevExpress.XtraEditors.ProgressBarControl();
             btnObservacao = new DevExpress.XtraEditors.SimpleButton();
+            cbEnviarValidacoes = new DevExpress.XtraEditors.CheckEdit();
+            gcParametros = new DevExpress.XtraEditors.GroupControl();
+            MyC = new Componentes.TabelaMyCommerce(components);
             ((System.ComponentModel.ISupportInitialize)txtDestinoBackup.Properties).BeginInit();
             ((System.ComponentModel.ISupportInitialize)gcGridTabelas).BeginInit();
             ((System.ComponentModel.ISupportInitialize)gridView1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)progressBarControl1.Properties).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)cbEnviarValidacoes.Properties).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)gcParametros).BeginInit();
+            gcParametros.SuspendLayout();
             SuspendLayout();
             // 
             // lblDiretorio
@@ -121,10 +128,34 @@
             btnObservacao.ToolTip = "Anotações referentes a importação deste módulo";
             btnObservacao.Click += btnObservacao_Click;
             // 
+            // cbEnviarValidacoes
+            // 
+            cbEnviarValidacoes.EditValue = true;
+            cbEnviarValidacoes.Location = new System.Drawing.Point(0, 0);
+            cbEnviarValidacoes.Name = "cbEnviarValidacoes";
+            cbEnviarValidacoes.Properties.Caption = "Enviar validações automatizadas?";
+            cbEnviarValidacoes.Size = new System.Drawing.Size(192, 20);
+            cbEnviarValidacoes.TabIndex = 19;
+            // 
+            // gcParametros
+            // 
+            gcParametros.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            gcParametros.Controls.Add(cbEnviarValidacoes);
+            gcParametros.Location = new System.Drawing.Point(18, 496);
+            gcParametros.Name = "gcParametros";
+            gcParametros.Size = new System.Drawing.Size(398, 36);
+            gcParametros.TabIndex = 20;
+            gcParametros.Text = "groupControl1";
+            // 
+            // MyC
+            // 
+            MyC.Tabela = Classes.Constantes.Enums.TabelaMyCommerce.backup;
+            // 
             // UCBackup
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            Controls.Add(gcParametros);
             Controls.Add(btnObservacao);
             Controls.Add(progressBarControl1);
             Controls.Add(btnGerarBackup);
@@ -138,6 +169,9 @@
             ((System.ComponentModel.ISupportInitialize)gcGridTabelas).EndInit();
             ((System.ComponentModel.ISupportInitialize)gridView1).EndInit();
             ((System.ComponentModel.ISupportInitialize)progressBarControl1.Properties).EndInit();
+            ((System.ComponentModel.ISupportInitialize)cbEnviarValidacoes.Properties).EndInit();
+            ((System.ComponentModel.ISupportInitialize)gcParametros).EndInit();
+            gcParametros.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -152,5 +186,8 @@
         private DevExpress.XtraEditors.SimpleButton btnGerarBackup;
         private DevExpress.XtraEditors.ProgressBarControl progressBarControl1;
         public DevExpress.XtraEditors.SimpleButton btnObservacao;
+        private DevExpress.XtraEditors.CheckEdit cbEnviarValidacoes;
+        private DevExpress.XtraEditors.GroupControl gcParametros;
+        private Componentes.TabelaMyCommerce MyC;
     }
 }

@@ -150,6 +150,8 @@ namespace Importador.Classes
             {
                 case "int":
                     return Convert.ToInt32(value);
+                case "date" or "datetime":
+                    return value;
                 default:
                     if (value is string v)
                     {

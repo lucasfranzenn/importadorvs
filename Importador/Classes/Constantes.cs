@@ -81,10 +81,38 @@ namespace Importador.Classes
                 Implantacoes,
                 Minutagem
             }
+
+            public enum ConsultasValidacoes
+            {
+                QtdCest, 
+                RegCest,
+                QtdNCM,
+                RegNCM,
+                QtdCodIBGE,
+                RegCodIBGE,
+                QtdCPFCNPJ,
+                RegCPFCNPJ,
+                QtdQuitadasPendentes,
+                RegQuitadasPendentes
+            }
         }
 
         public static class Mapeamento
         {
+            public static readonly Dictionary<Enums.ConsultasValidacoes, string> ConsultaPorValidacao = new()
+            {
+                {Enums.ConsultasValidacoes.QtdCest, $"select count(*) from produtos p where length(cest)<7" },
+                {Enums.ConsultasValidacoes.RegCest, $"select CodigoImportacaoDados as CodigoSistemaAntigo, codigo as CodigoMyCommerce, Descricao, cest from produtos p where length(cest)<7" },
+                {Enums.ConsultasValidacoes.QtdNCM, "select count(*) from produtos p where length(coalesce(ncm, 0))<10" },
+                {Enums.ConsultasValidacoes.RegNCM, "select CodigoImportacaoDados as CodigoSistemaAntigo, codigo as CodigoMyCommerce, Descricao, ncm from produtos p where length(coalesce(ncm, 0))<10" },
+                {Enums.ConsultasValidacoes.QtdCodIBGE, "select count(*) from clientes c left join cidades cid on c.CodigoCidadeIbge = cid.Codigo  where cid.Codigo is null" },
+                {Enums.ConsultasValidacoes.RegCodIBGE, "select CodigoImportacaoDados as CodigoSistemaAntigo, c.codigo as CodigoMyCommerce, c.RazaoSocial, c.Cidade, c.UF , c.CodigoCidadeIbge from clientes c left join cidades cid on c.CodigoCidadeIbge = cid.Codigo  where cid.Codigo is null" },
+                {Enums.ConsultasValidacoes.QtdCPFCNPJ, "select count(*) from (with duplicados as( \tselect cpf, cnpj, FisicaJuridica from clientes where fisicaJuridica = 'J' and cnpj <> '00.000.000/0000-00' group by CNPJ having count(*)>1  \tunion all  \tselect cpf, cnpj, FisicaJuridica from clientes where clientes.FisicaJuridica = 'F' and CPF <> '000000000-00' group by CPF having count(*)>1 ) select codigo, razaosocial, c.cpf, c.cnpj, c.FisicaJuridica from clientes c join duplicados d on if(d.fisicajuridica = 'F', c.cpf = d.cpf, c.cnpj = d.cnpj) order by cpf, cnpj) as tb" },
+                {Enums.ConsultasValidacoes.RegCPFCNPJ, "with duplicados as( \tselect cpf, cnpj, FisicaJuridica from clientes where fisicaJuridica = 'J' and cnpj <> '00.000.000/0000-00' group by CNPJ having count(*)>1  \tunion all  \tselect cpf, cnpj, FisicaJuridica from clientes where clientes.FisicaJuridica = 'F' and CPF <> '000000000-00' group by CPF having count(*)>1 ) select CodigoImportacaoDados as CodigoSistemaAntigo, codigo as CodigoMyCommerce, razaosocial, c.cpf, c.cnpj, c.FisicaJuridica from clientes c join duplicados d on if(d.fisicajuridica = 'F', c.cpf = d.cpf, c.cnpj = d.cnpj) order by cpf, cnpj" },
+                {Enums.ConsultasValidacoes.QtdQuitadasPendentes, "select count(sequencia) from (select sequencia from contasareceber c where Quitado = 1 and ValorPendente <> 0 union all select sequencia from contasapagar c where Quitado = 1 and ValorPendente <> 0) as tb" },
+                {Enums.ConsultasValidacoes.RegQuitadasPendentes, "select sequencia, codigo, razaosocial, ndocumento, valor, valorpago, valorpendente, quitado, dataquitacao, vencimento from contasareceber c where Quitado = 1 and ValorPendente <> 0 union all select sequencia, codigo, razaosocial, ndocumento, valor, valorpago, valorpendente, quitado, dataquitacao, vencimento from contasapagar c where Quitado = 1 and ValorPendente <> 0" }
+            };
+
             public static readonly Dictionary<Enums.RelatorioGeralDataTable, string> ConsultaPorDataTable = new()
             {
                 {Enums.RelatorioGeralDataTable.Minutagem,  $"select tela, strftime('%d/%m/%Y %H:%M', DataHoraInicio) AS Inicio,  strftime('%d/%m/%Y %H:%M', DataHoraFim) AS Término, CASE status WHEN 0 THEN '0 - Contando Tempo' WHEN 1 THEN '1 - Montando SQL' WHEN 2 THEN '2 - Importando Dados' ELSE 'Não identificado' END AS Status, printf('%02d:%02d:%02d',(julianday(DataHoraFim) - julianday(DataHoraInicio)) * 24,((julianday(DataHoraFim) - julianday(DataHoraInicio)) * 24 * 60) % 60,round(((julianday(datahorafim) - julianday(datahorainicio)) * 24 * 60 * 60)) % 60 ) as Minutagem, Observacao from registrosdetempo"},
@@ -136,7 +164,8 @@ namespace Importador.Classes
                   {"cbCriarTabelaPreco",  GerenciadorImportacao.CriarTabelaPreco},
                   {"cbVincularPorContato", GerenciadorImportacao.VincularCliForPorCodigoImpDados },
                   {"cbImportarEstoque", GerenciadorImportacao.VerificarDuplicidade },
-                  {"cbImportarCodBarras", GerenciadorImportacao.AtualizarCodBarras }
+                  {"cbImportarCodBarras", GerenciadorImportacao.AtualizarCodBarras },
+                  {"cbEnviarValidacoes", Validacoes.RodarVerificacoes }
             };
 
             public static readonly Dictionary<string, List<string>> UpdatesPorTabela = new()
@@ -175,7 +204,7 @@ namespace Importador.Classes
                         "update produtos set unvenda = 'UN' Where unvenda is null",
                         "update produtos set uncompra = unvenda Where uncompra is null",
                         "update produtos set EnviaBalanca = 1 Where unvenda = 'KG'",
-                        "update produtos   set ncm = null where ncm ='.  . 0'"
+                        "update produtos set ncm = null where ncm ='.  . 0'"
                     }
                 }
             };

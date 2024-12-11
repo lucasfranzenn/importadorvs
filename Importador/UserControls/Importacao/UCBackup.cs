@@ -1,6 +1,7 @@
 ﻿using DevExpress.Mvvm.Native;
 using DevExpress.XtraEditors;
 using Importador.Classes;
+using Importador.Classes.Entidades;
 using Importador.Conexao;
 using Importador.Properties;
 using Importador.UserControls.BaseControls;
@@ -12,6 +13,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+using static Importador.Classes.Constantes;
 
 namespace Importador.UserControls.Importacao
 {
@@ -74,6 +76,21 @@ namespace Importador.UserControls.Importacao
 
             MarcarTabelas();
 
+            Parametro param;
+
+            foreach (var parametro in gcParametros.Controls.OfType<CheckEdit>().ToList())
+            {
+                param = ConexaoBancoImportador.GetEntidade<Parametro>(Enums.TabelaBancoLocal.parametros, $"Tela = '{MyC.Tabela}' and NomeParametro = '{parametro.Name}'");
+
+                if (param is null)
+                {
+                    ConexaoBancoImportador.InserirRegistro(new Parametro(MyC, parametro), Enums.TabelaBancoLocal.parametros);
+                    param = ConexaoBancoImportador.GetEntidade<Parametro>(Enums.TabelaBancoLocal.parametros, $"Tela = '{MyC.Tabela}' and NomeParametro = '{parametro.Name}'");
+                }
+
+                parametro.Checked = param.Valor;
+            }
+
             if (ConexaoBancoImportador.ExisteObservacao("backup")) { btnObservacao.ImageOptions.Image = Resources.newtask_16x16; }
         }
 
@@ -105,6 +122,7 @@ namespace Importador.UserControls.Importacao
             string sql = PegarTabelasMarcadas();
 
             Utils.AtualizaSQLImportacao(sql, "backup");
+            ConexaoBancoImportador.AtualizaParametros(MyC, gcParametros.Controls.OfType<CheckEdit>().ToList());
 
             string comandoMySqlDump = Utils.GetCmdDump(sql, txtDestinoBackup.Text);
 
@@ -129,6 +147,7 @@ namespace Importador.UserControls.Importacao
 
                 Relatorios.GerarRelatorio();
                 Utils.GerarLeiaME(sql);
+                Utils.GerarArquivosConsultaSQL();
 
                 Process executarRar = new Process()
                 {
@@ -136,16 +155,28 @@ namespace Importador.UserControls.Importacao
                     {
                         WindowStyle= ProcessWindowStyle.Hidden,
                         FileName = "cmd.exe",
-                        Arguments = $"/C \"{Utils.GerarArquivoRar(txtDestinoBackup.Text)}",
+                        Arguments = $"/C \"{Utils.GerarArquivoRar(Path.GetFileName(txtDestinoBackup.Text))}",
                         UseShellExecute = false
                     }
                 };
+
+                var list = Mapeamento.FuncoesPosImportacaoPorParametro.Keys.Where(k => gcParametros.Controls.OfType<CheckEdit>().Where(p => p.Checked == true).ToList().Select(p => p.Name).Contains(k)).ToList();
+                foreach (var p in list)
+                {
+                    executarRar.StartInfo.Arguments += Mapeamento.FuncoesPosImportacaoPorParametro[p]("_");
+                }
+                
+                list.ForEach(p => Mapeamento.FuncoesPosImportacaoPorParametro[p](p));
 
                 executarRar.Start();
                 executarRar.WaitForExit();
                 File.Delete("LEIA-ME.txt");
                 File.Delete("MyBackup.sql");
                 File.Delete($"Implantação {Configuracoes.Default.CodigoImplantacao}.pdf");
+                Directory.GetFiles("Validacoes").ForEach(file => File.Delete(file));
+
+                File.Copy(Path.GetFileName(txtDestinoBackup.Text), txtDestinoBackup.Text, true);
+                File.Delete(Path.GetFileName(txtDestinoBackup.Text));
 
                 if (XtraMessageBox.Show("Backup Gerado\nDeseja abrir a pasta de destino?", "..::Importador::..", MessageBoxButtons.YesNo) == DialogResult.Yes)
                     Process.Start("explorer.exe", $"/select, {txtDestinoBackup.Text}");

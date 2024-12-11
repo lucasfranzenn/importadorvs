@@ -63,7 +63,7 @@ namespace Importador.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute(@"SELECT @ AS codigo, @ AS razaosocial, @ AS ndocumento, @ AS datalancamento, @ AS vencimento, @ AS vencimentooriginal, @ AS valor, @ AS valorpago, @ AS valorpendente, @ AS quitado, @ AS dataquitacao, @ AS juro, @ AS desconto, @ AS quantidadepagamentos, @ AS npagamento, @ AS descricao, @0 AS empresa, @ AS valororiginal, @'IMPORTACAO' AS usuario, @'IMPORTACAO' AS terminal, @1 AS CodModalidade, @'CARTEIRA' AS Modalidade @ FROM CONTASAPAGAR")]
+        [global::System.Configuration.DefaultSettingValueAttribute(@"SELECT @ AS codigo, @ AS razaosocial, @ AS ndocumento, @ AS datalancamento, @ AS vencimento, @ AS vencimentooriginal, @ AS valor, @ AS valorpago, @ AS valorpendente, @ AS quitado, @ AS dataquitacao, @ AS juro, @ AS desconto, @ AS quantidadepagamentos, @ AS npagamento, @ AS descricao, @1 AS empresa, @ AS valororiginal, @'IMPORTACAO' AS usuario, @'IMPORTACAO' AS terminal, @1 AS CodModalidade, @'CARTEIRA' AS Modalidade @ FROM CONTASAPAGAR")]
         public string contasapagar {
             get {
                 return ((string)(this["contasapagar"]));
@@ -75,7 +75,7 @@ namespace Importador.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute(@"SELECT @ AS codigo, @ AS razaosocial, @ AS ndocumento, @ AS datalancamento, @ AS vencimento, @ AS vencimentooriginal, @ AS valor, @ AS valorpago, @ AS valorpendente, @ AS quitado, @ AS dataquitacao, @ AS juro, @ AS desconto, @ AS quantidadepagamentos, @ AS npagamento, @ AS descricao, @0 AS empresa, @ AS valororiginal, @'IMPORTACAO' AS usuario, @'IMPORTACAO' AS terminal, @1 AS CodModalidade, @'CARTEIRA' AS Modalidade @ FROM contasareceber")]
+        [global::System.Configuration.DefaultSettingValueAttribute(@"SELECT @ AS codigo, @ AS razaosocial, @ AS ndocumento, @ AS datalancamento, @ AS vencimento, @ AS vencimentooriginal, @ AS valor, @ AS valorpago, @ AS valorpendente, @ AS quitado, @ AS dataquitacao, @ AS juro, @ AS desconto, @ AS quantidadepagamentos, @ AS npagamento, @ AS descricao, @1 AS empresa, @ AS valororiginal, @'IMPORTACAO' AS usuario, @'IMPORTACAO' AS terminal, @1 AS CodModalidade, @'CARTEIRA' AS Modalidade @ FROM contasareceber")]
         public string contasareceber {
             get {
                 return ((string)(this["contasareceber"]));

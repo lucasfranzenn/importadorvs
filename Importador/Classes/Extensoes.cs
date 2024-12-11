@@ -16,5 +16,14 @@ namespace Importador.Classes
 
             return cmd;
         }
+
+        public static StringBuilder AdicionarLinhaLog(this StringBuilder sb, string msg)
+        {
+            string horario = DateTime.Now.ToString("[dd/MM/yyyy - HH:mm]");
+
+            sb.AppendLine($"{horario} {msg}");
+
+            return sb;
+        }
     }
 }

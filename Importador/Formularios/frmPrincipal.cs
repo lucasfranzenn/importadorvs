@@ -189,8 +189,17 @@ namespace Importador
         {
             Relatorios.GerarRelatorio();
 
-            if(XtraMessageBox.Show("Relatório Gerado\nDeseja abrir na pasta?", "..::Importador::..", System.Windows.Forms.MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.Yes)
+            if (XtraMessageBox.Show("Relatório Gerado\nDeseja abrir na pasta?", "..::Importador::..", System.Windows.Forms.MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.Yes)
                 System.Diagnostics.Process.Start("explorer.exe", $"/select, \"Relatorios\\Implantação {Configuracoes.Default.CodigoImplantacao}.pdf\"");
+        }
+
+        private void acImportacaoValidacao_Click(object sender, EventArgs e)
+        {
+            if (ucAtual is UCValidacoes) return;
+            ucAtual = new UCValidacoes();
+
+            AlteraAba(ref fcPrincipal, ucAtual);
+            bsiTelaAtual.Caption = "Validação de dados importados";
         }
     }
 }

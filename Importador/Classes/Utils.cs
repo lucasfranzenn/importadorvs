@@ -5,6 +5,7 @@ using Importador.Conexao;
 using Importador.Properties;
 using Microsoft.Toolkit.Uwp.Notifications;
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using System.Security.Principal;
@@ -79,13 +80,125 @@ namespace Importador.Classes
 
         internal static string GetUsuarioSID() => WindowsIdentity.GetCurrent().User.ToString();
         internal static string GetSqlPadrao(string tabela) => SQLPadrao.Default[tabela].ToString().Replace("@", Environment.NewLine);
-        internal static string GerarArquivoRar(string caminhoBackup) => $"\"{AppDomain.CurrentDomain.BaseDirectory}{Caminhos.exeRar}\" a -ep \"{caminhoBackup}\" \"MyBackup.sql\" \"Relatorios\\Implantação {Configuracoes.Default.CodigoImplantacao}.pdf\" \"LEIA-ME.txt\"";
+        internal static string GerarArquivoRar(string caminhoBackup) => $"\"{AppDomain.CurrentDomain.BaseDirectory}{Caminhos.exeRar}\" a \"{caminhoBackup}\" \"MyBackup.sql\" \"Relatorios\\Implantação {Configuracoes.Default.CodigoImplantacao}.pdf\" \"Consultas SQL\\*\" \"LEIA-ME.txt\" ";
 
         internal static void GerarLeiaME(string sql)
         {
             string conteudo = $"O script dentro desse arquivo contém informações das seguintes tabelas:\n`{sql.Replace(" ", "`, `")}`\n\nQualquer informação que esteja em uma das tabelas dessa lista será subscrita pelos dados do script.";
 
             File.WriteAllText("LEIA-ME.txt", conteudo);
+        }
+
+        internal static void CriarTXT(string conteudo, string caminho)
+        {
+            string nomeDiretorio = Path.GetDirectoryName(caminho);
+
+            if (!Path.Exists(nomeDiretorio))
+            {
+                Directory.CreateDirectory(nomeDiretorio);
+            }
+
+            caminho = Path.ChangeExtension(caminho, ".txt");
+
+            File.WriteAllText(caminho, conteudo);
+        }
+
+        internal static string ExportSQLtoText(string consulta)
+        {
+            StringBuilder conteudo = new();
+            string value;
+
+            IDbCommand cmd = ConexaoManager.instancia.GetConexaoMyCommerce().CreateCommand();
+            cmd.CommandText = consulta;
+
+            using IDataReader reader = cmd.ExecuteReader();
+
+            int[] columnWidths = new int[reader.FieldCount];
+            List<string[]> rows = new();
+
+            for (int i = 0; i < reader.FieldCount; i++)
+            {
+                columnWidths[i] = reader.GetName(i).Length; 
+            }
+
+            while (reader.Read())
+            {
+                string[] row = new string[reader.FieldCount];
+                for (int i = 0; i < reader.FieldCount; i++)
+                {
+                    value = reader[i] is DBNull ? "null" : reader[i].ToString();
+                    row[i] = value;
+                    columnWidths[i] = Math.Max(columnWidths[i], value.Length);
+                }
+                rows.Add(row);
+            }
+
+            conteudo.Append('-');
+            for (int i = 0; i < reader.FieldCount; i++)
+            {
+                conteudo.Append(new string('-', columnWidths[i]) + "--");
+            }
+            conteudo.AppendLine();
+
+            // Escrever cabeçalhos
+            conteudo.Append('|');
+            for (int i = 0; i < reader.FieldCount; i++)
+            {
+                conteudo.Append(reader.GetName(i).PadRight(columnWidths[i] + 2));
+                conteudo.Remove(conteudo.Length - 1, 1);
+                conteudo.Append('|');
+            }
+            conteudo.AppendLine();
+
+
+            conteudo.Append('|');
+            for (int i = 0; i < reader.FieldCount; i++)
+            {
+                conteudo.Append(new string('-', columnWidths[i]) + "-|");
+            }
+            conteudo.AppendLine();
+
+            foreach (var row in rows)
+            {
+                conteudo.Append('|');
+                for (int i = 0; i < row.Length; i++)
+                {
+                    conteudo.Append(row[i].PadRight(columnWidths[i] + 2));
+                    conteudo.Remove(conteudo.Length - 1, 1);
+                    conteudo.Append('|');
+                }
+                conteudo.AppendLine();
+            }
+
+            conteudo.Append('-');
+            for (int i = 0; i < reader.FieldCount; i++)
+            {
+                conteudo.Append(new string('-', columnWidths[i]) + "--");
+            }
+            conteudo.AppendLine();
+
+            conteudo.Append($"\nPara obter os registros acima, foi utilizado a seguinte consulta sql:\n\t{consulta}");
+
+            return conteudo.ToString();
+        }
+
+        internal static void DeletarArquivo(string arquivo)
+        {
+            if (File.Exists(arquivo)) { File.Delete(arquivo); }
+        }
+
+        internal static void GerarArquivosConsultaSQL()
+        {
+            IDbCommand cmd = ConexaoBancoImportador.instancia.conexao.CriarComando();
+
+            cmd.CommandText = $"select 'Consultas SQL\\' || tabelaconsulta, consulta from consultas where codigoimplantacao ={Configuracoes.Default.CodigoImplantacao} and tabelaconsulta <> 'backup'";
+            IDataReader reader = cmd.ExecuteReader();
+
+            while (reader.Read())
+            {
+                CriarTXT(reader[1].ToString(), reader[0].ToString());
+            }
+            reader.Close();
         }
     }
 
