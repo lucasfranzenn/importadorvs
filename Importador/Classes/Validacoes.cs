@@ -48,6 +48,7 @@ namespace Importador.Classes
             sb.Append(VerificarCidadesCodIBGE());
             sb.Append(VerificarCPFCNPJDuplicado());
             sb.Append(VerificarContasQuitadasPendentes());
+            sb.Append(VerificarFiscal());
 
             Utils.CriarTXT(sb.ToString(), $"Validacoes\\log_validacoes");
 
@@ -171,62 +172,62 @@ namespace Importador.Classes
                 //Valida se o produto tem NCM (É obrigatório que todo produto tenha)
                 if (reader["ncm"] is DBNull)
                 {
-                    _retorno.AdicionarLinhaLog($"Produto: {reader["codigo"].ToString()} - Falhou NCM Obrigatório (NULL)");
-                    erro = "Falhou em NCM Obrigatório (NULL)";
+                    erro = "Falhou em NCM Obrigatório (NCM está nulo)";
+                    _retorno.AdicionarLinhaLog($"Produto: {reader["codigo"].ToString()} - {erro}");
                     listaRegistros.Add(GetRegistroErro(reader, erro));
                 }
 
                 //Valida se o ncm possui cest, se possuir, e obrigatorio que tenha
                 if (reader["ExisteCest"].ToString() == "1" && reader["cest"] is DBNull)
                 {
-                    _retorno.AdicionarLinhaLog($"Produto: {reader["codigo"].ToString()} - Falhou CEST Obrigatório (NCM do produto necessita ter um cest cadastrado)");
-                    erro = "Falhou em CEST Obrigatório (NCM do produto necessita ter um cest cadastrado)";
+                    erro = "Falhou CEST Obrigatório (NCM do produto necessita ter um cest cadastrado, porém cest está nulo)";
+                    _retorno.AdicionarLinhaLog($"Produto: {reader["codigo"].ToString()} - {erro}");
                     listaRegistros.Add(GetRegistroErro(reader, erro));
                 }
 
                 //Valida se pis e cofins do produto possuem dois digitos e se ambos sao iguais
                 if (reader["pis"].ToString().Length != 2  || reader["cofins"].ToString().Length != 2 || string.Compare(reader["pis"].ToString(), reader["cofins"].ToString(), true) != 0)
                 {
-                    _retorno.AdicionarLinhaLog($"Produto: {reader["codigo"].ToString()} - Falhou em CST PIS/COFINS (Cadastro errado ou divergem entre si)");
-                    erro = "Falhou em PIS/COFINS (Cadastro errado ou divergem entre si)";
+                    erro = "Falhou em PIS/COFINS (PIS e Cofins estão com códigos diferentes e precisam ser iguais)";
+                    _retorno.AdicionarLinhaLog($"Produto: {reader["codigo"].ToString()} - {erro}");
                     listaRegistros.Add(GetRegistroErro(reader, erro));
                 }
                 //Aqui havia um elso para o bloco a seguir, removido...
 
                 if (Configuracoes.Default.RegimeEmpresa == 0)
                 {
-                    if (Convert.ToDouble(reader["aliqpis"]) != 0)
+                    if (reader["aliqpis"] is DBNull || Convert.ToDouble(reader["aliqpis"]) != 0)
                     {
-                        _retorno.AdicionarLinhaLog($"Produto: {reader["codigo"].ToString()} - Falhou em Aliquota de PIS (Para empresa do regime simples, aliquota deve estar zerada)");
-                        erro = "Falhou em Aliquota de PIS (Para empresa do regime simples, aliquota deve estar  zerada)";
+                        erro = "Falhou em Aliquota de PIS (Para empresa do regime simples, aliquota deve estar zerada)";
+                        _retorno.AdicionarLinhaLog($"Produto: {reader["codigo"].ToString()} - {erro}");
                         listaRegistros.Add(GetRegistroErro(reader, erro));
                     }
 
-                    if (Convert.ToDouble(reader["aliqcofins"]) != 0)
+                    if (reader["aliqcofins"] is DBNull || (Convert.ToDouble(reader["aliqcofins"]) != 0))
                     {
-                        _retorno.AdicionarLinhaLog($"Produto: {reader["codigo"].ToString()} - Falhou em Aliquota de PIS (Para empresa do regime simples, aliquota deve estar zerada)");
-                        erro = "Falhou em Aliquota de PIS (Para empresa do regime simples, aliquota deve estar  zerada)";
+                        erro = "Falhou em Aliquota de COFINS (Para empresa do regime simples, aliquota deve estar zerada)";
+                        _retorno.AdicionarLinhaLog($"Produto: {reader["codigo"].ToString()} - {erro}");
                         listaRegistros.Add(GetRegistroErro(reader, erro));
                     }
 
                     if (reader["cst"].ToString().Length != 4)
                     {
-                        _retorno.AdicionarLinhaLog($"Produto: {reader["codigo"].ToString()} - Falhou em CST ICMS (Cadastro errado)");
                         erro = "Falhou em CST ICMS (Cadastro errado)";
+                        _retorno.AdicionarLinhaLog($"Produto: {reader["codigo"].ToString()} - {erro}");
                         listaRegistros.Add(GetRegistroErro(reader, erro));
                     }
 
                     if (Convert.ToDouble(reader["BaseCalculoICMS"]) != 0)
                     {
-                        _retorno.AdicionarLinhaLog($"Produto: {reader["codigo"].ToString()} - Falhou em Base de Cálculo do ICMS (Para empresa do simples, base deve estar zerada)");
                         erro = "Falhou em Base de Cálculo do ICMS (Para empresa do simples, base deve estar zerada)";
+                        _retorno.AdicionarLinhaLog($"Produto: {reader["codigo"].ToString()} - {erro}");
                         listaRegistros.Add(GetRegistroErro(reader, erro));
                     }
 
                     if (Convert.ToDouble(reader["AliquotaICMS"]) != 0)
                     {
-                        _retorno.AdicionarLinhaLog($"Produto: {reader["codigo"].ToString()} - Falhou em Alíquota do ICMS (Para empresa do simples, alíquota deve estar zerada)");
                         erro = "Falhou em Alíquota do ICMS (Para empresa do simples, alíquota deve estar zerada)";
+                        _retorno.AdicionarLinhaLog($"Produto: {reader["codigo"].ToString()} - {erro}");
                         listaRegistros.Add(GetRegistroErro(reader, erro));
                     }
                 }
@@ -239,24 +240,24 @@ namespace Importador.Classes
                             case "01":
                                 if (Convert.ToDouble(reader["aliqpis"]) != 1.65)
                                 {
-                                    _retorno.AdicionarLinhaLog($"Produto: {reader["codigo"].ToString()} - Falhou em Aliquota de PIS (Para empresa do lucro real, aliquota do cst pis 01 deve ser 1.65)");
                                     erro = "Falhou em Aliquota de PIS (Para empresa do lucro real, aliquota do cst pis 01 deve ser 1.65)";
+                                    _retorno.AdicionarLinhaLog($"Produto: {reader["codigo"].ToString()} - {erro}");
                                     listaRegistros.Add(GetRegistroErro(reader, erro));
                                 }
                                 break;
                             case "02" or "03":
                                 if (Convert.ToDouble(reader["aliqpis"]) == 1.65)
                                 {
-                                    _retorno.AdicionarLinhaLog($"Produto: {reader["codigo"].ToString()} - Falhou em Aliquota de PIS (Para empresa do lucro real, aliquota do cst pis 02/03 deve ser diferente de 1.65)");
                                     erro = $"Falhou em Aliquota de PIS (Para empresa do lucro real, aliquota do cst pis 02/03 deve ser diferente de 1.65)";
+                                    _retorno.AdicionarLinhaLog($"Produto: {reader["codigo"].ToString()} - {erro}");
                                     listaRegistros.Add(GetRegistroErro(reader, erro));
                                 }
                                 break;
                             default:
                                 if (reader["aliqpis"] is DBNull || Convert.ToDouble(reader["aliqpis"]) != 0)
                                 {
-                                    _retorno.AdicionarLinhaLog($"Produto: {reader["codigo"].ToString()} - Falhou em Aliquota de PIS (Para empresa do lucro real, aliquota do cst pis {reader["pis"]} deve estar zerada)");
                                     erro = $"Falhou em Aliquota de PIS (Para empresa do lucro real, aliquota do cst pis {reader["pis"]} deve estar zerada)";
+                                    _retorno.AdicionarLinhaLog($"Produto: {reader["codigo"].ToString()} - {erro}");
                                     listaRegistros.Add(GetRegistroErro(reader, erro));
                                 }
                                 break;
@@ -267,31 +268,31 @@ namespace Importador.Classes
                             case "01":
                                 if (Convert.ToDouble(reader["aliqcofins"]) != 7.6)
                                 {
-                                    _retorno.AdicionarLinhaLog($"Produto: {reader["codigo"].ToString()} - Falhou em Aliquota de COFINS (Para empresa do lucro real, aliquota do cst cofins 01 deve ser 7.6)");
                                     erro = "Falhou em Aliquota de COFINS (Para empresa do lucro real, aliquota do cst cofins 01 deve ser 7.6)";
+                                    _retorno.AdicionarLinhaLog($"Produto: {reader["codigo"].ToString()} - {erro}");
                                     listaRegistros.Add(GetRegistroErro(reader, erro));
                                 }
                                 break;
                             case "02" or "03":
                                 if (Convert.ToDouble(reader["aliqcofins"]) == 7.6)
                                 {
-                                    _retorno.AdicionarLinhaLog($"Produto: {reader["codigo"].ToString()} - Falhou em Aliquota de COFINS (Para empresa do lucro real, aliquota do cst cofins 02/03 deve ser diferente de 7.6)");
                                     erro = $"Falhou em Aliquota de COFINS (Para empresa do lucro real, aliquota do cst cofins 02/03 deve ser diferente de 7.6)";
+                                    _retorno.AdicionarLinhaLog($"Produto: {reader["codigo"].ToString()} - {erro}");
                                     listaRegistros.Add(GetRegistroErro(reader, erro));
                                 }
                                 break;
                             default:
-                                if (reader["aliqpis"] is DBNull || Convert.ToDouble(reader["aliqcofins"]) != 0)
+                                if (reader["aliqcofins"] is DBNull || Convert.ToDouble(reader["aliqcofins"]) != 0)
                                 {
-                                    _retorno.AdicionarLinhaLog($"Produto: {reader["codigo"].ToString()} - Falhou em Aliquota de COFINS (Para empresa do lucro real, aliquota do cst cofins {reader["cofins"]} deve estar zerada)");
                                     erro = $"Falhou em Aliquota de COFINS (Para empresa do lucro real, aliquota do cst cofins {reader["cofins"]} deve estar zerada)";
+                                    _retorno.AdicionarLinhaLog($"Produto: {reader["codigo"].ToString()} - {erro}");
                                     listaRegistros.Add(GetRegistroErro(reader, erro));
                                 }
 
                                 if (reader["CodNaturezaPis"] is DBNull)
                                 {
-                                    _retorno.AdicionarLinhaLog($"Produto: {reader["codigo"].ToString()} - Falhou em Codigo de natureza PIS/COFINS (Para empresa do lucro real com o cst pis/cofins {reader["cofins"]}, é obrigatório ter codigo de natureza");
-                                    erro = $"Falhou em Codigo de natureza PIS/COFINS (Para empresa do lucro real com o cst pis/cofins {reader["cofins"]}, é obrigatório ter codigo de natureza";
+                                    erro = $"Falhou em Codigo de natureza PIS/COFINS (Para empresa do lucro real com o cst cofins {reader["cofins"]}, é obrigatório ter codigo de natureza";
+                                    _retorno.AdicionarLinhaLog($"Produto: {reader["codigo"].ToString()} - {erro}");
                                     listaRegistros.Add(GetRegistroErro(reader, erro));
                                 }
                                 break;
@@ -304,31 +305,31 @@ namespace Importador.Classes
                             case "01":
                                 if (Convert.ToDouble(reader["aliqpis"]) != 0.65)
                                 {
-                                    _retorno.AdicionarLinhaLog($"Produto: {reader["codigo"].ToString()} - Falhou em Aliquota de PIS (Para empresa do lucro presumido, aliquota do cst pis 01 deve ser 0.65)");
-                                    erro = "Falhou em Aliquota de PIS (Para empresa do lucro real, aliquota do cst pis 01 deve ser 0.65)";
+                                    erro = "Falhou em Aliquota de PIS (Para empresa do lucro presumido, aliquota do cst pis 01 deve ser 0.65)";
+                                    _retorno.AdicionarLinhaLog($"Produto: {reader["codigo"].ToString()} - {erro}");
                                     listaRegistros.Add(GetRegistroErro(reader, erro));
                                 }
                                 break;
                             case "02" or "03":
                                 if (Convert.ToDouble(reader["aliqpis"]) == 0.65)
                                 {
-                                    _retorno.AdicionarLinhaLog($"Produto: {reader["codigo"].ToString()} - Falhou em Aliquota de PIS (Para empresa do lucro presumido, aliquota do cst pis 02/03 deve ser diferente de 0.65)");
-                                    erro = $"Falhou em Aliquota de PIS (Para empresa do lucro real, aliquota do cst pis 02/03 deve ser diferente de 1.65)";
+                                    erro = $"Falhou em Aliquota de PIS (Para empresa do lucro presumido, aliquota do cst pis 02/03 deve ser diferente de 0.65)";
+                                    _retorno.AdicionarLinhaLog($"Produto: {reader["codigo"].ToString()} - {erro}");
                                     listaRegistros.Add(GetRegistroErro(reader, erro));
                                 }
                                 break;
                             default:
-                                if (Convert.ToDouble(reader["aliqpis"]) != 0)
+                                if (reader["aliqpis"] is DBNull || Convert.ToDouble(reader["aliqpis"]) != 0)
                                 {
-                                    _retorno.AdicionarLinhaLog($"Produto: {reader["codigo"].ToString()} - Falhou em Aliquota de PIS (Para empresa do lucro real, aliquota do cst pis {reader["pis"]} deve estar zerada)");
-                                    erro = $"Falhou em Aliquota de PIS (Para empresa do lucro real, aliquota do cst pis {reader["pis"]} deve estar zerada)";
+                                    erro = $"Falhou em Aliquota de PIS (Para empresa do lucro presumido, aliquota do cst pis {reader["pis"]} deve estar zerada)";
+                                    _retorno.AdicionarLinhaLog($"Produto: {reader["codigo"].ToString()} - {erro}");
                                     listaRegistros.Add(GetRegistroErro(reader, erro));
                                 }
 
                                 if (reader["CodNaturezaPis"] is DBNull)
                                 {
-                                    _retorno.AdicionarLinhaLog($"Produto: {reader["codigo"].ToString()} - Falhou em Codigo de natureza PIS/COFINS (Para empresa do lucro presumido com o cst pis/cofins {reader["cofins"]}, é obrigatório ter codigo de natureza");
                                     erro = $"Falhou em Codigo de natureza PIS/COFINS (Para empresa do lucro presumido com o cst pis/cofins {reader["cofins"]}, é obrigatório ter codigo de natureza";
+                                    _retorno.AdicionarLinhaLog($"Produto: {reader["codigo"].ToString()} - {erro}");
                                     listaRegistros.Add(GetRegistroErro(reader, erro));
                                 }
                                 break;
@@ -339,24 +340,24 @@ namespace Importador.Classes
                             case "01":
                                 if (Convert.ToDouble(reader["aliqcofins"]) != 3)
                                 {
-                                    _retorno.AdicionarLinhaLog($"Produto: {reader["codigo"].ToString()} - Falhou em Aliquota de COFINS (Para empresa do lucro presumido, aliquota do cst cofins 01 deve ser 3.0)");
                                     erro = "Falhou em Aliquota de COFINS (Para empresa do lucro presumido, aliquota do cst cofins 01 deve ser 3.0)";
+                                    _retorno.AdicionarLinhaLog($"Produto: {reader["codigo"].ToString()} - {erro}");
                                     listaRegistros.Add(GetRegistroErro(reader, erro));
                                 }
                                 break;
                             case "02" or "03":
-                                if (Convert.ToDouble(reader["aliqcofins"]) == 7.6)
+                                if (Convert.ToDouble(reader["aliqcofins"]) == 3)
                                 {
-                                    _retorno.AdicionarLinhaLog($"Produto: {reader["codigo"].ToString()} - Falhou em Aliquota de COFINS (Para empresa do lucro presumido, aliquota do cst cofins 02/03 deve ser diferente de 3.0)");
                                     erro = $"Falhou em Aliquota de COFINS (Para empresa do lucro presumido, aliquota do cst cofins 02/03 deve ser diferente de 3.0)";
+                                    _retorno.AdicionarLinhaLog($"Produto: {reader["codigo"].ToString()} - {erro}");
                                     listaRegistros.Add(GetRegistroErro(reader, erro));
                                 }
                                 break;
                             default:
-                                if (Convert.ToDouble(reader["aliqcofins"]) != 0)
+                                if (reader["aliqcofins"] is DBNull || Convert.ToDouble(reader["aliqcofins"]) != 0)
                                 {
-                                    _retorno.AdicionarLinhaLog($"Produto: {reader["codigo"].ToString()} - Falhou em Aliquota de COFINS (Para empresa do lucro presumido, aliquota do cst cofins {reader["cofins"]} deve estar zerada)");
                                     erro = $"Falhou em Aliquota de COFINS (Para empresa do lucro presumido, aliquota do cst cofins {reader["cofins"]} deve estar zerada)";
+                                    _retorno.AdicionarLinhaLog($"Produto: {reader["codigo"].ToString()} - {erro}");
                                     listaRegistros.Add(GetRegistroErro(reader, erro));
                                 }
                                 break;
@@ -365,8 +366,8 @@ namespace Importador.Classes
 
                     if (reader["cst"].ToString().Length != 3)
                     {
-                        _retorno.AdicionarLinhaLog($"Produto: {reader["codigo"].ToString()} - Falhou em CST ICMS (Cadastro errado)");
                         erro = "Falhou em CST ICMS (Cadastro errado)";
+                        _retorno.AdicionarLinhaLog($"Produto: {reader["codigo"].ToString()} - {erro}");
                         listaRegistros.Add(GetRegistroErro(reader, erro));
                     }
                     else
@@ -376,24 +377,24 @@ namespace Importador.Classes
                             case "00":
                                 if (Convert.ToDouble(reader["BaseCalculoICMS"]) != 100)
                                 {
-                                    _retorno.AdicionarLinhaLog($"Produto: {reader["codigo"].ToString()} - Falhou em Base de Cálculo do ICMS (Para empresa do lucro com cst x00, base deve ser 100)");
                                     erro = "Falhou em Base de Cálculo do ICMS (Para empresa do lucro com cst x00, base deve ser 100)";
+                                    _retorno.AdicionarLinhaLog($"Produto: {reader["codigo"].ToString()} - {erro}");
                                     listaRegistros.Add(GetRegistroErro(reader, erro));
                                 }
                                 break;
                             case "20":
                                 if (Convert.ToDouble(reader["BaseCalculoICMS"]) == 100)
                                 {
-                                    _retorno.AdicionarLinhaLog($"Produto: {reader["codigo"].ToString()} - Falhou em Base de Cálculo do ICMS (Para empresa do lucro com cst x20, base deve ser menor que 100)");
                                     erro = "Falhou em Base de Cálculo do ICMS (Para empresa do lucro com cst x20, base deve ser menor que 100)";
+                                    _retorno.AdicionarLinhaLog($"Produto: {reader["codigo"].ToString()} - {erro}");
                                     listaRegistros.Add(GetRegistroErro(reader, erro));
                                 }
                                 break;
                             default:
                                 if (Convert.ToDouble(reader["BaseCalculoICMS"]) != 0)
                                 {
-                                    _retorno.AdicionarLinhaLog($"Produto: {reader["codigo"].ToString()} - Falhou em Base de Cálculo do ICMS (Para empresa do lucro com cst {reader["cst"]}, base deve ser 0)");
-                                    erro = $"Falhou em Base de Cálculo do ICMS(Para empresa do lucro com cst {reader["cst"]}, base deve ser 0)";
+                                    erro = $"Falhou em Base de Cálculo do ICMS (Para empresa do lucro com cst {reader["cst"]}, base deve ser 0)";
+                                    _retorno.AdicionarLinhaLog($"Produto: {reader["codigo"].ToString()} - {erro}");
                                     listaRegistros.Add(GetRegistroErro(reader, erro));
                                 }
                                 break;
@@ -404,23 +405,22 @@ namespace Importador.Classes
                             case "00" or "10" or "20" or "70":
                                 if (Convert.ToDouble(reader["AliquotaICMS"]) == 0)
                                 {
-                                    _retorno.AdicionarLinhaLog($"Produto: {reader["codigo"].ToString()} - Falhou em Alíquota do ICMS (Para empresa do lucro com cst x00/x10/x20/x70, alíquota deve ser maior que 0)");
                                     erro = "Falhou em Alíquota do ICMS (Para empresa do lucro com cst x00/x10/x20/x70, alíquota deve ser maior que 0)";
+                                    _retorno.AdicionarLinhaLog($"Produto: {reader["codigo"].ToString()} - {erro}");
                                     listaRegistros.Add(GetRegistroErro(reader, erro));
                                 }
                                 break;
                             default:
                                 if (Convert.ToDouble(reader["AliquotaICMS"]) != 0)
                                 {
-                                    _retorno.AdicionarLinhaLog($"Produto: {reader["codigo"].ToString()} - Falhou em Alíquota do ICMS (Para empresa do lucro com cst x40/x41/x50/x51/x60/x90, alíquota deve ser 0)");
                                     erro = $"Falhou em Alíquota do ICMS (Para empresa do lucro com cst x40/x41/x50/x51/x60/x90, alíquota deve ser 0)";
+                                    _retorno.AdicionarLinhaLog($"Produto: {reader["codigo"].ToString()} - {erro}");
                                     listaRegistros.Add(GetRegistroErro(reader, erro));
                                 }
                                 break;
                         }
                     }
                 }
-                
                 
 
                 if (reader["cstipi"].ToString().Length == 2 && reader["cstipi"] is string ipi)
@@ -429,8 +429,8 @@ namespace Importador.Classes
                     {
                         if (Convert.ToDouble(reader["ipi"]) == 0)
                         {
-                            _retorno.AdicionarLinhaLog($"Produto: {reader["codigo"].ToString()} - Falhou em Aliquota do IPI (CST IPI 50: Precisa ter aliquota, porem esta zerada)");
                             erro = "Falhou em Aliquota do IPI (CST IPI 50: Precisa ter aliquota, porem esta zerada)";
+                            _retorno.AdicionarLinhaLog($"Produto: {reader["codigo"].ToString()} - {erro}");
                             listaRegistros.Add(GetRegistroErro(reader, erro));
                         }
                     }
@@ -438,23 +438,23 @@ namespace Importador.Classes
                     {
                         if (Convert.ToDouble(reader["ipi"]) != 0)
                         {
-                            _retorno.AdicionarLinhaLog($"Produto: {reader["codigo"].ToString()} - Falhou em Aliquota do IPI (CST IPI 51/52/53/54/55/99: Aliquota deve estar zerada)");
                             erro = "Falhou em Aliquota do IPI (CST IPI 51/52/53/54/55/99: Aliquota deve estar zerada)";
+                            _retorno.AdicionarLinhaLog($"Produto: {reader["codigo"].ToString()} - {erro}");
                             listaRegistros.Add(GetRegistroErro(reader, erro));
                         }
 
                         if (reader["CodigoEnqIPI"] is DBNull)
                         {
-                            _retorno.AdicionarLinhaLog($"Produto: {reader["codigo"].ToString()} - Falhou em Enquadramento do IPI (CST IPI 51/52/53/54/55: Necessitam de um codigo)");
-                            erro = "Falhou em Enquadramento do IPI (CST IPI 51/52/53/54/55: Necessitam de um codigo)";
+                            erro = "Falhou em Enquadramento do IPI (CST IPI 51/52/53/54/55: Necessitam de um codigo de enquadramento)";
+                            _retorno.AdicionarLinhaLog($"Produto: {reader["codigo"].ToString()} - {erro}");
                             listaRegistros.Add(GetRegistroErro(reader, erro));
                         }
                     }
                 }
                 else
                 {
-                    _retorno.AdicionarLinhaLog($"Produto: {reader["codigo"].ToString()} - Falhou em CST IPI (Cadastro errado)");
                     erro = "Falhou em CST IPI (Cadastro errado)";
+                    _retorno.AdicionarLinhaLog($"Produto: {reader["codigo"].ToString()} - {erro}");
                     listaRegistros.Add(GetRegistroErro(reader, erro));
                 }
             }

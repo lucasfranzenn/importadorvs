@@ -146,6 +146,7 @@ namespace Importador.UserControls.Importacao
                 executarMySqlDump.Kill();
 
                 Relatorios.GerarRelatorio();
+
                 Utils.GerarLeiaME(sql);
                 Utils.GerarArquivosConsultaSQL();
 

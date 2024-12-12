@@ -1,4 +1,5 @@
-﻿using DevExpress.XtraBars.FluentDesignSystem;
+﻿using DevExpress.Mvvm.Native;
+using DevExpress.XtraBars.FluentDesignSystem;
 using DevExpress.XtraEditors;
 using Importador.Classes.Entidades;
 using Importador.Conexao;
@@ -85,7 +86,7 @@ namespace Importador.Classes
 
         internal static void GerarLeiaME(string sql)
         {
-            string conteudo = $"O script dentro desse arquivo contém informações das seguintes tabelas:\n`{sql.Replace(" ", "`, `")}`\n\nQualquer informação que esteja em uma das tabelas dessa lista será subscrita pelos dados do script.";
+            string conteudo = $"O script dentro desse arquivo contém informações das seguintes tabelas:\n`{sql.Replace(" ", "`, `")}`\n\nQualquer informação que esteja em uma das tabelas dessa lista será subscrita pelos dados do script.\nCaso seja necessário que os dados que estão no banco do cliente não sejam subscritos, deverá ser informado previamente.\nSe já foi informado essa necessidade, por favor, ignore esta mensagem.";
 
             File.WriteAllText("LEIA-ME.txt", conteudo);
         }
@@ -190,6 +191,8 @@ namespace Importador.Classes
 
         internal static void GerarArquivosConsultaSQL()
         {
+            Directory.GetFiles("Consultas SQL").ForEach(file => File.Delete(file));
+
             IDbCommand cmd = ConexaoBancoImportador.instancia.conexao.CriarComando();
 
             cmd.CommandText = $"select 'Consultas SQL\\' || tabelaconsulta, consulta from consultas where codigoimplantacao ={Configuracoes.Default.CodigoImplantacao} and tabelaconsulta <> 'backup'";

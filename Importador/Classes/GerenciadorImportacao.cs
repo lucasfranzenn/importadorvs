@@ -163,6 +163,7 @@ namespace Importador.Classes
                     {
                         updates.Add("update produtos  set cst_simples = '0500' where cst_simples is null");
                         updates.Add("update produtos p inner join situacaotributaria st on st.codigo = p.cst_simples set cst_simples_texto = left(st.descricao,45)");
+                        updates.Add("update produtos set cst_pis_simples = cst_pis, cst_cofins_simples = cst_cofins, cst_ipi_simples = cst_ipi, aliq_pis_simples = aliq_pis, aliq_cofins_simples = aliq_cofins");
                     }
                     else
                     {

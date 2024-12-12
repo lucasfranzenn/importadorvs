@@ -130,6 +130,7 @@
             // 
             // cbEnviarValidacoes
             // 
+            cbEnviarValidacoes.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left;
             cbEnviarValidacoes.EditValue = true;
             cbEnviarValidacoes.Location = new System.Drawing.Point(0, 0);
             cbEnviarValidacoes.Name = "cbEnviarValidacoes";
@@ -139,6 +140,7 @@
             // 
             // gcParametros
             // 
+            gcParametros.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left;
             gcParametros.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             gcParametros.Controls.Add(cbEnviarValidacoes);
             gcParametros.Location = new System.Drawing.Point(18, 496);
