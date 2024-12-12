@@ -93,7 +93,9 @@ namespace Importador.Classes
                 QtdCPFCNPJ,
                 RegCPFCNPJ,
                 QtdQuitadasPendentes,
-                RegQuitadasPendentes
+                RegQuitadasPendentes,
+                GetProdSN,
+                GetProdLucro
             }
         }
 
@@ -110,7 +112,9 @@ namespace Importador.Classes
                 {Enums.ConsultasValidacoes.QtdCPFCNPJ, "select count(*) from (with duplicados as( \tselect cpf, cnpj, FisicaJuridica from clientes where fisicaJuridica = 'J' and cnpj <> '00.000.000/0000-00' group by CNPJ having count(*)>1  \tunion all  \tselect cpf, cnpj, FisicaJuridica from clientes where clientes.FisicaJuridica = 'F' and CPF <> '000000000-00' group by CPF having count(*)>1 ) select codigo, razaosocial, c.cpf, c.cnpj, c.FisicaJuridica from clientes c join duplicados d on if(d.fisicajuridica = 'F', c.cpf = d.cpf, c.cnpj = d.cnpj) order by cpf, cnpj) as tb" },
                 {Enums.ConsultasValidacoes.RegCPFCNPJ, "with duplicados as( \tselect cpf, cnpj, FisicaJuridica from clientes where fisicaJuridica = 'J' and cnpj <> '00.000.000/0000-00' group by CNPJ having count(*)>1  \tunion all  \tselect cpf, cnpj, FisicaJuridica from clientes where clientes.FisicaJuridica = 'F' and CPF <> '000000000-00' group by CPF having count(*)>1 ) select CodigoImportacaoDados as CodigoSistemaAntigo, codigo as CodigoMyCommerce, razaosocial, c.cpf, c.cnpj, c.FisicaJuridica from clientes c join duplicados d on if(d.fisicajuridica = 'F', c.cpf = d.cpf, c.cnpj = d.cnpj) order by cpf, cnpj" },
                 {Enums.ConsultasValidacoes.QtdQuitadasPendentes, "select count(sequencia) from (select sequencia from contasareceber c where Quitado = 1 and ValorPendente <> 0 union all select sequencia from contasapagar c where Quitado = 1 and ValorPendente <> 0) as tb" },
-                {Enums.ConsultasValidacoes.RegQuitadasPendentes, "select sequencia, codigo, razaosocial, ndocumento, valor, valorpago, valorpendente, quitado, dataquitacao, vencimento from contasareceber c where Quitado = 1 and ValorPendente <> 0 union all select sequencia, codigo, razaosocial, ndocumento, valor, valorpago, valorpendente, quitado, dataquitacao, vencimento from contasapagar c where Quitado = 1 and ValorPendente <> 0" }
+                {Enums.ConsultasValidacoes.RegQuitadasPendentes, "select sequencia, codigo, razaosocial, ndocumento, valor, valorpago, valorpendente, quitado, dataquitacao, vencimento from contasareceber c where Quitado = 1 and ValorPendente <> 0 union all select sequencia, codigo, razaosocial, ndocumento, valor, valorpago, valorpendente, quitado, dataquitacao, vencimento from contasapagar c where Quitado = 1 and ValorPendente <> 0" },
+                {Enums.ConsultasValidacoes.GetProdSN, "select CodigoImportacaoDados, Codigo, Descricao, p.NCM, p.Cest, (tc.ncm is not null) as ExisteCest, Cst_Pis_Simples as pis, Cst_Cofins_Simples as cofins, Cst_IPI_Simples as cstipi , IPI, CodigoEnqIPI, CST_Simples as cst, BaseCalculoICMS, AliquotaICMS, Aliq_Pis_Simples as aliqpis, Aliq_Cofins_Simples as aliqcofins, CodNaturezaPis from produtos p left join (select distinct ncm from tabela_cest) tc on replace(p.NCM, '.', '') = tc.NCM" },
+                {Enums.ConsultasValidacoes.GetProdLucro, "select CodigoImportacaoDados, Codigo, Descricao, p.NCM, p.Cest, (tc.ncm is not null) as ExisteCest, CST_PIS as pis , CST_COFINS as cofins, CSt_IPI as cstipi, IPI, CodigoEnqIPI, CodigoCF as cst , BaseCalculoICMS, AliquotaICMS, Aliq_PIS as aliqpis, Aliq_COFINS as aliqcofins, CodNaturezaPis from produtos p left join (select distinct ncm from tabela_cest) tc on replace(p.NCM, '.', '') = tc.NCM\r\n" },
             };
 
             public static readonly Dictionary<Enums.RelatorioGeralDataTable, string> ConsultaPorDataTable = new()

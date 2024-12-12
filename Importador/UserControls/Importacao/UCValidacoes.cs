@@ -46,6 +46,9 @@ namespace Importador.UserControls.Importacao
 
             txtLog.AppendText(Validacoes.VerificarContasQuitadasPendentes());
             AtualizaProgressBar();
+
+            txtLog.AppendText(Validacoes.VerificarFiscal());
+            AtualizaProgressBar();
         }
 
         private void AtualizaProgressBar()

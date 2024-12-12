@@ -107,7 +107,7 @@ namespace Importador.Classes
                         parameter = cmd.CreateParameter();
                         parameter.ParameterName = $"@{nomeColunas[i]}";
 
-                        parameter.Value = CastDataType(tamColunas[i], datatypeColunas[i], value);
+                        parameter.Value = Utils.CastDataType(datatypeColunas[i], value, tamColunas[i]);
 
                         cmd.Parameters.Add(parameter);
 
@@ -140,27 +140,6 @@ namespace Importador.Classes
             //Rodar parametros pós-importação
             var funcoesPosImportacao = Mapeamento.FuncoesPosImportacaoPorParametro.Keys.Where(k => parametros.Select(p => p.Name).Contains(k)).ToList();
             funcoesPosImportacao.ForEach(p => Mapeamento.FuncoesPosImportacaoPorParametro[p](tabela));
-        }
-
-        private static object CastDataType(int tamCol, string dataType, object value)
-        {
-            if (value is DBNull) return DBNull.Value;
-
-            switch (dataType)
-            {
-                case "int":
-                    return Convert.ToInt32(value);
-                case "date" or "datetime":
-                    return value;
-                default:
-                    if (value is string v)
-                    {
-                        if(string.IsNullOrEmpty(v)) return DBNull.Value;
-                        if(v.Length > tamCol) return v.Substring(0, tamCol);
-                    }
-
-                    return value;    
-            }
         }
 
         private static string GetDataType(string coluna, string tabela)

@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
+using System.Linq;
 using System.Security.Principal;
 using System.Text;
 using System.Windows.Forms;
@@ -199,6 +200,101 @@ namespace Importador.Classes
                 CriarTXT(reader[1].ToString(), reader[0].ToString());
             }
             reader.Close();
+        }
+
+        internal static string ExportRegToText(string[] cabecalhos, List<string[]> listaRegistros)
+        {
+            StringBuilder conteudo = new();
+
+            int[] columnWidths = new int[cabecalhos.Length];
+            List<string[]> rows = new();
+            string value;
+
+            for(int i = 0; i < cabecalhos.Length; i++)
+            {
+                columnWidths[i] = cabecalhos[i].Length;
+            }
+
+            foreach(string[] reg in listaRegistros)
+            {
+                string[] row = new string[cabecalhos.Length];
+                for(int i = 0; i < cabecalhos.Length;i++)
+                {
+                    value = reg[i].ToString();
+                    row[i] = value;
+                    columnWidths[i] = Math.Max(columnWidths[i], value.Length);
+                }
+                rows.Add(row);
+            }
+
+            conteudo.Append('-');
+            for (int i = 0; i < cabecalhos.Length; i++)
+            {
+                conteudo.Append(new string('-', columnWidths[i]) + "--");
+            }
+            conteudo.AppendLine();
+
+            // Escrever cabeçalhos
+            conteudo.Append('|');
+            for (int i = 0; i < cabecalhos.Length; i++)
+            {
+                conteudo.Append(cabecalhos[i].PadRight(columnWidths[i] + 2));
+                conteudo.Remove(conteudo.Length - 1, 1);
+                conteudo.Append('|');
+            }
+            conteudo.AppendLine();
+
+
+            conteudo.Append('|');
+            for (int i = 0; i < cabecalhos.Length; i++)
+            {
+                conteudo.Append(new string('-', columnWidths[i]) + "-|");
+            }
+            conteudo.AppendLine();
+
+            foreach (var row in rows)
+            {
+                conteudo.Append('|');
+                for (int i = 0; i < row.Length; i++)
+                {
+                    conteudo.Append(row[i].PadRight(columnWidths[i] + 2));
+                    conteudo.Remove(conteudo.Length - 1, 1);
+                    conteudo.Append('|');
+                }
+                conteudo.AppendLine();
+            }
+
+            conteudo.Append('-');
+            for (int i = 0; i < cabecalhos.Length; i++)
+            {
+                conteudo.Append(new string('-', columnWidths[i]) + "--");
+            }
+            conteudo.AppendLine();
+
+            return conteudo.ToString();
+        }
+
+        public static object CastDataType(string dataType, object value, int tamCol = 9999)
+        {
+            if (value is DBNull) return DBNull.Value;
+
+            switch (dataType)
+            {
+                case "int":
+                    return Convert.ToInt32(value);
+                case "double":
+                    return Convert.ToDouble(value);
+                case "date" or "datetime":
+                    return value;
+                default:
+                    if (value is string v)
+                    {
+                        if (string.IsNullOrEmpty(v)) return DBNull.Value;
+                        if (v.Length > tamCol) return v.Substring(0, tamCol);
+                    }
+
+                    return value;
+            }
         }
     }
 
