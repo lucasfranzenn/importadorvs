@@ -167,6 +167,11 @@ namespace Importador.Classes
                     }
                     else
                     {
+                        if (Configuracoes.Default.RegimeEmpresa == 2)
+                        {
+                            updates.Add("update produtos set Cst_Pis_LP = cst_pis, Cst_cofins_LP = cst_cofins, aliq_pis_lp = aliq_pis, aliq_cofins_lp = aliq_cofins");
+                        }
+
                         updates.Add("update produtos set codigocf = '000' where codigocf is null");
                         updates.Add("update produtos p inner join situacaotributaria st on st.codigo = p.codigocf set situacaotributaria= left(st.descricao,45)");
                     }
