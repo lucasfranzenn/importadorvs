@@ -120,7 +120,7 @@ namespace Importador.Classes
 
             for (int i = 0; i < reader.FieldCount; i++)
             {
-                columnWidths[i] = reader.GetName(i).Length; 
+                columnWidths[i] = reader.GetName(i).Length;
             }
 
             while (reader.Read())
@@ -213,15 +213,15 @@ namespace Importador.Classes
             List<string[]> rows = new();
             string value;
 
-            for(int i = 0; i < cabecalhos.Length; i++)
+            for (int i = 0; i < cabecalhos.Length; i++)
             {
                 columnWidths[i] = cabecalhos[i].Length;
             }
 
-            foreach(string[] reg in listaRegistros)
+            foreach (string[] reg in listaRegistros)
             {
                 string[] row = new string[cabecalhos.Length];
-                for(int i = 0; i < cabecalhos.Length;i++)
+                for (int i = 0; i < cabecalhos.Length; i++)
                 {
                     value = reg[i].ToString();
                     row[i] = value;
@@ -279,7 +279,7 @@ namespace Importador.Classes
 
         public static object CastDataType(string dataType, object value, int tamCol = 9999)
         {
-            if (value is DBNull) return DBNull.Value;
+            if (value is DBNull || string.IsNullOrEmpty(value.ToString())) return DBNull.Value;
 
             switch (dataType)
             {
@@ -292,12 +292,29 @@ namespace Importador.Classes
                 default:
                     if (value is string v)
                     {
-                        if (string.IsNullOrEmpty(v)) return DBNull.Value;
                         if (v.Length > tamCol) return v.Substring(0, tamCol);
                     }
 
                     return value;
             }
+        }
+
+        internal static void GerarComoUsar()
+        {
+            string conteudo="Para utilizar os arquivos de validações, recomenda-se seguir o seguinte processo:\n\t1. Verificar o arquivo \"log_validacoes\" para verificar o que está errado.\n\t2. Verificar nos outros arquivos o porquê está errado.\n\t3. Verificar o que seria o certo com o cliente.\n\nTabela de LOGS\n";
+            var listaRegistros = new List<string[]>
+            {
+                new string[] { "log_validacoes", "Contém todo o processo que rolou durante as validações e quantos registros estão errados." },
+                new string[] { "ncm_inválidos", "Contém todos os produtos que não tem NCM cadastrado (É obrigatório que todo produto possua um NCM cadastrado)." },
+                new string[] { "cest_inválidos", "Contém todos os produtos com cest errado ou não cadastrado (Quando o produto tiver NCM e esse NCM possuir CEST, é obrigatório que esteja cadastrado no produto)." },
+                new string[] { "cpfcnpj_duplicado", "Contém todos os clientes que estão com CPF ou CNPJ duplicado, isto é, quando houver mais de um cliente/fornecedor com o mesmo CPF/CNPJ" },
+                new string[] { "codibge_inválidos", "Contém todos os clientes que estão com o cadastro do codibge errado (Quando estiver errado, ocorrerá problemas ao faturar notas)." },
+                new string[] { "contasquitadas_pendentes", "Contém todas as contas que estão marcadas como quitadas, porém ainda mostram que existem valores pendentes a serem pagos (Se uma conta está quitada, não pode haver valores pendentes)." },
+                new string[] { "produtos_fiscal", "Contém todos os produtos que estão com erros fiscais de acordo com o arquivo de importação fiscal." },
+            };
+            string rodape = "\nOBSERVAÇÕES\n**Lembrando que essas são as regras de negócio do ERP MyCommerce, nos outros Sistemas algumas dessas regras podem ser diferentes ou não existem.\n**As validações servem para apontar oque está errado/faltando para que possa ser corrigido e o cliente funcionar da melhor maneira possível.\n**Geralmente não é enviado o log de contasquitadas_pendentes pois é corrigido na própria importação, salvo raríssimas exceções.";
+
+            CriarTXT(conteudo + ExportRegToText(["Arquivo LOG", "Pra que serve"], listaRegistros) + rodape, $"Validacoes\\COMO USAR");
         }
     }
 

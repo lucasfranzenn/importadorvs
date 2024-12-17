@@ -25,12 +25,12 @@ namespace Importador.Classes
 
             _retorno.AdicionarLinhaLog("Ajustando IBGE");
 
-            _cmd.CommandText = "select count(*) from clientes c join cidades cid on replace(c.Cidade, '\'', '') = replace(cid.Cidade, '\'', '') and c.UF = cid.UF and c.CodigoCidadeIbge <> cid.Codigo";
+            _cmd.CommandText = "select count(*) from clientes c join cidades cid on replace(c.Cidade, '\\'', '') = replace(cid.Cidade, '\\'', '') and c.UF = cid.UF and c.CodigoCidadeIbge <> cid.Codigo";
             _qtdRegistros = Convert.ToInt32(_cmd.ExecuteScalar());
 
             _retorno.AdicionarLinhaLog($"### Ajustado {_qtdRegistros} clientes que estavam com código de municipio errado.");
 
-            _cmd.CommandText = "update clientes join cidades on replace(clientes.Cidade, '\'', '') = replace(cidades.Cidade, '\'', '') and clientes.UF = cidades.UF and clientes.CodigoCidadeIbge <> cidades.Codigo set clientes.Cidade = Cidades.Cidade, clientes.CodigoCidadeIbge = cidades.Codigo";
+            _cmd.CommandText = "update clientes join cidades on replace(clientes.Cidade, '\\'', '') = replace(cidades.Cidade, '\\'', '') and clientes.UF = cidades.UF and clientes.CodigoCidadeIbge <> cidades.Codigo set clientes.Cidade = Cidades.Cidade, clientes.CodigoCidadeIbge = cidades.Codigo";
             _cmd.ExecuteNonQuery();
 
             return _retorno.ToString();
@@ -48,6 +48,7 @@ namespace Importador.Classes
             sb.Append(VerificarFiscal());
 
             Utils.CriarTXT(sb.ToString(), $"Validacoes\\log_validacoes");
+            Utils.GerarComoUsar();
 
             return "\"Validacoes\\*\" \"";
         }
@@ -104,7 +105,7 @@ namespace Importador.Classes
         internal static string VerificarContasQuitadasPendentes()
         {
             _retorno.Clear();
-            _nomeLog = "contasquitadas_pendentes";
+            _nomeLog = "Validacoes\\contasquitadas_pendentes";
 
             _retorno.AdicionarLinhaLog("Iniciando verificação de Contas que estão quitadas, porém com valor pendente.");
             _retorno.AdicionarLinhaLog("Executando Consulta SQL.");
@@ -118,7 +119,7 @@ namespace Importador.Classes
 
             if (_qtdRegistros > 0)
             {
-                Utils.CriarTXT(Utils.ExportSQLtoText(Constantes.Mapeamento.ConsultaPorValidacao.GetValueOrDefault(Constantes.Enums.ConsultasValidacoes.RegCodIBGE)), $"{_nomeLog}");
+                Utils.CriarTXT(Utils.ExportSQLtoText(Constantes.Mapeamento.ConsultaPorValidacao.GetValueOrDefault(Constantes.Enums.ConsultasValidacoes.RegQuitadasPendentes)), $"{_nomeLog}");
             }
 
             return _retorno.ToString();
@@ -183,7 +184,7 @@ namespace Importador.Classes
                 //Valida se pis e cofins do produto possuem dois digitos e se ambos sao iguais
                 if (reader["pis"].ToString().Length != 2  || reader["cofins"].ToString().Length != 2 || string.Compare(reader["pis"].ToString(), reader["cofins"].ToString(), true) != 0)
                 {
-                    erro = "Falhou em PIS/COFINS (PIS e Cofins estão com códigos diferentes e precisam ser iguais)";
+                    erro = "Falhou em PIS/COFINS (PIS e Cofins estão com códigos diferentes e precisam ser iguais ou Pis e Cofins estão nulos)";
                     listaRegistros.Add(GetRegistroErro(reader, erro));
                 }
                 //Aqui havia um else para o bloco a seguir, removido...
@@ -388,14 +389,14 @@ namespace Importador.Classes
                         switch (reader["cst"].ToString().Substring(1, 2))
                         {
                             case "00" or "10" or "20" or "70":
-                                if (Convert.ToDouble(reader["AliquotaICMS"]) == 0)
+                                if (reader["AliquotaICMS"] is not DBNull && Convert.ToDouble(reader["AliquotaICMS"]) == 0)
                                 {
                                     erro = "Falhou em Alíquota do ICMS (Para empresa do lucro com cst x00/x10/x20/x70, alíquota deve ser maior que 0)";
                                     listaRegistros.Add(GetRegistroErro(reader, erro));
                                 }
                                 break;
                             default:
-                                if (Convert.ToDouble(reader["AliquotaICMS"]) != 0)
+                                if (reader["AliquotaICMS"] is not DBNull && Convert.ToDouble(reader["AliquotaICMS"]) != 0)
                                 {
                                     erro = $"Falhou em Alíquota do ICMS (Para empresa do lucro com cst x40/x41/x50/x51/x60/x90, alíquota deve ser 0)";
                                     listaRegistros.Add(GetRegistroErro(reader, erro));

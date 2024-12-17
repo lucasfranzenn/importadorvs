@@ -35,7 +35,7 @@
             gcGridTabelas = new DevExpress.XtraGrid.GridControl();
             gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             btnGerarBackup = new DevExpress.XtraEditors.SimpleButton();
-            progressBarControl1 = new DevExpress.XtraEditors.ProgressBarControl();
+            pbProgresso = new DevExpress.XtraEditors.ProgressBarControl();
             btnObservacao = new DevExpress.XtraEditors.SimpleButton();
             cbEnviarValidacoes = new DevExpress.XtraEditors.CheckEdit();
             gcParametros = new DevExpress.XtraEditors.GroupControl();
@@ -43,7 +43,7 @@
             ((System.ComponentModel.ISupportInitialize)txtDestinoBackup.Properties).BeginInit();
             ((System.ComponentModel.ISupportInitialize)gcGridTabelas).BeginInit();
             ((System.ComponentModel.ISupportInitialize)gridView1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)progressBarControl1.Properties).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pbProgresso.Properties).BeginInit();
             ((System.ComponentModel.ISupportInitialize)cbEnviarValidacoes.Properties).BeginInit();
             ((System.ComponentModel.ISupportInitialize)gcParametros).BeginInit();
             gcParametros.SuspendLayout();
@@ -106,14 +106,17 @@
             btnGerarBackup.Text = "&Gerar";
             btnGerarBackup.Click += btnGerarBackup_Click;
             // 
-            // progressBarControl1
+            // pbProgresso
             // 
-            progressBarControl1.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
-            progressBarControl1.Location = new System.Drawing.Point(18, 464);
-            progressBarControl1.Name = "progressBarControl1";
-            progressBarControl1.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
-            progressBarControl1.Size = new System.Drawing.Size(518, 26);
-            progressBarControl1.TabIndex = 5;
+            pbProgresso.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            pbProgresso.Location = new System.Drawing.Point(18, 464);
+            pbProgresso.Name = "pbProgresso";
+            pbProgresso.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
+            pbProgresso.Properties.Maximum = 5;
+            pbProgresso.Properties.ShowTitle = true;
+            pbProgresso.Properties.Step = 1;
+            pbProgresso.Size = new System.Drawing.Size(518, 26);
+            pbProgresso.TabIndex = 5;
             // 
             // btnObservacao
             // 
@@ -159,7 +162,7 @@
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             Controls.Add(gcParametros);
             Controls.Add(btnObservacao);
-            Controls.Add(progressBarControl1);
+            Controls.Add(pbProgresso);
             Controls.Add(btnGerarBackup);
             Controls.Add(gcGridTabelas);
             Controls.Add(btnSelecionarDestino);
@@ -170,7 +173,7 @@
             ((System.ComponentModel.ISupportInitialize)txtDestinoBackup.Properties).EndInit();
             ((System.ComponentModel.ISupportInitialize)gcGridTabelas).EndInit();
             ((System.ComponentModel.ISupportInitialize)gridView1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)progressBarControl1.Properties).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pbProgresso.Properties).EndInit();
             ((System.ComponentModel.ISupportInitialize)cbEnviarValidacoes.Properties).EndInit();
             ((System.ComponentModel.ISupportInitialize)gcParametros).EndInit();
             gcParametros.ResumeLayout(false);
@@ -186,7 +189,7 @@
         private DevExpress.XtraGrid.GridControl gcGridTabelas;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
         private DevExpress.XtraEditors.SimpleButton btnGerarBackup;
-        private DevExpress.XtraEditors.ProgressBarControl progressBarControl1;
+        private DevExpress.XtraEditors.ProgressBarControl pbProgresso;
         public DevExpress.XtraEditors.SimpleButton btnObservacao;
         private DevExpress.XtraEditors.CheckEdit cbEnviarValidacoes;
         private DevExpress.XtraEditors.GroupControl gcParametros;

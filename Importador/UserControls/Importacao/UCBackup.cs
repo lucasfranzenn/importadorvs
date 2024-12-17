@@ -119,6 +119,8 @@ namespace Importador.UserControls.Importacao
                 gv1.ClearGrouping();
             }
 
+            pbProgresso.EditValue = 0;
+
             string sql = PegarTabelasMarcadas();
 
             Utils.AtualizaSQLImportacao(sql, "backup");
@@ -144,8 +146,10 @@ namespace Importador.UserControls.Importacao
                 executarMySqlDump.WaitForExit();
 
                 executarMySqlDump.Kill();
+                AtualizarProgresso();
 
                 Relatorios.GerarRelatorio();
+                AtualizarProgresso();
 
                 Utils.GerarLeiaME(sql);
                 Utils.GerarArquivosConsultaSQL();
@@ -168,9 +172,11 @@ namespace Importador.UserControls.Importacao
                 }
                 
                 list.ForEach(p => Mapeamento.FuncoesPosImportacaoPorParametro[p](p));
+                AtualizarProgresso();
 
                 executarRar.Start();
                 executarRar.WaitForExit();
+                AtualizarProgresso();
                 File.Delete("LEIA-ME.txt");
                 File.Delete("MyBackup.sql");
                 File.Delete($"Implantação {Configuracoes.Default.CodigoImplantacao}.pdf");
@@ -178,6 +184,7 @@ namespace Importador.UserControls.Importacao
 
                 File.Copy(Path.GetFileName(txtDestinoBackup.Text), txtDestinoBackup.Text, true);
                 File.Delete(Path.GetFileName(txtDestinoBackup.Text));
+                AtualizarProgresso();
 
                 if (XtraMessageBox.Show("Backup Gerado\nDeseja abrir a pasta de destino?", "..::Importador::..", MessageBoxButtons.YesNo) == DialogResult.Yes)
                     Process.Start("explorer.exe", $"/select, {txtDestinoBackup.Text}");
@@ -187,6 +194,12 @@ namespace Importador.UserControls.Importacao
                 throw;
             }
 
+        }
+
+        private void AtualizarProgresso()
+        {
+            pbProgresso.PerformStep();
+            pbProgresso.Update();
         }
 
         private string PegarTabelasMarcadas()

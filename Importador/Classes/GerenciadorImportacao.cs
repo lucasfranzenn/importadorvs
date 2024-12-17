@@ -302,13 +302,13 @@ namespace Importador.Classes
             switch (arg)
             {
                 case "produtosfornecedor":
-                    ConexaoManager.instancia.GetConexaoMyCommerce().ExecuteScalar($"UPDATE {arg} join CLIENTES on {arg}.idFornecedor = clientes.contato and clientes.tipo = 'F' SET {arg}.idFornecedor = clientes.codigo");
+                    ConexaoManager.instancia.GetConexaoMyCommerce().ExecuteScalar($"UPDATE {arg} join CLIENTES on {arg}.idFornecedor = clientes.CodigoImportacaoDados and clientes.tipo = 'F' SET {arg}.idFornecedor = clientes.codigo");
                     break;
                 case "contasapagar":
-                    ConexaoManager.instancia.GetConexaoMyCommerce().ExecuteScalar($"UPDATE {arg} join CLIENTES on {arg}.RazaoSocial = clientes.contato and clientes.tipo = 'F' SET {arg}.Codigo = clientes.codigo, {arg}.razaosocial = clientes.razaosocial");
+                    ConexaoManager.instancia.GetConexaoMyCommerce().ExecuteScalar($"UPDATE {arg} join CLIENTES on {arg}.RazaoSocial = clientes.CodigoImportacaoDados and clientes.tipo = 'F' SET {arg}.Codigo = clientes.codigo, {arg}.razaosocial = clientes.razaosocial");
                     break;
                 default:
-                    ConexaoManager.instancia.GetConexaoMyCommerce().ExecuteScalar($"UPDATE {arg} join CLIENTES on {arg}.RazaoSocial = clientes.contato SET {arg}.Codigo = clientes.codigo, {arg}.razaosocial = clientes.razaosocial");
+                    ConexaoManager.instancia.GetConexaoMyCommerce().ExecuteScalar($"UPDATE {arg} join CLIENTES on {arg}.RazaoSocial = clientes.CodigoImportacaoDados SET {arg}.Codigo = clientes.codigo, {arg}.razaosocial = clientes.razaosocial");
                     break;
             }
 
