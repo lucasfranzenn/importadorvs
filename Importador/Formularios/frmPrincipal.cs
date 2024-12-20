@@ -103,6 +103,18 @@ namespace Importador
             skin.LookAndFeel.UseDefaultLookAndFeel = true;
 
             Configuracoes.Default.UsuarioLogado = GetUsuarioSID();
+
+            lblImplantacao.Caption = $"Imp. {Configuracoes.Default.CodigoImplantacao}";
+
+            Configuracoes.Default.PropertyChanged += CodigoImplantacao_Change;
+        }
+
+        private void CodigoImplantacao_Change(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == nameof(Configuracoes.Default.CodigoImplantacao))
+            {
+                lblImplantacao.Caption = $"Imp. {Configuracoes.Default.CodigoImplantacao}";
+            }
         }
 
         private void acImportacaoProdutosST_Click(object sender, EventArgs e)

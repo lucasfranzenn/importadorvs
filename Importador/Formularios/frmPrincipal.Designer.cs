@@ -36,8 +36,8 @@ namespace Importador
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            DevExpress.Utils.SuperToolTip superToolTip2 = new DevExpress.Utils.SuperToolTip();
-            DevExpress.Utils.ToolTipItem toolTipItem2 = new DevExpress.Utils.ToolTipItem();
+            DevExpress.Utils.SuperToolTip superToolTip1 = new DevExpress.Utils.SuperToolTip();
+            DevExpress.Utils.ToolTipItem toolTipItem1 = new DevExpress.Utils.ToolTipItem();
             fcPrincipal = new DevExpress.XtraBars.FluentDesignSystem.FluentDesignFormContainer();
             btnSair = new SimpleButton();
             acPrincipal = new DevExpress.XtraBars.Navigation.AccordionControl();
@@ -59,6 +59,7 @@ namespace Importador
             acImportacaoServicos = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             acImportacaoGenerico = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             acImportacaoBackup = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            acImportacaoValidacao = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             acUtilitarios = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             acUtilitariosBuscarColuna = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             acUtilitariosRecursos = new DevExpress.XtraBars.Navigation.AccordionControlElement();
@@ -67,6 +68,8 @@ namespace Importador
             skinDropDownButtonItem1 = new DevExpress.XtraBars.SkinDropDownButtonItem();
             skinPaletteDropDownButtonItem1 = new DevExpress.XtraBars.SkinPaletteDropDownButtonItem();
             bsiTelaAtual = new DevExpress.XtraBars.BarStaticItem();
+            lblImplantacao = new DevExpress.XtraBars.BarStaticItem();
+            repositoryItemComboBox1 = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
             fluentFormDefaultManager1 = new DevExpress.XtraBars.FluentDesignSystem.FluentFormDefaultManager(components);
             skin = new DefaultLookAndFeel(components);
             acImportacaoSeparador = new DevExpress.XtraBars.Navigation.AccordionControlSeparator();
@@ -75,10 +78,10 @@ namespace Importador
             barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             barDockControlRight = new DevExpress.XtraBars.BarDockControl();
-            acImportacaoValidacao = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             ((System.ComponentModel.ISupportInitialize)acPrincipal).BeginInit();
             ((System.ComponentModel.ISupportInitialize)fluentDesignFormControl1).BeginInit();
             fluentDesignFormControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)repositoryItemComboBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)fluentFormDefaultManager1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)barManager1).BeginInit();
             SuspendLayout();
@@ -253,6 +256,14 @@ namespace Importador
             acImportacaoBackup.Text = "Backup";
             acImportacaoBackup.Click += acImportacaoBackup_Click;
             // 
+            // acImportacaoValidacao
+            // 
+            acImportacaoValidacao.ImageOptions.Image = Properties.Resources.showtestreport_16x16;
+            acImportacaoValidacao.Name = "acImportacaoValidacao";
+            acImportacaoValidacao.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            acImportacaoValidacao.Text = "Validações";
+            acImportacaoValidacao.Click += acImportacaoValidacao_Click;
+            // 
             // acUtilitarios
             // 
             acUtilitarios.Elements.AddRange(new DevExpress.XtraBars.Navigation.AccordionControlElement[] { acUtilitariosBuscarColuna, acUtilitariosRecursos });
@@ -273,11 +284,11 @@ namespace Importador
             acUtilitariosRecursos.ImageOptions.SvgImage = Properties.Resources.functionsinformation;
             acUtilitariosRecursos.Name = "acUtilitariosRecursos";
             acUtilitariosRecursos.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
-            toolTipItem2.AllowHtmlText = DevExpress.Utils.DefaultBoolean.True;
-            toolTipItem2.ImageOptions.SvgImage = Properties.Resources.functionsinformation;
-            toolTipItem2.Text = "Recursos de apoio para facilitar a importação.\r\nEstá incluso: \r\n * Nomenclaturas de colunas;\r\n * Validações Fiscais;\r\n * Sistemas Importados;\r\n * Software Úteis;\r\n * Dicas de Bancos de Dados.";
-            superToolTip2.Items.Add(toolTipItem2);
-            acUtilitariosRecursos.SuperTip = superToolTip2;
+            toolTipItem1.AllowHtmlText = DevExpress.Utils.DefaultBoolean.True;
+            toolTipItem1.ImageOptions.SvgImage = Properties.Resources.functionsinformation;
+            toolTipItem1.Text = "Recursos de apoio para facilitar a importação.\r\nEstá incluso: \r\n * Nomenclaturas de colunas;\r\n * Validações Fiscais;\r\n * Sistemas Importados;\r\n * Software Úteis;\r\n * Dicas de Bancos de Dados.";
+            superToolTip1.Items.Add(toolTipItem1);
+            acUtilitariosRecursos.SuperTip = superToolTip1;
             acUtilitariosRecursos.Text = "Recursos de Apoio";
             acUtilitariosRecursos.Click += acUtilitariosAuxiliar_Click;
             // 
@@ -285,15 +296,17 @@ namespace Importador
             // 
             fluentDesignFormControl1.Controls.Add(btnSair);
             fluentDesignFormControl1.FluentDesignForm = this;
-            fluentDesignFormControl1.Items.AddRange(new DevExpress.XtraBars.BarItem[] { blciTemas, skinDropDownButtonItem1, skinPaletteDropDownButtonItem1, bsiTelaAtual });
+            fluentDesignFormControl1.Items.AddRange(new DevExpress.XtraBars.BarItem[] { blciTemas, skinDropDownButtonItem1, skinPaletteDropDownButtonItem1, bsiTelaAtual, lblImplantacao });
             fluentDesignFormControl1.Location = new System.Drawing.Point(0, 0);
             fluentDesignFormControl1.Manager = fluentFormDefaultManager1;
             fluentDesignFormControl1.Name = "fluentDesignFormControl1";
+            fluentDesignFormControl1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] { repositoryItemComboBox1 });
             fluentDesignFormControl1.Size = new System.Drawing.Size(770, 31);
             fluentDesignFormControl1.TabIndex = 2;
             fluentDesignFormControl1.TabStop = false;
             fluentDesignFormControl1.TitleItemLinks.Add(blciTemas);
             fluentDesignFormControl1.TitleItemLinks.Add(bsiTelaAtual);
+            fluentDesignFormControl1.TitleItemLinks.Add(lblImplantacao);
             // 
             // blciTemas
             // 
@@ -323,12 +336,26 @@ namespace Importador
             bsiTelaAtual.Id = 3;
             bsiTelaAtual.Name = "bsiTelaAtual";
             // 
+            // lblImplantacao
+            // 
+            lblImplantacao.Alignment = DevExpress.XtraBars.BarItemLinkAlignment.Right;
+            lblImplantacao.Caption = "Imp. ";
+            lblImplantacao.Id = 4;
+            lblImplantacao.Name = "lblImplantacao";
+            // 
+            // repositoryItemComboBox1
+            // 
+            repositoryItemComboBox1.AutoHeight = false;
+            repositoryItemComboBox1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo) });
+            repositoryItemComboBox1.Name = "repositoryItemComboBox1";
+            // 
             // fluentFormDefaultManager1
             // 
             fluentFormDefaultManager1.AutoSaveInRegistry = true;
             fluentFormDefaultManager1.Form = this;
-            fluentFormDefaultManager1.Items.AddRange(new DevExpress.XtraBars.BarItem[] { blciTemas, skinDropDownButtonItem1, skinPaletteDropDownButtonItem1, bsiTelaAtual });
-            fluentFormDefaultManager1.MaxItemId = 4;
+            fluentFormDefaultManager1.Items.AddRange(new DevExpress.XtraBars.BarItem[] { blciTemas, skinDropDownButtonItem1, skinPaletteDropDownButtonItem1, bsiTelaAtual, lblImplantacao });
+            fluentFormDefaultManager1.MaxItemId = 6;
+            fluentFormDefaultManager1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] { repositoryItemComboBox1 });
             // 
             // skin
             // 
@@ -379,14 +406,6 @@ namespace Importador
             barDockControlRight.Manager = barManager1;
             barDockControlRight.Size = new System.Drawing.Size(0, 548);
             // 
-            // acImportacaoValidacao
-            // 
-            acImportacaoValidacao.ImageOptions.Image = Properties.Resources.showtestreport_16x16;
-            acImportacaoValidacao.Name = "acImportacaoValidacao";
-            acImportacaoValidacao.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
-            acImportacaoValidacao.Text = "Validações";
-            acImportacaoValidacao.Click += acImportacaoValidacao_Click;
-            // 
             // frmPrincipal
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -415,6 +434,7 @@ namespace Importador
             ((System.ComponentModel.ISupportInitialize)acPrincipal).EndInit();
             ((System.ComponentModel.ISupportInitialize)fluentDesignFormControl1).EndInit();
             fluentDesignFormControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)repositoryItemComboBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)fluentFormDefaultManager1).EndInit();
             ((System.ComponentModel.ISupportInitialize)barManager1).EndInit();
             ResumeLayout(false);
@@ -460,6 +480,8 @@ namespace Importador
         private DevExpress.XtraBars.BarStaticItem bsiTelaAtual;
         private DevExpress.XtraBars.Navigation.AccordionControlElement acUtilitariosRecursos;
         private DevExpress.XtraBars.Navigation.AccordionControlElement acImportacaoValidacao;
+        private DevExpress.XtraBars.BarStaticItem lblImplantacao;
+        private DevExpress.XtraEditors.Repository.RepositoryItemComboBox repositoryItemComboBox1;
     }
 }
 
