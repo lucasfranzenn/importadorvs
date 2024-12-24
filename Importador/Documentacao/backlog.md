@@ -4,7 +4,7 @@
 ~~- [ ] ** Utilizar APIs para baixar drivers ODBC (Listar apenas drivers recomendados);~~
 ~~- [ ] ** Utilizar APIs para baixar as ultimas vers�es dispon�veis de servidores bancos de dados (Possibilitar a procura por uma vers�o em especifico);~~
 - [ ] ** Utilizar API do google drive para upar backups diretamente em uma pasta;
-- [ ] ** Utilizar API para integracao com o Jira e poder controlar as Issues;
+- [x] ** Utilizar API para integracao com o Jira e poder controlar as Issues;
 
 # 2. Ferramentas
 ~~- [ ] ** Mostrar comandos comulmente utilizados em terminais de banco (gbak, mysql, pgbackup);~~

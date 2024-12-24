@@ -316,6 +316,18 @@ namespace Importador.Classes
 
             CriarTXT(conteudo + ExportRegToText(["Arquivo LOG", "Pra que serve"], listaRegistros) + rodape, $"Validacoes\\COMO USAR");
         }
+
+        internal static string LerArquivo(string caminho)
+        {
+            string nomeDiretorio = Path.GetDirectoryName(caminho);
+
+            if (!Path.Exists(nomeDiretorio) || !File.Exists(caminho))
+            {
+                return string.Empty;
+            }
+
+            return File.ReadAllText(caminho);
+        }
     }
 
 }

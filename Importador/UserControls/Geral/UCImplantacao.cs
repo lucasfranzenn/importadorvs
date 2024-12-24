@@ -1,9 +1,10 @@
-﻿using DevExpress.CodeParser;
-using DevExpress.XtraEditors;
+﻿using DevExpress.XtraEditors;
 using Importador.Classes;
 using Importador.Classes.Entidades;
+using Importador.Classes.Entidades.RetornoAPI;
 using Importador.Conexao;
 using Importador.UserControls.BaseControls;
+using Importador.UserControls.Componentes;
 using System;
 using System.Windows.Forms;
 using static Importador.Classes.Constantes;
@@ -79,18 +80,49 @@ namespace Importador.UserControls.Geral
                 Default.Save();
                 var impAtual = ConexaoBancoImportador.GetEntidade<Implantacao>(Enums.TabelaBancoLocal.implantacoes);
 
-                if (impAtual is null)
+                if (impAtual is not null)
                 {
-                    if (XtraMessageBox.Show("Este código não está cadastrado\nDeseja cadastrar?", "..::Importador::..", MessageBoxButtons.YesNo) == DialogResult.Yes)
-                    {
-                        ConexaoBancoImportador.InserirRegistro(new Implantacao(txtCodigoImplantacao.Text), Enums.TabelaBancoLocal.implantacoes);
-                        impAtual = ConexaoBancoImportador.GetEntidade<Implantacao>(Enums.TabelaBancoLocal.implantacoes);
-                    }
-                    else return;
+                    CarregaInformacoes(impAtual);
+                    return;
                 }
 
-                CarregaInformacoes(impAtual);
+                CriarNovaImplantacao(impAtual);
             }
+        }
+
+        private async void CriarNovaImplantacao(Implantacao impAtual)
+        {
+            var waitform = new Aguarde("Consumindo api...");
+            var formpai = FindForm();
+
+            waitform.Location = new System.Drawing.Point(
+                    formpai.Location.X + (formpai.Width - waitform.Width) / 2,
+                    formpai.Location.Y + (formpai.Height - waitform.Height) / 2
+                );
+
+            waitform.Show(formpai);
+
+            JiraIssue issues = await ConsumirApi.GetIssueOnJira(txtCodigoImplantacao.Text);
+
+            waitform.Dispose();
+
+
+            if (issues is not null)
+            {
+                ConexaoBancoImportador.InserirRegistro(new Implantacao(issues), Enums.TabelaBancoLocal.implantacoes);
+                impAtual = ConexaoBancoImportador.GetEntidade<Implantacao>(Enums.TabelaBancoLocal.implantacoes);
+            }
+            else
+            {
+                if (XtraMessageBox.Show("Este código não está cadastrado\nDeseja cadastrar?", "..::Importador::..", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    ConexaoBancoImportador.InserirRegistro(new Implantacao(txtCodigoImplantacao.Text), Enums.TabelaBancoLocal.implantacoes);
+                    impAtual = ConexaoBancoImportador.GetEntidade<Implantacao>(Enums.TabelaBancoLocal.implantacoes);
+                }
+                else return;
+            }
+
+            CarregaInformacoes(impAtual);
         }
 
         private void CarregaInformacoes(Implantacao implantacao)
