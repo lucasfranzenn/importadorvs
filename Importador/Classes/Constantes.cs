@@ -13,7 +13,9 @@ namespace Importador.Classes
             public const string exeRar = @"Configuracao\rar";
             public const string pdfImportacaoFiscal = @"Configuracao\importacao_fiscal.pdf";
             public const string relatorioGeral = @"Relatorios\Modelos\Geral.frx";
-            public const string AuthJira = @"Configuracao\jira.dat";
+            public const string AuthJira = @"Configuracao\jira";
+            public const string CredencialDrive = @"Configuracao\cred.json";
+            public const string PastaPaiDrive = @"Configuracao\parentFolderId";
         }
 
         public static class Enums

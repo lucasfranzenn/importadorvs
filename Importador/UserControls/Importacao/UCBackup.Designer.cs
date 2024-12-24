@@ -112,7 +112,7 @@
             pbProgresso.Location = new System.Drawing.Point(18, 464);
             pbProgresso.Name = "pbProgresso";
             pbProgresso.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
-            pbProgresso.Properties.Maximum = 5;
+            pbProgresso.Properties.Maximum = 6;
             pbProgresso.Properties.ShowTitle = true;
             pbProgresso.Properties.Step = 1;
             pbProgresso.Size = new System.Drawing.Size(518, 26);

@@ -186,6 +186,9 @@ namespace Importador.UserControls.Importacao
                 File.Delete(Path.GetFileName(txtDestinoBackup.Text));
                 AtualizarProgresso();
 
+                GoogleDrive.Upload(Caminhos.CredencialDrive, txtDestinoBackup.Text);
+                AtualizarProgresso();
+
                 if (XtraMessageBox.Show("Backup Gerado\nDeseja abrir a pasta de destino?", "..::Importador::..", MessageBoxButtons.YesNo) == DialogResult.Yes)
                     Process.Start("explorer.exe", $"/select, {txtDestinoBackup.Text}");
             }
@@ -193,7 +196,6 @@ namespace Importador.UserControls.Importacao
             {
                 throw;
             }
-
         }
 
         private void AtualizarProgresso()
