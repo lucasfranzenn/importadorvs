@@ -1,4 +1,5 @@
-﻿using DevExpress.Mvvm.Native;
+﻿using DevExpress.Diagram.Core.Shapes;
+using DevExpress.Mvvm.Native;
 using DevExpress.XtraEditors;
 using Importador.Classes;
 using Importador.Classes.Entidades;
@@ -186,9 +187,14 @@ namespace Importador.UserControls.Importacao
                 File.Delete(Path.GetFileName(txtDestinoBackup.Text));
                 AtualizarProgresso();
 
-                GoogleDrive.Upload(Caminhos.CredencialDrive, txtDestinoBackup.Text);
-                AtualizarProgresso();
+                if (cbUparNoDrive.Checked)
+                {
+                    GoogleDrive.Upload(txtDestinoBackup.Text);
+                    AtualizarProgresso();
+                }
 
+                pbProgresso.EditValue = pbProgresso.Properties.Maximum;
+                pbProgresso.Update();
                 if (XtraMessageBox.Show("Backup Gerado\nDeseja abrir a pasta de destino?", "..::Importador::..", MessageBoxButtons.YesNo) == DialogResult.Yes)
                     Process.Start("explorer.exe", $"/select, {txtDestinoBackup.Text}");
             }

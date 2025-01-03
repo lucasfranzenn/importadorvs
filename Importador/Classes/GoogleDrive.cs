@@ -18,8 +18,9 @@ namespace Importador.Classes
 {
     public static class GoogleDrive
     {
-        internal static void Upload(string credencialDrive, string caminho)
+        internal static void Upload(string caminho)
         {
+            string credencialDrive = Constantes.Caminhos.CredencialDrive;
             string parentFolderId = Utils.LerArquivo(Constantes.Caminhos.PastaPaiDrive);
 
             try

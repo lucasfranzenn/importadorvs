@@ -40,6 +40,7 @@
             cbEnviarValidacoes = new DevExpress.XtraEditors.CheckEdit();
             gcParametros = new DevExpress.XtraEditors.GroupControl();
             MyC = new Componentes.TabelaMyCommerce(components);
+            cbUparNoDrive = new DevExpress.XtraEditors.CheckEdit();
             ((System.ComponentModel.ISupportInitialize)txtDestinoBackup.Properties).BeginInit();
             ((System.ComponentModel.ISupportInitialize)gcGridTabelas).BeginInit();
             ((System.ComponentModel.ISupportInitialize)gridView1).BeginInit();
@@ -47,6 +48,7 @@
             ((System.ComponentModel.ISupportInitialize)cbEnviarValidacoes.Properties).BeginInit();
             ((System.ComponentModel.ISupportInitialize)gcParametros).BeginInit();
             gcParametros.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)cbUparNoDrive.Properties).BeginInit();
             SuspendLayout();
             // 
             // lblDiretorio
@@ -145,6 +147,7 @@
             // 
             gcParametros.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left;
             gcParametros.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            gcParametros.Controls.Add(cbUparNoDrive);
             gcParametros.Controls.Add(cbEnviarValidacoes);
             gcParametros.Location = new System.Drawing.Point(18, 496);
             gcParametros.Name = "gcParametros";
@@ -155,6 +158,16 @@
             // MyC
             // 
             MyC.Tabela = Classes.Constantes.Enums.TabelaMyCommerce.backup;
+            // 
+            // cbUparNoDrive
+            // 
+            cbUparNoDrive.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left;
+            cbUparNoDrive.EditValue = true;
+            cbUparNoDrive.Location = new System.Drawing.Point(188, 0);
+            cbUparNoDrive.Name = "cbUparNoDrive";
+            cbUparNoDrive.Properties.Caption = "Fazer o upload no Drive?";
+            cbUparNoDrive.Size = new System.Drawing.Size(192, 20);
+            cbUparNoDrive.TabIndex = 20;
             // 
             // UCBackup
             // 
@@ -177,6 +190,7 @@
             ((System.ComponentModel.ISupportInitialize)cbEnviarValidacoes.Properties).EndInit();
             ((System.ComponentModel.ISupportInitialize)gcParametros).EndInit();
             gcParametros.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)cbUparNoDrive.Properties).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -194,5 +208,6 @@
         private DevExpress.XtraEditors.CheckEdit cbEnviarValidacoes;
         private DevExpress.XtraEditors.GroupControl gcParametros;
         private Componentes.TabelaMyCommerce MyC;
+        private DevExpress.XtraEditors.CheckEdit cbUparNoDrive;
     }
 }
