@@ -308,7 +308,7 @@ namespace Importador.Classes
                     ConexaoManager.instancia.GetConexaoMyCommerce().ExecuteScalar($"UPDATE {arg} join CLIENTES on {arg}.RazaoSocial = clientes.CodigoImportacaoDados and clientes.tipo = 'F' SET {arg}.Codigo = clientes.codigo, {arg}.razaosocial = clientes.razaosocial");
                     break;
                 default:
-                    ConexaoManager.instancia.GetConexaoMyCommerce().ExecuteScalar($"UPDATE {arg} join CLIENTES on {arg}.RazaoSocial = clientes.CodigoImportacaoDados SET {arg}.Codigo = clientes.codigo, {arg}.razaosocial = clientes.razaosocial");
+                    ConexaoManager.instancia.GetConexaoMyCommerce().ExecuteScalar($"UPDATE {arg} join CLIENTES on {arg}.RazaoSocial = clientes.CodigoImportacaoDados and clientes.tipo = 'C' SET {arg}.Codigo = clientes.codigo, {arg}.razaosocial = clientes.razaosocial");
                     break;
             }
 

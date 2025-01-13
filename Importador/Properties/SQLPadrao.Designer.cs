@@ -198,5 +198,17 @@ namespace Importador.Properties {
                 this["produtosbarcode"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("select @  as produtoprincipal,@  as codprodutokit,@  as qtde @from produtos_kits")]
+        public string produtos_kits {
+            get {
+                return ((string)(this["produtos_kits"]));
+            }
+            set {
+                this["produtos_kits"] = value;
+            }
+        }
     }
 }

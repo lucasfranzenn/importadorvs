@@ -38,6 +38,7 @@
             tpFabricantes = new DevExpress.XtraTab.XtraTabPage();
             tpFornecedores = new DevExpress.XtraTab.XtraTabPage();
             tpCodigoBarrasAdicional = new DevExpress.XtraTab.XtraTabPage();
+            tpProdutosKits = new DevExpress.XtraTab.XtraTabPage();
             ((System.ComponentModel.ISupportInitialize)imgVoltar).BeginInit();
             ((System.ComponentModel.ISupportInitialize)tcAdicionais).BeginInit();
             tcAdicionais.SuspendLayout();
@@ -73,49 +74,55 @@
             tcAdicionais.SelectedTabPage = tpEstoque;
             tcAdicionais.Size = new System.Drawing.Size(527, 506);
             tcAdicionais.TabIndex = 3;
-            tcAdicionais.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] { tpEstoque, tpSecoes, tpGrupos, tpSubGrupos, tpFabricantes, tpFornecedores, tpCodigoBarrasAdicional });
+            tcAdicionais.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] { tpEstoque, tpSecoes, tpGrupos, tpSubGrupos, tpFabricantes, tpFornecedores, tpCodigoBarrasAdicional, tpProdutosKits });
             // 
             // tpEstoque
             // 
             tpEstoque.Name = "tpEstoque";
-            tpEstoque.Size = new System.Drawing.Size(525, 481);
+            tpEstoque.Size = new System.Drawing.Size(525, 458);
             tpEstoque.Text = "&Estoque";
             // 
             // tpSecoes
             // 
             tpSecoes.Name = "tpSecoes";
-            tpSecoes.Size = new System.Drawing.Size(525, 481);
+            tpSecoes.Size = new System.Drawing.Size(525, 412);
             tpSecoes.Text = "&Seções";
             // 
             // tpGrupos
             // 
             tpGrupos.Name = "tpGrupos";
-            tpGrupos.Size = new System.Drawing.Size(525, 481);
+            tpGrupos.Size = new System.Drawing.Size(525, 412);
             tpGrupos.Text = "&Grupos";
             // 
             // tpSubGrupos
             // 
             tpSubGrupos.Name = "tpSubGrupos";
-            tpSubGrupos.Size = new System.Drawing.Size(525, 481);
+            tpSubGrupos.Size = new System.Drawing.Size(525, 412);
             tpSubGrupos.Text = "S&ubGrupos";
             // 
             // tpFabricantes
             // 
             tpFabricantes.Name = "tpFabricantes";
-            tpFabricantes.Size = new System.Drawing.Size(525, 481);
+            tpFabricantes.Size = new System.Drawing.Size(525, 412);
             tpFabricantes.Text = "&Fabricantes";
             // 
             // tpFornecedores
             // 
             tpFornecedores.Name = "tpFornecedores";
-            tpFornecedores.Size = new System.Drawing.Size(525, 481);
+            tpFornecedores.Size = new System.Drawing.Size(525, 412);
             tpFornecedores.Text = "&Produto X Fornecedores";
             // 
             // tpCodigoBarrasAdicional
             // 
             tpCodigoBarrasAdicional.Name = "tpCodigoBarrasAdicional";
-            tpCodigoBarrasAdicional.Size = new System.Drawing.Size(525, 481);
+            tpCodigoBarrasAdicional.Size = new System.Drawing.Size(525, 412);
             tpCodigoBarrasAdicional.Text = "&Codigos de Barras";
+            // 
+            // tpProdutosKits
+            // 
+            tpProdutosKits.Name = "tpProdutosKits";
+            tpProdutosKits.Size = new System.Drawing.Size(525, 412);
+            tpProdutosKits.Text = "Produtos Kits";
             // 
             // UCProdutosAdicionais
             // 
@@ -144,5 +151,6 @@
         private DevExpress.XtraTab.XtraTabPage tpFabricantes;
         private DevExpress.XtraTab.XtraTabPage tpFornecedores;
         private DevExpress.XtraTab.XtraTabPage tpCodigoBarrasAdicional;
+        private DevExpress.XtraTab.XtraTabPage tpProdutosKits;
     }
 }

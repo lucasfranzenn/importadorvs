@@ -44,5 +44,8 @@
     <Setting Name="produtosbarcode" Type="System.String" Scope="User">
       <Value Profile="(Default)">select @  as codigoproduto,@  as barcode,@  as fracionario,@  as grade_linha,@  as grade_coluna,@  as idgrade@from produtosbarcode</Value>
     </Setting>
+    <Setting Name="produtos_kits" Type="System.String" Scope="User">
+      <Value Profile="(Default)">select @  as produtoprincipal,@  as codprodutokit,@  as qtde @from produtos_kits</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

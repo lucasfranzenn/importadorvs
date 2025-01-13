@@ -43,7 +43,8 @@ namespace Importador.Classes
                 fabricantes,
                 generico,
                 produtosfornecedor,
-                produtosbarcode
+                produtosbarcode,
+                produtos_kits
             }
 
             public enum TabelaBancoLocal
