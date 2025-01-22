@@ -299,6 +299,8 @@ namespace Importador.Classes
 
         internal static object VincularCliForPorCodigoImpDados(object arg)
         {
+            ConexaoManager.instancia.GetConexaoMyCommerce().ExecuteScalar("CREATE INDEX idxImp on clientes (CodigoImportacaoDados)");
+
             switch (arg)
             {
                 case "produtosfornecedor":
@@ -311,6 +313,8 @@ namespace Importador.Classes
                     ConexaoManager.instancia.GetConexaoMyCommerce().ExecuteScalar($"UPDATE {arg} join CLIENTES on {arg}.RazaoSocial = clientes.CodigoImportacaoDados and clientes.tipo = 'C' SET {arg}.Codigo = clientes.codigo, {arg}.razaosocial = clientes.razaosocial");
                     break;
             }
+
+            ConexaoManager.instancia.GetConexaoMyCommerce().ExecuteScalar("ALTER TABLE clientes drop INDEX idxImp");
 
             return true;
         }

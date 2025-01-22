@@ -202,7 +202,7 @@ namespace Importador.Classes
                     {
                         "UPDATE PRODUTOS SET Status =  'n' WHERE STATUS = '' OR STATUS IS NULL",
                         "UPDATE PRODUTOS SET ModalidadeControle =  'Normal' WHERE ModalidadeControle ='' OR ModalidadeControle IS NULL",
-                        "UPDATE PRODUTOS SET Ativo = -1 WHERE ATIVO = '' OR ATIVO IS NULL",
+                        "UPDATE PRODUTOS SET Ativo = -1 WHERE cast(ATIVO as varchar(3))= '' OR ATIVO IS NULL",
                         "UPDATE PRODUTOS SET Terminal = 'SERVIDOR' WHERE Terminal = '' OR Terminal  IS NULL",
                         "UPDATE PRODUTOS SET Usuario  = 'MASTER' WHERE Usuario  = '' OR Usuario  IS NULL",
                         "UPDATE PRODUTOS SET TipoProduto = 'Revenda' WHERE  TipoProduto  = '' OR TipoProduto IS NULL",

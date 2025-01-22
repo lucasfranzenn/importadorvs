@@ -425,7 +425,7 @@ namespace Importador.Classes
                             listaRegistros.Add(GetRegistroErro(reader, erro));
                         }
 
-                        if (reader["CodigoEnqIPI"] is DBNull)
+                        if (reader["CodigoEnqIPI"] is DBNull && reader["cstipi"].ToString() != "99")
                         {
                             erro = "Falhou em Enquadramento do IPI (CST IPI 51/52/53/54/55: Necessitam de um codigo de enquadramento)";
                             listaRegistros.Add(GetRegistroErro(reader, erro));
