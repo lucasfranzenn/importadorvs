@@ -299,22 +299,31 @@ namespace Importador.Classes
 
         internal static object VincularCliForPorCodigoImpDados(object arg)
         {
-            ConexaoManager.instancia.GetConexaoMyCommerce().ExecuteScalar("CREATE INDEX idxImp on clientes (CodigoImportacaoDados)");
-
-            switch (arg)
+            try
             {
-                case "produtosfornecedor":
-                    ConexaoManager.instancia.GetConexaoMyCommerce().ExecuteScalar($"UPDATE {arg} join CLIENTES on {arg}.idFornecedor = clientes.CodigoImportacaoDados and clientes.tipo = 'F' SET {arg}.idFornecedor = clientes.codigo");
-                    break;
-                case "contasapagar":
-                    ConexaoManager.instancia.GetConexaoMyCommerce().ExecuteScalar($"UPDATE {arg} join CLIENTES on {arg}.RazaoSocial = clientes.CodigoImportacaoDados and clientes.tipo = 'F' SET {arg}.Codigo = clientes.codigo, {arg}.razaosocial = clientes.razaosocial");
-                    break;
-                default:
-                    ConexaoManager.instancia.GetConexaoMyCommerce().ExecuteScalar($"UPDATE {arg} join CLIENTES on {arg}.RazaoSocial = clientes.CodigoImportacaoDados and clientes.tipo = 'C' SET {arg}.Codigo = clientes.codigo, {arg}.razaosocial = clientes.razaosocial");
-                    break;
-            }
+                ConexaoManager.instancia.GetConexaoMyCommerce().ExecuteScalar("CREATE INDEX idxImp on clientes (CodigoImportacaoDados)");
 
-            ConexaoManager.instancia.GetConexaoMyCommerce().ExecuteScalar("ALTER TABLE clientes drop INDEX idxImp");
+                switch (arg)
+                {
+                    case "produtosfornecedor":
+                        ConexaoManager.instancia.GetConexaoMyCommerce().ExecuteScalar($"UPDATE {arg} join CLIENTES on {arg}.idFornecedor = clientes.CodigoImportacaoDados and clientes.tipo = 'F' SET {arg}.idFornecedor = clientes.codigo");
+                        break;
+                    case "contasapagar":
+                        ConexaoManager.instancia.GetConexaoMyCommerce().ExecuteScalar($"UPDATE {arg} join CLIENTES on {arg}.RazaoSocial = clientes.CodigoImportacaoDados and clientes.tipo = 'F' SET {arg}.Codigo = clientes.codigo, {arg}.razaosocial = clientes.razaosocial");
+                        break;
+                    default:
+                        ConexaoManager.instancia.GetConexaoMyCommerce().ExecuteScalar($"UPDATE {arg} join CLIENTES on {arg}.RazaoSocial = clientes.CodigoImportacaoDados and clientes.tipo = 'C' SET {arg}.Codigo = clientes.codigo, {arg}.razaosocial = clientes.razaosocial");
+                        break;
+                }
+            }
+            catch(Exception)
+            {
+                
+            }
+            finally
+            {
+                ConexaoManager.instancia.GetConexaoMyCommerce().ExecuteScalar("ALTER TABLE clientes drop INDEX idxImp");
+            }
 
             return true;
         }

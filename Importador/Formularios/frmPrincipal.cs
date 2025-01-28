@@ -213,5 +213,14 @@ namespace Importador
             AlteraAba(ref fcPrincipal, ucAtual);
             bsiTelaAtual.Caption = "Validação de dados importados";
         }
+
+        private void acImportacaoCentralizador_Click(object sender, EventArgs e)
+        {
+            if (ucAtual is UCCentralizador) return;
+            ucAtual = new UCCentralizador();
+
+            AlteraAba(ref fcPrincipal, ucAtual);
+            bsiTelaAtual.Caption = "Centralizador de dados (Multi-Empresas)";
+        }
     }
 }

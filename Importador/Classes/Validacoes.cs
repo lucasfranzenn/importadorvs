@@ -221,7 +221,7 @@ namespace Importador.Classes
                     }
 
                     //Empresa do simples, aliquota do icms sempre 0
-                    if (Convert.ToDouble(reader["AliquotaICMS"]) != 0)
+                    if (reader["AliquotaICMS"] is DBNull || Convert.ToDouble(reader["AliquotaICMS"]) != 0)
                     {
                         erro = "Falhou em Alíquota do ICMS (Para empresa do simples, alíquota deve estar zerada)";
                         listaRegistros.Add(GetRegistroErro(reader, erro));

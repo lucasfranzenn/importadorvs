@@ -48,7 +48,7 @@ namespace Importador.Classes
 
         internal static object FormataTelefone(object fone)
         {
-            string foneString = new string(fone.ToString().Where(char.IsDigit).ToArray());
+            string foneString = new string(fone.ToString().Where(char.IsDigit).Take(11).ToArray());
 
             if (foneString.Length == 11 || foneString.Length == 9)
             {
@@ -59,6 +59,12 @@ namespace Importador.Classes
             foneString = foneString.PadLeft(10, '0');
 
             return Convert.ToInt64(foneString) == 0 ? DBNull.Value : $"({foneString.Substring(0, 2)}){foneString.Substring(2, 4)}-{foneString.Substring(6, 4)}";
+        }
+        internal static object FormataAspas(object str)
+        {
+            if (string.IsNullOrEmpty(str.ToString())) return DBNull.Value;
+
+            return str.ToString().Replace("'", "\\'");
         }
     }
 }

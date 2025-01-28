@@ -163,6 +163,16 @@ namespace Importador.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo DevExpress.Utils.Svg.SvgImage.
         /// </summary>
+        internal static DevExpress.Utils.Svg.SvgImage business_diagram {
+            get {
+                object obj = ResourceManager.GetObject("business_diagram", resourceCulture);
+                return ((DevExpress.Utils.Svg.SvgImage)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo DevExpress.Utils.Svg.SvgImage.
+        /// </summary>
         internal static DevExpress.Utils.Svg.SvgImage business_dollar {
             get {
                 object obj = ResourceManager.GetObject("business_dollar", resourceCulture);

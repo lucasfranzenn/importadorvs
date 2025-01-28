@@ -12,7 +12,7 @@ namespace Importador.Classes
         public static IDbCommand CriarComando(this IDbConnection con)
         {
             var cmd = con.CreateCommand();
-            cmd.CommandTimeout = 180;
+            cmd.CommandTimeout = 300;
 
             return cmd;
         }
