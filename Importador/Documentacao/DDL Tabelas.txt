@@ -2,7 +2,8 @@
 
 CREATE TABLE Conexoes(
     CodigoConexao integer primary key,
-    CodigoImplantacao int,
+    CodigoImplantacao int, 
+    Empresa Integer DEFAULT 1 NOT NULL,
     TipoConexao boolean,
     TipoBanco int,
     host text,
@@ -16,7 +17,8 @@ CREATE TABLE Conexoes(
 -- Implantacoes definition
 
 CREATE TABLE Implantacoes(
-    CodigoImplantacao int not null primary key,
+    CodigoImplantacao int not null,
+    Empresa int NOT NULL DEFAULT 1,
     RazaoSocialCliente text,
     SistemaAntigo text,
     BancoDeDados text,
@@ -36,14 +38,16 @@ CREATE TABLE Implantacoes(
     ImportarFabricantes boolean not null,
     ImportarGrades boolean not null,
     ImportarLotes boolean not null,
-    Workflow text
+    Workflow text,
+    PRIMARY KEY (CodigoImplantacao, Empresa)
 );
 
 -- Consultas definition
 
 CREATE TABLE Consultas(
     CodigoConsulta integer primary KEY,
-    CodigoImplantacao int,
+    CodigoImplantacao int, 
+    Empresa Integer DEFAULT 1 NOT NULL,
     TabelaConsulta text,
     Consulta text
 );
@@ -60,7 +64,8 @@ CREATE TABLE Nomenclaturas(
 
 CREATE TABLE Observacoes(
     CodigoObservacao integer primary key,
-    CodigoImplantacao int,
+    CodigoImplantacao int, 
+    Empresa Integer DEFAULT 1 NOT NULL,
     Tela text,
     observacao text
 );
@@ -69,7 +74,8 @@ CREATE TABLE Observacoes(
 
 CREATE TABLE RegistrosDeTempo(
     CodigoRegistroDeTempo integer primary key,
-    CodigoImplantacao int,
+    CodigoImplantacao int, 
+    Empresa Integer DEFAULT 1 NOT NULL,
     Operador text not null,
     Tela text not null,
     `Status` int,
@@ -82,8 +88,9 @@ CREATE TABLE RegistrosDeTempo(
 
 CREATE TABLE Parametros(
     CodigoParametro integer PRIMARY KEY,
-    CodigoImplantacao integer,
+    CodigoImplantacao integer, 
+    Empresa Integer DEFAULT 1 NOT NULL,
     Tela text not null,
     NomeParametro text not null,
-     Valor boolean not null -- || Marcado boolean not null default 0 
+    Valor boolean not null -- || Marcado boolean not null default 0 
 );

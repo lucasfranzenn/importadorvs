@@ -41,7 +41,7 @@ namespace Importador.Conexao
 
         public static T GetEntidade<T>(Enums.TabelaBancoLocal tabela) where T : class
         {
-            var ListaEntidades = instancia.conexao.Query<T>($"select * from {tabela.ToString()} where CodigoImplantacao = {Configuracoes.Default.CodigoImplantacao}");
+            var ListaEntidades = instancia.conexao.Query<T>($"select * from {tabela.ToString()} where CodigoImplantacao = {Configuracoes.Default.CodigoImplantacao} and Empresa = {Configuracoes.Default.Empresa}");
 
             if (ListaEntidades.FirstOrDefault() is T entidade)
             {
@@ -53,7 +53,7 @@ namespace Importador.Conexao
 
         public static T GetEntidade<T>(Enums.TabelaBancoLocal tabela, string where) where T : class
         {
-            var ListaEntidades = instancia.conexao.Query<T>($"select * from {tabela.ToString()} where CodigoImplantacao = {Configuracoes.Default.CodigoImplantacao} and {where}");
+            var ListaEntidades = instancia.conexao.Query<T>($"select * from {tabela.ToString()} where CodigoImplantacao = {Configuracoes.Default.CodigoImplantacao} and Empresa = {Configuracoes.Default.Empresa} and {where}");
 
             if (ListaEntidades.FirstOrDefault() is T entidade)
             {
@@ -69,7 +69,7 @@ namespace Importador.Conexao
 
             string chavePrimaria = GetChavePrimaria(entidade);
 
-            string query = $"Update {tabela.ToString()} set {GetCamposTabela(entidade, Enums.Dml.Update)} where {chavePrimaria} = @{chavePrimaria}";
+            string query = $"Update {tabela.ToString()} set {GetCamposTabela(entidade, Enums.Dml.Update)} where {chavePrimaria} = @{chavePrimaria} and Empresa = {Configuracoes.Default.Empresa}";
 
             instancia.conexao.Execute(query, obj);
         }
@@ -81,7 +81,7 @@ namespace Importador.Conexao
 
         internal static string GetSql(string tabela)
         {
-            var resultado = instancia.conexao.Query<Consultas>($"select consulta from consultas where tabelaconsulta = '{tabela}' and codigoimplantacao = {Configuracoes.Default.CodigoImplantacao}");
+            var resultado = instancia.conexao.Query<Consultas>($"select consulta from consultas where tabelaconsulta = '{tabela}' and codigoimplantacao = {Configuracoes.Default.CodigoImplantacao} and Empresa = {Configuracoes.Default.Empresa}");
 
             if (resultado.FirstOrDefault() is Consultas c) { return c.Consulta; }
 
@@ -97,7 +97,7 @@ namespace Importador.Conexao
 
         internal static void AtualizarConexaoPadrao(Classes.Entidades.Conexao conexao)
         {
-            string query = "UPDATE CONEXOES SET PADRAO = 0 WHERE CODIGOCONEXAO != @CodigoConexao AND CODIGOIMPLANTACAO = @CodigoImplantacao and TIPOCONEXAO = 1";
+            string query = "UPDATE CONEXOES SET PADRAO = 0 WHERE CODIGOCONEXAO != @CodigoConexao AND CODIGOIMPLANTACAO = @CodigoImplantacao and TIPOCONEXAO = 1 and Empresa = @Empresa";
 
             instancia.conexao.Execute(query, conexao);
         }
@@ -108,7 +108,7 @@ namespace Importador.Conexao
 
             foreach (var parametro in listaParametros)
             {
-                param = GetEntidade<Parametro>(Enums.TabelaBancoLocal.parametros, $"Tela = '{tela.Tabela}' and NomeParametro = '{parametro.Name}'");
+                param = GetEntidade<Parametro>(Enums.TabelaBancoLocal.parametros, $"Tela = '{tela.Tabela}' and NomeParametro = '{parametro.Name}' and Empresa = {Configuracoes.Default.Empresa}");
 
                 if (param is null) InserirRegistro(new Parametro(tela, parametro), Enums.TabelaBancoLocal.parametros);
 
@@ -120,7 +120,7 @@ namespace Importador.Conexao
         internal static bool ExisteObservacao(string tabela)
         {
             var cmd = instancia.conexao.CreateCommand();
-            cmd.CommandText = $"select codigoobservacao from observacoes where codigoimplantacao = {Configuracoes.Default.CodigoImplantacao} and trim(observacao) <> '' and tela = '{tabela}'";
+            cmd.CommandText = $"select codigoobservacao from observacoes where codigoimplantacao = {Configuracoes.Default.CodigoImplantacao} and trim(observacao) <> '' and tela = '{tabela}' and Empresa = {Configuracoes.Default.Empresa}";
 
             return (cmd.ExecuteScalar() != null) ? true : false;
         }
@@ -145,7 +145,7 @@ namespace Importador.Conexao
 
         internal static void AtualizarTempoImportacao(string dataInicio, string dataFim, string tabelaOrigem, int qtdRegistros)
         {
-            RegistroDeTempo rdt = GetEntidade<RegistroDeTempo>(Enums.TabelaBancoLocal.registrosdetempo, $"tela = '{tabelaOrigem}' and status = 2");
+            RegistroDeTempo rdt = GetEntidade<RegistroDeTempo>(Enums.TabelaBancoLocal.registrosdetempo, $"tela = '{tabelaOrigem}' and status = 2  and Empresa = {Configuracoes.Default.Empresa}");
 
             if ( rdt is null)
             {

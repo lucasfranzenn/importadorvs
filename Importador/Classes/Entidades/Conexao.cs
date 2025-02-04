@@ -8,6 +8,7 @@ namespace Importador.Classes.Entidades
         public Conexao(Constantes.Enums.Sistema sistema)
         {
             CodigoImplantacao = Configuracoes.Default.CodigoImplantacao;
+            Empresa = Configuracoes.Default.Empresa;
             TipoConexao = Convert.ToBoolean(sistema);
             TipoBanco = 0;
             Host = "localhost";
@@ -33,6 +34,7 @@ namespace Importador.Classes.Entidades
         public Conexao(Constantes.Enums.TipoBanco tipoBanco)
         {
             CodigoImplantacao = Configuracoes.Default.CodigoImplantacao;
+            Empresa = Configuracoes.Default.Empresa;
             TipoConexao = true;
             TipoBanco = (int)tipoBanco;
             switch (tipoBanco)
@@ -77,6 +79,7 @@ namespace Importador.Classes.Entidades
 
         public int? CodigoConexao { get; set; } = null;
         public string CodigoImplantacao { get; set; }
+        public string Empresa { get;set; }
         public bool TipoConexao { get; set; }
         public int TipoBanco { get; set; }
         public string Host { get; set; }

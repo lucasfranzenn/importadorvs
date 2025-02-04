@@ -1,4 +1,5 @@
 ﻿using Importador.Classes.Entidades.RetornoAPI;
+using Importador.Properties;
 using System;
 using System.Windows.Forms;
 
@@ -9,15 +10,17 @@ namespace Importador.Classes.Entidades
         public Implantacao(string codigoImp)
         {
             CodigoImplantacao = Convert.ToInt32(codigoImp);
+            Empresa=Convert.ToInt32(Configuracoes.Default.Empresa);
         }
 
         public Implantacao(JiraIssue jiraIssue)
         {
             #region Setar Informações do Cliente/Responsável
             CodigoImplantacao = Convert.ToInt32(jiraIssue.Issues[0].Fields.Summary.Split('-')[0].Trim());
+            Empresa = Convert.ToInt32(Configuracoes.Default.Empresa);
             RazaoSocialCliente = jiraIssue.Issues[0].Fields.Summary.Split('-')[1].Trim().ToUpper();
-            NomeResponsavel = jiraIssue.Issues[0].Fields.Responsavel.ToUpper();
-            BancoDeDados = jiraIssue.Issues[0].Fields.BancoDeDados.ToUpper();
+            NomeResponsavel = jiraIssue.Issues[0].Fields.Responsavel is null ? "" : jiraIssue.Issues[0].Fields.Responsavel.ToUpper();
+            BancoDeDados = jiraIssue.Issues[0].Fields.BancoDeDados is null ? "" : jiraIssue.Issues[0].Fields.BancoDeDados.ToUpper();
             SistemaAntigo = jiraIssue.Issues[0].Fields.NomeSistema.ToUpper();
             LinkFormulario = ". . .";
             LinkBackup = ". . .";
@@ -73,6 +76,7 @@ namespace Importador.Classes.Entidades
 
         public Implantacao() { }
         public int CodigoImplantacao { get; set; }
+        public int Empresa { get; set; } = Convert.ToInt32(Configuracoes.Default.Empresa);
         public string RazaoSocialCliente { get; set; } = string.Empty;
         public string SistemaAntigo { get; set; } = string.Empty;
         public string BancoDeDados { get; set; } = string.Empty;

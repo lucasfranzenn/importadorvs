@@ -14,6 +14,7 @@ namespace Importador.Classes.Entidades
         public RegistroDeTempo(string tela)
         {
             CodigoImplantacao = Convert.ToInt32(Configuracoes.Default.CodigoImplantacao);
+            Empresa = Convert.ToInt32(Configuracoes.Default.Empresa);
             Operador = Configuracoes.Default.UsuarioLogado;
             Tela = tela;
             Status = (int)Constantes.Enums.RegistrosDeTempoStatus.ContandoTempo;
@@ -21,6 +22,7 @@ namespace Importador.Classes.Entidades
         }
 
         public int? CodigoRegistroDeTempo { get; set; }
+        public int? Empresa { get;set; }
         public int CodigoImplantacao { get; set; }
         public string Operador { get; set; }
         public string Tela { get; set; }

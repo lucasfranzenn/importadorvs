@@ -15,10 +15,12 @@ namespace Importador.Classes.Entidades
         public Observacoes(string tela)
         {
             CodigoImplantacao = Convert.ToInt32(Configuracoes.Default.CodigoImplantacao);
+            Empresa = Convert.ToInt32(Configuracoes.Default.Empresa);
             Tela = tela;
         }
 
         public int? CodigoObservacao { get; set; }
+        public int? Empresa { get; set; }
         public int CodigoImplantacao { get; set; }
         public string Tela { get; set; }
         public string Observacao { get; set; } = "";

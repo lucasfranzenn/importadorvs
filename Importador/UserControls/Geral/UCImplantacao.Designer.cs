@@ -47,6 +47,8 @@
             lblFormularioOriginal = new DevExpress.XtraEditors.LabelControl();
             lblBackupOriginal = new DevExpress.XtraEditors.LabelControl();
             tpImplantacao = new DevExpress.Utils.Layout.TablePanel();
+            txtEmpresa = new DevExpress.XtraEditors.TextEdit();
+            lblEmpresa = new DevExpress.XtraEditors.LabelControl();
             txtSGBD = new DevExpress.XtraEditors.TextEdit();
             lblSGBD = new DevExpress.XtraEditors.LabelControl();
             rgRegime = new DevExpress.XtraEditors.RadioGroup();
@@ -73,6 +75,7 @@
             ((System.ComponentModel.ISupportInitialize)cbImportarProdutosOpcoes.Properties).BeginInit();
             ((System.ComponentModel.ISupportInitialize)tpImplantacao).BeginInit();
             tpImplantacao.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)txtEmpresa.Properties).BeginInit();
             ((System.ComponentModel.ISupportInitialize)txtSGBD.Properties).BeginInit();
             ((System.ComponentModel.ISupportInitialize)rgRegime.Properties).BeginInit();
             ((System.ComponentModel.ISupportInitialize)txtCodigoImplantacao.Properties).BeginInit();
@@ -90,8 +93,10 @@
             // 
             lblCliente.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
             lblCliente.Appearance.Options.UseFont = true;
-            lblCliente.Location = new System.Drawing.Point(13, 42);
+            tpImplantacao.SetColumn(lblCliente, 0);
+            lblCliente.Location = new System.Drawing.Point(13, 68);
             lblCliente.Name = "lblCliente";
+            tpImplantacao.SetRow(lblCliente, 2);
             lblCliente.Size = new System.Drawing.Size(39, 13);
             lblCliente.TabIndex = 0;
             lblCliente.Text = "Cliente";
@@ -100,8 +105,10 @@
             // 
             lblResponsavel.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
             lblResponsavel.Appearance.Options.UseFont = true;
-            lblResponsavel.Location = new System.Drawing.Point(13, 68);
+            tpImplantacao.SetColumn(lblResponsavel, 0);
+            lblResponsavel.Location = new System.Drawing.Point(13, 94);
             lblResponsavel.Name = "lblResponsavel";
+            tpImplantacao.SetRow(lblResponsavel, 3);
             lblResponsavel.Size = new System.Drawing.Size(72, 13);
             lblResponsavel.TabIndex = 3;
             lblResponsavel.Text = "Responsável";
@@ -126,7 +133,7 @@
             tpOpcoesImportar.Controls.Add(labelControl4);
             tpOpcoesImportar.Controls.Add(labelControl3);
             tpOpcoesImportar.Controls.Add(labelControl1);
-            tpOpcoesImportar.Location = new System.Drawing.Point(16, 260);
+            tpOpcoesImportar.Location = new System.Drawing.Point(16, 284);
             tpOpcoesImportar.Name = "tpOpcoesImportar";
             tpOpcoesImportar.Rows.AddRange(new DevExpress.Utils.Layout.TablePanelRow[] { new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.AutoSize, 26F), new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.AutoSize, 26F), new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.AutoSize, 26F), new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.AutoSize, 26F), new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.AutoSize, 26F), new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.AutoSize, 26F) });
             tpOpcoesImportar.Size = new System.Drawing.Size(506, 169);
@@ -283,8 +290,10 @@
             // 
             lblSistemaERP.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
             lblSistemaERP.Appearance.Options.UseFont = true;
-            lblSistemaERP.Location = new System.Drawing.Point(13, 94);
+            tpImplantacao.SetColumn(lblSistemaERP, 0);
+            lblSistemaERP.Location = new System.Drawing.Point(13, 120);
             lblSistemaERP.Name = "lblSistemaERP";
+            tpImplantacao.SetRow(lblSistemaERP, 4);
             lblSistemaERP.Size = new System.Drawing.Size(70, 13);
             lblSistemaERP.TabIndex = 10;
             lblSistemaERP.Text = "Sistema ERP";
@@ -294,9 +303,9 @@
             lblFormularioOriginal.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
             lblFormularioOriginal.Appearance.Options.UseFont = true;
             tpImplantacao.SetColumn(lblFormularioOriginal, 0);
-            lblFormularioOriginal.Location = new System.Drawing.Point(13, 146);
+            lblFormularioOriginal.Location = new System.Drawing.Point(13, 172);
             lblFormularioOriginal.Name = "lblFormularioOriginal";
-            tpImplantacao.SetRow(lblFormularioOriginal, 5);
+            tpImplantacao.SetRow(lblFormularioOriginal, 6);
             lblFormularioOriginal.Size = new System.Drawing.Size(107, 13);
             lblFormularioOriginal.TabIndex = 12;
             lblFormularioOriginal.Text = "Formulário Original";
@@ -306,9 +315,9 @@
             lblBackupOriginal.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
             lblBackupOriginal.Appearance.Options.UseFont = true;
             tpImplantacao.SetColumn(lblBackupOriginal, 0);
-            lblBackupOriginal.Location = new System.Drawing.Point(13, 172);
+            lblBackupOriginal.Location = new System.Drawing.Point(13, 198);
             lblBackupOriginal.Name = "lblBackupOriginal";
-            tpImplantacao.SetRow(lblBackupOriginal, 6);
+            tpImplantacao.SetRow(lblBackupOriginal, 7);
             lblBackupOriginal.Size = new System.Drawing.Size(87, 13);
             lblBackupOriginal.TabIndex = 13;
             lblBackupOriginal.Text = "Backup Original";
@@ -320,6 +329,8 @@
             tpImplantacao.AutoTabOrder = false;
             tpImplantacao.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
             tpImplantacao.Columns.AddRange(new DevExpress.Utils.Layout.TablePanelColumn[] { new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 20.12F), new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 39.88F) });
+            tpImplantacao.Controls.Add(txtEmpresa);
+            tpImplantacao.Controls.Add(lblEmpresa);
             tpImplantacao.Controls.Add(txtSGBD);
             tpImplantacao.Controls.Add(lblSGBD);
             tpImplantacao.Controls.Add(rgRegime);
@@ -336,24 +347,47 @@
             tpImplantacao.Controls.Add(lblSistemaERP);
             tpImplantacao.Controls.Add(lblFormularioOriginal);
             tpImplantacao.Controls.Add(lblBackupOriginal);
-            tpImplantacao.Location = new System.Drawing.Point(16, 17);
+            tpImplantacao.Location = new System.Drawing.Point(16, 14);
             tpImplantacao.Name = "tpImplantacao";
-            tpImplantacao.Rows.AddRange(new DevExpress.Utils.Layout.TablePanelRow[] { new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 26F), new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 26F), new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 26F), new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 26F), new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 26F), new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 26F), new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 26F), new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 26F) });
-            tpImplantacao.Size = new System.Drawing.Size(506, 233);
+            tpImplantacao.Rows.AddRange(new DevExpress.Utils.Layout.TablePanelRow[] { new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 26F), new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 26F), new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 26F), new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 26F), new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 26F), new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 26F), new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 26F), new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 26F), new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 26F) });
+            tpImplantacao.Size = new System.Drawing.Size(506, 259);
             tpImplantacao.TabIndex = 0;
             tpImplantacao.UseSkinIndents = true;
+            // 
+            // txtEmpresa
+            // 
+            tpImplantacao.SetColumn(txtEmpresa, 1);
+            txtEmpresa.EnterMoveNextControl = true;
+            txtEmpresa.Location = new System.Drawing.Point(175, 39);
+            txtEmpresa.Name = "txtEmpresa";
+            tpImplantacao.SetRow(txtEmpresa, 1);
+            txtEmpresa.Size = new System.Drawing.Size(318, 20);
+            txtEmpresa.TabIndex = 2;
+            txtEmpresa.Leave += txtCodigoImplantacao_Leave;
+            // 
+            // lblEmpresa
+            // 
+            lblEmpresa.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
+            lblEmpresa.Appearance.Options.UseFont = true;
+            tpImplantacao.SetColumn(lblEmpresa, 0);
+            lblEmpresa.Location = new System.Drawing.Point(13, 42);
+            lblEmpresa.Name = "lblEmpresa";
+            tpImplantacao.SetRow(lblEmpresa, 1);
+            lblEmpresa.Size = new System.Drawing.Size(49, 13);
+            lblEmpresa.TabIndex = 29;
+            lblEmpresa.Text = "Empresa";
             // 
             // txtSGBD
             // 
             tpImplantacao.SetColumn(txtSGBD, 1);
             txtSGBD.EnterMoveNextControl = true;
-            txtSGBD.Location = new System.Drawing.Point(175, 117);
+            txtSGBD.Location = new System.Drawing.Point(175, 143);
             txtSGBD.Name = "txtSGBD";
             txtSGBD.Properties.AdvancedModeOptions.AutoCompleteMode = DevExpress.XtraEditors.TextEditAutoCompleteMode.SuggestAppend;
             txtSGBD.Properties.AdvancedModeOptions.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             txtSGBD.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             txtSGBD.Properties.UseAdvancedMode = DevExpress.Utils.DefaultBoolean.True;
-            tpImplantacao.SetRow(txtSGBD, 4);
+            tpImplantacao.SetRow(txtSGBD, 5);
             txtSGBD.Size = new System.Drawing.Size(318, 20);
             txtSGBD.TabIndex = 5;
             txtSGBD.Enter += txtSGBD_Enter;
@@ -363,9 +397,9 @@
             lblSGBD.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
             lblSGBD.Appearance.Options.UseFont = true;
             tpImplantacao.SetColumn(lblSGBD, 0);
-            lblSGBD.Location = new System.Drawing.Point(13, 120);
+            lblSGBD.Location = new System.Drawing.Point(13, 146);
             lblSGBD.Name = "lblSGBD";
-            tpImplantacao.SetRow(lblSGBD, 4);
+            tpImplantacao.SetRow(lblSGBD, 5);
             lblSGBD.Size = new System.Drawing.Size(154, 13);
             lblSGBD.TabIndex = 28;
             lblSGBD.Text = "Sistema de Banco de dados";
@@ -373,14 +407,14 @@
             // rgRegime
             // 
             tpImplantacao.SetColumn(rgRegime, 1);
-            rgRegime.Location = new System.Drawing.Point(175, 194);
+            rgRegime.Location = new System.Drawing.Point(175, 220);
             rgRegime.Name = "rgRegime";
             rgRegime.Properties.Appearance.Options.UseTextOptions = true;
             rgRegime.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             rgRegime.Properties.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             rgRegime.Properties.Items.AddRange(new DevExpress.XtraEditors.Controls.RadioGroupItem[] { new DevExpress.XtraEditors.Controls.RadioGroupItem(null, "Simples Nacional"), new DevExpress.XtraEditors.Controls.RadioGroupItem(null, "Lucro Real"), new DevExpress.XtraEditors.Controls.RadioGroupItem(null, "Lucro Presumido") });
             rgRegime.Properties.ItemsLayout = DevExpress.XtraEditors.RadioGroupItemsLayout.Column;
-            tpImplantacao.SetRow(rgRegime, 7);
+            tpImplantacao.SetRow(rgRegime, 8);
             rgRegime.Size = new System.Drawing.Size(318, 26);
             rgRegime.TabIndex = 8;
             // 
@@ -389,9 +423,9 @@
             lblRegimeEmpresa.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
             lblRegimeEmpresa.Appearance.Options.UseFont = true;
             tpImplantacao.SetColumn(lblRegimeEmpresa, 0);
-            lblRegimeEmpresa.Location = new System.Drawing.Point(13, 200);
+            lblRegimeEmpresa.Location = new System.Drawing.Point(13, 226);
             lblRegimeEmpresa.Name = "lblRegimeEmpresa";
-            tpImplantacao.SetRow(lblRegimeEmpresa, 7);
+            tpImplantacao.SetRow(lblRegimeEmpresa, 8);
             lblRegimeEmpresa.Size = new System.Drawing.Size(95, 13);
             lblRegimeEmpresa.TabIndex = 26;
             lblRegimeEmpresa.Text = "Regime Empresa";
@@ -405,28 +439,28 @@
             tpImplantacao.SetRow(txtCodigoImplantacao, 0);
             txtCodigoImplantacao.Size = new System.Drawing.Size(318, 20);
             txtCodigoImplantacao.TabIndex = 1;
-            txtCodigoImplantacao.Leave += txtCodigoImplantacao_Leave;
             // 
             // lblCodigoImplantacao
             // 
             lblCodigoImplantacao.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
             lblCodigoImplantacao.Appearance.Options.UseFont = true;
+            lblCodigoImplantacao.Dock = System.Windows.Forms.DockStyle.Left;
             lblCodigoImplantacao.Location = new System.Drawing.Point(13, 16);
             lblCodigoImplantacao.Name = "lblCodigoImplantacao";
             lblCodigoImplantacao.Size = new System.Drawing.Size(113, 13);
             lblCodigoImplantacao.TabIndex = 24;
-            lblCodigoImplantacao.Text = "Código Implantação";
+            lblCodigoImplantacao.Text = "Código Implantação SIA";
             // 
             // txtFormularioOriginal
             // 
             txtFormularioOriginal.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
             tpImplantacao.SetColumn(txtFormularioOriginal, 1);
             txtFormularioOriginal.EnterMoveNextControl = true;
-            txtFormularioOriginal.Location = new System.Drawing.Point(175, 143);
+            txtFormularioOriginal.Location = new System.Drawing.Point(175, 169);
             txtFormularioOriginal.Name = "txtFormularioOriginal";
             txtFormularioOriginal.Properties.SingleClick = false;
             txtFormularioOriginal.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
-            tpImplantacao.SetRow(txtFormularioOriginal, 5);
+            tpImplantacao.SetRow(txtFormularioOriginal, 6);
             txtFormularioOriginal.Size = new System.Drawing.Size(318, 20);
             txtFormularioOriginal.TabIndex = 6;
             // 
@@ -435,12 +469,12 @@
             txtBackupOriginal.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
             tpImplantacao.SetColumn(txtBackupOriginal, 1);
             txtBackupOriginal.EnterMoveNextControl = true;
-            txtBackupOriginal.Location = new System.Drawing.Point(175, 169);
+            txtBackupOriginal.Location = new System.Drawing.Point(175, 195);
             txtBackupOriginal.Name = "txtBackupOriginal";
             txtBackupOriginal.Properties.SingleClick = false;
             txtBackupOriginal.Properties.StartLinkOnClickingEmptySpace = false;
             txtBackupOriginal.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
-            tpImplantacao.SetRow(txtBackupOriginal, 6);
+            tpImplantacao.SetRow(txtBackupOriginal, 7);
             txtBackupOriginal.Size = new System.Drawing.Size(318, 20);
             txtBackupOriginal.TabIndex = 7;
             // 
@@ -448,13 +482,13 @@
             // 
             tpImplantacao.SetColumn(txtResponsavel, 1);
             txtResponsavel.EnterMoveNextControl = true;
-            txtResponsavel.Location = new System.Drawing.Point(175, 65);
+            txtResponsavel.Location = new System.Drawing.Point(175, 91);
             txtResponsavel.Name = "txtResponsavel";
             txtResponsavel.Properties.AdvancedModeOptions.AutoCompleteMode = DevExpress.XtraEditors.TextEditAutoCompleteMode.SuggestAppend;
             txtResponsavel.Properties.AdvancedModeOptions.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             txtResponsavel.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             txtResponsavel.Properties.UseAdvancedMode = DevExpress.Utils.DefaultBoolean.True;
-            tpImplantacao.SetRow(txtResponsavel, 2);
+            tpImplantacao.SetRow(txtResponsavel, 3);
             txtResponsavel.Size = new System.Drawing.Size(318, 20);
             txtResponsavel.TabIndex = 3;
             txtResponsavel.Enter += txtResponsavel_Enter;
@@ -463,10 +497,10 @@
             // 
             tpImplantacao.SetColumn(txtCliente, 1);
             txtCliente.EnterMoveNextControl = true;
-            txtCliente.Location = new System.Drawing.Point(175, 39);
+            txtCliente.Location = new System.Drawing.Point(175, 65);
             txtCliente.Name = "txtCliente";
             txtCliente.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            tpImplantacao.SetRow(txtCliente, 1);
+            tpImplantacao.SetRow(txtCliente, 2);
             txtCliente.Size = new System.Drawing.Size(318, 20);
             txtCliente.TabIndex = 2;
             // 
@@ -474,13 +508,13 @@
             // 
             tpImplantacao.SetColumn(txtSistemaERP, 1);
             txtSistemaERP.EnterMoveNextControl = true;
-            txtSistemaERP.Location = new System.Drawing.Point(175, 91);
+            txtSistemaERP.Location = new System.Drawing.Point(175, 117);
             txtSistemaERP.Name = "txtSistemaERP";
             txtSistemaERP.Properties.AdvancedModeOptions.AutoCompleteMode = DevExpress.XtraEditors.TextEditAutoCompleteMode.SuggestAppend;
             txtSistemaERP.Properties.AdvancedModeOptions.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             txtSistemaERP.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             txtSistemaERP.Properties.UseAdvancedMode = DevExpress.Utils.DefaultBoolean.True;
-            tpImplantacao.SetRow(txtSistemaERP, 3);
+            tpImplantacao.SetRow(txtSistemaERP, 4);
             txtSistemaERP.Size = new System.Drawing.Size(318, 20);
             txtSistemaERP.TabIndex = 4;
             txtSistemaERP.Enter += txtSistemaERP_Enter;
@@ -489,7 +523,7 @@
             // 
             lblInformacoesImplantacao.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
             lblInformacoesImplantacao.Appearance.Options.UseFont = true;
-            lblInformacoesImplantacao.Location = new System.Drawing.Point(21, 7);
+            lblInformacoesImplantacao.Location = new System.Drawing.Point(21, 4);
             lblInformacoesImplantacao.Name = "lblInformacoesImplantacao";
             lblInformacoesImplantacao.Size = new System.Drawing.Size(233, 19);
             lblInformacoesImplantacao.TabIndex = 22;
@@ -499,7 +533,7 @@
             // 
             lblInformacoesImportar.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
             lblInformacoesImportar.Appearance.Options.UseFont = true;
-            lblInformacoesImportar.Location = new System.Drawing.Point(21, 250);
+            lblInformacoesImportar.Location = new System.Drawing.Point(21, 274);
             lblInformacoesImportar.Name = "lblInformacoesImportar";
             lblInformacoesImportar.Size = new System.Drawing.Size(261, 19);
             lblInformacoesImportar.TabIndex = 23;
@@ -512,11 +546,11 @@
             tpWorkflow.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
             tpWorkflow.Columns.AddRange(new DevExpress.Utils.Layout.TablePanelColumn[] { new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 55F) });
             tpWorkflow.Controls.Add(txtWorkflow);
-            tpWorkflow.Location = new System.Drawing.Point(16, 440);
+            tpWorkflow.Location = new System.Drawing.Point(16, 464);
             tpWorkflow.Margin = new System.Windows.Forms.Padding(0);
             tpWorkflow.Name = "tpWorkflow";
             tpWorkflow.Rows.AddRange(new DevExpress.Utils.Layout.TablePanelRow[] { new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.AutoSize, 26F) });
-            tpWorkflow.Size = new System.Drawing.Size(506, 89);
+            tpWorkflow.Size = new System.Drawing.Size(506, 74);
             tpWorkflow.TabIndex = 15;
             tpWorkflow.UseSkinIndents = true;
             // 
@@ -527,14 +561,14 @@
             txtWorkflow.Location = new System.Drawing.Point(13, 12);
             txtWorkflow.Name = "txtWorkflow";
             tpWorkflow.SetRow(txtWorkflow, 0);
-            txtWorkflow.Size = new System.Drawing.Size(480, 64);
+            txtWorkflow.Size = new System.Drawing.Size(480, 49);
             txtWorkflow.TabIndex = 16;
             // 
             // lblWorkflowImportar
             // 
             lblWorkflowImportar.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
             lblWorkflowImportar.Appearance.Options.UseFont = true;
-            lblWorkflowImportar.Location = new System.Drawing.Point(21, 430);
+            lblWorkflowImportar.Location = new System.Drawing.Point(21, 454);
             lblWorkflowImportar.Name = "lblWorkflowImportar";
             lblWorkflowImportar.Size = new System.Drawing.Size(309, 19);
             lblWorkflowImportar.TabIndex = 27;
@@ -566,6 +600,7 @@
             ((System.ComponentModel.ISupportInitialize)tpImplantacao).EndInit();
             tpImplantacao.ResumeLayout(false);
             tpImplantacao.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)txtEmpresa.Properties).EndInit();
             ((System.ComponentModel.ISupportInitialize)txtSGBD.Properties).EndInit();
             ((System.ComponentModel.ISupportInitialize)rgRegime.Properties).EndInit();
             ((System.ComponentModel.ISupportInitialize)txtCodigoImplantacao.Properties).EndInit();
@@ -618,5 +653,7 @@
         private DevExpress.XtraEditors.LabelControl lblWorkflowImportar;
         private DevExpress.XtraEditors.TextEdit txtSGBD;
         private DevExpress.XtraEditors.LabelControl lblSGBD;
+        private DevExpress.XtraEditors.TextEdit txtEmpresa;
+        private DevExpress.XtraEditors.LabelControl lblEmpresa;
     }
 }

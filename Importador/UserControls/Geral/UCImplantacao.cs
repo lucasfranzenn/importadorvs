@@ -3,6 +3,7 @@ using Importador.Classes;
 using Importador.Classes.Entidades;
 using Importador.Classes.Entidades.RetornoAPI;
 using Importador.Conexao;
+using Importador.Properties;
 using Importador.UserControls.BaseControls;
 using Importador.UserControls.Componentes;
 using System;
@@ -48,6 +49,7 @@ namespace Importador.UserControls.Geral
             implantacao.LinkBackup = txtBackupOriginal.Text;
             implantacao.RegimeEmpresa = rgRegime.SelectedIndex;
             implantacao.Workflow = txtWorkflow.Text;
+            implantacao.Empresa = Convert.ToInt32(Configuracoes.Default.Empresa);
             #endregion
 
             #region Informações a serem importadas
@@ -77,6 +79,7 @@ namespace Importador.UserControls.Geral
             if (!string.IsNullOrEmpty(txtCodigoImplantacao.Text))
             {
                 Default.CodigoImplantacao = txtCodigoImplantacao.Text;
+                Default.Empresa = string.IsNullOrEmpty(txtEmpresa.Text) ? "1" : txtEmpresa.Text;
                 Default.Save();
                 var impAtual = ConexaoBancoImportador.GetEntidade<Implantacao>(Enums.TabelaBancoLocal.implantacoes);
 
@@ -129,6 +132,7 @@ namespace Importador.UserControls.Geral
         {
             #region Setar Informações do Cliente/Responsável
             txtCodigoImplantacao.Text = implantacao.CodigoImplantacao.ToString();
+            txtEmpresa.Text = implantacao.Empresa.ToString();
             txtCliente.Text = implantacao.RazaoSocialCliente;
             txtResponsavel.Text = $"{implantacao.NomeResponsavel}";
             txtSistemaERP.Text = implantacao.SistemaAntigo;
