@@ -17,6 +17,7 @@ namespace Importador.Classes
             public const string AuthJira = @"Configuracao\jira";
             public const string CredencialDrive = @"Configuracao\cred.json";
             public const string PastaPaiDrive = @"Configuracao\parentFolderId";
+            public const string SqlPadroes = @"Configuracao\sql_padrao.json";
         }
 
         public static class Enums

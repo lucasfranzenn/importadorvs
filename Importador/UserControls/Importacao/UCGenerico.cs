@@ -31,6 +31,7 @@ namespace Importador.UserControls.Importacao
             if (e.Button.Kind == DevExpress.XtraEditors.Controls.ButtonPredefines.Plus && !string.IsNullOrWhiteSpace(cbTabelas.Text) && !cbTabelas.Properties.Items.Contains(cbTabelas.Text))
             {
                 cbTabelas.Properties.Items.Add(cbTabelas.Text);
+                txtSqlImportacao.Text = ConexaoBancoImportador.GetSql(cbTabelas.Text);
             }
         }
 

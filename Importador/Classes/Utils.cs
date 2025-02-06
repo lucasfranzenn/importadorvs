@@ -5,6 +5,7 @@ using Importador.Classes.Entidades;
 using Importador.Conexao;
 using Importador.Properties;
 using Microsoft.Toolkit.Uwp.Notifications;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -81,7 +82,15 @@ namespace Importador.Classes
         };
 
         internal static string GetUsuarioSID() => WindowsIdentity.GetCurrent().User.ToString();
-        internal static string GetSqlPadrao(string tabela) => SQLPadrao.Default[tabela].ToString().Replace("@", Environment.NewLine);
+        internal static string GetSqlPadrao(string tabela)
+        {
+            Dictionary<string, string> consultas = JsonConvert.DeserializeObject<Dictionary<string, string>>(File.ReadAllText(Constantes.Caminhos.SqlPadroes)) ?? new Dictionary<string, string>();
+
+            if (consultas.TryGetValue(tabela, out string sql)) return sql.Replace("@", Environment.NewLine);
+
+            return SQLPadrao.Default[tabela].ToString().Replace("@", Environment.NewLine);
+        }
+
         internal static string GerarArquivoRar(string caminhoBackup) => $"\"{AppDomain.CurrentDomain.BaseDirectory}{Caminhos.exeRar}\" a \"{caminhoBackup}\" \"MyBackup.sql\" \"Relatorios\\Implantação {Configuracoes.Default.CodigoImplantacao}.pdf\" \"Consultas SQL\\*\" \"LEIA-ME.txt\" ";
 
         internal static void GerarLeiaME(string sql)

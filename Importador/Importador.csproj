@@ -19,7 +19,6 @@
 
   <ItemGroup>
     <None Remove="Configuracao\conexoes.json" />
-    <None Remove="Configuracao\consultas.json" />
     <None Remove="Configuracao\exportarSqlCsv.py" />
     <None Remove="Configuracao\imp.db" />
     <None Remove="Configuracao\implantacao.json" />
@@ -27,6 +26,7 @@
     <None Remove="Configuracao\mysqldump.exe" />
     <None Remove="Configuracao\Rar.exe" />
     <None Remove="Configuracao\skin.txt" />
+    <None Remove="Configuracao\sql_padrao.json" />
     <None Remove="Relatorios\Geral.frx" />
     <None Remove="Relatorios\Modelos\Geral1.frx" />
   </ItemGroup>
@@ -47,8 +47,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="Configuracao\consultas.json">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    <Content Include="Configuracao\sql_padrao.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Configuracao\exportarSqlCsv.py">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>

@@ -1,0 +1,4 @@
+{
+  "tabelas_preco_produto": "SELECT @ as idtabela, @ as codigoproduto, @ as preco, @ AS empresa @from tabelas_preco_produto",
+  "tabelas": "select @ as codigo, @ as descricao, @  as padrao, @ as percentual, @'V' as tipo, @ as considera_promocao, @'I' as tp_preco, @'N' as optante, @'G' as tpComissao, @now() as UltimaAlteracaoCad, @1 as ExibeTab, @'N' as somaIPI @FROM tabelas"
+}
