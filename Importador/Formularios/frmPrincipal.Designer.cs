@@ -36,8 +36,8 @@ namespace Importador
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            DevExpress.Utils.SuperToolTip superToolTip2 = new DevExpress.Utils.SuperToolTip();
-            DevExpress.Utils.ToolTipItem toolTipItem2 = new DevExpress.Utils.ToolTipItem();
+            DevExpress.Utils.SuperToolTip superToolTip1 = new DevExpress.Utils.SuperToolTip();
+            DevExpress.Utils.ToolTipItem toolTipItem1 = new DevExpress.Utils.ToolTipItem();
             fcPrincipal = new DevExpress.XtraBars.FluentDesignSystem.FluentDesignFormContainer();
             btnSair = new SimpleButton();
             acPrincipal = new DevExpress.XtraBars.Navigation.AccordionControl();
@@ -60,6 +60,7 @@ namespace Importador
             acImportacaoGenerico = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             acImportacaoBackup = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             acImportacaoValidacao = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            acImportacaoCentralizador = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             acUtilitarios = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             acUtilitariosBuscarColuna = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             acUtilitariosRecursos = new DevExpress.XtraBars.Navigation.AccordionControlElement();
@@ -78,7 +79,6 @@ namespace Importador
             barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             barDockControlRight = new DevExpress.XtraBars.BarDockControl();
-            acImportacaoCentralizador = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             ((System.ComponentModel.ISupportInitialize)acPrincipal).BeginInit();
             ((System.ComponentModel.ISupportInitialize)fluentDesignFormControl1).BeginInit();
             fluentDesignFormControl1.SuspendLayout();
@@ -231,6 +231,7 @@ namespace Importador
             acImportacaoPreVendas.Name = "acImportacaoPreVendas";
             acImportacaoPreVendas.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
             acImportacaoPreVendas.Text = "Pré-Vendas";
+            acImportacaoPreVendas.Visible = false;
             acImportacaoPreVendas.Click += acImportacaoPreVendas_Click;
             // 
             // acImportacaoServicos
@@ -265,6 +266,14 @@ namespace Importador
             acImportacaoValidacao.Text = "Validações";
             acImportacaoValidacao.Click += acImportacaoValidacao_Click;
             // 
+            // acImportacaoCentralizador
+            // 
+            acImportacaoCentralizador.ImageOptions.SvgImage = Properties.Resources.business_diagram;
+            acImportacaoCentralizador.Name = "acImportacaoCentralizador";
+            acImportacaoCentralizador.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            acImportacaoCentralizador.Text = "Centralizador de Empresas";
+            acImportacaoCentralizador.Click += acImportacaoCentralizador_Click;
+            // 
             // acUtilitarios
             // 
             acUtilitarios.Elements.AddRange(new DevExpress.XtraBars.Navigation.AccordionControlElement[] { acUtilitariosBuscarColuna, acUtilitariosRecursos });
@@ -285,11 +294,11 @@ namespace Importador
             acUtilitariosRecursos.ImageOptions.SvgImage = Properties.Resources.functionsinformation;
             acUtilitariosRecursos.Name = "acUtilitariosRecursos";
             acUtilitariosRecursos.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
-            toolTipItem2.AllowHtmlText = DevExpress.Utils.DefaultBoolean.True;
-            toolTipItem2.ImageOptions.SvgImage = Properties.Resources.functionsinformation;
-            toolTipItem2.Text = "Recursos de apoio para facilitar a importação.\r\nEstá incluso: \r\n * Nomenclaturas de colunas;\r\n * Validações Fiscais;\r\n * Sistemas Importados;\r\n * Software Úteis;\r\n * Dicas de Bancos de Dados.";
-            superToolTip2.Items.Add(toolTipItem2);
-            acUtilitariosRecursos.SuperTip = superToolTip2;
+            toolTipItem1.AllowHtmlText = DevExpress.Utils.DefaultBoolean.True;
+            toolTipItem1.ImageOptions.SvgImage = Properties.Resources.functionsinformation;
+            toolTipItem1.Text = "Recursos de apoio para facilitar a importação.\r\nEstá incluso: \r\n * Nomenclaturas de colunas;\r\n * Validações Fiscais;\r\n * Sistemas Importados;\r\n * Software Úteis;\r\n * Dicas de Bancos de Dados.";
+            superToolTip1.Items.Add(toolTipItem1);
+            acUtilitariosRecursos.SuperTip = superToolTip1;
             acUtilitariosRecursos.Text = "Recursos de Apoio";
             acUtilitariosRecursos.Click += acUtilitariosAuxiliar_Click;
             // 
@@ -406,14 +415,6 @@ namespace Importador
             barDockControlRight.Location = new System.Drawing.Point(770, 31);
             barDockControlRight.Manager = barManager1;
             barDockControlRight.Size = new System.Drawing.Size(0, 548);
-            // 
-            // acImportacaoCentralizador
-            // 
-            acImportacaoCentralizador.ImageOptions.SvgImage = Properties.Resources.business_diagram;
-            acImportacaoCentralizador.Name = "acImportacaoCentralizador";
-            acImportacaoCentralizador.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
-            acImportacaoCentralizador.Text = "Centralizador de Empresas";
-            acImportacaoCentralizador.Click += acImportacaoCentralizador_Click;
             // 
             // frmPrincipal
             // 

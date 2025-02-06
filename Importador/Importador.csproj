@@ -28,6 +28,7 @@
     <None Remove="Configuracao\Rar.exe" />
     <None Remove="Configuracao\skin.txt" />
     <None Remove="Relatorios\Geral.frx" />
+    <None Remove="Relatorios\Modelos\Geral1.frx" />
   </ItemGroup>
 
   <ItemGroup>
