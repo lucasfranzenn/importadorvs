@@ -383,6 +383,16 @@ namespace Importador.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap media_16x16 {
+            get {
+                object obj = ResourceManager.GetObject("media_16x16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap mssql {
             get {
                 object obj = ResourceManager.GetObject("mssql", resourceCulture);
@@ -447,6 +457,16 @@ namespace Importador.Properties {
             get {
                 object obj = ResourceManager.GetObject("notes_16x16", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo DevExpress.Utils.Svg.SvgImage.
+        /// </summary>
+        internal static DevExpress.Utils.Svg.SvgImage PlaySolid {
+            get {
+                object obj = ResourceManager.GetObject("PlaySolid", resourceCulture);
+                return ((DevExpress.Utils.Svg.SvgImage)(obj));
             }
         }
         
@@ -536,6 +556,26 @@ namespace Importador.Properties {
         internal static System.Drawing.Bitmap reset2_16x16 {
             get {
                 object obj = ResourceManager.GetObject("reset2_16x16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap scripts_16x16 {
+            get {
+                object obj = ResourceManager.GetObject("scripts_16x16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap scripts_16x161 {
+            get {
+                object obj = ResourceManager.GetObject("scripts_16x161", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

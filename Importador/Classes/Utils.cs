@@ -1,4 +1,6 @@
 ﻿using DevExpress.Mvvm.Native;
+using DevExpress.Pdf.Native.BouncyCastle.Utilities.Collections;
+using DevExpress.Xpo.DB.Helpers;
 using DevExpress.XtraBars.FluentDesignSystem;
 using DevExpress.XtraEditors;
 using Importador.Classes.Entidades;
@@ -6,14 +8,18 @@ using Importador.Conexao;
 using Importador.Properties;
 using Microsoft.Toolkit.Uwp.Notifications;
 using Newtonsoft.Json;
+using SpreadsheetLight;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics.Metrics;
 using System.IO;
 using System.Linq;
 using System.Security.Principal;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using static DevExpress.XtraBars.Docking2010.Views.BaseRegistrator;
 using static Importador.Classes.Constantes;
 
 namespace Importador.Classes
@@ -334,8 +340,49 @@ namespace Importador.Classes
             {
                 return string.Empty;
             }
-
             return File.ReadAllText(caminho);
+        }
+
+        internal static string GetDML(string query)
+        {
+            return Regex.Match(query, @"(?i)\b(update|delete|insert|create|alter)\b").Value.ToUpper();
+        }
+
+        internal static string SalvarArquivo(string caminho, string filtro)
+        {
+            SaveFileDialog ofd = new SaveFileDialog();
+            ofd.InitialDirectory = Path.GetDirectoryName(caminho);
+            ofd.FileName = Path.GetFileName(caminho);
+            ofd.Filter = filtro;
+
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                return ofd.FileName;
+            };
+
+            return null;
+        }
+
+        internal static DataTable GetDataTable(string _cmd)
+        {
+            IDbCommand cmd = ConexaoManager.instancia.GetConexaoMyCommerce().CreateCommand();
+            cmd.CommandText = _cmd;
+
+            DataTable dt = new DataTable();
+
+            using IDataReader reader = cmd.ExecuteReader();
+                dt.Load(reader, LoadOption.OverwriteChanges);
+                return dt;
+        }
+
+        internal static void CriarXLS(DataTable dataTable, string caminho)
+        {
+            using var documento = new SLDocument();
+
+            documento.ImportDataTable(1, SLConvert.ToColumnIndex("A"), dataTable, true);
+            documento.RenameWorksheet(SLDocument.DefaultFirstSheetName, "Visual Software - Importação");
+
+            documento.SaveAs(caminho);
         }
     }
 

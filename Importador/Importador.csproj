@@ -18,14 +18,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="Configuracao\conexoes.json" />
     <None Remove="Configuracao\exportarSqlCsv.py" />
     <None Remove="Configuracao\imp.db" />
-    <None Remove="Configuracao\implantacao.json" />
     <None Remove="Configuracao\importacao_fiscal.pdf" />
     <None Remove="Configuracao\mysqldump.exe" />
     <None Remove="Configuracao\Rar.exe" />
-    <None Remove="Configuracao\skin.txt" />
     <None Remove="Configuracao\sql_padrao.json" />
     <None Remove="Relatorios\Geral.frx" />
     <None Remove="Relatorios\Modelos\Geral1.frx" />
@@ -34,15 +31,6 @@
   <ItemGroup>
     <Content Include="Configuracao\imp.db">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Configuracao\implantacao.json">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="Configuracao\conexoes.json">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
 
@@ -61,9 +49,6 @@
     </Content>
     <Content Include="Configuracao\Rar.exe">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Configuracao\skin.txt">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Content>
     <Content Include="Relatorios\Modelos\Geral.frx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -86,6 +71,7 @@
     <PackageReference Include="MySqlConnector" Version="2.3.7" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="Npgsql" Version="8.0.3" />
+    <PackageReference Include="SpreadsheetLight" Version="3.5.0" />
     <PackageReference Include="System.Data.OleDb" Version="8.0.1" />
   </ItemGroup>
 

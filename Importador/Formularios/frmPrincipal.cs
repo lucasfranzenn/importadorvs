@@ -222,5 +222,15 @@ namespace Importador
             AlteraAba(ref fcPrincipal, ucAtual);
             bsiTelaAtual.Caption = "Centralizador de dados (Multi-Empresas)";
         }
+
+        private void acUtilitariosScriptSQL_Click(object sender, EventArgs e)
+        {
+            if (ucAtual is UCScriptSQL) return;
+            ucAtual = new UCScriptSQL();
+
+            AlteraAba(ref fcPrincipal, ucAtual);
+            bsiTelaAtual.Caption = "Editor de Script SQL";
+
+        }
     }
 }

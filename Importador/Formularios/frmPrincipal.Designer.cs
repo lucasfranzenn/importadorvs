@@ -62,6 +62,7 @@ namespace Importador
             acImportacaoValidacao = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             acImportacaoCentralizador = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             acUtilitarios = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            acUtilitariosScriptSQL = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             acUtilitariosBuscarColuna = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             acUtilitariosRecursos = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             fluentDesignFormControl1 = new DevExpress.XtraBars.FluentDesignSystem.FluentDesignFormControl();
@@ -92,7 +93,7 @@ namespace Importador
             fcPrincipal.Dock = System.Windows.Forms.DockStyle.Fill;
             fcPrincipal.Location = new System.Drawing.Point(214, 31);
             fcPrincipal.Name = "fcPrincipal";
-            fcPrincipal.Size = new System.Drawing.Size(556, 548);
+            fcPrincipal.Size = new System.Drawing.Size(556, 541);
             fcPrincipal.TabIndex = 0;
             // 
             // btnSair
@@ -111,7 +112,7 @@ namespace Importador
             acPrincipal.Name = "acPrincipal";
             acPrincipal.ScrollBarMode = DevExpress.XtraBars.Navigation.ScrollBarMode.Fluent;
             acPrincipal.ShowFilterControl = DevExpress.XtraBars.Navigation.ShowFilterControl.Always;
-            acPrincipal.Size = new System.Drawing.Size(214, 548);
+            acPrincipal.Size = new System.Drawing.Size(214, 541);
             acPrincipal.TabIndex = 1;
             // 
             // acGeral
@@ -276,10 +277,18 @@ namespace Importador
             // 
             // acUtilitarios
             // 
-            acUtilitarios.Elements.AddRange(new DevExpress.XtraBars.Navigation.AccordionControlElement[] { acUtilitariosBuscarColuna, acUtilitariosRecursos });
+            acUtilitarios.Elements.AddRange(new DevExpress.XtraBars.Navigation.AccordionControlElement[] { acUtilitariosScriptSQL, acUtilitariosBuscarColuna, acUtilitariosRecursos });
             acUtilitarios.Expanded = true;
             acUtilitarios.Name = "acUtilitarios";
             acUtilitarios.Text = "Utilitários";
+            // 
+            // acUtilitariosScriptSQL
+            // 
+            acUtilitariosScriptSQL.ImageOptions.Image = Properties.Resources.scripts_16x161;
+            acUtilitariosScriptSQL.Name = "acUtilitariosScriptSQL";
+            acUtilitariosScriptSQL.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            acUtilitariosScriptSQL.Text = "Script SQL";
+            acUtilitariosScriptSQL.Click += acUtilitariosScriptSQL_Click;
             // 
             // acUtilitariosBuscarColuna
             // 
@@ -396,7 +405,7 @@ namespace Importador
             // 
             barDockControlBottom.CausesValidation = false;
             barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            barDockControlBottom.Location = new System.Drawing.Point(0, 579);
+            barDockControlBottom.Location = new System.Drawing.Point(0, 572);
             barDockControlBottom.Manager = barManager1;
             barDockControlBottom.Size = new System.Drawing.Size(770, 0);
             // 
@@ -406,7 +415,7 @@ namespace Importador
             barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
             barDockControlLeft.Location = new System.Drawing.Point(0, 31);
             barDockControlLeft.Manager = barManager1;
-            barDockControlLeft.Size = new System.Drawing.Size(0, 548);
+            barDockControlLeft.Size = new System.Drawing.Size(0, 541);
             // 
             // barDockControlRight
             // 
@@ -414,14 +423,14 @@ namespace Importador
             barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
             barDockControlRight.Location = new System.Drawing.Point(770, 31);
             barDockControlRight.Manager = barManager1;
-            barDockControlRight.Size = new System.Drawing.Size(0, 548);
+            barDockControlRight.Size = new System.Drawing.Size(0, 541);
             // 
             // frmPrincipal
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             CancelButton = btnSair;
-            ClientSize = new System.Drawing.Size(770, 579);
+            ClientSize = new System.Drawing.Size(770, 572);
             ControlContainer = fcPrincipal;
             Controls.Add(fcPrincipal);
             Controls.Add(acPrincipal);
@@ -493,6 +502,7 @@ namespace Importador
         private DevExpress.XtraBars.BarStaticItem lblImplantacao;
         private DevExpress.XtraEditors.Repository.RepositoryItemComboBox repositoryItemComboBox1;
         private DevExpress.XtraBars.Navigation.AccordionControlElement acImportacaoCentralizador;
+        private DevExpress.XtraBars.Navigation.AccordionControlElement acUtilitariosScriptSQL;
     }
 }
 

@@ -65,7 +65,7 @@
             // 
             // btnObservacao
             // 
-            btnObservacao.ImageOptions.Image = (System.Drawing.Image)resources.GetObject("btnObservacao.ImageOptions.Image");
+            btnObservacao.ImageOptions.Image = Properties.Resources.edittask_16x16;
             btnObservacao.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
             // 
             // btnVerificarSintaxeSQL

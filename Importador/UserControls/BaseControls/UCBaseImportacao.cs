@@ -103,7 +103,7 @@ namespace Importador.UserControls.BaseControls
 
             obsObservacao.Disposed += (sender, args) => AlternarVisibilidade();
             SizeChanged -= (sender, args) => obsObservacao.AtualizaProporcoes(btnObservacao.Location, Size);
-            SizeChanged += (sender, args) => obsObservacao.AtualizaProporcoes(btnObservacao.Location, Size);
+            SizeChanged += (sender, args) => obsObservacao.AtualizaProporcoes(btnObservacao.Location, Size); 
         }
 
         private void btnVerificarSintaxeSQL_Click(object sender, EventArgs e)
