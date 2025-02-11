@@ -196,7 +196,7 @@ namespace Importador.UserControls.Importacao
                 pbProgresso.EditValue = pbProgresso.Properties.Maximum;
                 pbProgresso.Update();
                 if (XtraMessageBox.Show("Backup Gerado\nDeseja abrir a pasta de destino?", "..::Importador::..", MessageBoxButtons.YesNo) == DialogResult.Yes)
-                    Process.Start("explorer.exe", $"/select, {txtDestinoBackup.Text}");
+                    Utils.AbrirPastaDestino(txtDestinoBackup.Text);
             }
             catch (Exception)
             {

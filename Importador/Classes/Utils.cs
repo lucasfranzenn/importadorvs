@@ -8,10 +8,10 @@ using Importador.Conexao;
 using Importador.Properties;
 using Microsoft.Toolkit.Uwp.Notifications;
 using Newtonsoft.Json;
-using SpreadsheetLight;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics;
 using System.Diagnostics.Metrics;
 using System.IO;
 using System.Linq;
@@ -210,7 +210,7 @@ namespace Importador.Classes
 
             IDbCommand cmd = ConexaoBancoImportador.instancia.conexao.CriarComando();
 
-            cmd.CommandText = $"select 'Consultas SQL\\' || tabelaconsulta, consulta from consultas where codigoimplantacao ={Configuracoes.Default.CodigoImplantacao} and tabelaconsulta <> 'backup'";
+            cmd.CommandText = $"select 'Consultas SQL\\' || tabelaconsulta, consulta from consultas where codigoimplantacao ={Configuracoes.Default.CodigoImplantacao} and tabelaconsulta <> 'backup' and tabelaconsulta not like 'scriptsql%'";
             IDataReader reader = cmd.ExecuteReader();
 
             while (reader.Read())
@@ -375,14 +375,18 @@ namespace Importador.Classes
                 return dt;
         }
 
-        internal static void CriarXLS(DataTable dataTable, string caminho)
+        internal static void CriarXLSX(DataTable dataTable, string caminho)
         {
-            using var documento = new SLDocument();
+            ClosedXML.Excel.XLWorkbook wb = new();
 
-            documento.ImportDataTable(1, SLConvert.ToColumnIndex("A"), dataTable, true);
-            documento.RenameWorksheet(SLDocument.DefaultFirstSheetName, "Visual Software - Importação");
+            wb.Worksheets.Add(dataTable, "Registros");
 
-            documento.SaveAs(caminho);
+            wb.SaveAs(caminho);
+        }
+
+        internal static void AbrirPastaDestino(string caminho)
+        {
+            Process.Start("explorer.exe", $"/select, {caminho}");
         }
     }
 

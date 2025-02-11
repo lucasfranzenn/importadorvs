@@ -10,6 +10,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static Importador.Classes.Utils;
@@ -44,16 +45,21 @@ namespace Importador.UserControls.Componentes
             lblQtdeLinhas.Text = dt.Rows.Count.ToString();
         }
 
-        private void btnExportarRegistros_CheckedChanged(object sender, EventArgs e)
+        private async void btnExportarRegistros_CheckedChanged(object sender, EventArgs e)
         {
-            if(Utils.SalvarArquivo($"registros_exportados", "Arquivo de texto|*.txt|Planilha Excel|*.xls") is string caminho)
+            if(Utils.SalvarArquivo($"registros_exportados", "Arquivo de texto|*.txt|Planilha Excel|*.xlsx") is string caminho)
             {
                 if (Path.GetExtension(caminho) == ".txt")
                 {
-                    Utils.CriarTXT(Utils.ExportSQLtoText(_cmd), caminho);
-                }else if(Path.GetExtension(caminho) == ".xls"){
-                    Utils.CriarXLS(Utils.GetDataTable(_cmd), caminho);
+                    await Task.Run(()=>CriarTXT(Utils.ExportSQLtoText(_cmd), caminho));
+                }else if(Path.GetExtension(caminho) == ".xlsx"){
+                    await Task.Run(()=>CriarXLSX(Utils.GetDataTable(_cmd), caminho));
                 }
+
+                Utils.MostrarNotificacao($"Arquivo {Path.GetFileName(caminho)} exportado!", "Exportação de Arquivos");
+
+                if (XtraMessageBox.Show("Arquivo Gerado\nDeseja abrir a pasta de destino?", "..::Importador::..", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    Utils.AbrirPastaDestino(caminho);
             }
         }
     }

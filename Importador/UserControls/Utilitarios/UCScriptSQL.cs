@@ -17,6 +17,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -31,8 +32,9 @@ namespace Importador.UserControls.Utilitarios
             InitializeComponent();
         }
 
-        private void btnExecutarTextoSelecionado_Click(object sender, EventArgs e)
+        private async void btnExecutarTextoSelecionado_Click(object sender, EventArgs e)
         {
+            Enabled = false;
             tcDataSet.TabPages.Clear();
             txtLog.Text = "";
             int i = 1;
@@ -40,7 +42,7 @@ namespace Importador.UserControls.Utilitarios
             IDbCommand cmd = cbConexao.SelectedIndex == 0 ? ConexaoManager.instancia.GetConexaoMyCommerce().CriarComando() : cbConexao.SelectedIndex == 1 ? ConexaoManager.instancia.GetConexaoImportacao().CriarComando() : ConexaoBancoImportador.instancia.conexao.CriarComando();
             DataTable dt = new DataTable();
 
-            string[] queries = string.IsNullOrWhiteSpace(txtScriptSQL.SelectedText) ? txtScriptSQL.Text.Split(';') : txtScriptSQL.SelectedText.Split(';');
+            string[] queries = string.IsNullOrWhiteSpace(txtScriptSQL.SelectedText) ? GetConsultaAtual() : txtScriptSQL.SelectedText.Split(';');
             queries = queries.Where(q => q.Trim().Length > 3).ToArray();
 
             foreach (string query in queries)
@@ -80,7 +82,7 @@ namespace Importador.UserControls.Utilitarios
                     tcDataSet.ClosePageButtonShowMode = ClosePageButtonShowMode.InAllTabPageHeaders;
                     tcDataSet.CloseButtonClick += (sender, e) => { tcDataSet.TabPages.Remove(((e as ClosePageButtonEventArgs)?.Page as XtraTabPage)!); };
 
-                    tp.Controls.Add(new Componentes.GridDataSet(cmd));
+                    await Task.Run(() => tp.Controls.Add(new GridDataSet(cmd)));
                     tcDataSet.TabPages.Add(tp);
 
                     txtLog.AppendLine($"Consulta em {tp.Text} executada com sucesso.");
@@ -89,6 +91,22 @@ namespace Importador.UserControls.Utilitarios
             }
 
             Utils.AtualizaSQLImportacao(txtScriptSQL.Text, _tabela);
+            Enabled=true;
+        }
+
+        private string[] GetConsultaAtual()
+        {
+            int indexSelecionado = txtScriptSQL.SelectionStart;
+
+            int start = txtScriptSQL.Text.LastIndexOf(";", indexSelecionado) > txtScriptSQL.Text.LastIndexOf("\r\n", indexSelecionado) ? txtScriptSQL.Text.LastIndexOf(";", indexSelecionado): txtScriptSQL.Text.LastIndexOf("\r\n", indexSelecionado);
+            start = (start == -1) ? 0 : start + 1;
+
+            int end = (txtScriptSQL.Text.IndexOf(';', indexSelecionado) > 0) && txtScriptSQL.Text.IndexOf(';', indexSelecionado) > txtScriptSQL.Text.IndexOf("\r\n", indexSelecionado) ? txtScriptSQL.Text.IndexOf(';', indexSelecionado) : txtScriptSQL.Text.IndexOf("\r\n", indexSelecionado);
+            end = (end == -1) ? txtScriptSQL.Text.Length : end + 1;
+
+            if (start==end) start = txtScriptSQL.Text.LastIndexOf(";", start-2) > txtScriptSQL.Text.LastIndexOf("\r\n", start-2) ? txtScriptSQL.Text.LastIndexOf(";", start-2)+1 : txtScriptSQL.Text.LastIndexOf("\r\n", start-2)+1;
+
+            return [txtScriptSQL.Text.Substring(start, end - start)];
         }
 
         private void UCScriptSQL_Load(object sender, EventArgs e)
