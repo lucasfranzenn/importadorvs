@@ -145,7 +145,7 @@ namespace Importador.Classes
         private static string GetDataType(string coluna, string tabela)
         {
             IDbCommand cmd = ConexaoManager.instancia.GetConexaoMyCommerce().CriarComando();
-            cmd.CommandText = $"SELECT DATA_TYPE FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = '{tabela}' AND COLUMN_NAME = '{coluna}' AND TABLE_SCHEMA = '{GetImportacao(Enums.Sistema.MyCommerce).Banco}'";
+            cmd.CommandText = $"SELECT DATA_TYPE FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = '{tabela}' AND COLUMN_NAME = '{coluna}' AND TABLE_SCHEMA = '{GetImportacao(Enums.Sistema.MyCommerce).Banco.Split(';')[0]}'";
             string retorno = cmd.ExecuteScalar().ToString();
 
             return retorno;
@@ -188,7 +188,7 @@ namespace Importador.Classes
         private static int GetTamanhoColuna(string coluna, string tabela)
         {
             IDbCommand cmd = ConexaoManager.instancia.GetConexaoMyCommerce().CriarComando();
-            cmd.CommandText = $"SELECT CHARACTER_MAXIMUM_LENGTH FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = '{tabela}' AND COLUMN_NAME = '{coluna}' AND TABLE_SCHEMA = '{GetImportacao(Enums.Sistema.MyCommerce).Banco}'";
+            cmd.CommandText = $"SELECT CHARACTER_MAXIMUM_LENGTH FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = '{tabela}' AND COLUMN_NAME = '{coluna}' AND TABLE_SCHEMA = '{GetImportacao(Enums.Sistema.MyCommerce).Banco.Split(';')[0]}'";
             int retorno = int.TryParse(cmd.ExecuteScalar().ToString(), out retorno) ? retorno : 1;
 
             return retorno;
@@ -440,6 +440,23 @@ namespace Importador.Classes
                     $"grade_linha = {gradeLinha}, grade_coluna = {gradeColuna}, idgrade={idGrade}" ;
                 ConexaoManager.instancia.GetConexaoMyCommerce().ExecuteScalar(sqlInsert);
             }
+
+            return true;
+        }
+
+        internal static bool VincularProdFornPorCodigoImpDados(IDataReader reader)
+        {
+            var cmdselect = ConexaoManager.instancia.GetConexaoMyCommerce().CriarComando();
+            cmdselect.CommandText = $"select codigo from clientes where tipo = 'F' and codigoimportacaodados = '{reader["idfornecedor"].ToString()}'";
+            var codigoFornecedor = cmdselect.ExecuteScalar();
+
+            cmdselect.CommandText = $"select codigo from produtos where codigoimportacaodados = '{reader["idprodutos"].ToString()}'";
+            var codigoProduto = cmdselect.ExecuteScalar();
+
+            if (codigoProduto is null || codigoFornecedor is null) return true;
+
+            cmdselect.CommandText = $"INSERT INTO produtosfornecedor set idprodutos = {codigoProduto}, idfornecedor= {codigoFornecedor}";
+            cmdselect.ExecuteScalar();
 
             return true;
         }

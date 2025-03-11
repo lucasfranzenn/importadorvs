@@ -232,5 +232,19 @@ namespace Importador
             bsiTelaAtual.Caption = "Editor de Script SQL";
 
         }
+
+        private void acUtilitariosPython_Click(object sender, EventArgs e)
+        {
+            if (ucAtual is UCPython) return;
+            ucAtual = new UCPython();
+
+            AlteraAba(ref fcPrincipal, ucAtual);
+            bsiTelaAtual.Caption = "Scripts Python";
+        }
+
+        private void bbiOpcoes_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            new frmOpcoes().ShowDialog();
+        }
     }
 }

@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!--
-    Microsoft ResX Schema 
+    Microsoft ResX Schema
 
     Version 2.0
 
@@ -48,7 +48,7 @@
     value   : The object must be serialized with
             : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
             : and then encoded with base64 encoding.
-    
+
     mimetype: application/x-microsoft.net.object.soap.base64
     value   : The object must be serialized with
             : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
@@ -117,8 +117,28 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="acUtilitariosPython.ImageOptions.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6
+        JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAACXBIWXMAAA68AAAOvAGVvHJJAAAAB3RJ
+        TUUH6AcSBAQgJvg9WwAAAsRJREFUOE91kVtI0wEUhydJUA891ENCFwgiohulmLdN56zpdFqhA0NK0hRT
+        3NIt0dRNxVvecoqGJQ5dWltTV/8u2sIkH7qgPdRcMqc1dGoqLSuM1M4vmmAy83s8fOeDw2GxViHSGjeG
+        lvVkh1a8GOAXd//kFTC/uYoHU5zsjlbvNM2O1e5/EVx7dlpQahjgF3UFnizuBleuB+eqDoGFBhxPb9Y5
+        +2sIKTEcE5Q/H+DlMXquvNPMztLM+2bcgW/mPXiImwzO/gphFb2JoVV99ScKnzTyChidf247w868q/GR
+        tU57y1rhKW3D4aSGR2RPu0KL8jqakPivLAsre8WRjYMQKl8ipLwXQYVd4OYx4OR0wkt6Gx6pjXCXqLE3
+        7uZjmpO8BRSg8cR5Gonf7ggISg0WQVkPgvIZBP69Wc7AXdaBIxINDqbcxv6kZuy60LLETa+7Tl8TzJhK
+        AL7Fgyyis45AcMnT5WWFHt5Z+iV2RptecqO+Ka1OqRJXV6nEympVQUNhzdJEQg9m4oDRaMAeDTIL5Y5A
+        UD4zzctjwM59CH5uawv9StbRonSWvovtNJdipy8X7TR9bgEzsYAlCjBHALPhoA9csSMQkNPRwC/vw1HZ
+        fdRrymvw4zIwLQUmU4HZJGA2DpiKAWxRwFg4YAsGRgJAJs99ywGZ1o2d0959KFVjuqUrKSV76iJsScB4
+        HGg0xkSjUa/JHPEGQ8H9ZOKa6KP/e3rnI135wmrIdokPezJgPQ9Yo0HDp17RUEgXjQV1kdGvyNlfA8Zi
+        uZiPB6wiwBwO2CNAg4E6GuakkNF3wNlfA/qFm8lyRk1W4QJsfOAzDzTkN0lDfm1kZIc4++tCnzh7yOIT
+        RmavSLL6csh4YKuzsx4uAQqFK4sFl38juLAC4CoSiTasFtfDpbKyclNtbe02tVq9U6vV7lapVG5KpXKL
+        whFeyx+tw6WPBONOqQAAAABJRU5ErkJggg==
+</value>
+  </data>
   <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>25</value>
+    <value>77</value>
   </metadata>
   <metadata name="barManager1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>387, 17</value>

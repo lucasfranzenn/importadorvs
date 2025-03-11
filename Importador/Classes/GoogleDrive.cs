@@ -20,8 +20,8 @@ namespace Importador.Classes
     {
         internal static void Upload(string caminho)
         {
-            string credencialDrive = Constantes.Caminhos.CredencialDrive;
-            string parentFolderId = Utils.LerArquivo(Constantes.Caminhos.PastaPaiDrive);
+            string credencialDrive = IniFile.Read("Integracao", "GoogleDriveCredentialPath");
+            string parentFolderId = IniFile.Read("Integracao", "GoogleDriveParentFolderId");
 
             try
             {

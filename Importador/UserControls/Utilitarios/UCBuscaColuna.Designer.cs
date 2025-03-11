@@ -86,6 +86,7 @@
             gridView1.GridControl = gcGrid;
             gridView1.Name = "gridView1";
             gridView1.OptionsBehavior.Editable = false;
+            gridView1.OptionsBehavior.SummariesIgnoreNullValues = true;
             // 
             // UCBuscaColuna
             // 

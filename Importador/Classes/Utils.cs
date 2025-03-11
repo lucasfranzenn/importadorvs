@@ -32,6 +32,12 @@ namespace Importador.Classes
             userControl.Dock = DockStyle.Fill;
             container.Controls.Add(userControl);
         }
+        public static void AlteraAba(ref PanelControl panel, XtraUserControl userControl)
+        {
+            panel.Controls.Clear();
+            userControl.Dock = DockStyle.Fill;
+            panel.Controls.Add(userControl);
+        }
 
         public static void MostrarNotificacao(string msg, string titulo)
         {
@@ -44,7 +50,7 @@ namespace Importador.Classes
 
         internal static void AtualizaSQLImportacao(string sql, string tabela)
         {
-            var Consulta = ConexaoBancoImportador.GetEntidade<Consultas>(Enums.TabelaBancoLocal.consultas, $"TabelaConsulta = '{tabela}'");
+            var Consulta = ConexaoBancoImportador.GetEntidade<Consultas>(Enums.TabelaBancoLocal.consultas, $"TabelaConsulta = '{tabela}' and Empresa={Configuracoes.Default.Empresa}");
 
             if (Consulta is null)
             {
@@ -62,7 +68,7 @@ namespace Importador.Classes
 
             var Conexao = ConexaoBancoImportador.GetEntidade<Entidades.Conexao>(Enums.TabelaBancoLocal.conexoes, "TipoConexao = 0");
             var Tabelas = ConexaoBancoImportador.GetSql(Enums.TabelaMyCommerce.backup.ToString());
-            cmd.Append($" -u {Conexao.Usuario} -p{Conexao.Senha} -h {Conexao.Host} -P {Conexao.Porta} {Conexao.Banco} {tabelas} > \"MyBackup.sql\"");
+            cmd.Append($" -u {Conexao.Usuario} -p{Conexao.Senha} -h {Conexao.Host} -P {Conexao.Porta} {Conexao.Banco.Split(';')[0]} {tabelas} > \"MyBackup.sql\"");
 
             return cmd.ToString();
         }
@@ -90,7 +96,7 @@ namespace Importador.Classes
         internal static string GetUsuarioSID() => WindowsIdentity.GetCurrent().User.ToString();
         internal static string GetSqlPadrao(string tabela)
         {
-            Dictionary<string, string> consultas = JsonConvert.DeserializeObject<Dictionary<string, string>>(File.ReadAllText(Constantes.Caminhos.SqlPadroes)) ?? new Dictionary<string, string>();
+            Dictionary<string, string> consultas = JsonConvert.DeserializeObject<Dictionary<string, string>>(File.ReadAllText(IniFile.Read("AmbienteGeral", "DefaultSQLPath"))) ?? new Dictionary<string, string>();
 
             if (consultas.TryGetValue(tabela, out string sql)) return sql.Replace("@", Environment.NewLine);
 
@@ -363,6 +369,19 @@ namespace Importador.Classes
             return null;
         }
 
+        internal static string SelecionarPasta(string caminho)
+        {
+            FolderBrowserDialog ofd = new FolderBrowserDialog();
+            ofd.InitialDirectory = Path.GetDirectoryName(caminho);
+
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                return ofd.SelectedPath;
+            }
+
+            return caminho;
+        }
+
         internal static DataTable GetDataTable(string _cmd)
         {
             IDbCommand cmd = ConexaoManager.instancia.GetConexaoMyCommerce().CreateCommand();
@@ -373,6 +392,18 @@ namespace Importador.Classes
             using IDataReader reader = cmd.ExecuteReader();
                 dt.Load(reader, LoadOption.OverwriteChanges);
                 return dt;
+        }
+
+        internal static DataTable GetDataTable(string _cmd, IDbConnection conexao)
+        {
+            IDbCommand cmd = conexao.CreateCommand();
+            cmd.CommandText = _cmd;
+
+            DataTable dt = new DataTable();
+
+            using IDataReader reader = cmd.ExecuteReader();
+            dt.Load(reader, LoadOption.OverwriteChanges);
+            return dt;
         }
 
         internal static void CriarXLSX(DataTable dataTable, string caminho)
@@ -387,6 +418,18 @@ namespace Importador.Classes
         internal static void AbrirPastaDestino(string caminho)
         {
             Process.Start("explorer.exe", $"/select, {caminho}");
+        }
+
+        public static string SelecionarArquivo(string caminho, string filtros = "")
+        {
+            OpenFileDialog ofd = new();
+            ofd.Filter = filtros;
+            ofd.InitialDirectory = Path.GetDirectoryName(caminho);
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                return ofd.FileName;
+            }
+            return caminho;
         }
     }
 

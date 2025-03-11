@@ -36,6 +36,7 @@ namespace Importador
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPrincipal));
             DevExpress.Utils.SuperToolTip superToolTip1 = new DevExpress.Utils.SuperToolTip();
             DevExpress.Utils.ToolTipItem toolTipItem1 = new DevExpress.Utils.ToolTipItem();
             fcPrincipal = new DevExpress.XtraBars.FluentDesignSystem.FluentDesignFormContainer();
@@ -63,16 +64,24 @@ namespace Importador
             acImportacaoCentralizador = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             acUtilitarios = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             acUtilitariosScriptSQL = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            acUtilitariosPython = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             acUtilitariosBuscarColuna = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             acUtilitariosRecursos = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             fluentDesignFormControl1 = new DevExpress.XtraBars.FluentDesignSystem.FluentDesignFormControl();
-            blciTemas = new DevExpress.XtraBars.BarLinkContainerItem();
+            blciPreferencias = new DevExpress.XtraBars.BarLinkContainerItem();
+            bbiOpcoes = new DevExpress.XtraBars.BarButtonItem();
+            bsiTemas = new DevExpress.XtraBars.BarSubItem();
             skinDropDownButtonItem1 = new DevExpress.XtraBars.SkinDropDownButtonItem();
             skinPaletteDropDownButtonItem1 = new DevExpress.XtraBars.SkinPaletteDropDownButtonItem();
             bsiTelaAtual = new DevExpress.XtraBars.BarStaticItem();
             lblImplantacao = new DevExpress.XtraBars.BarStaticItem();
+            bsiOpcoes = new DevExpress.XtraBars.BarStaticItem();
+            blciTemas = new DevExpress.XtraBars.BarLinkContainerItem();
+            skinBarSubItem1 = new DevExpress.XtraBars.SkinBarSubItem();
             fluentFormDefaultManager1 = new DevExpress.XtraBars.FluentDesignSystem.FluentFormDefaultManager(components);
             repositoryItemComboBox1 = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
+            repositoryItemBreadCrumbEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemBreadCrumbEdit();
+            repositoryItemButtonEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             skin = new DefaultLookAndFeel(components);
             acImportacaoSeparador = new DevExpress.XtraBars.Navigation.AccordionControlSeparator();
             barManager1 = new DevExpress.XtraBars.BarManager(components);
@@ -85,6 +94,8 @@ namespace Importador
             fluentDesignFormControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)fluentFormDefaultManager1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)repositoryItemComboBox1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)repositoryItemBreadCrumbEdit1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)repositoryItemButtonEdit1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)barManager1).BeginInit();
             SuspendLayout();
             // 
@@ -110,6 +121,7 @@ namespace Importador
             acPrincipal.Elements.AddRange(new DevExpress.XtraBars.Navigation.AccordionControlElement[] { acGeral, acConexao, acImportacao, acUtilitarios });
             acPrincipal.Location = new System.Drawing.Point(0, 31);
             acPrincipal.Name = "acPrincipal";
+            acPrincipal.OptionsMinimizing.AllowMinimizeMode = DevExpress.Utils.DefaultBoolean.True;
             acPrincipal.ScrollBarMode = DevExpress.XtraBars.Navigation.ScrollBarMode.Fluent;
             acPrincipal.ShowFilterControl = DevExpress.XtraBars.Navigation.ShowFilterControl.Always;
             acPrincipal.Size = new System.Drawing.Size(214, 541);
@@ -277,7 +289,7 @@ namespace Importador
             // 
             // acUtilitarios
             // 
-            acUtilitarios.Elements.AddRange(new DevExpress.XtraBars.Navigation.AccordionControlElement[] { acUtilitariosScriptSQL, acUtilitariosBuscarColuna, acUtilitariosRecursos });
+            acUtilitarios.Elements.AddRange(new DevExpress.XtraBars.Navigation.AccordionControlElement[] { acUtilitariosScriptSQL, acUtilitariosPython, acUtilitariosBuscarColuna, acUtilitariosRecursos });
             acUtilitarios.Expanded = true;
             acUtilitarios.Name = "acUtilitarios";
             acUtilitarios.Text = "Utilitários";
@@ -289,6 +301,14 @@ namespace Importador
             acUtilitariosScriptSQL.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
             acUtilitariosScriptSQL.Text = "Script SQL";
             acUtilitariosScriptSQL.Click += acUtilitariosScriptSQL_Click;
+            // 
+            // acUtilitariosPython
+            // 
+            acUtilitariosPython.ImageOptions.Image = (System.Drawing.Image)resources.GetObject("acUtilitariosPython.ImageOptions.Image");
+            acUtilitariosPython.Name = "acUtilitariosPython";
+            acUtilitariosPython.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            acUtilitariosPython.Text = "Scripts Python";
+            acUtilitariosPython.Click += acUtilitariosPython_Click;
             // 
             // acUtilitariosBuscarColuna
             // 
@@ -315,39 +335,56 @@ namespace Importador
             // 
             fluentDesignFormControl1.Controls.Add(btnSair);
             fluentDesignFormControl1.FluentDesignForm = this;
-            fluentDesignFormControl1.Items.AddRange(new DevExpress.XtraBars.BarItem[] { blciTemas, skinDropDownButtonItem1, skinPaletteDropDownButtonItem1, bsiTelaAtual, lblImplantacao });
+            fluentDesignFormControl1.Items.AddRange(new DevExpress.XtraBars.BarItem[] { blciPreferencias, bsiTelaAtual, lblImplantacao, bsiOpcoes, blciTemas, bbiOpcoes, bsiTemas, skinBarSubItem1, skinDropDownButtonItem1, skinPaletteDropDownButtonItem1 });
             fluentDesignFormControl1.Location = new System.Drawing.Point(0, 0);
             fluentDesignFormControl1.Manager = fluentFormDefaultManager1;
             fluentDesignFormControl1.Name = "fluentDesignFormControl1";
-            fluentDesignFormControl1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] { repositoryItemComboBox1 });
+            fluentDesignFormControl1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] { repositoryItemComboBox1, repositoryItemBreadCrumbEdit1, repositoryItemButtonEdit1 });
             fluentDesignFormControl1.Size = new System.Drawing.Size(770, 31);
             fluentDesignFormControl1.TabIndex = 2;
             fluentDesignFormControl1.TabStop = false;
-            fluentDesignFormControl1.TitleItemLinks.Add(blciTemas);
+            fluentDesignFormControl1.TitleItemLinks.Add(blciPreferencias);
             fluentDesignFormControl1.TitleItemLinks.Add(bsiTelaAtual);
             fluentDesignFormControl1.TitleItemLinks.Add(lblImplantacao);
             // 
-            // blciTemas
+            // blciPreferencias
             // 
-            blciTemas.Alignment = DevExpress.XtraBars.BarItemLinkAlignment.Right;
-            blciTemas.Caption = "Temas";
-            blciTemas.Id = 0;
-            blciTemas.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] { new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, skinDropDownButtonItem1, DevExpress.XtraBars.BarItemPaintStyle.Standard), new DevExpress.XtraBars.LinkPersistInfo(skinPaletteDropDownButtonItem1) });
-            blciTemas.Name = "blciTemas";
+            blciPreferencias.Alignment = DevExpress.XtraBars.BarItemLinkAlignment.Right;
+            blciPreferencias.Caption = "Preferências";
+            blciPreferencias.Id = 0;
+            blciPreferencias.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] { new DevExpress.XtraBars.LinkPersistInfo(bbiOpcoes), new DevExpress.XtraBars.LinkPersistInfo(bsiTemas) });
+            blciPreferencias.Name = "blciPreferencias";
+            // 
+            // bbiOpcoes
+            // 
+            bbiOpcoes.Caption = "Opções";
+            bbiOpcoes.Id = 14;
+            bbiOpcoes.ImageOptions.SvgImage = Properties.Resources.properties;
+            bbiOpcoes.ItemShortcut = new DevExpress.XtraBars.BarShortcut(System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift | System.Windows.Forms.Keys.F10);
+            bbiOpcoes.Name = "bbiOpcoes";
+            bbiOpcoes.ItemClick += bbiOpcoes_ItemClick;
+            // 
+            // bsiTemas
+            // 
+            bsiTemas.Caption = "Temas";
+            bsiTemas.Id = 15;
+            bsiTemas.ImageOptions.Image = Properties.Resources.loadtheme_16x16;
+            bsiTemas.ImageOptions.LargeImage = Properties.Resources.loadtheme_32x32;
+            bsiTemas.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] { new DevExpress.XtraBars.LinkPersistInfo(skinDropDownButtonItem1), new DevExpress.XtraBars.LinkPersistInfo(skinPaletteDropDownButtonItem1) });
+            bsiTemas.Name = "bsiTemas";
             // 
             // skinDropDownButtonItem1
             // 
             skinDropDownButtonItem1.ActAsDropDown = true;
             skinDropDownButtonItem1.ButtonStyle = DevExpress.XtraBars.BarButtonStyle.DropDown;
-            skinDropDownButtonItem1.Id = 1;
+            skinDropDownButtonItem1.Id = 18;
             skinDropDownButtonItem1.Name = "skinDropDownButtonItem1";
             // 
             // skinPaletteDropDownButtonItem1
             // 
             skinPaletteDropDownButtonItem1.ActAsDropDown = true;
-            skinPaletteDropDownButtonItem1.Border = DevExpress.XtraEditors.Controls.BorderStyles.Default;
             skinPaletteDropDownButtonItem1.ButtonStyle = DevExpress.XtraBars.BarButtonStyle.DropDown;
-            skinPaletteDropDownButtonItem1.Id = 2;
+            skinPaletteDropDownButtonItem1.Id = 20;
             skinPaletteDropDownButtonItem1.Name = "skinPaletteDropDownButtonItem1";
             // 
             // bsiTelaAtual
@@ -362,19 +399,52 @@ namespace Importador
             lblImplantacao.Id = 4;
             lblImplantacao.Name = "lblImplantacao";
             // 
+            // bsiOpcoes
+            // 
+            bsiOpcoes.Caption = "Opções";
+            bsiOpcoes.Id = 12;
+            bsiOpcoes.ImageOptions.SvgImage = Properties.Resources.properties;
+            bsiOpcoes.ItemShortcut = new DevExpress.XtraBars.BarShortcut(System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F5);
+            bsiOpcoes.Name = "bsiOpcoes";
+            bsiOpcoes.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            // 
+            // blciTemas
+            // 
+            blciTemas.Caption = "Temas";
+            blciTemas.Id = 13;
+            blciTemas.Name = "blciTemas";
+            // 
+            // skinBarSubItem1
+            // 
+            skinBarSubItem1.Caption = "skinBarSubItem1";
+            skinBarSubItem1.Id = 17;
+            skinBarSubItem1.Name = "skinBarSubItem1";
+            // 
             // fluentFormDefaultManager1
             // 
             fluentFormDefaultManager1.AutoSaveInRegistry = true;
             fluentFormDefaultManager1.Form = this;
-            fluentFormDefaultManager1.Items.AddRange(new DevExpress.XtraBars.BarItem[] { blciTemas, skinDropDownButtonItem1, skinPaletteDropDownButtonItem1, bsiTelaAtual, lblImplantacao });
-            fluentFormDefaultManager1.MaxItemId = 6;
-            fluentFormDefaultManager1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] { repositoryItemComboBox1 });
+            fluentFormDefaultManager1.Items.AddRange(new DevExpress.XtraBars.BarItem[] { blciPreferencias, bsiTelaAtual, lblImplantacao, bsiOpcoes, blciTemas, bbiOpcoes, bsiTemas, skinBarSubItem1, skinDropDownButtonItem1, skinPaletteDropDownButtonItem1 });
+            fluentFormDefaultManager1.MaxItemId = 21;
+            fluentFormDefaultManager1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] { repositoryItemComboBox1, repositoryItemBreadCrumbEdit1, repositoryItemButtonEdit1 });
             // 
             // repositoryItemComboBox1
             // 
             repositoryItemComboBox1.AutoHeight = false;
             repositoryItemComboBox1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo) });
             repositoryItemComboBox1.Name = "repositoryItemComboBox1";
+            // 
+            // repositoryItemBreadCrumbEdit1
+            // 
+            repositoryItemBreadCrumbEdit1.AutoHeight = false;
+            repositoryItemBreadCrumbEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo) });
+            repositoryItemBreadCrumbEdit1.Name = "repositoryItemBreadCrumbEdit1";
+            // 
+            // repositoryItemButtonEdit1
+            // 
+            repositoryItemButtonEdit1.AutoHeight = false;
+            repositoryItemButtonEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton() });
+            repositoryItemButtonEdit1.Name = "repositoryItemButtonEdit1";
             // 
             // skin
             // 
@@ -455,6 +525,8 @@ namespace Importador
             fluentDesignFormControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)fluentFormDefaultManager1).EndInit();
             ((System.ComponentModel.ISupportInitialize)repositoryItemComboBox1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)repositoryItemBreadCrumbEdit1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)repositoryItemButtonEdit1).EndInit();
             ((System.ComponentModel.ISupportInitialize)barManager1).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -479,9 +551,7 @@ namespace Importador
         private DevExpress.XtraBars.Navigation.AccordionControlElement acImportacaoGenerico;
         private DevExpress.XtraBars.Navigation.AccordionControlElement acUtilitarios;
         private DevExpress.XtraBars.Navigation.AccordionControlElement acUtilitariosBuscarColuna;
-        private DevExpress.XtraBars.BarLinkContainerItem blciTemas;
-        private DevExpress.XtraBars.SkinDropDownButtonItem skinDropDownButtonItem1;
-        private DevExpress.XtraBars.SkinPaletteDropDownButtonItem skinPaletteDropDownButtonItem1;
+        private DevExpress.XtraBars.BarLinkContainerItem blciPreferencias;
         private DevExpress.XtraBars.Navigation.AccordionControlElement acGeral;
         private DevExpress.XtraBars.Navigation.AccordionControlElement acGeralImplantacao;
         private DevExpress.XtraBars.Navigation.AccordionControlElement acGeralRelatorio;
@@ -503,6 +573,17 @@ namespace Importador
         private DevExpress.XtraEditors.Repository.RepositoryItemComboBox repositoryItemComboBox1;
         private DevExpress.XtraBars.Navigation.AccordionControlElement acImportacaoCentralizador;
         private DevExpress.XtraBars.Navigation.AccordionControlElement acUtilitariosScriptSQL;
+        private DevExpress.XtraBars.Navigation.AccordionControlElement acUtilitariosPython;
+        private DevExpress.Utils.WorkspaceManager workspaceManager1;
+        private DevExpress.XtraBars.BarStaticItem bsiOpcoes;
+        private DevExpress.XtraEditors.Repository.RepositoryItemBreadCrumbEdit repositoryItemBreadCrumbEdit1;
+        private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit repositoryItemButtonEdit1;
+        private DevExpress.XtraBars.BarLinkContainerItem blciTemas;
+        private DevExpress.XtraBars.BarButtonItem bbiOpcoes;
+        private DevExpress.XtraBars.BarSubItem bsiTemas;
+        private DevExpress.XtraBars.SkinDropDownButtonItem skinDropDownButtonItem1;
+        private DevExpress.XtraBars.SkinBarSubItem skinBarSubItem1;
+        private DevExpress.XtraBars.SkinPaletteDropDownButtonItem skinPaletteDropDownButtonItem1;
     }
 }
 

@@ -31,7 +31,7 @@ namespace Importador.Formularios
             dpFiscal.ControlContainer.Controls.Add(new UCFiscal() { Dock = DockStyle.Fill});
             dpNomenclaturasEncontradas.ControlContainer.Controls.Add(new UCNomenclaturas() { Dock = DockStyle.Fill});
             dpSistemasImportados.ControlContainer.Controls.Add(new UCSistemasImportados() { Dock = DockStyle.Fill});
-            // dpSoftwaresUteis.Controls.Add(null);
+            dpSoftwaresUteis.ControlContainer.Controls.Add(new UCSoftwaresUteis { Dock = DockStyle.Fill});
         }
 
         private void frmAuxiliar_FormClosing(object sender, FormClosingEventArgs e)

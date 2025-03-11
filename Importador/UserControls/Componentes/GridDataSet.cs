@@ -10,7 +10,6 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static Importador.Classes.Utils;
@@ -20,6 +19,7 @@ namespace Importador.UserControls.Componentes
     public partial class GridDataSet : DevExpress.XtraEditors.XtraUserControl
     {
         private string _cmd = "";
+        private IDbConnection _conexao;
 
         public GridDataSet()
         {
@@ -31,6 +31,7 @@ namespace Importador.UserControls.Componentes
             InitializeComponent();
             gcRegistros.DataSource = null;
             _cmd = cmd.CommandText;
+            _conexao = cmd.Connection;
 
             gridView1.Columns.Clear();
             gridView1.OptionsView.ColumnAutoWidth = false;
@@ -53,7 +54,7 @@ namespace Importador.UserControls.Componentes
                 {
                     await Task.Run(()=>CriarTXT(Utils.ExportSQLtoText(_cmd), caminho));
                 }else if(Path.GetExtension(caminho) == ".xlsx"){
-                    await Task.Run(()=>CriarXLSX(Utils.GetDataTable(_cmd), caminho));
+                    await Task.Run(()=>CriarXLSX(Utils.GetDataTable(_cmd, _conexao), caminho));
                 }
 
                 Utils.MostrarNotificacao($"Arquivo {Path.GetFileName(caminho)} exportado!", "Exportação de Arquivos");

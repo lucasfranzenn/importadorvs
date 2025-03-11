@@ -12,11 +12,11 @@ namespace Importador.Classes
     {
         public static async Task<JiraIssue> GetIssueOnJira(string issue_id)
         {
-            Uri uri = new($"https://lucas-franzenn.atlassian.net/rest/api/3/search?jql=summary~\"{issue_id}*\" and issuetype=\"10026\"&fields=summary,customfield_10070,customfield_10071,customfield_10072,customfield_10073,customfield_10074,customfield_10075,customfield_10068, customfield_10081, customfield_10082");
+            Uri uri = new(IniFile.Read("Integracao", "JiraEndPoint").Replace(@"\", @"").Replace("{issue_id}", issue_id));
 
             using (HttpClient client = new HttpClient())
             {
-                string credentials = Convert.ToBase64String(Encoding.ASCII.GetBytes(Utils.LerArquivo(Constantes.Caminhos.AuthJira)));
+                string credentials = Convert.ToBase64String(Encoding.ASCII.GetBytes(IniFile.Read("Integracao", "JiraAuth")));
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", credentials);
 
                 try

@@ -39,8 +39,8 @@
             btnObservacao = new DevExpress.XtraEditors.SimpleButton();
             cbEnviarValidacoes = new DevExpress.XtraEditors.CheckEdit();
             gcParametros = new DevExpress.XtraEditors.GroupControl();
-            MyC = new Componentes.TabelaMyCommerce(components);
             cbUparNoDrive = new DevExpress.XtraEditors.CheckEdit();
+            MyC = new Componentes.TabelaMyCommerce(components);
             ((System.ComponentModel.ISupportInitialize)txtDestinoBackup.Properties).BeginInit();
             ((System.ComponentModel.ISupportInitialize)gcGridTabelas).BeginInit();
             ((System.ComponentModel.ISupportInitialize)gridView1).BeginInit();
@@ -155,10 +155,6 @@
             gcParametros.TabIndex = 20;
             gcParametros.Text = "groupControl1";
             // 
-            // MyC
-            // 
-            MyC.Tabela = Classes.Constantes.Enums.TabelaMyCommerce.backup;
-            // 
             // cbUparNoDrive
             // 
             cbUparNoDrive.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left;
@@ -168,6 +164,10 @@
             cbUparNoDrive.Properties.Caption = "Fazer o upload no Drive?";
             cbUparNoDrive.Size = new System.Drawing.Size(192, 20);
             cbUparNoDrive.TabIndex = 20;
+            // 
+            // MyC
+            // 
+            MyC.Tabela = Classes.Constantes.Enums.TabelaMyCommerce.backup;
             // 
             // UCBackup
             // 

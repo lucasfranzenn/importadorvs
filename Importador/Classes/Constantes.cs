@@ -14,9 +14,6 @@ namespace Importador.Classes
             public const string exeRar = @"Configuracao\rar";
             public const string pdfImportacaoFiscal = @"Configuracao\importacao_fiscal.pdf";
             public const string relatorioGeral = @"Relatorios\Modelos\Geral.frx";
-            public const string AuthJira = @"Configuracao\jira";
-            public const string CredencialDrive = @"Configuracao\cred.json";
-            public const string PastaPaiDrive = @"Configuracao\parentFolderId";
             public const string SqlPadroes = @"Configuracao\sql_padrao.json";
         }
 
@@ -166,7 +163,8 @@ namespace Importador.Classes
                 {"cbVincularPorReferencia", GerenciadorImportacao.VincularProdPorCodigoImpDados },
                 {"cbVincularCodBarPorReferencia", GerenciadorImportacao.VincularCodBarPorCodigoImpDados },
                 {"cbImportarEstoque", GerenciadorImportacao.ImportarEstoque },
-                {"cbImportarCodBarras", GerenciadorImportacao.ImportarCodBarrasAdicionais }
+                {"cbImportarCodBarras", GerenciadorImportacao.ImportarCodBarrasAdicionais },
+                {"cbVincularCliForCodImpDados", GerenciadorImportacao.VincularProdFornPorCodigoImpDados }
             };
 
             public static readonly Dictionary<string, Func<object, object>> FuncoesPosImportacaoPorParametro = new()
@@ -189,7 +187,7 @@ namespace Importador.Classes
                         "UPDATE CLIENTES SET RAZAOSOCIAL = NOMEFANTASIA WHERE RAZAOSOCIAL = ''",
                         "UPDATE clientes set FisicaJuridica ='F', ConsFinal =1 WHERE cpf  is not null and FisicaJuridica is null",
                         "UPDATE clientes set FisicaJuridica ='J' WHERE cnpj  is not null and FisicaJuridica is null",
-                        "UPDATE clientes SET datacadastro =  CURDATE() ; ",
+                        "UPDATE clientes SET datacadastro =  CURDATE() where datacadastro is null; ",
                         "ALTER TABLE `clientes` CHANGE COLUMN `Usuario` `Usuario` VARCHAR(45) NULL COLLATE 'latin1_swedish_ci', CHANGE COLUMN `Terminal` `Terminal` VARCHAR(45) NULL COLLATE 'latin1_swedish_ci';",
                         "UPDATE CLIENTES SET USUARIO = 'MASTER', Terminal='SERVER';",
                         "UPDATE clientes cl LEFT JOIN cidades ci ON cl.Cidade = ci.Cidade AND cl.UF = ci.UF SET cl.CodigoCidadeIbge = ci.Codigo WHERE cl.CodigoCidadeIbge IS NULL;",
@@ -209,7 +207,7 @@ namespace Importador.Classes
                         "UPDATE PRODUTOS SET Usuario  = 'MASTER' WHERE Usuario  = '' OR Usuario  IS NULL",
                         "UPDATE PRODUTOS SET TipoProduto = 'Revenda' WHERE  TipoProduto  = '' OR TipoProduto IS NULL",
                         "UPDATE PRODUTOS SET BaseCalculoICMS = 100 WHERE BaseCalculoICMS IS NULL",
-                        "update produtos p SET  p.custofinal = ifnull(p.valorcusto,0) + ifnull(p.OutrosCustos,0), datacadastro = CURDATE()",
+                        "update produtos p SET  p.custofinal = ifnull(p.valorcusto,0) + ifnull(p.OutrosCustos,0), datacadastro = ifnull(datacadastro, CURDATE())",
                         "update produtos set percentualt1=(vendat1/if(coalesce(valorcusto,0) = 0, 1, ValorCusto))*100-100",
                         "update produtos set percentualt1 = truncate(percentualt1,2)",
                         "update produtos set unvenda = 'UN' Where unvenda is null",

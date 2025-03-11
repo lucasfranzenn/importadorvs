@@ -373,6 +373,26 @@ namespace Importador.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap loadtheme_16x16 {
+            get {
+                object obj = ResourceManager.GetObject("loadtheme_16x16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap loadtheme_32x32 {
+            get {
+                object obj = ResourceManager.GetObject("loadtheme_32x32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap mariadb {
             get {
                 object obj = ResourceManager.GetObject("mariadb", resourceCulture);
@@ -516,6 +536,16 @@ namespace Importador.Properties {
         internal static DevExpress.Utils.Svg.SvgImage products {
             get {
                 object obj = ResourceManager.GetObject("products", resourceCulture);
+                return ((DevExpress.Utils.Svg.SvgImage)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo DevExpress.Utils.Svg.SvgImage.
+        /// </summary>
+        internal static DevExpress.Utils.Svg.SvgImage properties {
+            get {
+                object obj = ResourceManager.GetObject("properties", resourceCulture);
                 return ((DevExpress.Utils.Svg.SvgImage)(obj));
             }
         }
