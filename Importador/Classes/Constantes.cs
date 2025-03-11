@@ -14,7 +14,6 @@ namespace Importador.Classes
             public const string exeRar = @"Configuracao\rar";
             public const string pdfImportacaoFiscal = @"Configuracao\importacao_fiscal.pdf";
             public const string relatorioGeral = @"Relatorios\Modelos\Geral.frx";
-            public const string SqlPadroes = @"Configuracao\sql_padrao.json";
         }
 
         public static class Enums
@@ -147,7 +146,8 @@ namespace Importador.Classes
                 {"fax", new List<Func<object, object>> { Formatadores.FormataTelefone  } },
                 {"vencimento", new List<Func<object, object>> {Formatadores.FormataData} },
                 {"vencimentooriginal", new List<Func<object, object>> {Formatadores.FormataData} },
-                {"datalancamento", new List<Func<object, object>> {Formatadores.FormataData} }
+                {"datalancamento", new List<Func<object, object>> {Formatadores.FormataData} },
+                {"empresa", new List<Func<object, object>> {Formatadores.FormataEmpresa} }
             };
 
             public static readonly Dictionary<string, Func<object, object>> FuncoesPreImportacaoPorParametro = new()

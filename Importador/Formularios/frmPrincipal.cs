@@ -104,16 +104,16 @@ namespace Importador
 
             Configuracoes.Default.UsuarioLogado = GetUsuarioSID();
 
-            lblImplantacao.Caption = $"Imp. {Configuracoes.Default.CodigoImplantacao}";
+            lblImplantacao.Caption = $"Imp. {Configuracoes.Default.CodigoImplantacao}::{Configuracoes.Default.Empresa}";
 
             Configuracoes.Default.PropertyChanged += CodigoImplantacao_Change;
         }
 
         private void CodigoImplantacao_Change(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == nameof(Configuracoes.Default.CodigoImplantacao))
+            if (e.PropertyName == nameof(Configuracoes.Default.CodigoImplantacao) || e.PropertyName == nameof(Configuracoes.Default.Empresa))
             {
-                lblImplantacao.Caption = $"Imp. {Configuracoes.Default.CodigoImplantacao}";
+                lblImplantacao.Caption = $"Imp. {Configuracoes.Default.CodigoImplantacao}::{Configuracoes.Default.Empresa}";
             }
         }
 

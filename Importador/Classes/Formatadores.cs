@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Importador.Properties;
+using System;
 using System.Linq;
 
 namespace Importador.Classes
@@ -65,6 +66,11 @@ namespace Importador.Classes
             if (string.IsNullOrEmpty(str.ToString())) return DBNull.Value;
 
             return str.ToString().Replace("'", "\\'");
+        }
+
+        internal static object FormataEmpresa(object empresa)
+        {
+            return (empresa.ToString() == "0" ? null : empresa) ?? Configuracoes.Default.Empresa;
         }
     }
 }
