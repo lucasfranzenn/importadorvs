@@ -201,6 +201,10 @@ namespace Importador.Classes
 
             using IDataReader reader = cmd.ExecuteReader();
             DataTable dt = new();
+
+            dt.Columns.Add("tabela", typeof(string));
+            dt.Columns.Add("coluna", typeof(string));
+
             dt.Load(reader, LoadOption.OverwriteChanges);
             return dt;
         }

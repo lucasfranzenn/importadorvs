@@ -37,8 +37,8 @@ namespace Importador
         {
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPrincipal));
-            DevExpress.Utils.SuperToolTip superToolTip1 = new DevExpress.Utils.SuperToolTip();
-            DevExpress.Utils.ToolTipItem toolTipItem1 = new DevExpress.Utils.ToolTipItem();
+            DevExpress.Utils.SuperToolTip superToolTip3 = new DevExpress.Utils.SuperToolTip();
+            DevExpress.Utils.ToolTipItem toolTipItem3 = new DevExpress.Utils.ToolTipItem();
             fcPrincipal = new DevExpress.XtraBars.FluentDesignSystem.FluentDesignFormContainer();
             btnSair = new SimpleButton();
             acPrincipal = new DevExpress.XtraBars.Navigation.AccordionControl();
@@ -323,11 +323,11 @@ namespace Importador
             acUtilitariosRecursos.ImageOptions.SvgImage = Properties.Resources.functionsinformation;
             acUtilitariosRecursos.Name = "acUtilitariosRecursos";
             acUtilitariosRecursos.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
-            toolTipItem1.AllowHtmlText = DevExpress.Utils.DefaultBoolean.True;
-            toolTipItem1.ImageOptions.SvgImage = Properties.Resources.functionsinformation;
-            toolTipItem1.Text = "Recursos de apoio para facilitar a importação.\r\nEstá incluso: \r\n * Nomenclaturas de colunas;\r\n * Validações Fiscais;\r\n * Sistemas Importados;\r\n * Software Úteis;\r\n * Dicas de Bancos de Dados.";
-            superToolTip1.Items.Add(toolTipItem1);
-            acUtilitariosRecursos.SuperTip = superToolTip1;
+            toolTipItem3.AllowHtmlText = DevExpress.Utils.DefaultBoolean.True;
+            toolTipItem3.ImageOptions.SvgImage = Properties.Resources.functionsinformation;
+            toolTipItem3.Text = "Recursos de apoio para facilitar a importação.\r\nEstá incluso: \r\n * Nomenclaturas de colunas;\r\n * Validações Fiscais;\r\n * Sistemas Importados;\r\n * Software Úteis;\r\n * Dicas de Bancos de Dados.";
+            superToolTip3.Items.Add(toolTipItem3);
+            acUtilitariosRecursos.SuperTip = superToolTip3;
             acUtilitariosRecursos.Text = "Recursos de Apoio";
             acUtilitariosRecursos.Click += acUtilitariosAuxiliar_Click;
             // 
