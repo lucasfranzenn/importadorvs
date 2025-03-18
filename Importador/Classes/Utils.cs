@@ -98,7 +98,7 @@ namespace Importador.Classes
         {
             Dictionary<string, string> consultas = JsonConvert.DeserializeObject<Dictionary<string, string>>(File.ReadAllText(IniFile.Read("AmbienteGeral", "DefaultSQLPath"))) ?? new Dictionary<string, string>();
 
-            if (consultas.TryGetValue(tabela, out string sql)) return sql.Replace("@", Environment.NewLine);
+            if (consultas.TryGetValue(tabela.ToLower(), out string sql)) return sql.Replace("@", Environment.NewLine);
 
             return SQLPadrao.Default[tabela].ToString().Replace("@", Environment.NewLine);
         }

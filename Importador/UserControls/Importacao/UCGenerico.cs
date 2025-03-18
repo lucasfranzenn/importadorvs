@@ -92,7 +92,7 @@ namespace Importador.UserControls.Importacao
             }
 
             var cmd = ConexaoBancoImportador.instancia.conexao.CreateCommand();
-            cmd.CommandText = $"select tabelaconsulta from consultas where codigoimplantacao = {Configuracoes.Default.CodigoImplantacao} and tabelaconsulta not in ('{string.Join("', '", (Enums.TabelaMyCommerce[])Enum.GetValues(typeof(Enums.TabelaMyCommerce)))}') and tabelaconsulta not like 'scriptsql-%'";
+            cmd.CommandText = $"select tabelaconsulta from consultas where codigoimplantacao = {Configuracoes.Default.CodigoImplantacao} and tabelaconsulta not in ('{string.Join("', '", (Enums.TabelaMyCommerce[])Enum.GetValues(typeof(Enums.TabelaMyCommerce)))}') and tabelaconsulta not like 'scriptsql-%' group by tabelaconsulta";
 
             using (var reader = cmd.ExecuteReader())
                 while (reader.Read())

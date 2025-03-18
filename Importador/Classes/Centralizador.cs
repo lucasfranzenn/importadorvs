@@ -130,7 +130,7 @@ namespace Importador.Classes
 
             pbImportacao.Invoke((MethodInvoker)(() =>
             {
-                pbImportacao.Properties.Maximum = 5;
+                pbImportacao.Properties.Maximum = 6;
                 pbImportacao.EditValue = 0;
             }));
 
@@ -153,6 +153,11 @@ namespace Importador.Classes
                 cmd_update_insert.ExecuteNonQuery();
                 pbImportacao.Invoke((MethodInvoker)(() => pbImportacao.PerformStep()));
             }
+
+            //Atualiza o valor das tabelas de preco
+            cmd_update_insert.CommandText = $"update tabelas_preco_produto join produtos on tabelas_preco_produto.CodigoProduto = produtos.InfNutri_CodigoAdicional_429 and produtos.CodigoCampoExtra1 = tabelas_preco_produto.empresa set tabelas_preco_produto.preco = produtos.vendat1 where produtos.Ativo = 0";
+            cmd_update_insert.ExecuteNonQuery();
+            pbImportacao.Invoke((MethodInvoker)(() => pbImportacao.PerformStep()));
         }
 
         internal void AjustarSecoes(ProgressBarControl pbImportacao)

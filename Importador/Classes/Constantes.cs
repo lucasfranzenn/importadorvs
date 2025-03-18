@@ -147,7 +147,8 @@ namespace Importador.Classes
                 {"vencimento", new List<Func<object, object>> {Formatadores.FormataData} },
                 {"vencimentooriginal", new List<Func<object, object>> {Formatadores.FormataData} },
                 {"datalancamento", new List<Func<object, object>> {Formatadores.FormataData} },
-                {"empresa", new List<Func<object, object>> {Formatadores.FormataEmpresa} }
+                {"empresa", new List<Func<object, object>> {Formatadores.FormataEmpresa} },
+                {"cest", new List<Func<object, object>> {Formatadores.FormataCEST} }
             };
 
             public static readonly Dictionary<string, Func<object, object>> FuncoesPreImportacaoPorParametro = new()

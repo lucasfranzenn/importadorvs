@@ -15,6 +15,15 @@ namespace Importador.Classes
             return $"{ncmString.Substring(0, 4)}.{ncmString.Substring(4, 2)}.{ncmString.Substring(6, 2)}";
         }
 
+        public static object FormataCEST(object cest)
+        {
+            if (string.IsNullOrWhiteSpace(cest.ToString())) return DBNull.Value;
+
+            string ncmString = new string(cest.ToString().Where(char.IsDigit).ToArray()).PadRight(8, '0');
+
+            return ncmString;
+        }
+
         internal static object FormataCEP(object cep)
         {
             string cepString = new string(cep.ToString().Where(char.IsDigit).ToArray()).PadRight(8, '0');
