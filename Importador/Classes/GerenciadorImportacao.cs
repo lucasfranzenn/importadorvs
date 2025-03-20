@@ -28,7 +28,7 @@ namespace Importador.Classes
             StringBuilder sbSql = new();
             IDbCommand sqlQuery = ConexaoManager.instancia.GetConexaoImportacao().CriarComando();
             int qtdRegistros = GetQtdRegistros(sql);
-            int registroAtual = 1;
+            int registroAtual = 1, i = 0;
             object value = null;
             IDbDataParameter parameter = null;
             var ListaFuncoesValidadoras = Mapeamento.FuncoesDuranteImportacaoPorParametro.Keys.Where(k => parametros.Select(p => p.Name).Contains(k)).ToList();
@@ -58,7 +58,7 @@ namespace Importador.Classes
             int[] tamColunas = new int[qtdColunas];
             string[] datatypeColunas = new string[qtdColunas];
 
-            for (int i = 0; i < qtdColunas; i++)
+            for (i = 0; i < qtdColunas; i++)
             {
                 nomeColunas[i] = reader.GetName(i).ToLower();
                 tamColunas[i] = GetTamanhoColuna(nomeColunas[i], tabela);
@@ -99,22 +99,30 @@ namespace Importador.Classes
                     }
                     #endregion
 
-                    for (int i = 0; i < qtdColunas; i++)
+                    try
                     {
-                        value = reader.GetValue(i);
+                        for (i = 0; i < qtdColunas; i++)
+                        {
+                            value = reader.GetValue(i);
 
-                        if (Mapeamento.FuncoesFormatadorasPorColuna.ContainsKey(nomeColunas[i])) Mapeamento.FuncoesFormatadorasPorColuna[nomeColunas[i]].ForEach(func => value = func(value));
-                        parameter = cmd.CreateParameter();
-                        parameter.ParameterName = $"@{nomeColunas[i]}";
+                            if (Mapeamento.FuncoesFormatadorasPorColuna.ContainsKey(nomeColunas[i])) Mapeamento.FuncoesFormatadorasPorColuna[nomeColunas[i]].ForEach(func => value = func(value));
+                            parameter = cmd.CreateParameter();
+                            parameter.ParameterName = $"@{nomeColunas[i]}";
 
-                        parameter.Value = Utils.CastDataType(datatypeColunas[i], value, tamColunas[i]);
+                            parameter.Value = Utils.CastDataType(datatypeColunas[i], value, tamColunas[i]);
 
-                        cmd.Parameters.Add(parameter);
+                            cmd.Parameters.Add(parameter);
 
-                        value = null;
+                            value = null;
+                        }
+                        cmd.ExecuteNonQuery();
+                        cmd.CommandText = null;
                     }
-                    cmd.ExecuteNonQuery();
-                    cmd.CommandText = null;
+                    catch (Exception)
+                    {
+                        XtraMessageBox.Show($"Erro ao importar dados:\nColuna: {nomeColunas[i]}\nDado: {value}", "..::Importador de Dados::..", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
 
                 ProximoItem:;
                     //Incrementa a progressbar e atualiza o seu texto
