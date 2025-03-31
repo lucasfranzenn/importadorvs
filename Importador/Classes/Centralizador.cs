@@ -127,6 +127,7 @@ namespace Importador.Classes
         public void AjustarProdutos(ProgressBarControl pbImportacao)
         {
             IDbCommand cmd_update_insert = ConexaoManager.instancia.GetConexaoMyCommerce().CriarComando();
+            int qtd_execucoes;
 
             pbImportacao.Invoke((MethodInvoker)(() =>
             {
@@ -134,16 +135,25 @@ namespace Importador.Classes
                 pbImportacao.EditValue = 0;
             }));
 
+
             #region Produto EAN-8
-            cmd_update_insert.CommandText = "update	produtos	join (select codigo, codigobarras from produtos	where char_length(trim(leading '0' from codigobarras)) >= 8 and ativo != 0 group by codigobarras having	count(codigobarras)>1	order by codigo asc ) bb on produtos.CodigoBarras = bb.codigobarras	set status = 'x', ativo =0, UserID = 'Importacao', UsuarioExclusao =1,	TerminalExclusao ='IMPORTACAO', MotivoExclusao=concat('PRODUTO DUPLICADO, MANTIDO: ', bb.codigo),DataHoraExclusao =now(),	InfNutri_CodigoAdicional_429 = bb.codigo	where produtos.CodigoBarras = bb.codigobarras and produtos.codigo <> bb.codigo and produtos.ativo != 0";
-            cmd_update_insert.ExecuteNonQuery();
-            pbImportacao.Invoke((MethodInvoker)(() => pbImportacao.PerformStep()));
+            qtd_execucoes = Convert.ToInt32(ConexaoManager.instancia.GetConexaoMyCommerce().ExecuteScalar($"select count(*) from produtos where char_length(trim(leading '0' from codigobarras)) >= 8 and ativo != 0 group by codigobarras having count(codigobarras)>1 order by count(*) desc limit 1"));
+            for(int i=1; i < qtd_execucoes; i++)
+            {
+                cmd_update_insert.CommandText = "update	produtos	join (select codigo, codigobarras from produtos	where char_length(trim(leading '0' from codigobarras)) >= 8 and ativo != 0 group by codigobarras having	count(codigobarras)>1	order by codigo asc ) bb on produtos.CodigoBarras = bb.codigobarras	set status = 'x', ativo =0, UserID = 'Importacao', UsuarioExclusao =1,	TerminalExclusao ='IMPORTACAO', MotivoExclusao=concat('PRODUTO DUPLICADO, MANTIDO: ', bb.codigo),DataHoraExclusao =now(),	InfNutri_CodigoAdicional_429 = bb.codigo	where produtos.CodigoBarras = bb.codigobarras and produtos.codigo <> bb.codigo and produtos.ativo != 0";
+                cmd_update_insert.ExecuteNonQuery();
+                pbImportacao.Invoke((MethodInvoker)(() => pbImportacao.PerformStep()));
+            }
             #endregion
 
             #region Produtos com Código Interno
-            cmd_update_insert.CommandText = "update	produtos join (	select		codigo,		descricao	from		produtos	where		char_length(trim(leading '0' from codigobarras)) < 8		and ativo != 0	group by		Descricao 	having		count(Descricao)>1	order by		codigo asc ) bb on	produtos.descricao = bb.descricao set	status = 'x',	ativo = 0,	UserID = 'Importacao',	UsuarioExclusao = 1,	TerminalExclusao = 'IMPORTACAO',	MotivoExclusao = concat('PRODUTO DUPLICADO, MANTIDO: ', bb.codigo),	DataHoraExclusao = now(),	InfNutri_CodigoAdicional_429 = bb.codigo where	produtos.descricao = bb.descricao	and produtos.codigo <> bb.codigo	and produtos.ativo != 0";
-            cmd_update_insert.ExecuteNonQuery();
-            pbImportacao.Invoke((MethodInvoker)(() => pbImportacao.PerformStep()));
+            qtd_execucoes = Convert.ToInt32(ConexaoManager.instancia.GetConexaoMyCommerce().ExecuteScalar($"select count(*) from produtos where char_length(trim(leading '0' from codigobarras)) < 8 and ativo != 0 group by codigobarras having count(codigobarras)>1 order by count(*) desc limit 1"));
+            for (int i = 1; i < qtd_execucoes; i++)
+            {
+                cmd_update_insert.CommandText = "update	produtos join (	select		codigo,		descricao	from		produtos	where		char_length(trim(leading '0' from codigobarras)) < 8		and ativo != 0	group by		Descricao 	having		count(Descricao)>1	order by		codigo asc ) bb on	produtos.descricao = bb.descricao set	status = 'x',	ativo = 0,	UserID = 'Importacao',	UsuarioExclusao = 1,	TerminalExclusao = 'IMPORTACAO',	MotivoExclusao = concat('PRODUTO DUPLICADO, MANTIDO: ', bb.codigo),	DataHoraExclusao = now(),	InfNutri_CodigoAdicional_429 = bb.codigo where	produtos.descricao = bb.descricao	and produtos.codigo <> bb.codigo	and produtos.ativo != 0";
+                cmd_update_insert.ExecuteNonQuery();
+                pbImportacao.Invoke((MethodInvoker)(() => pbImportacao.PerformStep()));
+            }
             #endregion
 
             //Atualiza estoque do produto duplicado para o produto correto;

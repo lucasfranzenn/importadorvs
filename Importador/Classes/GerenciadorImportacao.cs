@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using System.Text;
 using static Importador.Classes.Constantes;
 using static Importador.Classes.Utils;
+using System.Data.Common;
 
 namespace Importador.Classes
 {
@@ -99,8 +100,6 @@ namespace Importador.Classes
                     }
                     #endregion
 
-                    try
-                    {
                         for (i = 0; i < qtdColunas; i++)
                         {
                             value = reader.GetValue(i);
@@ -117,12 +116,6 @@ namespace Importador.Classes
                         }
                         cmd.ExecuteNonQuery();
                         cmd.CommandText = null;
-                    }
-                    catch (Exception)
-                    {
-                        XtraMessageBox.Show($"Erro ao importar dados:\nColuna: {nomeColunas[i]}\nDado: {value}", "..::Importador de Dados::..", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
-                    }
 
                 ProximoItem:;
                     //Incrementa a progressbar e atualiza o seu texto
