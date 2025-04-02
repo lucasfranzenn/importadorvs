@@ -98,7 +98,9 @@ namespace Importador.Classes
                 QtdQuitadasPendentes,
                 RegQuitadasPendentes,
                 GetProdSN,
-                GetProdLucro
+                GetProdLucro,
+                GetCodbar,
+                GetCodBarDuplicado
             }
         }
 
@@ -118,6 +120,8 @@ namespace Importador.Classes
                 {Enums.ConsultasValidacoes.RegQuitadasPendentes, "select sequencia, codigo, razaosocial, ndocumento, valor, valorpago, valorpendente, quitado, dataquitacao, vencimento from contasareceber c where Quitado = 1 and ValorPendente <> 0 union all select sequencia, codigo, razaosocial, ndocumento, valor, valorpago, valorpendente, quitado, dataquitacao, vencimento from contasapagar c where Quitado = 1 and ValorPendente <> 0" },
                 {Enums.ConsultasValidacoes.GetProdSN, "select CodigoImportacaoDados, Codigo, Descricao, p.NCM, p.Cest, (tc.ncm is not null) as ExisteCest, Cst_Pis_Simples as pis, Cst_Cofins_Simples as cofins, Cst_IPI_Simples as cstipi , IPI, CodigoEnqIPI, CST_Simples as cst, BaseCalculoICMS, AliquotaICMS, Aliq_Pis_Simples as aliqpis, Aliq_Cofins_Simples as aliqcofins, CodNaturezaPis from produtos p left join (select distinct ncm from tabela_cest) tc on replace(p.NCM, '.', '') = tc.NCM" },
                 {Enums.ConsultasValidacoes.GetProdLucro, "select CodigoImportacaoDados, Codigo, Descricao, p.NCM, p.Cest, (tc.ncm is not null) as ExisteCest, CST_PIS as pis , CST_COFINS as cofins, CSt_IPI as cstipi, IPI, CodigoEnqIPI, CodigoCF as cst , BaseCalculoICMS, AliquotaICMS, Aliq_PIS as aliqpis, Aliq_COFINS as aliqcofins, CodNaturezaPis from produtos p left join (select distinct ncm from tabela_cest) tc on replace(p.NCM, '.', '') = tc.NCM\r\n" },
+                {Enums.ConsultasValidacoes.GetCodbar, "select codigoimportacaodados, codigo as codigoproduto, codigobarras as barcode from produtos where codigobarras is not null and ativo=-1 and length(codigobarras)>6 group by codigobarras having count(*)=1" },
+                {Enums.ConsultasValidacoes.GetCodBarDuplicado, "select codigoantigo, codigoproduto, barcode from (select codigoimportacaodados as codigoantigo, codigo as codigoproduto, codigobarras as barcode from produtos where codigobarras is not null union all select produtos.codigoimportacaodados as codigoantigo, codigoproduto, barcode from produtosbarcode join produtos on produtosbarcode.CodigoProduto  = produtos.codigo and produtos.ativo=-1) a group by barcode having count(*)>1" }
             };
 
             public static readonly Dictionary<Enums.RelatorioGeralDataTable, string> ConsultaPorDataTable = new()

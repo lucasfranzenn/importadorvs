@@ -8,7 +8,7 @@ namespace Importador.UserControls.Importacao
 {
     public partial class UCValidacoes : UCBase
     {
-        const int qtdeValidacoes = 5;
+        const int qtdeValidacoes = 7;
         const int qtdeAjustes = 1;
 
         public UCValidacoes()
@@ -48,6 +48,12 @@ namespace Importador.UserControls.Importacao
             AtualizaProgressBar();
 
             txtLog.AppendText(Validacoes.VerificarFiscal());
+            AtualizaProgressBar();
+
+            txtLog.AppendText(Validacoes.VerificarEanInvalido());
+            AtualizaProgressBar();
+
+            txtLog.AppendText(Validacoes.VerificarEanDuplicado());
             AtualizaProgressBar();
         }
 

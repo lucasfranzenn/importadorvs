@@ -1,4 +1,5 @@
 ﻿using DevExpress.CodeParser;
+using DevExpress.XtraScheduler.Commands;
 using Importador.Conexao;
 using Importador.Properties;
 using System;
@@ -21,7 +22,7 @@ namespace Importador.Classes
         {
             _retorno.Clear();
 
-            _cmd = ConexaoManager.instancia.GetConexaoMyCommerce().CreateCommand();
+            _cmd = ConexaoManager.instancia.GetConexaoMyCommerce().CriarComando();
 
             _retorno.AdicionarLinhaLog("Ajustando IBGE");
 
@@ -46,6 +47,8 @@ namespace Importador.Classes
             sb.Append(VerificarCPFCNPJDuplicado());
             sb.Append(VerificarContasQuitadasPendentes());
             sb.Append(VerificarFiscal());
+            sb.Append(VerificarEanInvalido());
+            sb.Append(VerificarEanDuplicado());
 
             Utils.CriarTXT(sb.ToString(), $"Validacoes\\log_validacoes");
             Utils.GerarComoUsar();
@@ -488,6 +491,130 @@ namespace Importador.Classes
             if (_qtdRegistros > 0)
             {
                 Utils.CriarTXT(Utils.ExportSQLtoText(Constantes.Mapeamento.ConsultaPorValidacao.GetValueOrDefault(Constantes.Enums.ConsultasValidacoes.RegNCM)), $"{_nomeLog}");
+            }
+
+            return _retorno.ToString();
+        }
+
+        internal static string VerificarEanInvalido()
+        {
+            string eanProduto, strCod;
+            int finalPar, finalImpar, eanTamanho, somaPar, somaImpar, totalSoma, dv;
+
+            _retorno.Clear();
+            _nomeLog = "Validacoes\\ean_invalidos";
+
+            string[] cabecalhos = { "CodigoSistemaAntigo", "CodigoMyCommerce", "Descricao", "Codigo Barras" };
+            string erro;
+            List<string[]> listaRegistros = new List<string[]>();
+
+            _retorno.AdicionarLinhaLog("Iniciando validações de EAN");
+            _retorno.AdicionarLinhaLog("Executando Consulta SQL.");
+
+            _cmd.CommandText = Constantes.Mapeamento.ConsultaPorValidacao.GetValueOrDefault(Constantes.Enums.ConsultasValidacoes.GetCodbar);
+            IDataReader reader = _cmd.ExecuteReader();
+
+            while (reader.Read())
+            {
+                somaImpar = 0;
+                somaPar = 0;
+                totalSoma = 0;
+                dv = 0;
+
+                eanProduto = reader["barcode"].ToString();
+                eanTamanho = eanProduto.Length;
+                strCod = eanProduto.Substring(0, eanTamanho - 1);
+
+                if (eanProduto.Where(char.IsLetter).ToList().Count > 0)
+                {
+                    strCod = eanProduto + "frz";
+                    goto EanInvalido;
+                }
+
+                switch (eanTamanho)
+                {
+                    case 8 or 12:
+                        strCod = strCod.PadLeft(12, '0');
+                        finalPar = 12;
+                        finalImpar = 11;
+                        break;
+                    case 13:
+                        finalPar = 12;
+                        finalImpar = 11;
+                        break;
+                    case 14:
+                        finalPar = 12;
+                        finalImpar = 13;
+                        break;
+                    default:
+                        finalPar = 0;
+                        finalImpar = 0;
+                        strCod = eanProduto;
+                        break;
+                }
+
+                for (int i = 2; i <= finalPar; i += 2)
+                    somaPar += Convert.ToInt32(strCod.Substring(i-1, 1));
+
+                for (int i = 1; i <= finalImpar; i += 2)
+                    somaImpar += Convert.ToInt32(strCod.Substring(i-1, 1));
+
+                if (finalImpar == 11)
+                    somaPar *= 3;
+                else if (finalImpar == 13) 
+                    somaImpar *= 3;
+
+                totalSoma = somaPar + somaImpar;
+
+                while (totalSoma % 10 != 0)
+                {
+                    dv += 1;
+                    totalSoma += 1;
+                }
+
+                strCod += dv.ToString();
+                strCod = (strCod.Length > eanTamanho) ? strCod.Substring(strCod.Length - eanTamanho, eanTamanho) : strCod.PadLeft(eanTamanho, '0');
+
+                EanInvalido:;
+                if (!string.Equals(eanProduto, strCod))
+                {
+                    erro = eanProduto + " - Inválido";
+                    listaRegistros.Add(GetRegistroErro(reader, erro));
+                }
+
+            }
+            reader.Close();
+
+            Utils.DeletarArquivo(_nomeLog);
+
+            if (listaRegistros.Count > 0)
+            {
+                Utils.CriarTXT(Utils.ExportRegToText(cabecalhos, listaRegistros), $"{_nomeLog}");
+
+                _retorno.AdicionarLinhaLog($"### {listaRegistros.Count} produtos estão com o código de barras inválido.");
+            }
+
+            return _retorno.ToString();
+        }
+
+        internal static string VerificarEanDuplicado()
+        {
+            _retorno.Clear();
+            _nomeLog = "Validacoes\\codbar_duplicado";
+
+            _retorno.AdicionarLinhaLog("Iniciando verificação de codigos de barras duplicados.");
+            _retorno.AdicionarLinhaLog("Executando Consulta SQL.");
+
+            _cmd.CommandText = $"select count(*) from ({Constantes.Mapeamento.ConsultaPorValidacao.GetValueOrDefault(Constantes.Enums.ConsultasValidacoes.GetCodBarDuplicado)}) p";
+            _qtdRegistros = Convert.ToInt32(_cmd.ExecuteScalar());
+
+            _retorno.AdicionarLinhaLog($"### Foram identificados {_qtdRegistros} codigos de barras que estão duplicados ou vinculados a mais de um produto.\n");
+
+            Utils.DeletarArquivo(_nomeLog);
+
+            if (_qtdRegistros > 0)
+            {
+                Utils.CriarTXT(Utils.ExportSQLtoText(Constantes.Mapeamento.ConsultaPorValidacao.GetValueOrDefault(Constantes.Enums.ConsultasValidacoes.GetCodBarDuplicado)), $"{_nomeLog}");
             }
 
             return _retorno.ToString();
