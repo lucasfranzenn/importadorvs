@@ -28,7 +28,7 @@ namespace Importador.Classes.Entidades
             #endregion
 
             #region Setar Informações de importação
-            RegimeEmpresa= Convert.ToInt32(jiraIssue.Issues[0].Fields.RegimeTributario.Id - 10079);
+            RegimeEmpresa= Convert.ToInt32(jiraIssue.Issues[0].Fields.RegimeTributario.Id) == 10079 ? 0 : Convert.ToInt32(jiraIssue.Issues[0].Fields.RegimeTributario.Id) == 10081 ? 1 : 2;
             ImportarClientes = Convert.ToByte(jiraIssue.Issues[0].Fields.Clientes.Id != 10058 ? 0 : jiraIssue.Issues[0].Fields.Clientes.Child.Id != 10061 ? 1 : 2);
             ImportarFornecedores = Convert.ToByte(jiraIssue.Issues[0].Fields.Fornecedores.Id != 10062 ? 0 : jiraIssue.Issues[0].Fields.Clientes.Child.Id != 10061 ? 1 : 2);
             ImportarContasAPagar = Convert.ToByte(jiraIssue.Issues[0].Fields.ContasAPagar.Id != 10068 ? 0 : jiraIssue.Issues[0].Fields.ContasAPagar.Child.Id != 10071 ? 1 : 2);

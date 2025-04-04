@@ -495,8 +495,11 @@ namespace Importador.Classes
 
             return _retorno.ToString();
         }
-
-        internal static string VerificarEanInvalido()
+        /// <summary>
+        /// Função para validar códigos de barras, escrita com base no código VB6 do MyCommerce.MyFuncoes.cFuncoes.Validar_EAN
+        /// </summary>
+        /// <returns></returns>
+        internal static string VerificarEanInvalido() 
         {
             string eanProduto, strCod;
             int finalPar, finalImpar, eanTamanho, somaPar, somaImpar, totalSoma, dv;
