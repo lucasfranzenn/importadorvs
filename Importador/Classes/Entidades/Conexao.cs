@@ -67,6 +67,13 @@ namespace Importador.Classes.Entidades
                     Senha = "";
                     Banco = $"C:\\banco.mdb";
                     break;
+                case Constantes.Enums.TipoBanco.ConnectionString:
+                    Host = "ODBC Driver";
+                    Porta = 0;
+                    Usuario = $"{Environment.MachineName}";
+                    Senha = "";
+                    Banco = "Driver={MySQL ODBC 3.51 Driver};Server=localhost;Port=3306;Database=vsbd;User=root;Password=vssql;Option=3;";
+                    break;
                 default:
                     Host = "localhost";
                     Porta = 3306;

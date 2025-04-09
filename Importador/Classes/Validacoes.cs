@@ -590,11 +590,12 @@ namespace Importador.Classes
 
             Utils.DeletarArquivo(_nomeLog);
 
+            _retorno.AdicionarLinhaLog($"### {listaRegistros.Count} produtos estão com o código de barras inválido.");
+
             if (listaRegistros.Count > 0)
             {
                 Utils.CriarTXT(Utils.ExportRegToText(cabecalhos, listaRegistros), $"{_nomeLog}");
 
-                _retorno.AdicionarLinhaLog($"### {listaRegistros.Count} produtos estão com o código de barras inválido.");
             }
 
             return _retorno.ToString();

@@ -19,6 +19,8 @@ namespace Importador.Conexao
                     return new MSSqlConnection();
                 case Enums.TipoBanco.Access:
                     return new MSAccessConnection();
+                case Enums.TipoBanco.ConnectionString:
+                    return new ConnectionStringConnection();
                 default:
                     throw new NotSupportedException($"O banco de dados '{tipoBanco.ToString()}' não é suportado ou não foi implementado.");
             }

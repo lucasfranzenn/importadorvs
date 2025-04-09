@@ -412,6 +412,13 @@ namespace Importador.Classes
 
             wb.Worksheets.Add(dataTable, "Registros");
 
+            if (!Path.Exists(Path.GetDirectoryName(caminho)))
+            {
+                Directory.CreateDirectory(Path.GetDirectoryName(caminho));
+            }
+
+            caminho = Path.ChangeExtension(caminho, ".xlsx");
+
             wb.SaveAs(caminho);
         }
 

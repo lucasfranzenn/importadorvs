@@ -63,7 +63,7 @@ namespace Importador.Conexao
     {
         public override IDbConnection CriarConexao(Ent.Conexao conexao)
         {
-            throw new NotImplementedException();
+            return new System.Data.Odbc.OdbcConnection($"{conexao.Banco}");
         }
     }
 }
