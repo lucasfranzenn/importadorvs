@@ -128,7 +128,7 @@ namespace Importador.Conexao
         internal static bool EstaContandoTempo(string tela)
         {
             var cmd = instancia.conexao.CreateCommand();
-            cmd.CommandText = $"select codigoregistrodetempo from registrosdetempo where codigoimplantacao = {Configuracoes.Default.CodigoImplantacao} and tela = '{tela}' and Operador = '{Configuracoes.Default.UsuarioLogado}' and Status = 0";
+            cmd.CommandText = $"select codigoregistrodetempo from registrosdetempo where codigoimplantacao = {Configuracoes.Default.CodigoImplantacao} and tela = '{tela}' and Operador = '{Configuracoes.Default.UsuarioLogado}' and Status = 0 and Empresa = {Configuracoes.Default.Empresa}";
 
             return (cmd.ExecuteScalar() != null) ? true : false;
         }
@@ -136,7 +136,7 @@ namespace Importador.Conexao
         internal static string EstaContandoTempo()
         {
             var cmd = instancia.conexao.CreateCommand();
-            cmd.CommandText = $"select codigoimplantacao || ' - ' || tela from registrosdetempo where Operador = '{Configuracoes.Default.UsuarioLogado}' and Status = 0";
+            cmd.CommandText = $"select codigoimplantacao|| '::' || empresa || ' - ' || tela from registrosdetempo where Operador = '{Configuracoes.Default.UsuarioLogado}' and Status = 0";
 
             var objeto = cmd.ExecuteScalar();
 

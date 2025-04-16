@@ -87,7 +87,7 @@
             cbStatus.Location = new System.Drawing.Point(86, 7);
             cbStatus.Name = "cbStatus";
             cbStatus.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo) });
-            cbStatus.Properties.Items.AddRange(new object[] { "1 - Montando SQL" });
+            cbStatus.Properties.Items.AddRange(new object[] { "1 - Montando SQL", "3 - Corrigindo SQL" });
             cbStatus.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             cbStatus.Size = new System.Drawing.Size(193, 20);
             cbStatus.TabIndex = 0;
