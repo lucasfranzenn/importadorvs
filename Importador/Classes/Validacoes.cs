@@ -528,7 +528,7 @@ namespace Importador.Classes
                 eanTamanho = eanProduto.Length;
                 strCod = eanProduto.Substring(0, eanTamanho - 1);
 
-                if (eanProduto.Where(char.IsLetter).ToList().Count > 0)
+                if (eanProduto.Where(char.IsLetter).ToList().Count > 0 || eanProduto.Where(char.IsSymbol).ToList().Count > 0)
                 {
                     strCod = eanProduto + "frz";
                     goto EanInvalido;
